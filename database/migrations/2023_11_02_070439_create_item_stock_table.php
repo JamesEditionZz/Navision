@@ -26,7 +26,7 @@ return new class extends Migration {
 
         DB::table('item_stock')->insert([
             [
-           'item_no' => 'AS-000008',
+            'item no' => 'AS-000008',
             'goodname1' => 'เชือกมิลเบอร์ 4 (10X10)',
             'branchcode' => 'AS-03',
             'groupname' => 'CH-000002',
