@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('a83__f2_de_bu10s', function (Blueprint $table) {
+        Schema::create('a83__f2_th_bu05s', function (Blueprint $table) {
             $table->string('A')->nullable(true);
             $table->string('Location')->nullable(true);
             $table->string('Item No')->nullable(true);
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('Quantity', 10, 2)->nullable(true);
             $table->double('Cost Amount (Actual)', 10, 2)->nullable(true);
         });
-        DB::table('a83__f2_de_bu10s')->insert([
+        DB::table('a83__f2_th_bu05s')->insert([
             [
             'A' => 'NT-007450F1-FG-BU02',
             'Location' => 'F1-FG-BU02',

@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('item_stock', function (Blueprint $table) {
-            $table->string('item_no')->nullable(true); // Change the data type to string
+            $table->string('item no')->nullable(true); // Change the data type to string
             $table->string('goodname1')->nullable(true);
             $table->string('branchcode')->nullable(true);
             $table->string('groupname')->nullable(true);
