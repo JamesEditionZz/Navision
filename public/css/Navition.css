@@ -1,0 +1,468 @@
+body {
+    margin: auto;
+}
+.container {
+    margin-top: 0;
+    width: 100%;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(1, 11, 31);
+    height: 8.5vh;
+    overflow: hidden;
+    transition: margin 0.3s;
+}
+.navbar button {
+    width: 100%;
+}
+.scroll-right {
+    transform: translateX();
+}
+.scroll-left {
+    transform: translateX(0);
+}
+.header {
+    background-color: rgb(72, 110, 136);
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    min-height: 100vh;
+}
+.header label {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+.col-1 {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.col-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.col-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.col-12 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.mg-1 {
+    margin: 1rem;
+}
+.mg-2 {
+    margin: 2rem;
+}
+.mg-3 {
+    margin: 3rem;
+}
+.mg-4 {
+    margin: 4rem;
+}
+.mg-5 {
+    margin: 5rem;
+}
+.mg-6 {
+    margin: 6rem;
+}
+.mg-7 {
+    margin: 7rem;
+}
+.mg-8 {
+    margin: 8rem;
+}
+.mg-9 {
+    margin: 9rem;
+}
+.mg-10 {
+    margin: 10rem;
+}
+.mt-1 {
+    margin-top: 1rem;
+}
+.mt-2 {
+    margin-top: 2rem;
+}
+.mt-3 {
+    margin-top: 3rem;
+}
+.mt-4 {
+    margin-top: 4rem;
+}
+.mt-5 {
+    margin-top: 5rem;
+}
+.mt-6 {
+    margin-top: 6rem;
+}
+.mt-7 {
+    margin-top: 7rem;
+}
+.mt-8 {
+    margin-top: 8rem;
+}
+.mt-9 {
+    margin-top: 9rem;
+}
+.mt-10 {
+    margin-top: 10rem;
+}
+.mx-1 {
+    margin-bottom: 1rem;
+}
+.mx-2 {
+    margin-bottom: 2rem;
+}
+.mx-3 {
+    margin-bottom: 3rem;
+}
+.mx-4 {
+    margin-bottom: 4rem;
+}
+.mx-5 {
+    margin-bottom: 5rem;
+}
+.mx-6 {
+    margin-bottom: 6rem;
+}
+.mx-7 {
+    margin-bottom: 7rem;
+}
+.mx-8 {
+    margin-bottom: 8rem;
+}
+.mx-9 {
+    margin-bottom: 9rem;
+}
+.mx-10 {
+    margin-bottom: 10rem;
+}
+.table-block {
+    margin-left: 10px;
+    width: 99%;
+    height: 75vh;
+    overflow-y: auto;
+    overflow-x: auto;
+    position: relative;
+}
+.table-tabledata {
+    position: absolute;
+    border-collapse: collapse;
+    width: 100%;
+}
+.table-tabledata tr td {
+    border: 1px solid black;
+    text-align: center;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+a:hover {
+    animation: textcolor 2s linear infinite;
+}
+.active a {
+    color: rgb(5, 1, 255);
+    animation: textcolor 2s linear infinite;
+}
+.import-file {
+    padding: 20px;
+}
+.form-file {
+    border-radius: 7px;
+    box-shadow: 0px 0px 7px black;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+}
+.text-center {
+    text-align: center;
+}
+.form-btn {
+    padding: 10px;
+}
+.form-btn button {
+    padding: 10px;
+    width: 40%;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid skyblue;
+    background-color: white;
+    border-radius: 7px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.form-btn button:hover {
+    background-color: skyblue;
+    box-shadow: 0px 0px 7px rgb(0, 217, 255);
+    color: green;
+}
+.text-success {
+    background-color: green;
+    width: 70%;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 7px;
+}
+.modal-content {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: modal 0.8s alternate;
+}
+.modal {
+    background-color: rgb(236, 236, 236);
+    border: 1px solid #ccc;
+    width: 20%;
+    margin: 8% auto;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.img0 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img1 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img2 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img3 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img4 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img5 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img6 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img7 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img8 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img9 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.btn-success {
+    padding: 7px;
+    border-radius: 7px;
+    width: 25%;
+    background-color: white;
+    border: 2px solid rgb(255, 200, 60);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-success:hover {
+    color: white;
+    background-color: rgb(255, 200, 60);
+}
+.btn-menu {
+    border: none;
+    border-bottom: 2px solid gray;
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-menu:hover {
+    background-color: rgb(75, 88, 75);
+    color: white;
+}
+.input-search {
+    border: 2px solid skyblue;
+    padding: 6px;
+    border-radius: 7px;
+}
+.input-search:hover {
+    box-shadow: 0px 0px 8px skyblue;
+}
+.input-search:focus {
+    box-shadow: 0px 0px 8px skyblue;
+    outline: none;
+}
+.btn-search {
+    border: 2px solid rgb(247, 89, 115);
+    cursor: pointer;
+    width: 70px;
+    border-radius: 7px;
+    background-color: white;
+    font-size: 18px;
+}
+.btn-search:hover {
+    background-color: rgb(247, 89, 115);
+    color: white;
+    box-shadow: 0px 0px 7px rgb(247, 89, 115);
+}
+.Number-Page {
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.loading-data {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+.loading-data h1 {
+    color: rgb(255, 255, 255);
+}
+.loading {
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: loadingdata 2s linear infinite;
+}
+.btn-NextPage {
+    display: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0px 20% 0px 20%;
+}
+.btn-PrevPage {
+    display: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0px 20% 0px 20%;
+}
+.prev-arrow {
+    width: 30px;
+    height: 0px;
+    border-right: 20px solid #e05151;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    animation: arrowleft 0.8s linear infinite;
+}
+
+.next-arrow {
+    width: 30px;
+    height: 0px;
+    border-left: 20px solid #e05151;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    animation: arrowright 0.8s linear infinite;
+}
+
+.inputsearch{
+    border: 2px solid skyblue;
+    width: 50%;
+    padding: 7px;
+    border-radius: 7px;
+}
+
+@keyframes textcolor {
+    0% {
+        color: red;
+    }
+    33% {
+        color: rgb(17, 0, 255);
+    }
+    66% {
+        color: rgb(9, 255, 0);
+    }
+    100% {
+        color: rgb(255, 0, 0);
+    }
+}
+@keyframes modal {
+    0% {
+        top: -100%;
+    }
+}
+@keyframes loading {
+    from {
+        transform: rotate(Odeg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes success {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes cancel {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes btnfocus {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes loadingdata {
+    from {
+        transform: rotate(Odeg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes arrowleft {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+@keyframes arrowright {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: 50%;
+    }
+}
