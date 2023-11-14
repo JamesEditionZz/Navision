@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('branchcode')->nullable(true);
             $table->string('groupname')->nullable(true);
             $table->double('quantity' , 10, 2)->nullable(true);
-            $table->double('cost_per_unit', 8, 2)->nullable(true);
+            $table->double('Cost per Unit', 8, 2)->nullable(true);
             $table->double('amount', 8, 2)->nullable(true);
             $table->double('estimate_amount', 8, 2)->nullable(true);
             $table->double('inventory')->nullable(true);
@@ -31,7 +31,7 @@ return new class extends Migration {
             'branchcode' => 'AS-03',
             'groupname' => 'CH-000002',
             'quantity' => 4,
-            'cost_per_unit' => 1290,
+            'Cost per Unit' => 1290,
             'amount' => 5160,
             'estimate_amount' => 5160,
             'inventory' => 4,
