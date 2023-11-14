@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->double('amount', 8, 2)->nullable(true);
             $table->double('estimate_amount', 8, 2)->nullable(true);
             $table->double('inventory')->nullable(true);
-            $table->date('last_stock_in')->nullable(true);
+            $table->string('last_stock_in')->nullable(true);
             $table->string('entry_type')->nullable(true);
         });
 
