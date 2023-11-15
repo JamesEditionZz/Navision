@@ -1135,15 +1135,25 @@
             </div>
         </div>
     </div>
+    <div class="loading-data">
+        <div class="loading"></div>
+        <h1>Loading</h1>
+    </div>
 </body>
 
 </html>
 <script>
-    $.ajax({
-        type: "GET",
-        url: "{{ Route('DataCustomer') }}",
-        success: function(response){
-            var Data = [
+var modeloading = document.querySelector(".loading-data");
+modeloading.style.display = "block";
+$.ajax({
+    type: "GET",
+    url: "{{ Route('DataCustomer') }}",
+    success: function(response) {
+
+        var modeloading = document.querySelector(".loading-data");
+        modeloading.style.display = "none";
+
+        var Data = [
             'PcsAfterDC1', 'PriceAfterDC1', 'Pcs_AfterDC1', 'Price_AfterDC1',
             'PoPcsDC1', 'PoPriceDC1', 'NegPcsDC1', 'NegPriceDC1', 'BackPcsDC1',
             'BackPriceDC1', 'PurchasePcsDC1', 'PurchasePriceDC1', 'ReciveTranferPcsDC1',
@@ -1242,12 +1252,13 @@
             $('#' + element).text(elementData);
         });
 
-        },
-        error: function(error){
-            console.error(error);
-        }
-    });
-    function Print(){
-        window.print();
+    },
+    error: function(error) {
+        console.error(error);
     }
+});
+
+function Print() {
+    window.print();
+}
 </script>
