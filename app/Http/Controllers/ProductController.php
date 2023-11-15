@@ -923,6 +923,216 @@ class ProductController extends Controller
         //////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////
 
+        $ItemNoNTDCP = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '=', 'DCP')
+            ->where('dataother.Item No', 'LIKE', 'NT%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
+        $ItemNoTWDCP = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '=', 'DCY')
+            ->where('dataother.Item No', 'LIKE', 'TW%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
+        $ItemNoLNDCP = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '=', 'DCP')
+            ->where('dataother.Item No', 'LIKE', 'LN%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
         $Pcs_AfterNT = 0;
         $Price_AfterNT = 0;
         $Po_PcsNT = 0;
@@ -1936,6 +2146,240 @@ class ProductController extends Controller
         $DCY_PriceSNTDCY = 0;
         $DEX_PcsSNTDCY = 0;
         $DEX_PriceSNTDCY = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterNTDCP = 0;
+        $Price_AfterNTDCP = 0;
+        $Po_PcsNTDCP = 0;
+        $Po_PriceNTDCP = 0;
+        $Neg_PcsNTDCP = 0;
+        $Neg_PriceNTDCP = 0;
+        $Purchase_PcsNTDCP = 0;
+        $Purchase_PriceNTDCP = 0;
+        $BackChange_PcsNTDCP = 0;
+        $BackChange_PriceNTDCP = 0;
+        $ReciveTranfer_PcsNTDCP = 0;
+        $ReciveTranfer_PriceNTDCP = 0;
+        $ReturnItem_PCSNTDCP = 0;
+        $ReturnItem_PriceNTDCP = 0;
+        $AllIn_PcsNTDCP = 0;
+        $AllIn_PriceNTDCP = 0;
+        $SendSale_PcsNTDCP = 0;
+        $SendSale_PriceNTDCP = 0;
+        $ReciveTranOut_PcsNTDCP = 0;
+        $ReciveTranOut_PriceNTDCP = 0;
+        $ReturnStore_PcsNTDCP = 0;
+        $ReturnStore_PriceNTDCP = 0;
+        $AllOut_PcsNTDCP = 0;
+        $AllOut_PriceNTDCP = 0;
+        $Calculate_PcsNTDCP = 0;
+        $Calculate_PriceNTDCP = 0;
+        $NewCalculate_PcsNTDCP = 0;
+        $NewCalculate_PriceNTDCP = 0;
+        $Diff_PcsNTDCP = 0;
+        $Diff_PriceNTDCP = 0;
+        $NewTotal_PcsNTDCP = 0;
+        $NewTotal_PriceNTDCP = 0;
+        $NewTotalDiff_NavNTDCP = 0;
+        $NewTotalDiff_CalNTDCP = 0;
+        $a7f1fgbu02s_PcsNTDCP = 0;
+        $a7f1fgbu02s_PriceNTDCP = 0;
+        $a7f2fgbu10s_PcsNTDCP = 0;
+        $a7f2fgbu10s_PriceNTDCP = 0;
+        $a7f2thbu05s_PcsNTDCP = 0;
+        $a7f2thbu05s_PriceNTDCP = 0;
+        $a7f2debu10s_PcsNTDCP = 0;
+        $a7f2debu10s_PriceNTDCP = 0;
+        $a7f2exbu11s_PcsNTDCP = 0;
+        $a7f2exbu11s_PriceNTDCP = 0;
+        $a7f2twbu04s_PcsNTDCP = 0;
+        $a7f2twbu04s_PriceNTDCP = 0;
+        $a7f2twbu07s_PcsNTDCP = 0;
+        $a7f2twbu07s_PriceNTDCP = 0;
+        $a7f2cebu10s_PcsNTDCP = 0;
+        $a7f2cebu10s_PriceNTDCP = 0;
+        $a8f1fgbu02s_PcsNTDCP = 0;
+        $a8f1fgbu02s_PriceNTDCP = 0;
+        $a8f2fgbu10s_PcsNTDCP = 0;
+        $a8f2fgbu10s_PriceNTDCP = 0;
+        $a8f2thbu05s_PcsNTDCP = 0;
+        $a8f2thbu05s_PriceNTDCP = 0;
+        $a8f2debu10s_PcsNTDCP = 0;
+        $a8f2debu10s_PriceNTDCP = 0;
+        $a8f2exbu11s_PcsNTDCP = 0;
+        $a8f2exbu11s_PriceNTDCP = 0;
+        $a8f2twbu04s_PcsNTDCP = 0;
+        $a8f2twbu04s_PriceNTDCP = 0;
+        $a8f2twbu07s_PcsNTDCP = 0;
+        $a8f2twbu07s_PriceNTDCP = 0;
+        $a8f2cebu10s_PcsNTDCP = 0;
+        $a8f2cebu10s_PriceNTDCP = 0;
+        $DC1_PcsNTDCP = 0;
+        $DC1_PriceNTDCP = 0;
+        $DCP_PcsNTDCP = 0;
+        $DCP_PriceNTDCP = 0;
+        $DCY_PcsNTDCP = 0;
+        $DCY_PriceNTDCP = 0;
+        $DEX_PcsNTDCP = 0;
+        $DEX_PriceNTDCP = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterTWDCP = 0;
+        $Price_AfterTWDCP = 0;
+        $Po_PcsTWDCP = 0;
+        $Po_PriceTWDCP = 0;
+        $Neg_PcsTWDCP = 0;
+        $Neg_PriceTWDCP = 0;
+        $Purchase_PcsTWDCP = 0;
+        $Purchase_PriceTWDCP = 0;
+        $BackChange_PcsTWDCP = 0;
+        $BackChange_PriceTWDCP = 0;
+        $ReciveTranfer_PcsTWDCP = 0;
+        $ReciveTranfer_PriceTWDCP = 0;
+        $ReturnItem_PCSTWDCP = 0;
+        $ReturnItem_PriceTWDCP = 0;
+        $AllIn_PcsTWDCP = 0;
+        $AllIn_PriceTWDCP = 0;
+        $SendSale_PcsTWDCP = 0;
+        $SendSale_PriceTWDCP = 0;
+        $ReciveTranOut_PcsTWDCP = 0;
+        $ReciveTranOut_PriceTWDCP = 0;
+        $ReturnStore_PcsTWDCP = 0;
+        $ReturnStore_PriceTWDCP = 0;
+        $AllOut_PcsTWDCP = 0;
+        $AllOut_PriceTWDCP = 0;
+        $Calculate_PcsTWDCP = 0;
+        $Calculate_PriceTWDCP = 0;
+        $NewCalculate_PcsTWDCP = 0;
+        $NewCalculate_PriceTWDCP = 0;
+        $Diff_PcsTWDCP = 0;
+        $Diff_PriceTWDCP = 0;
+        $NewTotal_PcsTWDCP = 0;
+        $NewTotal_PriceTWDCP = 0;
+        $NewTotalDiff_NavTWDCP = 0;
+        $NewTotalDiff_CalTWDCP = 0;
+        $a7f1fgbu02s_PcsTWDCP = 0;
+        $a7f1fgbu02s_PriceTWDCP = 0;
+        $a7f2fgbu10s_PcsTWDCP = 0;
+        $a7f2fgbu10s_PriceTWDCP = 0;
+        $a7f2thbu05s_PcsTWDCP = 0;
+        $a7f2thbu05s_PriceTWDCP = 0;
+        $a7f2debu10s_PcsTWDCP = 0;
+        $a7f2debu10s_PriceTWDCP = 0;
+        $a7f2exbu11s_PcsTWDCP = 0;
+        $a7f2exbu11s_PriceTWDCP = 0;
+        $a7f2twbu04s_PcsTWDCP = 0;
+        $a7f2twbu04s_PriceTWDCP = 0;
+        $a7f2twbu07s_PcsTWDCP = 0;
+        $a7f2twbu07s_PriceTWDCP = 0;
+        $a7f2cebu10s_PcsTWDCP = 0;
+        $a7f2cebu10s_PriceTWDCP = 0;
+        $a8f1fgbu02s_PcsTWDCP = 0;
+        $a8f1fgbu02s_PriceTWDCP = 0;
+        $a8f2fgbu10s_PcsTWDCP = 0;
+        $a8f2fgbu10s_PriceTWDCP = 0;
+        $a8f2thbu05s_PcsTWDCP = 0;
+        $a8f2thbu05s_PriceTWDCP = 0;
+        $a8f2debu10s_PcsTWDCP = 0;
+        $a8f2debu10s_PriceTWDCP = 0;
+        $a8f2exbu11s_PcsTWDCP = 0;
+        $a8f2exbu11s_PriceTWDCP = 0;
+        $a8f2twbu04s_PcsTWDCP = 0;
+        $a8f2twbu04s_PriceTWDCP = 0;
+        $a8f2twbu07s_PcsTWDCP = 0;
+        $a8f2twbu07s_PriceTWDCP = 0;
+        $a8f2cebu10s_PcsTWDCP = 0;
+        $a8f2cebu10s_PriceTWDCP = 0;
+        $DC1_PcsTWDCP = 0;
+        $DC1_PriceTWDCP = 0;
+        $DCP_PcsTWDCP = 0;
+        $DCP_PriceTWDCP = 0;
+        $DCY_PcsTWDCP = 0;
+        $DCY_PriceTWDCP = 0;
+        $DEX_PcsTWDCP = 0;
+        $DEX_PriceTWDCP = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterLNDCP = 0;
+        $Price_AfterLNDCP = 0;
+        $Po_PcsLNDCP = 0;
+        $Po_PriceLNDCP = 0;
+        $Neg_PcsLNDCP = 0;
+        $Neg_PriceLNDCP = 0;
+        $Purchase_PcsLNDCP = 0;
+        $Purchase_PriceLNDCP = 0;
+        $BackChange_PcsLNDCP = 0;
+        $BackChange_PriceLNDCP = 0;
+        $ReciveTranfer_PcsLNDCP = 0;
+        $ReciveTranfer_PriceLNDCP = 0;
+        $ReturnItem_PCSLNDCP = 0;
+        $ReturnItem_PriceLNDCP = 0;
+        $AllIn_PcsLNDCP = 0;
+        $AllIn_PriceLNDCP = 0;
+        $SendSale_PcsLNDCP = 0;
+        $SendSale_PriceLNDCP = 0;
+        $ReciveTranOut_PcsLNDCP = 0;
+        $ReciveTranOut_PriceLNDCP = 0;
+        $ReturnStore_PcsLNDCP = 0;
+        $ReturnStore_PriceLNDCP = 0;
+        $AllOut_PcsLNDCP = 0;
+        $AllOut_PriceLNDCP = 0;
+        $Calculate_PcsLNDCP = 0;
+        $Calculate_PriceLNDCP = 0;
+        $NewCalculate_PcsLNDCP = 0;
+        $NewCalculate_PriceLNDCP = 0;
+        $Diff_PcsLNDCP = 0;
+        $Diff_PriceLNDCP = 0;
+        $NewTotal_PcsLNDCP = 0;
+        $NewTotal_PriceLNDCP = 0;
+        $NewTotalDiff_NavLNDCP = 0;
+        $NewTotalDiff_CalLNDCP = 0;
+        $a7f1fgbu02s_PcsLNDCP = 0;
+        $a7f1fgbu02s_PriceLNDCP = 0;
+        $a7f2fgbu10s_PcsLNDCP = 0;
+        $a7f2fgbu10s_PriceLNDCP = 0;
+        $a7f2thbu05s_PcsLNDCP = 0;
+        $a7f2thbu05s_PriceLNDCP = 0;
+        $a7f2debu10s_PcsLNDCP = 0;
+        $a7f2debu10s_PriceLNDCP = 0;
+        $a7f2exbu11s_PcsLNDCP = 0;
+        $a7f2exbu11s_PriceLNDCP = 0;
+        $a7f2twbu04s_PcsLNDCP = 0;
+        $a7f2twbu04s_PriceLNDCP = 0;
+        $a7f2twbu07s_PcsLNDCP = 0;
+        $a7f2twbu07s_PriceLNDCP = 0;
+        $a7f2cebu10s_PcsLNDCP = 0;
+        $a7f2cebu10s_PriceLNDCP = 0;
+        $a8f1fgbu02s_PcsLNDCP = 0;
+        $a8f1fgbu02s_PriceLNDCP = 0;
+        $a8f2fgbu10s_PcsLNDCP = 0;
+        $a8f2fgbu10s_PriceLNDCP = 0;
+        $a8f2thbu05s_PcsLNDCP = 0;
+        $a8f2thbu05s_PriceLNDCP = 0;
+        $a8f2debu10s_PcsLNDCP = 0;
+        $a8f2debu10s_PriceLNDCP = 0;
+        $a8f2exbu11s_PcsLNDCP = 0;
+        $a8f2exbu11s_PriceLNDCP = 0;
+        $a8f2twbu04s_PcsLNDCP = 0;
+        $a8f2twbu04s_PriceLNDCP = 0;
+        $a8f2twbu07s_PcsLNDCP = 0;
+        $a8f2twbu07s_PriceLNDCP = 0;
+        $a8f2cebu10s_PcsLNDCP = 0;
+        $a8f2cebu10s_PriceLNDCP = 0;
+        $DC1_PcsLNDCP = 0;
+        $DC1_PriceLNDCP = 0;
+        $DCP_PcsLNDCP = 0;
+        $DCP_PriceLNDCP = 0;
+        $DCY_PcsLNDCP = 0;
+        $DCY_PriceLNDCP = 0;
+        $DEX_PcsLNDCP = 0;
+        $DEX_PriceLNDCP = 0;
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5531,6 +5975,831 @@ class ProductController extends Controller
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
 
+        foreach ($ItemNoNTDCP as $NTDCP) {
+            if ($NTDCP->PcsAfter > 0 && $NTDCP->PriceAfter > 0) {
+                $NumberNTDCP = ($NTDCP->PriceAfter / $NTDCP->PcsAfter);
+            }else{
+                $NumberNTDCP = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterNTDCP = $NTDCP->PcsAfter;
+            $Pcs_AfterNTDCP = $Pcs_AfterNTDCP + $PCSAfterNTDCP;
+
+            $PriceAfterNTDCP = $NTDCP->PriceAfter;
+            $Price_AfterNTDCP = $Price_AfterNTDCP + $PriceAfterNTDCP;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsNTDCP = $NTDCP->Po_Quantity;
+            $Po_PcsNTDCP = $Po_PcsNTDCP + $PoPcsNTDCP;
+
+            $PoPriceNTDCP = $NTDCP->PriceAvg * $NTDCP->Po_Quantity;
+            $Po_PriceNTDCP = $Po_PriceNTDCP + $PoPriceNTDCP;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsNTDCP = $NTDCP->Neg_Quantity;
+            $Neg_PcsNTDCP = $Neg_PcsNTDCP + $NegPcsNTDCP;
+
+
+            $NegPriceNTDCP = $NumberNTDCP * $NTDCP->Neg_Quantity;
+            $Neg_PriceNTDCP = $Neg_PriceNTDCP + $NegPriceNTDCP;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsNTDCP = $PCSAfterNTDCP + $PoPcsNTDCP + $NegPcsNTDCP;
+            $BackChange_PcsNTDCP = $BackChange_PcsNTDCP + $BackChangePcsNTDCP;
+
+            $BackChangePriceNTDCP = $PriceAfterNTDCP + $PoPriceNTDCP + $NegPriceNTDCP;
+            $BackChange_PriceNTDCP = $BackChange_PriceNTDCP + $BackChangePriceNTDCP;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsNTDCP = $NTDCP->purchase_Quantity;
+            $Purchase_PcsNTDCP = $Purchase_PcsNTDCP + $PurchasePcsNTDCP;
+
+            $PurchasePriceNTDCP = $NTDCP->purchase_Cost;
+            $Purchase_PriceNTDCP = $Purchase_PriceNTDCP + $PurchasePriceNTDCP;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsNTDCP = $NTDCP->a7f1fgbu02s_Quantity + $NTDCP->a7f2fgbu10s_Quantity + $NTDCP->a7f2thbu05s_Quantity + $NTDCP->a7f2debu10s_Quantity + $NTDCP->a7f2exbu11s_Quantity + $NTDCP->a7f2twbu04s_Quantity + $NTDCP->a7f2twbu07s_Quantity + $NTDCP->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsNTDCP = $ReciveTranfer_PcsNTDCP + $ReciveTranferPcsNTDCP;
+
+            $ReciveTranferPriceNTDCP = $ReciveTranferPcsNTDCP * $NTDCP->PriceAvg;
+            $ReciveTranfer_PriceNTDCP = $ReciveTranfer_PriceNTDCP + $ReciveTranferPriceNTDCP;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantityNTDCP = $NTDCP->returncuses_Quantity;
+            $ReturnItem_PCSNTDCP = $ReturnItem_PCSNTDCP + $ReturnItemQuantityNTDCP;
+
+            $ReturnItemPriceNTDCP = $ReturnItemQuantityNTDCP * $NumberNTDCP;
+            $ReturnItem_PriceNTDCP = $ReturnItem_PriceNTDCP + $ReturnItemPriceNTDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsNTDCP = $NTDCP->purchase_Quantity + $ReciveTranferPcsNTDCP + $ReturnItemQuantityNTDCP;
+            $AllIn_PcsNTDCP = $AllIn_PcsNTDCP + $AllInPcsNTDCP;
+
+            $AllInPriceNTDCP = $PurchasePriceNTDCP + $ReciveTranferPriceNTDCP + $ReturnItemPriceNTDCP;
+            $AllIn_PriceNTDCP = $AllIn_PriceNTDCP + $AllInPriceNTDCP;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsNTDCP = $NTDCP->dc1_s_Quantity + $NTDCP->dcp_s_Quantity + $NTDCP->dcy_s_Quantity + $NTDCP->dex_s_Quantity;
+            $SendSale_PcsNTDCP = $SendSale_PcsNTDCP + $SendSalePcsNTDCP;
+
+            if ($BackChangePcsNTDCP > 0 && $AllInPcsNTDCP > 0) {
+                $SendSalePriceNTDCP = (($AllInPriceNTDCP + $BackChangePriceNTDCP) / ($AllInPcsNTDCP + $BackChangePcsNTDCP)) * $SendSalePcsNTDCP;
+                $SendSale_PriceNTDCP = $SendSale_PriceNTDCP + $SendSalePriceNTDCP;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsNTDCP = $NTDCP->a8f1fgbu02s_Quantity + $NTDCP->a8f2fgbu10s_Quantity + $NTDCP->a8f2thbu05s_Quantity + $NTDCP->a8f2debu10s_Quantity + $NTDCP->a8f2exbu11s_Quantity + $NTDCP->a8f2twbu04s_Quantity + $NTDCP->a8f2twbu07s_Quantity + $NTDCP->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsNTDCP = $ReciveTranOut_PcsNTDCP + $ReciveTranOutPcsNTDCP;
+
+            if ($AllInPcsNTDCP > 0 && $BackChangePcsNTDCP > 0) {
+                $ReciveTranOutPriceNTDCP = (($AllInPriceNTDCP + $BackChangePriceNTDCP) / ($AllInPcsNTDCP + $BackChangePcsNTDCP)) * $ReciveTranOutPcsNTDCP;
+                $ReciveTranOut_PriceNTDCP = $ReciveTranOut_PriceNTDCP + $ReciveTranOutPriceNTDCP;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsNTDCP = $NTDCP->returnitem_Quantity;
+            $ReturnStore_PcsNTDCP = $ReturnStore_PcsNTDCP + $ReturnStorePcsNTDCP;
+
+            if ($AllInPcsNTDCP > 0 && $BackChangePcsNTDCP > 0) {
+                $ReturnStorePriceNTDCP = (($AllInPriceNTDCP + $BackChangePriceNTDCP) / ($AllInPcsNTDCP + $BackChangePcsNTDCP)) * $ReturnStorePcsNTDCP;
+                $ReturnStore_PriceNTDCP = $ReturnStore_PriceNTDCP + $ReturnStorePriceNTDCP;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsNTDCP = $ReturnStorePcsNTDCP + $ReciveTranOutPcsNTDCP + $SendSalePcsNTDCP;
+            $AllOut_PcsNTDCP = $AllOut_PcsNTDCP + $AllOutPcsNTDCP;
+
+            $AllOutPriceNTDCP = $SendSale_PriceNTDCP + $ReciveTranOut_PriceNTDCP + $ReturnStore_PriceNTDCP;
+            $AllOut_PriceNTDCP = $AllOut_PriceNTDCP + $AllOutPriceNTDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsNTDCP = $BackChangePcsNTDCP + $AllInPcsNTDCP + $AllOutPcsNTDCP;
+            $Calculate_PcsNTDCP = $Calculate_PcsNTDCP + $CalculatePcsNTDCP;
+
+            $CalculatePriceNTDCP = $BackChangePriceNTDCP + $AllInPriceNTDCP + $AllOutPriceNTDCP;
+            $Calculate_PriceNTDCP = $Calculate_PriceNTDCP + $CalculatePriceNTDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsNTDCP = $NTDCP->item_stock_Quantity;
+            $NewCalculate_PcsNTDCP = $NewCalculate_PcsNTDCP + $NewCalculatePcsNTDCP;
+
+            $NewCalculatePriceNTDCP = $NTDCP->item_stock_Amount;
+            $NewCalculate_PriceNTDCP = $NewCalculate_PriceNTDCP + $NewCalculatePriceNTDCP;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsNTDCP = $NewCalculatePcsNTDCP - $CalculatePcsNTDCP;
+            $Diff_PcsNTDCP = $Diff_PcsNTDCP + $DiffPcsNTDCP;
+
+            $DiffPriceNTDCP = $NewCalculatePriceNTDCP - $CalculatePriceNTDCP;
+            $Diff_PriceNTDCP = $Diff_PriceNTDCP + $DiffPriceNTDCP;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsNTDCP = $CalculatePcsNTDCP;
+            $NewTotal_PcsNTDCP = $NewTotal_PcsNTDCP + $CalculatePcsNTDCP;
+
+            $NewTotalPriceNTDCP = $NewTotalPcsNTDCP * $NTDCP->PriceAvg;
+            $NewTotal_PriceNTDCP = $NewTotal_PriceNTDCP + $NewTotalPriceNTDCP;
+
+            $NewTotalDiffNavNTDCP = $NewTotalPriceNTDCP - $NewCalculatePriceNTDCP;
+            $NewTotalDiff_NavNTDCP = $NewTotalDiff_NavNTDCP + $NewTotalDiffNavNTDCP;
+
+            $NewTotalDiffCalNTDCP = $NewTotalPriceNTDCP - $CalculatePriceNTDCP;
+            $NewTotalDiff_CalNTDCP = $NewTotalDiff_CalNTDCP + $NewTotalDiffCalNTDCP;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsNTDCP = $NTDCP->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsNTDCP = $a7f1fgbu02s_PcsNTDCP + $a7f1fgbu02sPcsNTDCP;
+
+            $a7f1fgbu02sPriceNTDCP = $a7f1fgbu02sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f1fgbu02s_PriceNTDCP = $a7f1fgbu02s_PriceNTDCP + $a7f1fgbu02sPriceNTDCP;
+
+            $a7f2fgbu10sPcsNTDCP = $NTDCP->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsNTDCP = $a7f2fgbu10s_PcsNTDCP + $a7f2fgbu10sPcsNTDCP;
+
+            $a7f2fgbu10sPriceNTDCP = $a7f2fgbu10sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f2fgbu10s_PriceNTDCP = $a7f2fgbu10s_PriceNTDCP + $a7f2fgbu10sPriceNTDCP;
+
+            $a7f2thbu05sPcsNTDCP = $NTDCP->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsNTDCP = $a7f2thbu05s_PcsNTDCP + $a7f2thbu05sPcsNTDCP;
+
+            $a7f2thbu05sPriceNTDCP = $a7f2thbu05sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f2thbu05s_PriceNTDCP = $a7f2thbu05s_PriceNTDCP + $a7f2thbu05sPriceNTDCP;
+
+            $a7f2debu10sPcsNTDCP = $NTDCP->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsNTDCP = $a7f2debu10s_PcsNTDCP + $a7f2debu10sPcsNTDCP;
+
+            $a7f2debu10sPriceNTDCP = $a7f2debu10sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f2debu10s_PriceNTDCP = $a7f2debu10s_PriceNTDCP + $a7f2debu10sPriceNTDCP;
+
+            $a7f2exbu11sPcsNTDCP = $NTDCP->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsNTDCP = $a7f2exbu11s_PcsNTDCP + $a7f2exbu11sPcsNTDCP;
+
+            $a7f2exbu11sPriceNTDCP = $a7f2exbu11sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f2exbu11s_PriceNTDCP = $a7f2exbu11s_PriceNTDCP + $a7f2exbu11sPriceNTDCP;
+
+            $a7f2twbu04sPcsNTDCP = $NTDCP->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsNTDCP = $a7f2twbu04s_PcsNTDCP + $a7f2twbu04sPcsNTDCP;
+
+            $a7f2twbu04sPriceNTDCP = $a7f2twbu04sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f2twbu04s_PriceNTDCP = $a7f2twbu04s_PriceNTDCP + $a7f2twbu04sPriceNTDCP;
+
+            $a7f2twbu07sPcsNTDCP = $NTDCP->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsNTDCP = $a7f2twbu07s_PcsNTDCP + $a7f2twbu07sPcsNTDCP;
+
+            $a7f2twbu07sPriceNTDCP = $a7f2twbu07sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f2twbu07s_PriceNTDCP = $a7f2twbu07s_PriceNTDCP + $a7f2twbu07sPriceNTDCP;
+
+            $a7f2cebu10sPcsNTDCP = $NTDCP->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsNTDCP = $a7f2cebu10s_PcsNTDCP + $a7f2cebu10sPcsNTDCP;
+
+            $a7f2cebu10sPriceNTDCP = $a7f2cebu10sPcsNTDCP * $NTDCP->PriceAvg;
+            $a7f2cebu10s_PriceNTDCP = $a7f2cebu10s_PriceNTDCP + $a7f2cebu10sPriceNTDCP;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsNTDCP = $NTDCP->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsNTDCP = $a8f1fgbu02s_PcsNTDCP + $a8f1fgbu02sPcsNTDCP;
+
+            $a8f1fgbu02sPriceNTDCP = $a8f1fgbu02sPcsNTDCP * $NumberNTDCP;
+            $a8f1fgbu02s_PriceNTDCP = $a8f1fgbu02s_PriceNTDCP + $a8f1fgbu02sPriceNTDCP;
+
+            $a8f2fgbu10sPcsNTDCP = $NTDCP->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsNTDCP = $a8f2fgbu10s_PcsNTDCP + $a8f2fgbu10sPcsNTDCP;
+
+            $a8f2fgbu10sPriceNTDCP = $a8f2fgbu10sPcsNTDCP * $NumberNTDCP;
+            $a8f2fgbu10s_PriceNTDCP = $a8f2fgbu10s_PriceNTDCP + $a8f2fgbu10sPriceNTDCP;
+
+            $a8f2thbu05sPcsNTDCP = $NTDCP->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsNTDCP = $a8f2thbu05s_PcsNTDCP + $a8f2thbu05sPcsNTDCP;
+
+            $a8f2thbu05sPriceNTDCP = $a8f2thbu05sPcsNTDCP * $NumberNTDCP;
+            $a8f2thbu05s_PriceNTDCP = $a8f2thbu05s_PriceNTDCP + $a8f2thbu05sPriceNTDCP;
+
+            $a8f2debu10sPcsNTDCP = $NTDCP->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsNTDCP = $a8f2debu10s_PcsNTDCP + $a8f2debu10sPcsNTDCP;
+
+            $a8f2debu10sPriceNTDCP = $a8f2debu10sPcsNTDCP * $NumberNTDCP;
+            $a8f2debu10s_PriceNTDCP = $a8f2debu10s_PriceNTDCP + $a8f2debu10sPriceNTDCP;
+
+            $a8f2exbu11sPcsNTDCP = $NTDCP->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsNTDCP = $a8f2exbu11s_PcsNTDCP + $a8f2exbu11sPcsNTDCP;
+
+            $a8f2exbu11sPriceNTDCP = $a8f2exbu11sPcsNTDCP * $NumberNTDCP;
+            $a8f2exbu11s_PriceNTDCP = $a8f2exbu11s_PriceNTDCP + $a8f2exbu11sPriceNTDCP;
+
+            $a8f2twbu04sPcsNTDCP = $NTDCP->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsNTDCP = $a8f2twbu04s_PcsNTDCP + $a8f2twbu04sPcsNTDCP;
+
+            $a8f2twbu04sPriceNTDCP = $a8f2twbu04sPcsNTDCP * $NumberNTDCP;
+            $a8f2twbu04s_PriceNTDCP = $a8f2twbu04s_PriceNTDCP + $a8f2twbu04sPriceNTDCP;
+
+            $a8f2twbu07sPcsNTDCP = $NTDCP->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsNTDCP = $a8f2twbu07s_PcsNTDCP + $a8f2twbu07sPcsNTDCP;
+
+            $a8f2twbu07sPriceNTDCP = $a8f2twbu07sPcsNTDCP * $NumberNTDCP;
+            $a8f2twbu07s_PriceNTDCP = $a8f2twbu07s_PriceNTDCP + $a8f2twbu07sPriceNTDCP;
+
+            $a8f2cebu10sPcsNTDCP = $NTDCP->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsNTDCP = $a8f2cebu10s_PcsNTDCP + $a8f2cebu10sPcsNTDCP;
+
+            $a8f2cebu10sPriceNTDCP = $a8f2cebu10sPcsNTDCP * $NumberNTDCP;
+            $a8f2cebu10s_PriceNTDCP = $a8f2cebu10s_PriceNTDCP + $a8f2cebu10sPriceNTDCP;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsNTDCP = $NTDCP->dc1_s_Quantity;
+            $DC1_PcsNTDCP = $DC1_PcsNTDCP + $DC1PcsNTDCP;
+
+            $DC1PriceNTDCP = $DC1PcsNTDCP * $NumberNTDCP;
+            $DC1_PriceNTDCP = $DC1_PriceNTDCP + $DC1PriceNTDCP;
+
+            $DCPPcsNTDCP = $NTDCP->dcp_s_Quantity;
+            $DCP_PcsNTDCP = $DCP_PcsNTDCP + $DCPPcsNTDCP;
+
+            $DCPPriceNTDCP = $DCPPcsNTDCP * $NumberNTDCP;
+            $DCP_PriceNTDCP = $DCP_PriceNTDCP + $DCPPriceNTDCP;
+
+            $DCYPcsNTDCP = $NTDCP->dcy_s_Quantity;
+            $DCY_PcsNTDCP = $DCY_PcsNTDCP + $DCYPcsNTDCP;
+
+            $DCYPriceNTDCP = $DCYPcsNTDCP * $NumberNTDCP;
+            $DCY_PriceNTDCP = $DCY_PriceNTDCP + $DCYPriceNTDCP;
+
+            $DEXPcsNTDCP = $NTDCP->dex_s_Quantity;
+            $DEX_PcsNTDCP = $DEX_PcsNTDCP + $DEXPcsNTDCP;
+
+            $DEXPriceNTDCP = $DEXPcsNTDCP * $NumberNTDCP;
+            $DEX_PriceNTDCP = $DEX_PriceNTDCP + $DEXPriceNTDCP;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        foreach ($ItemNoTWDCP as $TWDCP) {
+            if ($TWDCP->PcsAfter > 0 && $TWDCP->PriceAfter > 0) {
+                $NumberTWDCP = ($TWDCP->PriceAfter / $TWDCP->PcsAfter);
+            }else{
+                $NumberTWDCP = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterTWDCP = $TWDCP->PcsAfter;
+            $Pcs_AfterTWDCP = $Pcs_AfterTWDCP + $PCSAfterTWDCP;
+
+            $PriceAfterTWDCP = $TWDCP->PriceAfter;
+            $Price_AfterTWDCP = $Price_AfterTWDCP + $PriceAfterTWDCP;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsTWDCP = $TWDCP->Po_Quantity;
+            $Po_PcsTWDCP = $Po_PcsTWDCP + $PoPcsTWDCP;
+
+            $PoPriceTWDCP = $TWDCP->PriceAvg * $TWDCP->Po_Quantity;
+            $Po_PriceTWDCP = $Po_PriceTWDCP + $PoPriceTWDCP;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsTWDCP = $TWDCP->Neg_Quantity;
+            $Neg_PcsTWDCP = $Neg_PcsTWDCP + $NegPcsTWDCP;
+
+
+            $NegPriceTWDCP = $NumberTWDCP * $TWDCP->Neg_Quantity;
+            $Neg_PriceTWDCP = $Neg_PriceTWDCP + $NegPriceTWDCP;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsTWDCP = $PCSAfterTWDCP + $PoPcsTWDCP + $NegPcsTWDCP;
+            $BackChange_PcsTWDCP = $BackChange_PcsTWDCP + $BackChangePcsTWDCP;
+
+            $BackChangePriceTWDCP = $PriceAfterTWDCP + $PoPriceTWDCP + $NegPriceTWDCP;
+            $BackChange_PriceTWDCP = $BackChange_PriceTWDCP + $BackChangePriceTWDCP;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsTWDCP = $TWDCP->purchase_Quantity;
+            $Purchase_PcsTWDCP = $Purchase_PcsTWDCP + $PurchasePcsTWDCP;
+
+            $PurchasePriceTWDCP = $TWDCP->purchase_Cost;
+            $Purchase_PriceTWDCP = $Purchase_PriceTWDCP + $PurchasePriceTWDCP;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsTWDCP = $TWDCP->a7f1fgbu02s_Quantity + $TWDCP->a7f2fgbu10s_Quantity + $TWDCP->a7f2thbu05s_Quantity + $TWDCP->a7f2debu10s_Quantity + $TWDCP->a7f2exbu11s_Quantity + $TWDCP->a7f2twbu04s_Quantity + $TWDCP->a7f2twbu07s_Quantity + $TWDCP->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsTWDCP = $ReciveTranfer_PcsTWDCP + $ReciveTranferPcsTWDCP;
+
+            $ReciveTranferPriceTWDCP = $ReciveTranferPcsTWDCP * $TWDCP->PriceAvg;
+            $ReciveTranfer_PriceTWDCP = $ReciveTranfer_PriceTWDCP + $ReciveTranferPriceTWDCP;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantityTWDCP = $TWDCP->returncuses_Quantity;
+            $ReturnItem_PCSTWDCP = $ReturnItem_PCSTWDCP + $ReturnItemQuantityTWDCP;
+
+            $ReturnItemPriceTWDCP = $ReturnItemQuantityTWDCP * $NumberTWDCP;
+            $ReturnItem_PriceTWDCP = $ReturnItem_PriceTWDCP + $ReturnItemPriceTWDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsTWDCP = $TWDCP->purchase_Quantity + $ReciveTranferPcsTWDCP + $ReturnItemQuantityTWDCP;
+            $AllIn_PcsTWDCP = $AllIn_PcsTWDCP + $AllInPcsTWDCP;
+
+            $AllInPriceTWDCP = $PurchasePriceTWDCP + $ReciveTranferPriceTWDCP + $ReturnItemPriceTWDCP;
+            $AllIn_PriceTWDCP = $AllIn_PriceTWDCP + $AllInPriceTWDCP;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsTWDCP = $TWDCP->dc1_s_Quantity + $TWDCP->dcp_s_Quantity + $TWDCP->dcy_s_Quantity + $TWDCP->dex_s_Quantity;
+            $SendSale_PcsTWDCP = $SendSale_PcsTWDCP + $SendSalePcsTWDCP;
+
+            if ($BackChangePcsTWDCP > 0 && $AllInPcsTWDCP > 0) {
+                $SendSalePriceTWDCP = (($AllInPriceTWDCP + $BackChangePriceTWDCP) / ($AllInPcsTWDCP + $BackChangePcsTWDCP)) * $SendSalePcsTWDCP;
+                $SendSale_PriceTWDCP = $SendSale_PriceTWDCP + $SendSalePriceTWDCP;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsTWDCP = $TWDCP->a8f1fgbu02s_Quantity + $TWDCP->a8f2fgbu10s_Quantity + $TWDCP->a8f2thbu05s_Quantity + $TWDCP->a8f2debu10s_Quantity + $TWDCP->a8f2exbu11s_Quantity + $TWDCP->a8f2twbu04s_Quantity + $TWDCP->a8f2twbu07s_Quantity + $TWDCP->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsTWDCP = $ReciveTranOut_PcsTWDCP + $ReciveTranOutPcsTWDCP;
+
+            if ($AllInPcsTWDCP > 0 && $BackChangePcsTWDCP > 0) {
+                $ReciveTranOutPriceTWDCP = (($AllInPriceTWDCP + $BackChangePriceTWDCP) / ($AllInPcsTWDCP + $BackChangePcsTWDCP)) * $ReciveTranOutPcsTWDCP;
+                $ReciveTranOut_PriceTWDCP = $ReciveTranOut_PriceTWDCP + $ReciveTranOutPriceTWDCP;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsTWDCP = $TWDCP->returnitem_Quantity;
+            $ReturnStore_PcsTWDCP = $ReturnStore_PcsTWDCP + $ReturnStorePcsTWDCP;
+
+            if ($AllInPcsTWDCP > 0 && $BackChangePcsTWDCP > 0) {
+                $ReturnStorePriceTWDCP = (($AllInPriceTWDCP + $BackChangePriceTWDCP) / ($AllInPcsTWDCP + $BackChangePcsTWDCP)) * $ReturnStorePcsTWDCP;
+                $ReturnStore_PriceTWDCP = $ReturnStore_PriceTWDCP + $ReturnStorePriceTWDCP;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsTWDCP = $ReturnStorePcsTWDCP + $ReciveTranOutPcsTWDCP + $SendSalePcsTWDCP;
+            $AllOut_PcsTWDCP = $AllOut_PcsTWDCP + $AllOutPcsTWDCP;
+
+            $AllOutPriceTWDCP = $SendSale_PriceTWDCP + $ReciveTranOut_PriceTWDCP + $ReturnStore_PriceTWDCP;
+            $AllOut_PriceTWDCP = $AllOut_PriceTWDCP + $AllOutPriceTWDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsTWDCP = $BackChangePcsTWDCP + $AllInPcsTWDCP + $AllOutPcsTWDCP;
+            $Calculate_PcsTWDCP = $Calculate_PcsTWDCP + $CalculatePcsTWDCP;
+
+            $CalculatePriceTWDCP = $BackChangePriceTWDCP + $AllInPriceTWDCP + $AllOutPriceTWDCP;
+            $Calculate_PriceTWDCP = $Calculate_PriceTWDCP + $CalculatePriceTWDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsTWDCP = $TWDCP->item_stock_Quantity;
+            $NewCalculate_PcsTWDCP = $NewCalculate_PcsTWDCP + $NewCalculatePcsTWDCP;
+
+            $NewCalculatePriceTWDCP = $TWDCP->item_stock_Amount;
+            $NewCalculate_PriceTWDCP = $NewCalculate_PriceTWDCP + $NewCalculatePriceTWDCP;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsTWDCP = $NewCalculatePcsTWDCP - $CalculatePcsTWDCP;
+            $Diff_PcsTWDCP = $Diff_PcsTWDCP + $DiffPcsTWDCP;
+
+            $DiffPriceTWDCP = $NewCalculatePriceTWDCP - $CalculatePriceTWDCP;
+            $Diff_PriceTWDCP = $Diff_PriceTWDCP + $DiffPriceTWDCP;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsTWDCP = $CalculatePcsTWDCP;
+            $NewTotal_PcsTWDCP = $NewTotal_PcsTWDCP + $CalculatePcsTWDCP;
+
+            $NewTotalPriceTWDCP = $NewTotalPcsTWDCP * $TWDCP->PriceAvg;
+            $NewTotal_PriceTWDCP = $NewTotal_PriceTWDCP + $NewTotalPriceTWDCP;
+
+            $NewTotalDiffNavTWDCP = $NewTotalPriceTWDCP - $NewCalculatePriceTWDCP;
+            $NewTotalDiff_NavTWDCP = $NewTotalDiff_NavTWDCP + $NewTotalDiffNavTWDCP;
+
+            $NewTotalDiffCalTWDCP = $NewTotalPriceTWDCP - $CalculatePriceTWDCP;
+            $NewTotalDiff_CalTWDCP = $NewTotalDiff_CalTWDCP + $NewTotalDiffCalTWDCP;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsTWDCP = $TWDCP->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsTWDCP = $a7f1fgbu02s_PcsTWDCP + $a7f1fgbu02sPcsTWDCP;
+
+            $a7f1fgbu02sPriceTWDCP = $a7f1fgbu02sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f1fgbu02s_PriceTWDCP = $a7f1fgbu02s_PriceTWDCP + $a7f1fgbu02sPriceTWDCP;
+
+            $a7f2fgbu10sPcsTWDCP = $TWDCP->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsTWDCP = $a7f2fgbu10s_PcsTWDCP + $a7f2fgbu10sPcsTWDCP;
+
+            $a7f2fgbu10sPriceTWDCP = $a7f2fgbu10sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f2fgbu10s_PriceTWDCP = $a7f2fgbu10s_PriceTWDCP + $a7f2fgbu10sPriceTWDCP;
+
+            $a7f2thbu05sPcsTWDCP = $TWDCP->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsTWDCP = $a7f2thbu05s_PcsTWDCP + $a7f2thbu05sPcsTWDCP;
+
+            $a7f2thbu05sPriceTWDCP = $a7f2thbu05sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f2thbu05s_PriceTWDCP = $a7f2thbu05s_PriceTWDCP + $a7f2thbu05sPriceTWDCP;
+
+            $a7f2debu10sPcsTWDCP = $TWDCP->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsTWDCP = $a7f2debu10s_PcsTWDCP + $a7f2debu10sPcsTWDCP;
+
+            $a7f2debu10sPriceTWDCP = $a7f2debu10sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f2debu10s_PriceTWDCP = $a7f2debu10s_PriceTWDCP + $a7f2debu10sPriceTWDCP;
+
+            $a7f2exbu11sPcsTWDCP = $TWDCP->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsTWDCP = $a7f2exbu11s_PcsTWDCP + $a7f2exbu11sPcsTWDCP;
+
+            $a7f2exbu11sPriceTWDCP = $a7f2exbu11sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f2exbu11s_PriceTWDCP = $a7f2exbu11s_PriceTWDCP + $a7f2exbu11sPriceTWDCP;
+
+            $a7f2twbu04sPcsTWDCP = $TWDCP->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsTWDCP = $a7f2twbu04s_PcsTWDCP + $a7f2twbu04sPcsTWDCP;
+
+            $a7f2twbu04sPriceTWDCP = $a7f2twbu04sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f2twbu04s_PriceTWDCP = $a7f2twbu04s_PriceTWDCP + $a7f2twbu04sPriceTWDCP;
+
+            $a7f2twbu07sPcsTWDCP = $TWDCP->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsTWDCP = $a7f2twbu07s_PcsTWDCP + $a7f2twbu07sPcsTWDCP;
+
+            $a7f2twbu07sPriceTWDCP = $a7f2twbu07sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f2twbu07s_PriceTWDCP = $a7f2twbu07s_PriceTWDCP + $a7f2twbu07sPriceTWDCP;
+
+            $a7f2cebu10sPcsTWDCP = $TWDCP->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsTWDCP = $a7f2cebu10s_PcsTWDCP + $a7f2cebu10sPcsTWDCP;
+
+            $a7f2cebu10sPriceTWDCP = $a7f2cebu10sPcsTWDCP * $TWDCP->PriceAvg;
+            $a7f2cebu10s_PriceTWDCP = $a7f2cebu10s_PriceTWDCP + $a7f2cebu10sPriceTWDCP;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsTWDCP = $TWDCP->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsTWDCP = $a8f1fgbu02s_PcsTWDCP + $a8f1fgbu02sPcsTWDCP;
+
+            $a8f1fgbu02sPriceTWDCP = $a8f1fgbu02sPcsTWDCP * $NumberTWDCP;
+            $a8f1fgbu02s_PriceTWDCP = $a8f1fgbu02s_PriceTWDCP + $a8f1fgbu02sPriceTWDCP;
+
+            $a8f2fgbu10sPcsTWDCP = $TWDCP->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsTWDCP = $a8f2fgbu10s_PcsTWDCP + $a8f2fgbu10sPcsTWDCP;
+
+            $a8f2fgbu10sPriceTWDCP = $a8f2fgbu10sPcsTWDCP * $NumberTWDCP;
+            $a8f2fgbu10s_PriceTWDCP = $a8f2fgbu10s_PriceTWDCP + $a8f2fgbu10sPriceTWDCP;
+
+            $a8f2thbu05sPcsTWDCP = $TWDCP->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsTWDCP = $a8f2thbu05s_PcsTWDCP + $a8f2thbu05sPcsTWDCP;
+
+            $a8f2thbu05sPriceTWDCP = $a8f2thbu05sPcsTWDCP * $NumberTWDCP;
+            $a8f2thbu05s_PriceTWDCP = $a8f2thbu05s_PriceTWDCP + $a8f2thbu05sPriceTWDCP;
+
+            $a8f2debu10sPcsTWDCP = $TWDCP->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsTWDCP = $a8f2debu10s_PcsTWDCP + $a8f2debu10sPcsTWDCP;
+
+            $a8f2debu10sPriceTWDCP = $a8f2debu10sPcsTWDCP * $NumberTWDCP;
+            $a8f2debu10s_PriceTWDCP = $a8f2debu10s_PriceTWDCP + $a8f2debu10sPriceTWDCP;
+
+            $a8f2exbu11sPcsTWDCP = $TWDCP->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsTWDCP = $a8f2exbu11s_PcsTWDCP + $a8f2exbu11sPcsTWDCP;
+
+            $a8f2exbu11sPriceTWDCP = $a8f2exbu11sPcsTWDCP * $NumberTWDCP;
+            $a8f2exbu11s_PriceTWDCP = $a8f2exbu11s_PriceTWDCP + $a8f2exbu11sPriceTWDCP;
+
+            $a8f2twbu04sPcsTWDCP = $TWDCP->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsTWDCP = $a8f2twbu04s_PcsTWDCP + $a8f2twbu04sPcsTWDCP;
+
+            $a8f2twbu04sPriceTWDCP = $a8f2twbu04sPcsTWDCP * $NumberTWDCP;
+            $a8f2twbu04s_PriceTWDCP = $a8f2twbu04s_PriceTWDCP + $a8f2twbu04sPriceTWDCP;
+
+            $a8f2twbu07sPcsTWDCP = $TWDCP->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsTWDCP = $a8f2twbu07s_PcsTWDCP + $a8f2twbu07sPcsTWDCP;
+
+            $a8f2twbu07sPriceTWDCP = $a8f2twbu07sPcsTWDCP * $NumberTWDCP;
+            $a8f2twbu07s_PriceTWDCP = $a8f2twbu07s_PriceTWDCP + $a8f2twbu07sPriceTWDCP;
+
+            $a8f2cebu10sPcsTWDCP = $TWDCP->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsTWDCP = $a8f2cebu10s_PcsTWDCP + $a8f2cebu10sPcsTWDCP;
+
+            $a8f2cebu10sPriceTWDCP = $a8f2cebu10sPcsTWDCP * $NumberTWDCP;
+            $a8f2cebu10s_PriceTWDCP = $a8f2cebu10s_PriceTWDCP + $a8f2cebu10sPriceTWDCP;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsTWDCP = $TWDCP->dc1_s_Quantity;
+            $DC1_PcsTWDCP = $DC1_PcsTWDCP + $DC1PcsTWDCP;
+
+            $DC1PriceTWDCP = $DC1PcsTWDCP * $NumberTWDCP;
+            $DC1_PriceTWDCP = $DC1_PriceTWDCP + $DC1PriceTWDCP;
+
+            $DCPPcsTWDCP = $TWDCP->dcp_s_Quantity;
+            $DCP_PcsTWDCP = $DCP_PcsTWDCP + $DCPPcsTWDCP;
+
+            $DCPPriceTWDCP = $DCPPcsTWDCP * $NumberTWDCP;
+            $DCP_PriceTWDCP = $DCP_PriceTWDCP + $DCPPriceTWDCP;
+
+            $DCYPcsTWDCP = $TWDCP->dcy_s_Quantity;
+            $DCY_PcsTWDCP = $DCY_PcsTWDCP + $DCYPcsTWDCP;
+
+            $DCYPriceTWDCP = $DCYPcsTWDCP * $NumberTWDCP;
+            $DCY_PriceTWDCP = $DCY_PriceTWDCP + $DCYPriceTWDCP;
+
+            $DEXPcsTWDCP = $TWDCP->dex_s_Quantity;
+            $DEX_PcsTWDCP = $DEX_PcsTWDCP + $DEXPcsTWDCP;
+
+            $DEXPriceTWDCP = $DEXPcsTWDCP * $NumberTWDCP;
+            $DEX_PriceTWDCP = $DEX_PriceTWDCP + $DEXPriceTWDCP;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        foreach ($ItemNoLNDCP as $LNDCP) {
+            if ($LNDCP->PcsAfter > 0 && $LNDCP->PriceAfter > 0) {
+                $NumberLNDCP = ($LNDCP->PriceAfter / $LNDCP->PcsAfter);
+            }else{
+                $NumberLNDCP = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterLNDCP = $LNDCP->PcsAfter;
+            $Pcs_AfterLNDCP = $Pcs_AfterLNDCP + $PCSAfterLNDCP;
+
+            $PriceAfterLNDCP = $LNDCP->PriceAfter;
+            $Price_AfterLNDCP = $Price_AfterLNDCP + $PriceAfterLNDCP;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsLNDCP = $LNDCP->Po_Quantity;
+            $Po_PcsLNDCP = $Po_PcsLNDCP + $PoPcsLNDCP;
+
+            $PoPriceLNDCP = $LNDCP->PriceAvg * $LNDCP->Po_Quantity;
+            $Po_PriceLNDCP = $Po_PriceLNDCP + $PoPriceLNDCP;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsLNDCP = $LNDCP->Neg_Quantity;
+            $Neg_PcsLNDCP = $Neg_PcsLNDCP + $NegPcsLNDCP;
+
+
+            $NegPriceLNDCP = $NumberLNDCP * $LNDCP->Neg_Quantity;
+            $Neg_PriceLNDCP = $Neg_PriceLNDCP + $NegPriceLNDCP;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsLNDCP = $PCSAfterLNDCP + $PoPcsLNDCP + $NegPcsLNDCP;
+            $BackChange_PcsLNDCP = $BackChange_PcsLNDCP + $BackChangePcsLNDCP;
+
+            $BackChangePriceLNDCP = $PriceAfterLNDCP + $PoPriceLNDCP + $NegPriceLNDCP;
+            $BackChange_PriceLNDCP = $BackChange_PriceLNDCP + $BackChangePriceLNDCP;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsLNDCP = $LNDCP->purchase_Quantity;
+            $Purchase_PcsLNDCP = $Purchase_PcsLNDCP + $PurchasePcsLNDCP;
+
+            $PurchasePriceLNDCP = $LNDCP->purchase_Cost;
+            $Purchase_PriceLNDCP = $Purchase_PriceLNDCP + $PurchasePriceLNDCP;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsLNDCP = $LNDCP->a7f1fgbu02s_Quantity + $LNDCP->a7f2fgbu10s_Quantity + $LNDCP->a7f2thbu05s_Quantity + $LNDCP->a7f2debu10s_Quantity + $LNDCP->a7f2exbu11s_Quantity + $LNDCP->a7f2twbu04s_Quantity + $LNDCP->a7f2twbu07s_Quantity + $LNDCP->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsLNDCP = $ReciveTranfer_PcsLNDCP + $ReciveTranferPcsLNDCP;
+
+            $ReciveTranferPriceLNDCP = $ReciveTranferPcsLNDCP * $LNDCP->PriceAvg;
+            $ReciveTranfer_PriceLNDCP = $ReciveTranfer_PriceLNDCP + $ReciveTranferPriceLNDCP;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantityLNDCP = $LNDCP->returncuses_Quantity;
+            $ReturnItem_PCSLNDCP = $ReturnItem_PCSLNDCP + $ReturnItemQuantityLNDCP;
+
+            $ReturnItemPriceLNDCP = $ReturnItemQuantityLNDCP * $NumberLNDCP;
+            $ReturnItem_PriceLNDCP = $ReturnItem_PriceLNDCP + $ReturnItemPriceLNDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsLNDCP = $LNDCP->purchase_Quantity + $ReciveTranferPcsLNDCP + $ReturnItemQuantityLNDCP;
+            $AllIn_PcsLNDCP = $AllIn_PcsLNDCP + $AllInPcsLNDCP;
+
+            $AllInPriceLNDCP = $PurchasePriceLNDCP + $ReciveTranferPriceLNDCP + $ReturnItemPriceLNDCP;
+            $AllIn_PriceLNDCP = $AllIn_PriceLNDCP + $AllInPriceLNDCP;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsLNDCP = $LNDCP->dc1_s_Quantity + $LNDCP->dcp_s_Quantity + $LNDCP->dcy_s_Quantity + $LNDCP->dex_s_Quantity;
+            $SendSale_PcsLNDCP = $SendSale_PcsLNDCP + $SendSalePcsLNDCP;
+
+            if ($BackChangePcsLNDCP > 0 && $AllInPcsLNDCP > 0) {
+                $SendSalePriceLNDCP = (($AllInPriceLNDCP + $BackChangePriceLNDCP) / ($AllInPcsLNDCP + $BackChangePcsLNDCP)) * $SendSalePcsLNDCP;
+                $SendSale_PriceLNDCP = $SendSale_PriceLNDCP + $SendSalePriceLNDCP;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsLNDCP = $LNDCP->a8f1fgbu02s_Quantity + $LNDCP->a8f2fgbu10s_Quantity + $LNDCP->a8f2thbu05s_Quantity + $LNDCP->a8f2debu10s_Quantity + $LNDCP->a8f2exbu11s_Quantity + $LNDCP->a8f2twbu04s_Quantity + $LNDCP->a8f2twbu07s_Quantity + $LNDCP->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsLNDCP = $ReciveTranOut_PcsLNDCP + $ReciveTranOutPcsLNDCP;
+
+            if ($AllInPcsLNDCP > 0 && $BackChangePcsLNDCP > 0) {
+                $ReciveTranOutPriceLNDCP = (($AllInPriceLNDCP + $BackChangePriceLNDCP) / ($AllInPcsLNDCP + $BackChangePcsLNDCP)) * $ReciveTranOutPcsLNDCP;
+                $ReciveTranOut_PriceLNDCP = $ReciveTranOut_PriceLNDCP + $ReciveTranOutPriceLNDCP;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsLNDCP = $LNDCP->returnitem_Quantity;
+            $ReturnStore_PcsLNDCP = $ReturnStore_PcsLNDCP + $ReturnStorePcsLNDCP;
+
+            if ($AllInPcsLNDCP > 0 && $BackChangePcsLNDCP > 0) {
+                $ReturnStorePriceLNDCP = (($AllInPriceLNDCP + $BackChangePriceLNDCP) / ($AllInPcsLNDCP + $BackChangePcsLNDCP)) * $ReturnStorePcsLNDCP;
+                $ReturnStore_PriceLNDCP = $ReturnStore_PriceLNDCP + $ReturnStorePriceLNDCP;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsLNDCP = $ReturnStorePcsLNDCP + $ReciveTranOutPcsLNDCP + $SendSalePcsLNDCP;
+            $AllOut_PcsLNDCP = $AllOut_PcsLNDCP + $AllOutPcsLNDCP;
+
+            $AllOutPriceLNDCP = $SendSale_PriceLNDCP + $ReciveTranOut_PriceLNDCP + $ReturnStore_PriceLNDCP;
+            $AllOut_PriceLNDCP = $AllOut_PriceLNDCP + $AllOutPriceLNDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsLNDCP = $BackChangePcsLNDCP + $AllInPcsLNDCP + $AllOutPcsLNDCP;
+            $Calculate_PcsLNDCP = $Calculate_PcsLNDCP + $CalculatePcsLNDCP;
+
+            $CalculatePriceLNDCP = $BackChangePriceLNDCP + $AllInPriceLNDCP + $AllOutPriceLNDCP;
+            $Calculate_PriceLNDCP = $Calculate_PriceLNDCP + $CalculatePriceLNDCP;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsLNDCP = $LNDCP->item_stock_Quantity;
+            $NewCalculate_PcsLNDCP = $NewCalculate_PcsLNDCP + $NewCalculatePcsLNDCP;
+
+            $NewCalculatePriceLNDCP = $LNDCP->item_stock_Amount;
+            $NewCalculate_PriceLNDCP = $NewCalculate_PriceLNDCP + $NewCalculatePriceLNDCP;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsLNDCP = $NewCalculatePcsLNDCP - $CalculatePcsLNDCP;
+            $Diff_PcsLNDCP = $Diff_PcsLNDCP + $DiffPcsLNDCP;
+
+            $DiffPriceLNDCP = $NewCalculatePriceLNDCP - $CalculatePriceLNDCP;
+            $Diff_PriceLNDCP = $Diff_PriceLNDCP + $DiffPriceLNDCP;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsLNDCP = $CalculatePcsLNDCP;
+            $NewTotal_PcsLNDCP = $NewTotal_PcsLNDCP + $CalculatePcsLNDCP;
+
+            $NewTotalPriceLNDCP = $NewTotalPcsLNDCP * $LNDCP->PriceAvg;
+            $NewTotal_PriceLNDCP = $NewTotal_PriceLNDCP + $NewTotalPriceLNDCP;
+
+            $NewTotalDiffNavLNDCP = $NewTotalPriceLNDCP - $NewCalculatePriceLNDCP;
+            $NewTotalDiff_NavLNDCP = $NewTotalDiff_NavLNDCP + $NewTotalDiffNavLNDCP;
+
+            $NewTotalDiffCalLNDCP = $NewTotalPriceLNDCP - $CalculatePriceLNDCP;
+            $NewTotalDiff_CalLNDCP = $NewTotalDiff_CalLNDCP + $NewTotalDiffCalLNDCP;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsLNDCP = $LNDCP->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsLNDCP = $a7f1fgbu02s_PcsLNDCP + $a7f1fgbu02sPcsLNDCP;
+
+            $a7f1fgbu02sPriceLNDCP = $a7f1fgbu02sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f1fgbu02s_PriceLNDCP = $a7f1fgbu02s_PriceLNDCP + $a7f1fgbu02sPriceLNDCP;
+
+            $a7f2fgbu10sPcsLNDCP = $LNDCP->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsLNDCP = $a7f2fgbu10s_PcsLNDCP + $a7f2fgbu10sPcsLNDCP;
+
+            $a7f2fgbu10sPriceLNDCP = $a7f2fgbu10sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f2fgbu10s_PriceLNDCP = $a7f2fgbu10s_PriceLNDCP + $a7f2fgbu10sPriceLNDCP;
+
+            $a7f2thbu05sPcsLNDCP = $LNDCP->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsLNDCP = $a7f2thbu05s_PcsLNDCP + $a7f2thbu05sPcsLNDCP;
+
+            $a7f2thbu05sPriceLNDCP = $a7f2thbu05sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f2thbu05s_PriceLNDCP = $a7f2thbu05s_PriceLNDCP + $a7f2thbu05sPriceLNDCP;
+
+            $a7f2debu10sPcsLNDCP = $LNDCP->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsLNDCP = $a7f2debu10s_PcsLNDCP + $a7f2debu10sPcsLNDCP;
+
+            $a7f2debu10sPriceLNDCP = $a7f2debu10sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f2debu10s_PriceLNDCP = $a7f2debu10s_PriceLNDCP + $a7f2debu10sPriceLNDCP;
+
+            $a7f2exbu11sPcsLNDCP = $LNDCP->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsLNDCP = $a7f2exbu11s_PcsLNDCP + $a7f2exbu11sPcsLNDCP;
+
+            $a7f2exbu11sPriceLNDCP = $a7f2exbu11sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f2exbu11s_PriceLNDCP = $a7f2exbu11s_PriceLNDCP + $a7f2exbu11sPriceLNDCP;
+
+            $a7f2twbu04sPcsLNDCP = $LNDCP->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsLNDCP = $a7f2twbu04s_PcsLNDCP + $a7f2twbu04sPcsLNDCP;
+
+            $a7f2twbu04sPriceLNDCP = $a7f2twbu04sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f2twbu04s_PriceLNDCP = $a7f2twbu04s_PriceLNDCP + $a7f2twbu04sPriceLNDCP;
+
+            $a7f2twbu07sPcsLNDCP = $LNDCP->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsLNDCP = $a7f2twbu07s_PcsLNDCP + $a7f2twbu07sPcsLNDCP;
+
+            $a7f2twbu07sPriceLNDCP = $a7f2twbu07sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f2twbu07s_PriceLNDCP = $a7f2twbu07s_PriceLNDCP + $a7f2twbu07sPriceLNDCP;
+
+            $a7f2cebu10sPcsLNDCP = $LNDCP->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsLNDCP = $a7f2cebu10s_PcsLNDCP + $a7f2cebu10sPcsLNDCP;
+
+            $a7f2cebu10sPriceLNDCP = $a7f2cebu10sPcsLNDCP * $LNDCP->PriceAvg;
+            $a7f2cebu10s_PriceLNDCP = $a7f2cebu10s_PriceLNDCP + $a7f2cebu10sPriceLNDCP;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsLNDCP = $LNDCP->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsLNDCP = $a8f1fgbu02s_PcsLNDCP + $a8f1fgbu02sPcsLNDCP;
+
+            $a8f1fgbu02sPriceLNDCP = $a8f1fgbu02sPcsLNDCP * $NumberLNDCP;
+            $a8f1fgbu02s_PriceLNDCP = $a8f1fgbu02s_PriceLNDCP + $a8f1fgbu02sPriceLNDCP;
+
+            $a8f2fgbu10sPcsLNDCP = $LNDCP->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsLNDCP = $a8f2fgbu10s_PcsLNDCP + $a8f2fgbu10sPcsLNDCP;
+
+            $a8f2fgbu10sPriceLNDCP = $a8f2fgbu10sPcsLNDCP * $NumberLNDCP;
+            $a8f2fgbu10s_PriceLNDCP = $a8f2fgbu10s_PriceLNDCP + $a8f2fgbu10sPriceLNDCP;
+
+            $a8f2thbu05sPcsLNDCP = $LNDCP->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsLNDCP = $a8f2thbu05s_PcsLNDCP + $a8f2thbu05sPcsLNDCP;
+
+            $a8f2thbu05sPriceLNDCP = $a8f2thbu05sPcsLNDCP * $NumberLNDCP;
+            $a8f2thbu05s_PriceLNDCP = $a8f2thbu05s_PriceLNDCP + $a8f2thbu05sPriceLNDCP;
+
+            $a8f2debu10sPcsLNDCP = $LNDCP->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsLNDCP = $a8f2debu10s_PcsLNDCP + $a8f2debu10sPcsLNDCP;
+
+            $a8f2debu10sPriceLNDCP = $a8f2debu10sPcsLNDCP * $NumberLNDCP;
+            $a8f2debu10s_PriceLNDCP = $a8f2debu10s_PriceLNDCP + $a8f2debu10sPriceLNDCP;
+
+            $a8f2exbu11sPcsLNDCP = $LNDCP->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsLNDCP = $a8f2exbu11s_PcsLNDCP + $a8f2exbu11sPcsLNDCP;
+
+            $a8f2exbu11sPriceLNDCP = $a8f2exbu11sPcsLNDCP * $NumberLNDCP;
+            $a8f2exbu11s_PriceLNDCP = $a8f2exbu11s_PriceLNDCP + $a8f2exbu11sPriceLNDCP;
+
+            $a8f2twbu04sPcsLNDCP = $LNDCP->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsLNDCP = $a8f2twbu04s_PcsLNDCP + $a8f2twbu04sPcsLNDCP;
+
+            $a8f2twbu04sPriceLNDCP = $a8f2twbu04sPcsLNDCP * $NumberLNDCP;
+            $a8f2twbu04s_PriceLNDCP = $a8f2twbu04s_PriceLNDCP + $a8f2twbu04sPriceLNDCP;
+
+            $a8f2twbu07sPcsLNDCP = $LNDCP->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsLNDCP = $a8f2twbu07s_PcsLNDCP + $a8f2twbu07sPcsLNDCP;
+
+            $a8f2twbu07sPriceLNDCP = $a8f2twbu07sPcsLNDCP * $NumberLNDCP;
+            $a8f2twbu07s_PriceLNDCP = $a8f2twbu07s_PriceLNDCP + $a8f2twbu07sPriceLNDCP;
+
+            $a8f2cebu10sPcsLNDCP = $LNDCP->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsLNDCP = $a8f2cebu10s_PcsLNDCP + $a8f2cebu10sPcsLNDCP;
+
+            $a8f2cebu10sPriceLNDCP = $a8f2cebu10sPcsLNDCP * $NumberLNDCP;
+            $a8f2cebu10s_PriceLNDCP = $a8f2cebu10s_PriceLNDCP + $a8f2cebu10sPriceLNDCP;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsLNDCP = $LNDCP->dc1_s_Quantity;
+            $DC1_PcsLNDCP = $DC1_PcsLNDCP + $DC1PcsLNDCP;
+
+            $DC1PriceLNDCP = $DC1PcsLNDCP * $NumberLNDCP;
+            $DC1_PriceLNDCP = $DC1_PriceLNDCP + $DC1PriceLNDCP;
+
+            $DCPPcsLNDCP = $LNDCP->dcp_s_Quantity;
+            $DCP_PcsLNDCP = $DCP_PcsLNDCP + $DCPPcsLNDCP;
+
+            $DCPPriceLNDCP = $DCPPcsLNDCP * $NumberLNDCP;
+            $DCP_PriceLNDCP = $DCP_PriceLNDCP + $DCPPriceLNDCP;
+
+            $DCYPcsLNDCP = $LNDCP->dcy_s_Quantity;
+            $DCY_PcsLNDCP = $DCY_PcsLNDCP + $DCYPcsLNDCP;
+
+            $DCYPriceLNDCP = $DCYPcsLNDCP * $NumberLNDCP;
+            $DCY_PriceLNDCP = $DCY_PriceLNDCP + $DCYPriceLNDCP;
+
+            $DEXPcsLNDCP = $LNDCP->dex_s_Quantity;
+            $DEX_PcsLNDCP = $DEX_PcsLNDCP + $DEXPcsLNDCP;
+
+            $DEXPriceLNDCP = $DEXPcsLNDCP * $NumberLNDCP;
+            $DEX_PriceLNDCP = $DEX_PriceLNDCP + $DEXPriceLNDCP;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
 
         $Pcs_AfterAllProduct = $Pcs_AfterMT + $Pcs_AfterNT + $Pcs_AfterLN + $Pcs_AfterTW;
         $Price_AfterAllProduct = $Price_AfterMT + $Price_AfterNT + $Price_AfterLN + $Price_AfterTW;
@@ -5768,6 +7037,86 @@ class ProductController extends Controller
         $DCY_PriceAllDCY = $DCY_PriceNTDCY + $DCY_PriceTWDCY + $DCY_PriceSNTDCY;
         $DEX_PcsAllDCY = $DEX_PcsNTDCY + $DEX_PcsTWDCY + $DEX_PcsSNTDCY;
         $DEX_PriceAllDCY = $DEX_PriceNTDCY + $DEX_PriceTWDCY + $DEX_PriceSNTDCY;
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterAllDCP =  $Pcs_AfterNTDCP + $Pcs_AfterTWDCP + $Pcs_AfterLNDCP;
+        $Price_AfterAllDCP = $Price_AfterNTDCP + $Price_AfterTWDCP + $Price_AfterLNDCP;
+        $Pcs_AfterAllDCP =  $Pcs_AfterNTDCP + $Pcs_AfterTWDCP + $Pcs_AfterLNDCP;
+        $Price_AfterAllDCP =  $Price_AfterNTDCP + $Price_AfterTWDCP + $Price_AfterLNDCP;
+        $Po_PcsAllDCP = $Po_PcsNTDCP + $Po_PcsTWDCP + $Po_PcsLNDCP;
+        $Po_PriceAllDCP =  $Po_PriceNTDCP + $Po_PriceTWDCP + $Po_PriceLNDCP;
+        $Neg_PcsAllDCP =  $Neg_PcsNTDCP + $Neg_PcsTWDCP + $Neg_PcsLNDCP;
+        $Neg_PriceAllDCP =  $Neg_PriceNTDCP + $Neg_PriceTWDCP + $Neg_PriceLNDCP;
+        $BackChange_PcsAllDCP =  $BackChange_PcsNTDCP + $BackChange_PcsTWDCP + $BackChange_PcsLNDCP;
+        $BackChange_PriceAllDCP =  $BackChange_PriceNTDCP + $BackChange_PriceTWDCP + $BackChange_PriceLNDCP;
+        $Purchase_PcsAllDCP =  $Purchase_PcsNTDCP + $Purchase_PcsTWDCP + $Purchase_PcsLNDCP;
+        $Purchase_PriceAllDCP =  $Purchase_PriceNTDCP + $Purchase_PriceTWDCP + $Purchase_PriceLNDCP;
+        $ReciveTranfer_PcsAllDCP =  $ReciveTranfer_PcsNTDCP + $ReciveTranfer_PcsTWDCP + $ReciveTranfer_PcsLNDCP;
+        $ReciveTranfer_PriceAllDCP =  $ReciveTranfer_PriceNTDCP + $ReciveTranfer_PriceTWDCP + $ReciveTranfer_PriceLNDCP;
+        $ReturnItem_PCSAllDCP =  $ReturnItem_PCSNTDCP + $ReturnItem_PCSTWDCP + $ReturnItem_PCSLNDCP;
+        $ReturnItem_PriceAllDCP =  $ReturnItem_PriceNTDCP + $ReturnItem_PriceTWDCP + $ReturnItem_PriceLNDCP;
+        $AllIn_PcsAllDCP =  $AllIn_PcsNTDCP + $AllIn_PcsTWDCP + $AllIn_PcsLNDCP;
+        $AllIn_PriceAllDCP =  $AllIn_PriceNTDCP + $AllIn_PriceTWDCP + $AllIn_PriceLNDCP;
+        $SendSale_PcsAllDCP =  $SendSale_PcsNTDCP + $SendSale_PcsTWDCP + $SendSale_PcsLNDCP;
+        $SendSale_PriceAllDCP =  $SendSale_PriceNTDCP + $SendSale_PriceTWDCP + $SendSale_PriceLNDCP;
+        $ReciveTranOut_PcsAllDCP =  $ReciveTranOut_PcsNTDCP + $ReciveTranOut_PcsTWDCP + $ReciveTranOut_PcsLNDCP;
+        $ReciveTranOut_PriceAllDCP =  $ReciveTranOut_PriceNTDCP + $ReciveTranOut_PriceTWDCP + $ReciveTranOut_PriceLNDCP;
+        $ReturnStore_PcsAllDCP =  $ReturnStore_PcsNTDCP + $ReturnStore_PcsTWDCP + $ReturnStore_PcsLNDCP;
+        $ReturnStore_PriceAllDCP =  $ReturnStore_PriceNTDCP + $ReturnStore_PriceTWDCP + $ReturnStore_PriceLNDCP;
+        $AllOut_PcsAllDCP =  $AllOut_PcsNTDCP + $AllOut_PcsTWDCP + $AllOut_PcsLNDCP;
+        $AllOut_PriceAllDCP =  $AllOut_PriceNTDCP + $AllOut_PriceTWDCP + $AllOut_PriceLNDCP;
+        $Calculate_PcsAllDCP =  $Calculate_PcsNTDCP + $Calculate_PcsTWDCP + $Calculate_PcsLNDCP;
+        $Calculate_PriceAllDCP =  $Calculate_PriceNTDCP + $Calculate_PriceTWDCP + $Calculate_PriceLNDCP;
+        $NewCalculate_PcsAllDCP = $NewCalculate_PcsNTDCP + $NewCalculate_PcsTWDCP + $NewCalculate_PcsLNDCP;
+        $NewCalculate_PriceAllDCP = $NewCalculate_PriceNTDCP + $NewCalculate_PriceTWDCP + $NewCalculate_PriceLNDCP;
+        $Diff_PcsAllDCP = $Diff_PcsNTDCP + $Diff_PcsTWDCP + $Diff_PcsLNDCP;
+        $Diff_PriceAllDCP = $Diff_PriceNTDCP + $Diff_PriceTWDCP + $Diff_PriceLNDCP;
+        $NewTotal_PcsAllDCP = $NewTotal_PcsNTDCP + $NewTotal_PcsTWDCP + $NewTotal_PcsLNDCP;
+        $NewTotal_PriceAllDCP = $NewTotal_PriceNTDCP + $NewTotal_PriceTWDCP + $NewTotal_PriceLNDCP;
+        $NewTotalDiff_NavAllDCP = $NewTotalDiff_NavNTDCP + $NewTotalDiff_NavTWDCP + $NewTotalDiff_NavLNDCP;
+        $NewTotalDiff_CalAllDCP = $NewTotalDiff_CalNTDCP + $NewTotalDiff_CalTWDCP + $NewTotalDiff_CalLNDCP;
+        $a7f1fgbu02s_PcsAllDCP = $a7f1fgbu02s_PcsNTDCP + $a7f1fgbu02s_PcsTWDCP + $a7f1fgbu02s_PcsLNDCP;
+        $a7f1fgbu02s_PriceAllDCP = $a7f1fgbu02s_PriceNTDCP + $a7f1fgbu02s_PriceTWDCP + $a7f1fgbu02s_PriceLNDCP;
+        $a7f2fgbu10s_PcsAllDCP = $a7f2fgbu10s_PcsNTDCP + $a7f2fgbu10s_PcsTWDCP + $a7f2fgbu10s_PcsLNDCP;
+        $a7f2fgbu10s_PriceAllDCP = $a7f2fgbu10s_PriceNTDCP + $a7f2fgbu10s_PriceTWDCP + $a7f2fgbu10s_PriceLNDCP;
+        $a7f2thbu05s_PcsAllDCP = $a7f2thbu05s_PcsNTDCP + $a7f2thbu05s_PcsTWDCP + $a7f2thbu05s_PcsLNDCP;
+        $a7f2thbu05s_PriceAllDCP = $a7f2thbu05s_PriceNTDCP + $a7f2thbu05s_PriceTWDCP + $a7f2thbu05s_PriceLNDCP;
+        $a7f2debu10s_PcsAllDCP = $a7f2debu10s_PcsNTDCP + $a7f2debu10s_PcsTWDCP + $a7f2debu10s_PcsLNDCP;
+        $a7f2debu10s_PriceAllDCP = $a7f2debu10s_PriceNTDCP + $a7f2debu10s_PriceTWDCP + $a7f2debu10s_PriceLNDCP;
+        $a7f2exbu11s_PcsAllDCP = $a7f2exbu11s_PcsNTDCP + $a7f2exbu11s_PcsTWDCP + $a7f2exbu11s_PcsLNDCP;
+        $a7f2exbu11s_PriceAllDCP = $a7f2exbu11s_PriceNTDCP + $a7f2exbu11s_PriceTWDCP + $a7f2exbu11s_PriceLNDCP;
+        $a7f2twbu04s_PcsAllDCP = $a7f2twbu04s_PcsNTDCP + $a7f2twbu04s_PcsTWDCP + $a7f2twbu04s_PcsLNDCP;
+        $a7f2twbu04s_PriceAllDCP = $a7f2twbu04s_PriceNTDCP + $a7f2twbu04s_PriceTWDCP + $a7f2twbu04s_PriceLNDCP;
+        $a7f2twbu07s_PcsAllDCP = $a7f2twbu07s_PcsNTDCP + $a7f2twbu07s_PcsTWDCP + $a7f2twbu07s_PcsLNDCP;
+        $a7f2twbu07s_PriceAllDCP = $a7f2twbu07s_PriceNTDCP + $a7f2twbu07s_PriceTWDCP + $a7f2twbu07s_PriceLNDCP;
+        $a7f2cebu10s_PcsAllDCP = $a7f2cebu10s_PcsNTDCP + $a7f2cebu10s_PcsTWDCP + $a7f2cebu10s_PcsLNDCP;
+        $a7f2cebu10s_PriceAllDCP = $a7f2cebu10s_PriceNTDCP + $a7f2cebu10s_PriceTWDCP + $a7f2cebu10s_PriceLNDCP;
+        $a8f1fgbu02s_PcsAllDCP = $a8f1fgbu02s_PcsNTDCP + $a8f1fgbu02s_PcsTWDCP + $a8f1fgbu02s_PcsLNDCP;
+        $a8f1fgbu02s_PriceAllDCP = $a8f1fgbu02s_PriceNTDCP + $a8f1fgbu02s_PriceTWDCP + $a8f1fgbu02s_PriceLNDCP;
+        $a8f2fgbu10s_PcsAllDCP = $a8f2fgbu10s_PcsNTDCP + $a8f2fgbu10s_PcsTWDCP + $a8f2fgbu10s_PcsLNDCP;
+        $a8f2fgbu10s_PriceAllDCP = $a8f2fgbu10s_PriceNTDCP + $a8f2fgbu10s_PriceTWDCP + $a8f2fgbu10s_PriceLNDCP;
+        $a8f2thbu05s_PcsAllDCP = $a8f2thbu05s_PcsNTDCP + $a8f2thbu05s_PcsTWDCP + $a8f2thbu05s_PcsLNDCP;
+        $a8f2thbu05s_PriceAllDCP = $a8f2thbu05s_PriceNTDCP + $a8f2thbu05s_PriceTWDCP + $a8f2thbu05s_PriceLNDCP;
+        $a8f2debu10s_PcsAllDCP = $a8f2debu10s_PcsNTDCP + $a8f2debu10s_PcsTWDCP + $a8f2debu10s_PcsLNDCP;
+        $a8f2debu10s_PriceAllDCP = $a8f2debu10s_PriceNTDCP + $a8f2debu10s_PriceTWDCP + $a8f2debu10s_PriceLNDCP;
+        $a8f2exbu11s_PcsAllDCP = $a8f2exbu11s_PcsNTDCP + $a8f2exbu11s_PcsTWDCP + $a8f2exbu11s_PcsLNDCP;
+        $a8f2exbu11s_PriceAllDCP = $a8f2exbu11s_PriceNTDCP + $a8f2exbu11s_PriceTWDCP + $a8f2exbu11s_PriceLNDCP;
+        $a8f2twbu04s_PcsAllDCP = $a8f2twbu04s_PcsNTDCP + $a8f2twbu04s_PcsTWDCP + $a8f2twbu04s_PcsLNDCP;
+        $a8f2twbu04s_PriceAllDCP = $a8f2twbu04s_PriceNTDCP + $a8f2twbu04s_PriceTWDCP + $a8f2twbu04s_PriceLNDCP;
+        $a8f2twbu07s_PcsAllDCP = $a8f2twbu07s_PcsNTDCP + $a8f2twbu07s_PcsTWDCP + $a8f2twbu07s_PcsLNDCP;
+        $a8f2twbu07s_PriceAllDCP = $a8f2twbu07s_PriceNTDCP + $a8f2twbu07s_PriceTWDCP + $a8f2twbu07s_PriceLNDCP;
+        $a8f2cebu10s_PcsAllDCP = $a8f2cebu10s_PcsNTDCP + $a8f2cebu10s_PcsTWDCP + $a8f2cebu10s_PcsLNDCP;
+        $a8f2cebu10s_PriceAllDCP = $a8f2cebu10s_PriceNTDCP + $a8f2cebu10s_PriceTWDCP + $a8f2cebu10s_PriceLNDCP;
+        $DC1_PcsAllDCP = $DC1_PcsNTDCP + $DC1_PcsTWDCP + $DC1_PcsLNDCP;
+        $DC1_PriceAllDCP = $DC1_PriceNTDCP + $DC1_PriceTWDCP + $DC1_PriceLNDCP;
+        $DCP_PcsAllDCP = $DCP_PcsNTDCP + $DCP_PcsTWDCP + $DCP_PcsLNDCP;
+        $DCP_PriceAllDCP = $DCP_PriceNTDCP + $DCP_PriceTWDCP + $DCP_PriceLNDCP;
+        $DCY_PcsAllDCP = $DCY_PcsNTDCP + $DCY_PcsTWDCP + $DCY_PcsLNDCP;
+        $DCY_PriceAllDCP = $DCY_PriceNTDCP + $DCY_PriceTWDCP + $DCY_PriceLNDCP;
+        $DEX_PcsAllDCP = $DEX_PcsNTDCP + $DEX_PcsTWDCP + $DEX_PcsLNDCP;
+        $DEX_PriceAllDCP = $DEX_PriceNTDCP + $DEX_PriceTWDCP + $DEX_PriceLNDCP;
 
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -7178,6 +8527,318 @@ class ProductController extends Controller
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
 
+        $Pcs_AfterNTDCP = number_format($Pcs_AfterNTDCP, 0);
+        $Price_AfterNTDCP = number_format($Price_AfterNTDCP, 0);
+        $Po_PcsNTDCP = number_format($Po_PcsNTDCP, 0);
+        $Po_PriceNTDCP = number_format($Po_PriceNTDCP, 0);
+        $Neg_PcsNTDCP = number_format($Neg_PcsNTDCP, 0);
+        $Neg_PriceNTDCP = number_format($Neg_PriceNTDCP, 0);
+        $BackChange_PcsNTDCP = number_format($BackChange_PcsNTDCP, 0);
+        $BackChange_PriceNTDCP = number_format($BackChange_PriceNTDCP, 0);
+        $Purchase_PcsNTDCP = number_format($Purchase_PcsNTDCP, 0);
+        $Purchase_PriceNTDCP = number_format($Purchase_PriceNTDCP, 0);
+        $ReciveTranfer_PcsNTDCP = number_format($ReciveTranfer_PcsNTDCP, 0);
+        $ReciveTranfer_PriceNTDCP = number_format($ReciveTranfer_PriceNTDCP, 0);
+        $ReturnItem_PCSNTDCP = number_format($ReturnItem_PCSNTDCP, 0);
+        $ReturnItem_PriceNTDCP = number_format($ReturnItem_PriceNTDCP, 0);
+        $AllIn_PcsNTDCP = number_format($AllIn_PcsNTDCP, 0);
+        $AllIn_PriceNTDCP = number_format($AllIn_PriceNTDCP, 0);
+        $SendSale_PcsNTDCP = number_format($SendSale_PcsNTDCP, 0);
+        $SendSale_PriceNTDCP = number_format($SendSale_PriceNTDCP, 0);
+        $ReciveTranOut_PcsNTDCP = number_format($ReciveTranOut_PcsNTDCP, 0);
+        $ReciveTranOut_PriceNTDCP = number_format($ReciveTranOut_PriceNTDCP, 0);
+        $ReturnStore_PcsNTDCP = number_format($ReturnStore_PcsNTDCP, 0);
+        $ReturnStore_PriceNTDCP = number_format($ReturnStore_PriceNTDCP, 0);
+        $AllOut_PcsNTDCP = number_format($AllOut_PcsNTDCP, 0);
+        $AllOut_PriceNTDCP = number_format($AllOut_PriceNTDCP, 0);
+        $Calculate_PcsNTDCP = number_format($Calculate_PcsNTDCP, 0);
+        $Calculate_PriceNTDCP = number_format($Calculate_PriceNTDCP, 0);
+        $NewCalculate_PcsNTDCP = number_format($NewCalculate_PcsNTDCP, 0);
+        $NewCalculate_PriceNTDCP = number_format($NewCalculate_PriceNTDCP, 0);
+        $Diff_PcsNTDCP = number_format($Diff_PcsNTDCP, 0);
+        $Diff_PriceNTDCP = number_format($Diff_PriceNTDCP, 0);
+        $NewTotal_PcsNTDCP = number_format($NewTotal_PcsNTDCP, 0);
+        $NewTotal_PriceNTDCP = number_format($NewTotal_PriceNTDCP, 0);
+        $NewTotalDiff_NavNTDCP = number_format($NewTotalDiff_NavNTDCP, 0);
+        $NewTotalDiff_CalNTDCP = number_format($NewTotalDiff_CalNTDCP, 0);
+        $a7f1fgbu02s_PcsNTDCP = number_format($a7f1fgbu02s_PcsNTDCP, 0);
+        $a7f1fgbu02s_PriceNTDCP = number_format($a7f1fgbu02s_PriceNTDCP, 0);
+        $a7f2fgbu10s_PcsNTDCP = number_format($a7f2fgbu10s_PcsNTDCP, 0);
+        $a7f2fgbu10s_PriceNTDCP = number_format($a7f2fgbu10s_PriceNTDCP, 0);
+        $a7f2thbu05s_PcsNTDCP = number_format($a7f2thbu05s_PcsNTDCP, 0);
+        $a7f2thbu05s_PriceNTDCP = number_format($a7f2thbu05s_PriceNTDCP, 0);
+        $a7f2debu10s_PcsNTDCP = number_format($a7f2debu10s_PcsNTDCP, 0);
+        $a7f2debu10s_PriceNTDCP = number_format($a7f2debu10s_PriceNTDCP, 0);
+        $a7f2exbu11s_PcsNTDCP = number_format($a7f2exbu11s_PcsNTDCP, 0);
+        $a7f2exbu11s_PriceNTDCP = number_format($a7f2exbu11s_PriceNTDCP, 0);
+        $a7f2twbu04s_PcsNTDCP = number_format($a7f2twbu04s_PcsNTDCP, 0);
+        $a7f2twbu04s_PriceNTDCP = number_format($a7f2twbu04s_PriceNTDCP, 0);
+        $a7f2twbu07s_PcsNTDCP = number_format($a7f2twbu07s_PcsNTDCP, 0);
+        $a7f2twbu07s_PriceNTDCP = number_format($a7f2twbu07s_PriceNTDCP, 0);
+        $a7f2cebu10s_PcsNTDCP = number_format($a7f2cebu10s_PcsNTDCP, 0);
+        $a7f2cebu10s_PriceNTDCP = number_format($a7f2cebu10s_PriceNTDCP, 0);
+        $a8f1fgbu02s_PcsNTDCP = number_format($a8f1fgbu02s_PcsNTDCP, 0);
+        $a8f1fgbu02s_PriceNTDCP = number_format($a8f1fgbu02s_PriceNTDCP, 0);
+        $a8f2fgbu10s_PcsNTDCP = number_format($a8f2fgbu10s_PcsNTDCP, 0);
+        $a8f2fgbu10s_PriceNTDCP = number_format($a8f2fgbu10s_PriceNTDCP, 0);
+        $a8f2thbu05s_PcsNTDCP = number_format($a8f2thbu05s_PcsNTDCP, 0);
+        $a8f2thbu05s_PriceNTDCP = number_format($a8f2thbu05s_PriceNTDCP, 0);
+        $a8f2debu10s_PcsNTDCP = number_format($a8f2debu10s_PcsNTDCP, 0);
+        $a8f2debu10s_PriceNTDCP = number_format($a8f2debu10s_PriceNTDCP, 0);
+        $a8f2exbu11s_PcsNTDCP = number_format($a8f2exbu11s_PcsNTDCP, 0);
+        $a8f2exbu11s_PriceNTDCP = number_format($a8f2exbu11s_PriceNTDCP, 0);
+        $a8f2twbu04s_PcsNTDCP = number_format($a8f2twbu04s_PcsNTDCP, 0);
+        $a8f2twbu04s_PriceNTDCP = number_format($a8f2twbu04s_PriceNTDCP, 0);
+        $a8f2twbu07s_PcsNTDCP = number_format($a8f2twbu07s_PcsNTDCP, 0);
+        $a8f2twbu07s_PriceNTDCP = number_format($a8f2twbu07s_PriceNTDCP, 0);
+        $a8f2cebu10s_PcsNTDCP = number_format($a8f2cebu10s_PcsNTDCP, 0);
+        $a8f2cebu10s_PriceNTDCP = number_format($a8f2cebu10s_PriceNTDCP, 0);
+        $DC1_PcsNTDCP = number_format($DC1_PcsNTDCP, 0);
+        $DC1_PriceNTDCP = number_format($DC1_PriceNTDCP, 0);
+        $DCP_PcsNTDCP = number_format($DCP_PcsNTDCP, 0);
+        $DCP_PriceNTDCP = number_format($DCP_PriceNTDCP, 0);
+        $DCY_PcsNTDCP = number_format($DCY_PcsNTDCP, 0);
+        $DCY_PriceNTDCP = number_format($DCY_PriceNTDCP, 0);
+        $DEX_PcsNTDCP = number_format($DEX_PcsNTDCP, 0);
+        $DEX_PriceNTDCP = number_format($DEX_PriceNTDCP, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterTWDCP = number_format($Pcs_AfterTWDCP, 0);
+        $Price_AfterTWDCP = number_format($Price_AfterTWDCP, 0);
+        $Po_PcsTWDCP = number_format($Po_PcsTWDCP, 0);
+        $Po_PriceTWDCP = number_format($Po_PriceTWDCP, 0);
+        $Neg_PcsTWDCP = number_format($Neg_PcsTWDCP, 0);
+        $Neg_PriceTWDCP = number_format($Neg_PriceTWDCP, 0);
+        $BackChange_PcsTWDCP = number_format($BackChange_PcsTWDCP, 0);
+        $BackChange_PriceTWDCP = number_format($BackChange_PriceTWDCP, 0);
+        $Purchase_PcsTWDCP = number_format($Purchase_PcsTWDCP, 0);
+        $Purchase_PriceTWDCP = number_format($Purchase_PriceTWDCP, 0);
+        $ReciveTranfer_PcsTWDCP = number_format($ReciveTranfer_PcsTWDCP, 0);
+        $ReciveTranfer_PriceTWDCP = number_format($ReciveTranfer_PriceTWDCP, 0);
+        $ReturnItem_PCSTWDCP = number_format($ReturnItem_PCSTWDCP, 0);
+        $ReturnItem_PriceTWDCP = number_format($ReturnItem_PriceTWDCP, 0);
+        $AllIn_PcsTWDCP = number_format($AllIn_PcsTWDCP, 0);
+        $AllIn_PriceTWDCP = number_format($AllIn_PriceTWDCP, 0);
+        $SendSale_PcsTWDCP = number_format($SendSale_PcsTWDCP, 0);
+        $SendSale_PriceTWDCP = number_format($SendSale_PriceTWDCP, 0);
+        $ReciveTranOut_PcsTWDCP = number_format($ReciveTranOut_PcsTWDCP, 0);
+        $ReciveTranOut_PriceTWDCP = number_format($ReciveTranOut_PriceTWDCP, 0);
+        $ReturnStore_PcsTWDCP = number_format($ReturnStore_PcsTWDCP, 0);
+        $ReturnStore_PriceTWDCP = number_format($ReturnStore_PriceTWDCP, 0);
+        $AllOut_PcsTWDCP = number_format($AllOut_PcsTWDCP, 0);
+        $AllOut_PriceTWDCP = number_format($AllOut_PriceTWDCP, 0);
+        $Calculate_PcsTWDCP = number_format($Calculate_PcsTWDCP, 0);
+        $Calculate_PriceTWDCP = number_format($Calculate_PriceTWDCP, 0);
+        $NewCalculate_PcsTWDCP = number_format($NewCalculate_PcsTWDCP, 0);
+        $NewCalculate_PriceTWDCP = number_format($NewCalculate_PriceTWDCP, 0);
+        $Diff_PcsTWDCP = number_format($Diff_PcsTWDCP, 0);
+        $Diff_PriceTWDCP = number_format($Diff_PriceTWDCP, 0);
+        $NewTotal_PcsTWDCP = number_format($NewTotal_PcsTWDCP, 0);
+        $NewTotal_PriceTWDCP = number_format($NewTotal_PriceTWDCP, 0);
+        $NewTotalDiff_NavTWDCP = number_format($NewTotalDiff_NavTWDCP, 0);
+        $NewTotalDiff_CalTWDCP = number_format($NewTotalDiff_CalTWDCP, 0);
+        $a7f1fgbu02s_PcsTWDCP = number_format($a7f1fgbu02s_PcsTWDCP, 0);
+        $a7f1fgbu02s_PriceTWDCP = number_format($a7f1fgbu02s_PriceTWDCP, 0);
+        $a7f2fgbu10s_PcsTWDCP = number_format($a7f2fgbu10s_PcsTWDCP, 0);
+        $a7f2fgbu10s_PriceTWDCP = number_format($a7f2fgbu10s_PriceTWDCP, 0);
+        $a7f2thbu05s_PcsTWDCP = number_format($a7f2thbu05s_PcsTWDCP, 0);
+        $a7f2thbu05s_PriceTWDCP = number_format($a7f2thbu05s_PriceTWDCP, 0);
+        $a7f2debu10s_PcsTWDCP = number_format($a7f2debu10s_PcsTWDCP, 0);
+        $a7f2debu10s_PriceTWDCP = number_format($a7f2debu10s_PriceTWDCP, 0);
+        $a7f2exbu11s_PcsTWDCP = number_format($a7f2exbu11s_PcsTWDCP, 0);
+        $a7f2exbu11s_PriceTWDCP = number_format($a7f2exbu11s_PriceTWDCP, 0);
+        $a7f2twbu04s_PcsTWDCP = number_format($a7f2twbu04s_PcsTWDCP, 0);
+        $a7f2twbu04s_PriceTWDCP = number_format($a7f2twbu04s_PriceTWDCP, 0);
+        $a7f2twbu07s_PcsTWDCP = number_format($a7f2twbu07s_PcsTWDCP, 0);
+        $a7f2twbu07s_PriceTWDCP = number_format($a7f2twbu07s_PriceTWDCP, 0);
+        $a7f2cebu10s_PcsTWDCP = number_format($a7f2cebu10s_PcsTWDCP, 0);
+        $a7f2cebu10s_PriceTWDCP = number_format($a7f2cebu10s_PriceTWDCP, 0);
+        $a8f1fgbu02s_PcsTWDCP = number_format($a8f1fgbu02s_PcsTWDCP, 0);
+        $a8f1fgbu02s_PriceTWDCP = number_format($a8f1fgbu02s_PriceTWDCP, 0);
+        $a8f2fgbu10s_PcsTWDCP = number_format($a8f2fgbu10s_PcsTWDCP, 0);
+        $a8f2fgbu10s_PriceTWDCP = number_format($a8f2fgbu10s_PriceTWDCP, 0);
+        $a8f2thbu05s_PcsTWDCP = number_format($a8f2thbu05s_PcsTWDCP, 0);
+        $a8f2thbu05s_PriceTWDCP = number_format($a8f2thbu05s_PriceTWDCP, 0);
+        $a8f2debu10s_PcsTWDCP = number_format($a8f2debu10s_PcsTWDCP, 0);
+        $a8f2debu10s_PriceTWDCP = number_format($a8f2debu10s_PriceTWDCP, 0);
+        $a8f2exbu11s_PcsTWDCP = number_format($a8f2exbu11s_PcsTWDCP, 0);
+        $a8f2exbu11s_PriceTWDCP = number_format($a8f2exbu11s_PriceTWDCP, 0);
+        $a8f2twbu04s_PcsTWDCP = number_format($a8f2twbu04s_PcsTWDCP, 0);
+        $a8f2twbu04s_PriceTWDCP = number_format($a8f2twbu04s_PriceTWDCP, 0);
+        $a8f2twbu07s_PcsTWDCP = number_format($a8f2twbu07s_PcsTWDCP, 0);
+        $a8f2twbu07s_PriceTWDCP = number_format($a8f2twbu07s_PriceTWDCP, 0);
+        $a8f2cebu10s_PcsTWDCP = number_format($a8f2cebu10s_PcsTWDCP, 0);
+        $a8f2cebu10s_PriceTWDCP = number_format($a8f2cebu10s_PriceTWDCP, 0);
+        $DC1_PcsTWDCP = number_format($DC1_PcsTWDCP, 0);
+        $DC1_PriceTWDCP = number_format($DC1_PriceTWDCP, 0);
+        $DCP_PcsTWDCP = number_format($DCP_PcsTWDCP, 0);
+        $DCP_PriceTWDCP = number_format($DCP_PriceTWDCP, 0);
+        $DCY_PcsTWDCP = number_format($DCY_PcsTWDCP, 0);
+        $DCY_PriceTWDCP = number_format($DCY_PriceTWDCP, 0);
+        $DEX_PcsTWDCP = number_format($DEX_PcsTWDCP, 0);
+        $DEX_PriceTWDCP = number_format($DEX_PriceTWDCP, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterLNDCP = number_format($Pcs_AfterLNDCP, 0);
+        $Price_AfterLNDCP = number_format($Price_AfterLNDCP, 0);
+        $Po_PcsLNDCP = number_format($Po_PcsLNDCP, 0);
+        $Po_PriceLNDCP = number_format($Po_PriceLNDCP, 0);
+        $Neg_PcsLNDCP = number_format($Neg_PcsLNDCP, 0);
+        $Neg_PriceLNDCP = number_format($Neg_PriceLNDCP, 0);
+        $BackChange_PcsLNDCP = number_format($BackChange_PcsLNDCP, 0);
+        $BackChange_PriceLNDCP = number_format($BackChange_PriceLNDCP, 0);
+        $Purchase_PcsLNDCP = number_format($Purchase_PcsLNDCP, 0);
+        $Purchase_PriceLNDCP = number_format($Purchase_PriceLNDCP, 0);
+        $ReciveTranfer_PcsLNDCP = number_format($ReciveTranfer_PcsLNDCP, 0);
+        $ReciveTranfer_PriceLNDCP = number_format($ReciveTranfer_PriceLNDCP, 0);
+        $ReturnItem_PCSLNDCP = number_format($ReturnItem_PCSLNDCP, 0);
+        $ReturnItem_PriceLNDCP = number_format($ReturnItem_PriceLNDCP, 0);
+        $AllIn_PcsLNDCP = number_format($AllIn_PcsLNDCP, 0);
+        $AllIn_PriceLNDCP = number_format($AllIn_PriceLNDCP, 0);
+        $SendSale_PcsLNDCP = number_format($SendSale_PcsLNDCP, 0);
+        $SendSale_PriceLNDCP = number_format($SendSale_PriceLNDCP, 0);
+        $ReciveTranOut_PcsLNDCP = number_format($ReciveTranOut_PcsLNDCP, 0);
+        $ReciveTranOut_PriceLNDCP = number_format($ReciveTranOut_PriceLNDCP, 0);
+        $ReturnStore_PcsLNDCP = number_format($ReturnStore_PcsLNDCP, 0);
+        $ReturnStore_PriceLNDCP = number_format($ReturnStore_PriceLNDCP, 0);
+        $AllOut_PcsLNDCP = number_format($AllOut_PcsLNDCP, 0);
+        $AllOut_PriceLNDCP = number_format($AllOut_PriceLNDCP, 0);
+        $Calculate_PcsLNDCP = number_format($Calculate_PcsLNDCP, 0);
+        $Calculate_PriceLNDCP = number_format($Calculate_PriceLNDCP, 0);
+        $NewCalculate_PcsLNDCP = number_format($NewCalculate_PcsLNDCP, 0);
+        $NewCalculate_PriceLNDCP = number_format($NewCalculate_PriceLNDCP, 0);
+        $Diff_PcsLNDCP = number_format($Diff_PcsLNDCP, 0);
+        $Diff_PriceLNDCP = number_format($Diff_PriceLNDCP, 0);
+        $NewTotal_PcsLNDCP = number_format($NewTotal_PcsLNDCP, 0);
+        $NewTotal_PriceLNDCP = number_format($NewTotal_PriceLNDCP, 0);
+        $NewTotalDiff_NavLNDCP = number_format($NewTotalDiff_NavLNDCP, 0);
+        $NewTotalDiff_CalLNDCP = number_format($NewTotalDiff_CalLNDCP, 0);
+        $a7f1fgbu02s_PcsLNDCP = number_format($a7f1fgbu02s_PcsLNDCP, 0);
+        $a7f1fgbu02s_PriceLNDCP = number_format($a7f1fgbu02s_PriceLNDCP, 0);
+        $a7f2fgbu10s_PcsLNDCP = number_format($a7f2fgbu10s_PcsLNDCP, 0);
+        $a7f2fgbu10s_PriceLNDCP = number_format($a7f2fgbu10s_PriceLNDCP, 0);
+        $a7f2thbu05s_PcsLNDCP = number_format($a7f2thbu05s_PcsLNDCP, 0);
+        $a7f2thbu05s_PriceLNDCP = number_format($a7f2thbu05s_PriceLNDCP, 0);
+        $a7f2debu10s_PcsLNDCP = number_format($a7f2debu10s_PcsLNDCP, 0);
+        $a7f2debu10s_PriceLNDCP = number_format($a7f2debu10s_PriceLNDCP, 0);
+        $a7f2exbu11s_PcsLNDCP = number_format($a7f2exbu11s_PcsLNDCP, 0);
+        $a7f2exbu11s_PriceLNDCP = number_format($a7f2exbu11s_PriceLNDCP, 0);
+        $a7f2twbu04s_PcsLNDCP = number_format($a7f2twbu04s_PcsLNDCP, 0);
+        $a7f2twbu04s_PriceLNDCP = number_format($a7f2twbu04s_PriceLNDCP, 0);
+        $a7f2twbu07s_PcsLNDCP = number_format($a7f2twbu07s_PcsLNDCP, 0);
+        $a7f2twbu07s_PriceLNDCP = number_format($a7f2twbu07s_PriceLNDCP, 0);
+        $a7f2cebu10s_PcsLNDCP = number_format($a7f2cebu10s_PcsLNDCP, 0);
+        $a7f2cebu10s_PriceLNDCP = number_format($a7f2cebu10s_PriceLNDCP, 0);
+        $a8f1fgbu02s_PcsLNDCP = number_format($a8f1fgbu02s_PcsLNDCP, 0);
+        $a8f1fgbu02s_PriceLNDCP = number_format($a8f1fgbu02s_PriceLNDCP, 0);
+        $a8f2fgbu10s_PcsLNDCP = number_format($a8f2fgbu10s_PcsLNDCP, 0);
+        $a8f2fgbu10s_PriceLNDCP = number_format($a8f2fgbu10s_PriceLNDCP, 0);
+        $a8f2thbu05s_PcsLNDCP = number_format($a8f2thbu05s_PcsLNDCP, 0);
+        $a8f2thbu05s_PriceLNDCP = number_format($a8f2thbu05s_PriceLNDCP, 0);
+        $a8f2debu10s_PcsLNDCP = number_format($a8f2debu10s_PcsLNDCP, 0);
+        $a8f2debu10s_PriceLNDCP = number_format($a8f2debu10s_PriceLNDCP, 0);
+        $a8f2exbu11s_PcsLNDCP = number_format($a8f2exbu11s_PcsLNDCP, 0);
+        $a8f2exbu11s_PriceLNDCP = number_format($a8f2exbu11s_PriceLNDCP, 0);
+        $a8f2twbu04s_PcsLNDCP = number_format($a8f2twbu04s_PcsLNDCP, 0);
+        $a8f2twbu04s_PriceLNDCP = number_format($a8f2twbu04s_PriceLNDCP, 0);
+        $a8f2twbu07s_PcsLNDCP = number_format($a8f2twbu07s_PcsLNDCP, 0);
+        $a8f2twbu07s_PriceLNDCP = number_format($a8f2twbu07s_PriceLNDCP, 0);
+        $a8f2cebu10s_PcsLNDCP = number_format($a8f2cebu10s_PcsLNDCP, 0);
+        $a8f2cebu10s_PriceLNDCP = number_format($a8f2cebu10s_PriceLNDCP, 0);
+        $DC1_PcsLNDCP = number_format($DC1_PcsLNDCP, 0);
+        $DC1_PriceLNDCP = number_format($DC1_PriceLNDCP, 0);
+        $DCP_PcsLNDCP = number_format($DCP_PcsLNDCP, 0);
+        $DCP_PriceLNDCP = number_format($DCP_PriceLNDCP, 0);
+        $DCY_PcsLNDCP = number_format($DCY_PcsLNDCP, 0);
+        $DCY_PriceLNDCP = number_format($DCY_PriceLNDCP, 0);
+        $DEX_PcsLNDCP = number_format($DEX_PcsLNDCP, 0);
+        $DEX_PriceLNDCP = number_format($DEX_PriceLNDCP, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterAllDCP = number_format($Pcs_AfterAllDCP, 0);
+        $Price_AfterAllDCP = number_format($Price_AfterAllDCP, 0);
+        $Po_PcsAllDCP = number_format($Po_PcsAllDCP, 0);
+        $Po_PriceAllDCP = number_format($Po_PriceAllDCP, 0);
+        $Neg_PcsAllDCP = number_format($Neg_PcsAllDCP, 0);
+        $Neg_PriceAllDCP = number_format($Neg_PriceAllDCP, 0);
+        $BackChange_PcsAllDCP = number_format($BackChange_PcsAllDCP, 0);
+        $BackChange_PriceAllDCP = number_format($BackChange_PriceAllDCP, 0);
+        $Purchase_PcsAllDCP = number_format($Purchase_PcsAllDCP, 0);
+        $Purchase_PriceAllDCP = number_format($Purchase_PriceAllDCP, 0);
+        $ReciveTranfer_PcsAllDCP = number_format($ReciveTranfer_PcsAllDCP, 0);
+        $ReciveTranfer_PriceAllDCP = number_format($ReciveTranfer_PriceAllDCP, 0);
+        $ReturnItem_PCSAllDCP = number_format($ReturnItem_PCSAllDCP, 0);
+        $ReturnItem_PriceAllDCP = number_format($ReturnItem_PriceAllDCP, 0);
+        $AllIn_PcsAllDCP = number_format($AllIn_PcsAllDCP, 0);
+        $AllIn_PriceAllDCP = number_format($AllIn_PriceAllDCP, 0);
+        $SendSale_PcsAllDCP = number_format($SendSale_PcsAllDCP, 0);
+        $SendSale_PriceAllDCP = number_format($SendSale_PriceAllDCP, 0);
+        $ReciveTranOut_PcsAllDCP = number_format($ReciveTranOut_PcsAllDCP, 0);
+        $ReciveTranOut_PriceAllDCP = number_format($ReciveTranOut_PriceAllDCP, 0);
+        $ReturnStore_PcsAllDCP = number_format($ReturnStore_PcsAllDCP, 0);
+        $ReturnStore_PriceAllDCP = number_format($ReturnStore_PriceAllDCP, 0);
+        $AllOut_PcsAllDCP = number_format($AllOut_PcsAllDCP, 0);
+        $AllOut_PriceAllDCP = number_format($AllOut_PriceAllDCP, 0);
+        $Calculate_PcsAllDCP = number_format($Calculate_PcsAllDCP, 0);
+        $Calculate_PriceAllDCP = number_format($Calculate_PriceAllDCP, 0);
+        $NewCalculate_PcsAllDCP = number_format($NewCalculate_PcsAllDCP, 0);
+        $NewCalculate_PriceAllDCP = number_format($NewCalculate_PriceAllDCP, 0);
+        $Diff_PcsAllDCP = number_format($Diff_PcsAllDCP, 0);
+        $Diff_PriceAllDCP = number_format($Diff_PriceAllDCP, 0);
+        $NewTotal_PcsAllDCP = number_format($NewTotal_PcsAllDCP, 0);
+        $NewTotal_PriceAllDCP = number_format($NewTotal_PriceAllDCP, 0);
+        $NewTotalDiff_NavAllDCP = number_format($NewTotalDiff_NavAllDCP, 0);
+        $NewTotalDiff_CalAllDCP = number_format($NewTotalDiff_CalAllDCP, 0);
+        $a7f1fgbu02s_PcsAllDCP = number_format($a7f1fgbu02s_PcsAllDCP, 0);
+        $a7f1fgbu02s_PriceAllDCP = number_format($a7f1fgbu02s_PriceAllDCP, 0);
+        $a7f2fgbu10s_PcsAllDCP = number_format($a7f2fgbu10s_PcsAllDCP, 0);
+        $a7f2fgbu10s_PriceAllDCP = number_format($a7f2fgbu10s_PriceAllDCP, 0);
+        $a7f2thbu05s_PcsAllDCP = number_format($a7f2thbu05s_PcsAllDCP, 0);
+        $a7f2thbu05s_PriceAllDCP = number_format($a7f2thbu05s_PriceAllDCP, 0);
+        $a7f2debu10s_PcsAllDCP = number_format($a7f2debu10s_PcsAllDCP, 0);
+        $a7f2debu10s_PriceAllDCP = number_format($a7f2debu10s_PriceAllDCP, 0);
+        $a7f2exbu11s_PcsAllDCP = number_format($a7f2exbu11s_PcsAllDCP, 0);
+        $a7f2exbu11s_PriceAllDCP = number_format($a7f2exbu11s_PriceAllDCP, 0);
+        $a7f2twbu04s_PcsAllDCP = number_format($a7f2twbu04s_PcsAllDCP, 0);
+        $a7f2twbu04s_PriceAllDCP = number_format($a7f2twbu04s_PriceAllDCP, 0);
+        $a7f2twbu07s_PcsAllDCP = number_format($a7f2twbu07s_PcsAllDCP, 0);
+        $a7f2twbu07s_PriceAllDCP = number_format($a7f2twbu07s_PriceAllDCP, 0);
+        $a7f2cebu10s_PcsAllDCP = number_format($a7f2cebu10s_PcsAllDCP, 0);
+        $a7f2cebu10s_PriceAllDCP = number_format($a7f2cebu10s_PriceAllDCP, 0);
+        $a8f1fgbu02s_PcsAllDCP = number_format($a8f1fgbu02s_PcsAllDCP, 0);
+        $a8f1fgbu02s_PriceAllDCP = number_format($a8f1fgbu02s_PriceAllDCP, 0);
+        $a8f2fgbu10s_PcsAllDCP = number_format($a8f2fgbu10s_PcsAllDCP, 0);
+        $a8f2fgbu10s_PriceAllDCP = number_format($a8f2fgbu10s_PriceAllDCP, 0);
+        $a8f2thbu05s_PcsAllDCP = number_format($a8f2thbu05s_PcsAllDCP, 0);
+        $a8f2thbu05s_PriceAllDCP = number_format($a8f2thbu05s_PriceAllDCP, 0);
+        $a8f2debu10s_PcsAllDCP = number_format($a8f2debu10s_PcsAllDCP, 0);
+        $a8f2debu10s_PriceAllDCP = number_format($a8f2debu10s_PriceAllDCP, 0);
+        $a8f2exbu11s_PcsAllDCP = number_format($a8f2exbu11s_PcsAllDCP, 0);
+        $a8f2exbu11s_PriceAllDCP = number_format($a8f2exbu11s_PriceAllDCP, 0);
+        $a8f2twbu04s_PcsAllDCP = number_format($a8f2twbu04s_PcsAllDCP, 0);
+        $a8f2twbu04s_PriceAllDCP = number_format($a8f2twbu04s_PriceAllDCP, 0);
+        $a8f2twbu07s_PcsAllDCP = number_format($a8f2twbu07s_PcsAllDCP, 0);
+        $a8f2twbu07s_PriceAllDCP = number_format($a8f2twbu07s_PriceAllDCP, 0);
+        $a8f2cebu10s_PcsAllDCP = number_format($a8f2cebu10s_PcsAllDCP, 0);
+        $a8f2cebu10s_PriceAllDCP = number_format($a8f2cebu10s_PriceAllDCP, 0);
+        $DC1_PcsAllDCP = number_format($DC1_PcsAllDCP, 0);
+        $DC1_PriceAllDCP = number_format($DC1_PriceAllDCP, 0);
+        $DCP_PcsAllDCP = number_format($DCP_PcsAllDCP, 0);
+        $DCP_PriceAllDCP = number_format($DCP_PriceAllDCP, 0);
+        $DCY_PcsAllDCP = number_format($DCY_PcsAllDCP, 0);
+        $DCY_PriceAllDCP = number_format($DCY_PriceAllDCP, 0);
+        $DEX_PcsAllDCP = number_format($DEX_PcsAllDCP, 0);
+        $DEX_PriceAllDCP = number_format($DEX_PriceAllDCP, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
         $Data = [
             $Pcs_AfterNT,
             $Price_AfterNT,
@@ -8535,6 +10196,326 @@ class ProductController extends Controller
             $DCY_PriceAllDCY,
             $DEX_PcsAllDCY,
             $DEX_PriceAllDCY,
+
+            ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterNTDCP,
+            $Price_AfterNTDCP,
+            $Pcs_AfterNTDCP,
+            $Price_AfterNTDCP,
+            $Po_PcsNTDCP,
+            $Po_PriceNTDCP,
+            $Neg_PcsNTDCP,
+            $Neg_PriceNTDCP,
+            $BackChange_PcsNTDCP,
+            $BackChange_PriceNTDCP,
+            $Purchase_PcsNTDCP,
+            $Purchase_PriceNTDCP,
+            $ReciveTranfer_PcsNTDCP,
+            $ReciveTranfer_PriceNTDCP,
+            $ReturnItem_PCSNTDCP,
+            $ReturnItem_PriceNTDCP,
+            $AllIn_PcsNTDCP,
+            $AllIn_PriceNTDCP,
+            $SendSale_PcsNTDCP,
+            $SendSale_PriceNTDCP,
+            $ReciveTranOut_PcsNTDCP,
+            $ReciveTranOut_PriceNTDCP,
+            $ReturnStore_PcsNTDCP,
+            $ReturnStore_PriceNTDCP,
+            $AllOut_PcsNTDCP,
+            $AllOut_PriceNTDCP,
+            $Calculate_PcsNTDCP,
+            $Calculate_PriceNTDCP,
+            $NewCalculate_PcsNTDCP,
+            $NewCalculate_PriceNTDCP,
+            $Diff_PcsNTDCP,
+            $Diff_PriceNTDCP,
+            $NewTotal_PcsNTDCP,
+            $NewTotal_PriceNTDCP,
+            $NewTotalDiff_NavNTDCP,
+            $NewTotalDiff_CalNTDCP,
+            $a7f1fgbu02s_PcsNTDCP,
+            $a7f1fgbu02s_PriceNTDCP,
+            $a7f2fgbu10s_PcsNTDCP,
+            $a7f2fgbu10s_PriceNTDCP,
+            $a7f2thbu05s_PcsNTDCP,
+            $a7f2thbu05s_PriceNTDCP,
+            $a7f2debu10s_PcsNTDCP,
+            $a7f2debu10s_PriceNTDCP,
+            $a7f2exbu11s_PcsNTDCP,
+            $a7f2exbu11s_PriceNTDCP,
+            $a7f2twbu04s_PcsNTDCP,
+            $a7f2twbu04s_PriceNTDCP,
+            $a7f2twbu07s_PcsNTDCP,
+            $a7f2twbu07s_PriceNTDCP,
+            $a7f2cebu10s_PcsNTDCP,
+            $a7f2cebu10s_PriceNTDCP,
+            $a8f1fgbu02s_PcsNTDCP,
+            $a8f1fgbu02s_PriceNTDCP,
+            $a8f2fgbu10s_PcsNTDCP,
+            $a8f2fgbu10s_PriceNTDCP,
+            $a8f2thbu05s_PcsNTDCP,
+            $a8f2thbu05s_PriceNTDCP,
+            $a8f2debu10s_PcsNTDCP,
+            $a8f2debu10s_PriceNTDCP,
+            $a8f2exbu11s_PcsNTDCP,
+            $a8f2exbu11s_PriceNTDCP,
+            $a8f2twbu04s_PcsNTDCP,
+            $a8f2twbu04s_PriceNTDCP,
+            $a8f2twbu07s_PcsNTDCP,
+            $a8f2twbu07s_PriceNTDCP,
+            $a8f2cebu10s_PcsNTDCP,
+            $a8f2cebu10s_PriceNTDCP,
+            $DC1_PcsNTDCP,
+            $DC1_PriceNTDCP,
+            $DCP_PcsNTDCP,
+            $DCP_PriceNTDCP,
+            $DCY_PcsNTDCP,
+            $DCY_PriceNTDCP,
+            $DEX_PcsNTDCP,
+            $DEX_PriceNTDCP,
+
+            ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterTWDCP,
+            $Price_AfterTWDCP,
+            $Pcs_AfterTWDCP,
+            $Price_AfterTWDCP,
+            $Po_PcsTWDCP,
+            $Po_PriceTWDCP,
+            $Neg_PcsTWDCP,
+            $Neg_PriceTWDCP,
+            $BackChange_PcsTWDCP,
+            $BackChange_PriceTWDCP,
+            $Purchase_PcsTWDCP,
+            $Purchase_PriceTWDCP,
+            $ReciveTranfer_PcsTWDCP,
+            $ReciveTranfer_PriceTWDCP,
+            $ReturnItem_PCSTWDCP,
+            $ReturnItem_PriceTWDCP,
+            $AllIn_PcsTWDCP,
+            $AllIn_PriceTWDCP,
+            $SendSale_PcsTWDCP,
+            $SendSale_PriceTWDCP,
+            $ReciveTranOut_PcsTWDCP,
+            $ReciveTranOut_PriceTWDCP,
+            $ReturnStore_PcsTWDCP,
+            $ReturnStore_PriceTWDCP,
+            $AllOut_PcsTWDCP,
+            $AllOut_PriceTWDCP,
+            $Calculate_PcsTWDCP,
+            $Calculate_PriceTWDCP,
+            $NewCalculate_PcsTWDCP,
+            $NewCalculate_PriceTWDCP,
+            $Diff_PcsTWDCP,
+            $Diff_PriceTWDCP,
+            $NewTotal_PcsTWDCP,
+            $NewTotal_PriceTWDCP,
+            $NewTotalDiff_NavTWDCP,
+            $NewTotalDiff_CalTWDCP,
+            $a7f1fgbu02s_PcsTWDCP,
+            $a7f1fgbu02s_PriceTWDCP,
+            $a7f2fgbu10s_PcsTWDCP,
+            $a7f2fgbu10s_PriceTWDCP,
+            $a7f2thbu05s_PcsTWDCP,
+            $a7f2thbu05s_PriceTWDCP,
+            $a7f2debu10s_PcsTWDCP,
+            $a7f2debu10s_PriceTWDCP,
+            $a7f2exbu11s_PcsTWDCP,
+            $a7f2exbu11s_PriceTWDCP,
+            $a7f2twbu04s_PcsTWDCP,
+            $a7f2twbu04s_PriceTWDCP,
+            $a7f2twbu07s_PcsTWDCP,
+            $a7f2twbu07s_PriceTWDCP,
+            $a7f2cebu10s_PcsTWDCP,
+            $a7f2cebu10s_PriceTWDCP,
+            $a8f1fgbu02s_PcsTWDCP,
+            $a8f1fgbu02s_PriceTWDCP,
+            $a8f2fgbu10s_PcsTWDCP,
+            $a8f2fgbu10s_PriceTWDCP,
+            $a8f2thbu05s_PcsTWDCP,
+            $a8f2thbu05s_PriceTWDCP,
+            $a8f2debu10s_PcsTWDCP,
+            $a8f2debu10s_PriceTWDCP,
+            $a8f2exbu11s_PcsTWDCP,
+            $a8f2exbu11s_PriceTWDCP,
+            $a8f2twbu04s_PcsTWDCP,
+            $a8f2twbu04s_PriceTWDCP,
+            $a8f2twbu07s_PcsTWDCP,
+            $a8f2twbu07s_PriceTWDCP,
+            $a8f2cebu10s_PcsTWDCP,
+            $a8f2cebu10s_PriceTWDCP,
+            $DC1_PcsTWDCP,
+            $DC1_PriceTWDCP,
+            $DCP_PcsTWDCP,
+            $DCP_PriceTWDCP,
+            $DCY_PcsTWDCP,
+            $DCY_PriceTWDCP,
+            $DEX_PcsTWDCP,
+            $DEX_PriceTWDCP,
+
+            ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterLNDCP,
+            $Price_AfterLNDCP,
+            $Pcs_AfterLNDCP,
+            $Price_AfterLNDCP,
+            $Po_PcsLNDCP,
+            $Po_PriceLNDCP,
+            $Neg_PcsLNDCP,
+            $Neg_PriceLNDCP,
+            $BackChange_PcsLNDCP,
+            $BackChange_PriceLNDCP,
+            $Purchase_PcsLNDCP,
+            $Purchase_PriceLNDCP,
+            $ReciveTranfer_PcsLNDCP,
+            $ReciveTranfer_PriceLNDCP,
+            $ReturnItem_PCSLNDCP,
+            $ReturnItem_PriceLNDCP,
+            $AllIn_PcsLNDCP,
+            $AllIn_PriceLNDCP,
+            $SendSale_PcsLNDCP,
+            $SendSale_PriceLNDCP,
+            $ReciveTranOut_PcsLNDCP,
+            $ReciveTranOut_PriceLNDCP,
+            $ReturnStore_PcsLNDCP,
+            $ReturnStore_PriceLNDCP,
+            $AllOut_PcsLNDCP,
+            $AllOut_PriceLNDCP,
+            $Calculate_PcsLNDCP,
+            $Calculate_PriceLNDCP,
+            $NewCalculate_PcsLNDCP,
+            $NewCalculate_PriceLNDCP,
+            $Diff_PcsLNDCP,
+            $Diff_PriceLNDCP,
+            $NewTotal_PcsLNDCP,
+            $NewTotal_PriceLNDCP,
+            $NewTotalDiff_NavLNDCP,
+            $NewTotalDiff_CalLNDCP,
+            $a7f1fgbu02s_PcsLNDCP,
+            $a7f1fgbu02s_PriceLNDCP,
+            $a7f2fgbu10s_PcsLNDCP,
+            $a7f2fgbu10s_PriceLNDCP,
+            $a7f2thbu05s_PcsLNDCP,
+            $a7f2thbu05s_PriceLNDCP,
+            $a7f2debu10s_PcsLNDCP,
+            $a7f2debu10s_PriceLNDCP,
+            $a7f2exbu11s_PcsLNDCP,
+            $a7f2exbu11s_PriceLNDCP,
+            $a7f2twbu04s_PcsLNDCP,
+            $a7f2twbu04s_PriceLNDCP,
+            $a7f2twbu07s_PcsLNDCP,
+            $a7f2twbu07s_PriceLNDCP,
+            $a7f2cebu10s_PcsLNDCP,
+            $a7f2cebu10s_PriceLNDCP,
+            $a8f1fgbu02s_PcsLNDCP,
+            $a8f1fgbu02s_PriceLNDCP,
+            $a8f2fgbu10s_PcsLNDCP,
+            $a8f2fgbu10s_PriceLNDCP,
+            $a8f2thbu05s_PcsLNDCP,
+            $a8f2thbu05s_PriceLNDCP,
+            $a8f2debu10s_PcsLNDCP,
+            $a8f2debu10s_PriceLNDCP,
+            $a8f2exbu11s_PcsLNDCP,
+            $a8f2exbu11s_PriceLNDCP,
+            $a8f2twbu04s_PcsLNDCP,
+            $a8f2twbu04s_PriceLNDCP,
+            $a8f2twbu07s_PcsLNDCP,
+            $a8f2twbu07s_PriceLNDCP,
+            $a8f2cebu10s_PcsLNDCP,
+            $a8f2cebu10s_PriceLNDCP,
+            $DC1_PcsLNDCP,
+            $DC1_PriceLNDCP,
+            $DCP_PcsLNDCP,
+            $DCP_PriceLNDCP,
+            $DCY_PcsLNDCP,
+            $DCY_PriceLNDCP,
+            $DEX_PcsLNDCP,
+            $DEX_PriceLNDCP,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterAllDCP,
+            $Price_AfterAllDCP,
+            $Pcs_AfterAllDCP,
+            $Price_AfterAllDCP,
+            $Po_PcsAllDCP,
+            $Po_PriceAllDCP,
+            $Neg_PcsAllDCP,
+            $Neg_PriceAllDCP,
+            $BackChange_PcsAllDCP,
+            $BackChange_PriceAllDCP,
+            $Purchase_PcsAllDCP,
+            $Purchase_PriceAllDCP,
+            $ReciveTranfer_PcsAllDCP,
+            $ReciveTranfer_PriceAllDCP,
+            $ReturnItem_PCSAllDCP,
+            $ReturnItem_PriceAllDCP,
+            $AllIn_PcsAllDCP,
+            $AllIn_PriceAllDCP,
+            $SendSale_PcsAllDCP,
+            $SendSale_PriceAllDCP,
+            $ReciveTranOut_PcsAllDCP,
+            $ReciveTranOut_PriceAllDCP,
+            $ReturnStore_PcsAllDCP,
+            $ReturnStore_PriceAllDCP,
+            $AllOut_PcsAllDCP,
+            $AllOut_PriceAllDCP,
+            $Calculate_PcsAllDCP,
+            $Calculate_PriceAllDCP,
+            $NewCalculate_PcsAllDCP,
+            $NewCalculate_PriceAllDCP,
+            $Diff_PcsAllDCP,
+            $Diff_PriceAllDCP,
+            $NewTotal_PcsAllDCP,
+            $NewTotal_PriceAllDCP,
+            $NewTotalDiff_NavAllDCP,
+            $NewTotalDiff_CalAllDCP,
+            $a7f1fgbu02s_PcsAllDCP,
+            $a7f1fgbu02s_PriceAllDCP,
+            $a7f2fgbu10s_PcsAllDCP,
+            $a7f2fgbu10s_PriceAllDCP,
+            $a7f2thbu05s_PcsAllDCP,
+            $a7f2thbu05s_PriceAllDCP,
+            $a7f2debu10s_PcsAllDCP,
+            $a7f2debu10s_PriceAllDCP,
+            $a7f2exbu11s_PcsAllDCP,
+            $a7f2exbu11s_PriceAllDCP,
+            $a7f2twbu04s_PcsAllDCP,
+            $a7f2twbu04s_PriceAllDCP,
+            $a7f2twbu07s_PcsAllDCP,
+            $a7f2twbu07s_PriceAllDCP,
+            $a7f2cebu10s_PcsAllDCP,
+            $a7f2cebu10s_PriceAllDCP,
+            $a8f1fgbu02s_PcsAllDCP,
+            $a8f1fgbu02s_PriceAllDCP,
+            $a8f2fgbu10s_PcsAllDCP,
+            $a8f2fgbu10s_PriceAllDCP,
+            $a8f2thbu05s_PcsAllDCP,
+            $a8f2thbu05s_PriceAllDCP,
+            $a8f2debu10s_PcsAllDCP,
+            $a8f2debu10s_PriceAllDCP,
+            $a8f2exbu11s_PcsAllDCP,
+            $a8f2exbu11s_PriceAllDCP,
+            $a8f2twbu04s_PcsAllDCP,
+            $a8f2twbu04s_PriceAllDCP,
+            $a8f2twbu07s_PcsAllDCP,
+            $a8f2twbu07s_PriceAllDCP,
+            $a8f2cebu10s_PcsAllDCP,
+            $a8f2cebu10s_PriceAllDCP,
+            $DC1_PcsAllDCP,
+            $DC1_PriceAllDCP,
+            $DCP_PcsAllDCP,
+            $DCP_PriceAllDCP,
+            $DCY_PcsAllDCP,
+            $DCY_PriceAllDCP,
+            $DEX_PcsAllDCP,
+            $DEX_PriceAllDCP,
         ];
 
         return response()->json($Data);
