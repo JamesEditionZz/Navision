@@ -1133,6 +1133,366 @@ class ProductController extends Controller
         //////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////
 
+        $ItemNoNTCountry = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '<>', 'DC1')
+            ->where('dataother.Customer', '<>', 'DCP') 
+            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Item No', 'LIKE', 'NT%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
+        $ItemNoMTCountry = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '<>', 'DC1')
+            ->where('dataother.Customer', '<>', 'DCP') 
+            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Item No', 'LIKE', 'MT%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
+        $ItemNoTWCountry = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '<>', 'DC1')
+            ->where('dataother.Customer', '<>', 'DCP') 
+            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Item No', 'LIKE', 'TW%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
+        $ItemNoLNCountry = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '<>', 'DC1')
+            ->where('dataother.Customer', '<>', 'DCP') 
+            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Item No', 'LIKE', 'LN%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
+        $ItemNoSNTCountry = DB::table('item_all')
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '<>', 'DC1')
+            ->where('dataother.Customer', '<>', 'DCP') 
+            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Item No', 'LIKE', 'SNT%')
+            ->get();
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+
         $Pcs_AfterNT = 0;
         $Price_AfterNT = 0;
         $Po_PcsNT = 0;
@@ -2380,6 +2740,396 @@ class ProductController extends Controller
         $DCY_PriceLNDCP = 0;
         $DEX_PcsLNDCP = 0;
         $DEX_PriceLNDCP = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterNTCountry = 0;
+        $Price_AfterNTCountry = 0;
+        $Po_PcsNTCountry = 0;
+        $Po_PriceNTCountry = 0;
+        $Neg_PcsNTCountry = 0;
+        $Neg_PriceNTCountry = 0;
+        $Purchase_PcsNTCountry = 0;
+        $Purchase_PriceNTCountry = 0;
+        $BackChange_PcsNTCountry = 0;
+        $BackChange_PriceNTCountry = 0;
+        $ReciveTranfer_PcsNTCountry = 0;
+        $ReciveTranfer_PriceNTCountry = 0;
+        $ReturnItem_PCSNTCountry = 0;
+        $ReturnItem_PriceNTCountry = 0;
+        $AllIn_PcsNTCountry = 0;
+        $AllIn_PriceNTCountry = 0;
+        $SendSale_PcsNTCountry = 0;
+        $SendSale_PriceNTCountry = 0;
+        $ReciveTranOut_PcsNTCountry = 0;
+        $ReciveTranOut_PriceNTCountry = 0;
+        $ReturnStore_PcsNTCountry = 0;
+        $ReturnStore_PriceNTCountry = 0;
+        $AllOut_PcsNTCountry = 0;
+        $AllOut_PriceNTCountry = 0;
+        $Calculate_PcsNTCountry = 0;
+        $Calculate_PriceNTCountry = 0;
+        $NewCalculate_PcsNTCountry = 0;
+        $NewCalculate_PriceNTCountry = 0;
+        $Diff_PcsNTCountry = 0;
+        $Diff_PriceNTCountry = 0;
+        $NewTotal_PcsNTCountry = 0;
+        $NewTotal_PriceNTCountry = 0;
+        $NewTotalDiff_NavNTCountry = 0;
+        $NewTotalDiff_CalNTCountry = 0;
+        $a7f1fgbu02s_PcsNTCountry = 0;
+        $a7f1fgbu02s_PriceNTCountry = 0;
+        $a7f2fgbu10s_PcsNTCountry = 0;
+        $a7f2fgbu10s_PriceNTCountry = 0;
+        $a7f2thbu05s_PcsNTCountry = 0;
+        $a7f2thbu05s_PriceNTCountry = 0;
+        $a7f2debu10s_PcsNTCountry = 0;
+        $a7f2debu10s_PriceNTCountry = 0;
+        $a7f2exbu11s_PcsNTCountry = 0;
+        $a7f2exbu11s_PriceNTCountry = 0;
+        $a7f2twbu04s_PcsNTCountry = 0;
+        $a7f2twbu04s_PriceNTCountry = 0;
+        $a7f2twbu07s_PcsNTCountry = 0;
+        $a7f2twbu07s_PriceNTCountry = 0;
+        $a7f2cebu10s_PcsNTCountry = 0;
+        $a7f2cebu10s_PriceNTCountry = 0;
+        $a8f1fgbu02s_PcsNTCountry = 0;
+        $a8f1fgbu02s_PriceNTCountry = 0;
+        $a8f2fgbu10s_PcsNTCountry = 0;
+        $a8f2fgbu10s_PriceNTCountry = 0;
+        $a8f2thbu05s_PcsNTCountry = 0;
+        $a8f2thbu05s_PriceNTCountry = 0;
+        $a8f2debu10s_PcsNTCountry = 0;
+        $a8f2debu10s_PriceNTCountry = 0;
+        $a8f2exbu11s_PcsNTCountry = 0;
+        $a8f2exbu11s_PriceNTCountry = 0;
+        $a8f2twbu04s_PcsNTCountry = 0;
+        $a8f2twbu04s_PriceNTCountry = 0;
+        $a8f2twbu07s_PcsNTCountry = 0;
+        $a8f2twbu07s_PriceNTCountry = 0;
+        $a8f2cebu10s_PcsNTCountry = 0;
+        $a8f2cebu10s_PriceNTCountry = 0;
+        $DC1_PcsNTCountry = 0;
+        $DC1_PriceNTCountry = 0;
+        $DCP_PcsNTCountry = 0;
+        $DCP_PriceNTCountry = 0;
+        $DCY_PcsNTCountry = 0;
+        $DCY_PriceNTCountry = 0;
+        $DEX_PcsNTCountry = 0;
+        $DEX_PriceNTCountry = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterMTCountry = 0;
+        $Price_AfterMTCountry = 0;
+        $Po_PcsMTCountry = 0;
+        $Po_PriceMTCountry = 0;
+        $Neg_PcsMTCountry = 0;
+        $Neg_PriceMTCountry = 0;
+        $Purchase_PcsMTCountry = 0;
+        $Purchase_PriceMTCountry = 0;
+        $BackChange_PcsMTCountry = 0;
+        $BackChange_PriceMTCountry = 0;
+        $ReciveTranfer_PcsMTCountry = 0;
+        $ReciveTranfer_PriceMTCountry = 0;
+        $ReturnItem_PCSMTCountry = 0;
+        $ReturnItem_PriceMTCountry = 0;
+        $AllIn_PcsMTCountry = 0;
+        $AllIn_PriceMTCountry = 0;
+        $SendSale_PcsMTCountry = 0;
+        $SendSale_PriceMTCountry = 0;
+        $ReciveTranOut_PcsMTCountry = 0;
+        $ReciveTranOut_PriceMTCountry = 0;
+        $ReturnStore_PcsMTCountry = 0;
+        $ReturnStore_PriceMTCountry = 0;
+        $AllOut_PcsMTCountry = 0;
+        $AllOut_PriceMTCountry = 0;
+        $Calculate_PcsMTCountry = 0;
+        $Calculate_PriceMTCountry = 0;
+        $NewCalculate_PcsMTCountry = 0;
+        $NewCalculate_PriceMTCountry = 0;
+        $Diff_PcsMTCountry = 0;
+        $Diff_PriceMTCountry = 0;
+        $NewTotal_PcsMTCountry = 0;
+        $NewTotal_PriceMTCountry = 0;
+        $NewTotalDiff_NavMTCountry = 0;
+        $NewTotalDiff_CalMTCountry = 0;
+        $a7f1fgbu02s_PcsMTCountry = 0;
+        $a7f1fgbu02s_PriceMTCountry = 0;
+        $a7f2fgbu10s_PcsMTCountry = 0;
+        $a7f2fgbu10s_PriceMTCountry = 0;
+        $a7f2thbu05s_PcsMTCountry = 0;
+        $a7f2thbu05s_PriceMTCountry = 0;
+        $a7f2debu10s_PcsMTCountry = 0;
+        $a7f2debu10s_PriceMTCountry = 0;
+        $a7f2exbu11s_PcsMTCountry = 0;
+        $a7f2exbu11s_PriceMTCountry = 0;
+        $a7f2twbu04s_PcsMTCountry = 0;
+        $a7f2twbu04s_PriceMTCountry = 0;
+        $a7f2twbu07s_PcsMTCountry = 0;
+        $a7f2twbu07s_PriceMTCountry = 0;
+        $a7f2cebu10s_PcsMTCountry = 0;
+        $a7f2cebu10s_PriceMTCountry = 0;
+        $a8f1fgbu02s_PcsMTCountry = 0;
+        $a8f1fgbu02s_PriceMTCountry = 0;
+        $a8f2fgbu10s_PcsMTCountry = 0;
+        $a8f2fgbu10s_PriceMTCountry = 0;
+        $a8f2thbu05s_PcsMTCountry = 0;
+        $a8f2thbu05s_PriceMTCountry = 0;
+        $a8f2debu10s_PcsMTCountry = 0;
+        $a8f2debu10s_PriceMTCountry = 0;
+        $a8f2exbu11s_PcsMTCountry = 0;
+        $a8f2exbu11s_PriceMTCountry = 0;
+        $a8f2twbu04s_PcsMTCountry = 0;
+        $a8f2twbu04s_PriceMTCountry = 0;
+        $a8f2twbu07s_PcsMTCountry = 0;
+        $a8f2twbu07s_PriceMTCountry = 0;
+        $a8f2cebu10s_PcsMTCountry = 0;
+        $a8f2cebu10s_PriceMTCountry = 0;
+        $DC1_PcsMTCountry = 0;
+        $DC1_PriceMTCountry = 0;
+        $DCP_PcsMTCountry = 0;
+        $DCP_PriceMTCountry = 0;
+        $DCY_PcsMTCountry = 0;
+        $DCY_PriceMTCountry = 0;
+        $DEX_PcsMTCountry = 0;
+        $DEX_PriceMTCountry = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterTWCountry = 0;
+        $Price_AfterTWCountry = 0;
+        $Po_PcsTWCountry = 0;
+        $Po_PriceTWCountry = 0;
+        $Neg_PcsTWCountry = 0;
+        $Neg_PriceTWCountry = 0;
+        $Purchase_PcsTWCountry = 0;
+        $Purchase_PriceTWCountry = 0;
+        $BackChange_PcsTWCountry = 0;
+        $BackChange_PriceTWCountry = 0;
+        $ReciveTranfer_PcsTWCountry = 0;
+        $ReciveTranfer_PriceTWCountry = 0;
+        $ReturnItem_PCSTWCountry = 0;
+        $ReturnItem_PriceTWCountry = 0;
+        $AllIn_PcsTWCountry = 0;
+        $AllIn_PriceTWCountry = 0;
+        $SendSale_PcsTWCountry = 0;
+        $SendSale_PriceTWCountry = 0;
+        $ReciveTranOut_PcsTWCountry = 0;
+        $ReciveTranOut_PriceTWCountry = 0;
+        $ReturnStore_PcsTWCountry = 0;
+        $ReturnStore_PriceTWCountry = 0;
+        $AllOut_PcsTWCountry = 0;
+        $AllOut_PriceTWCountry = 0;
+        $Calculate_PcsTWCountry = 0;
+        $Calculate_PriceTWCountry = 0;
+        $NewCalculate_PcsTWCountry = 0;
+        $NewCalculate_PriceTWCountry = 0;
+        $Diff_PcsTWCountry = 0;
+        $Diff_PriceTWCountry = 0;
+        $NewTotal_PcsTWCountry = 0;
+        $NewTotal_PriceTWCountry = 0;
+        $NewTotalDiff_NavTWCountry = 0;
+        $NewTotalDiff_CalTWCountry = 0;
+        $a7f1fgbu02s_PcsTWCountry = 0;
+        $a7f1fgbu02s_PriceTWCountry = 0;
+        $a7f2fgbu10s_PcsTWCountry = 0;
+        $a7f2fgbu10s_PriceTWCountry = 0;
+        $a7f2thbu05s_PcsTWCountry = 0;
+        $a7f2thbu05s_PriceTWCountry = 0;
+        $a7f2debu10s_PcsTWCountry = 0;
+        $a7f2debu10s_PriceTWCountry = 0;
+        $a7f2exbu11s_PcsTWCountry = 0;
+        $a7f2exbu11s_PriceTWCountry = 0;
+        $a7f2twbu04s_PcsTWCountry = 0;
+        $a7f2twbu04s_PriceTWCountry = 0;
+        $a7f2twbu07s_PcsTWCountry = 0;
+        $a7f2twbu07s_PriceTWCountry = 0;
+        $a7f2cebu10s_PcsTWCountry = 0;
+        $a7f2cebu10s_PriceTWCountry = 0;
+        $a8f1fgbu02s_PcsTWCountry = 0;
+        $a8f1fgbu02s_PriceTWCountry = 0;
+        $a8f2fgbu10s_PcsTWCountry = 0;
+        $a8f2fgbu10s_PriceTWCountry = 0;
+        $a8f2thbu05s_PcsTWCountry = 0;
+        $a8f2thbu05s_PriceTWCountry = 0;
+        $a8f2debu10s_PcsTWCountry = 0;
+        $a8f2debu10s_PriceTWCountry = 0;
+        $a8f2exbu11s_PcsTWCountry = 0;
+        $a8f2exbu11s_PriceTWCountry = 0;
+        $a8f2twbu04s_PcsTWCountry = 0;
+        $a8f2twbu04s_PriceTWCountry = 0;
+        $a8f2twbu07s_PcsTWCountry = 0;
+        $a8f2twbu07s_PriceTWCountry = 0;
+        $a8f2cebu10s_PcsTWCountry = 0;
+        $a8f2cebu10s_PriceTWCountry = 0;
+        $DC1_PcsTWCountry = 0;
+        $DC1_PriceTWCountry = 0;
+        $DCP_PcsTWCountry = 0;
+        $DCP_PriceTWCountry = 0;
+        $DCY_PcsTWCountry = 0;
+        $DCY_PriceTWCountry = 0;
+        $DEX_PcsTWCountry = 0;
+        $DEX_PriceTWCountry = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterLNCountry = 0;
+        $Price_AfterLNCountry = 0;
+        $Po_PcsLNCountry = 0;
+        $Po_PriceLNCountry = 0;
+        $Neg_PcsLNCountry = 0;
+        $Neg_PriceLNCountry = 0;
+        $Purchase_PcsLNCountry = 0;
+        $Purchase_PriceLNCountry = 0;
+        $BackChange_PcsLNCountry = 0;
+        $BackChange_PriceLNCountry = 0;
+        $ReciveTranfer_PcsLNCountry = 0;
+        $ReciveTranfer_PriceLNCountry = 0;
+        $ReturnItem_PCSLNCountry = 0;
+        $ReturnItem_PriceLNCountry = 0;
+        $AllIn_PcsLNCountry = 0;
+        $AllIn_PriceLNCountry = 0;
+        $SendSale_PcsLNCountry = 0;
+        $SendSale_PriceLNCountry = 0;
+        $ReciveTranOut_PcsLNCountry = 0;
+        $ReciveTranOut_PriceLNCountry = 0;
+        $ReturnStore_PcsLNCountry = 0;
+        $ReturnStore_PriceLNCountry = 0;
+        $AllOut_PcsLNCountry = 0;
+        $AllOut_PriceLNCountry = 0;
+        $Calculate_PcsLNCountry = 0;
+        $Calculate_PriceLNCountry = 0;
+        $NewCalculate_PcsLNCountry = 0;
+        $NewCalculate_PriceLNCountry = 0;
+        $Diff_PcsLNCountry = 0;
+        $Diff_PriceLNCountry = 0;
+        $NewTotal_PcsLNCountry = 0;
+        $NewTotal_PriceLNCountry = 0;
+        $NewTotalDiff_NavLNCountry = 0;
+        $NewTotalDiff_CalLNCountry = 0;
+        $a7f1fgbu02s_PcsLNCountry = 0;
+        $a7f1fgbu02s_PriceLNCountry = 0;
+        $a7f2fgbu10s_PcsLNCountry = 0;
+        $a7f2fgbu10s_PriceLNCountry = 0;
+        $a7f2thbu05s_PcsLNCountry = 0;
+        $a7f2thbu05s_PriceLNCountry = 0;
+        $a7f2debu10s_PcsLNCountry = 0;
+        $a7f2debu10s_PriceLNCountry = 0;
+        $a7f2exbu11s_PcsLNCountry = 0;
+        $a7f2exbu11s_PriceLNCountry = 0;
+        $a7f2twbu04s_PcsLNCountry = 0;
+        $a7f2twbu04s_PriceLNCountry = 0;
+        $a7f2twbu07s_PcsLNCountry = 0;
+        $a7f2twbu07s_PriceLNCountry = 0;
+        $a7f2cebu10s_PcsLNCountry = 0;
+        $a7f2cebu10s_PriceLNCountry = 0;
+        $a8f1fgbu02s_PcsLNCountry = 0;
+        $a8f1fgbu02s_PriceLNCountry = 0;
+        $a8f2fgbu10s_PcsLNCountry = 0;
+        $a8f2fgbu10s_PriceLNCountry = 0;
+        $a8f2thbu05s_PcsLNCountry = 0;
+        $a8f2thbu05s_PriceLNCountry = 0;
+        $a8f2debu10s_PcsLNCountry = 0;
+        $a8f2debu10s_PriceLNCountry = 0;
+        $a8f2exbu11s_PcsLNCountry = 0;
+        $a8f2exbu11s_PriceLNCountry = 0;
+        $a8f2twbu04s_PcsLNCountry = 0;
+        $a8f2twbu04s_PriceLNCountry = 0;
+        $a8f2twbu07s_PcsLNCountry = 0;
+        $a8f2twbu07s_PriceLNCountry = 0;
+        $a8f2cebu10s_PcsLNCountry = 0;
+        $a8f2cebu10s_PriceLNCountry = 0;
+        $DC1_PcsLNCountry = 0;
+        $DC1_PriceLNCountry = 0;
+        $DCP_PcsLNCountry = 0;
+        $DCP_PriceLNCountry = 0;
+        $DCY_PcsLNCountry = 0;
+        $DCY_PriceLNCountry = 0;
+        $DEX_PcsLNCountry = 0;
+        $DEX_PriceLNCountry = 0;
+
+        /////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterSNTCountry = 0;
+        $Price_AfterSNTCountry = 0;
+        $Po_PcsSNTCountry = 0;
+        $Po_PriceSNTCountry = 0;
+        $Neg_PcsSNTCountry = 0;
+        $Neg_PriceSNTCountry = 0;
+        $Purchase_PcsSNTCountry = 0;
+        $Purchase_PriceSNTCountry = 0;
+        $BackChange_PcsSNTCountry = 0;
+        $BackChange_PriceSNTCountry = 0;
+        $ReciveTranfer_PcsSNTCountry = 0;
+        $ReciveTranfer_PriceSNTCountry = 0;
+        $ReturnItem_PCSSNTCountry = 0;
+        $ReturnItem_PriceSNTCountry = 0;
+        $AllIn_PcsSNTCountry = 0;
+        $AllIn_PriceSNTCountry = 0;
+        $SendSale_PcsSNTCountry = 0;
+        $SendSale_PriceSNTCountry = 0;
+        $ReciveTranOut_PcsSNTCountry = 0;
+        $ReciveTranOut_PriceSNTCountry = 0;
+        $ReturnStore_PcsSNTCountry = 0;
+        $ReturnStore_PriceSNTCountry = 0;
+        $AllOut_PcsSNTCountry = 0;
+        $AllOut_PriceSNTCountry = 0;
+        $Calculate_PcsSNTCountry = 0;
+        $Calculate_PriceSNTCountry = 0;
+        $NewCalculate_PcsSNTCountry = 0;
+        $NewCalculate_PriceSNTCountry = 0;
+        $Diff_PcsSNTCountry = 0;
+        $Diff_PriceSNTCountry = 0;
+        $NewTotal_PcsSNTCountry = 0;
+        $NewTotal_PriceSNTCountry = 0;
+        $NewTotalDiff_NavSNTCountry = 0;
+        $NewTotalDiff_CalSNTCountry = 0;
+        $a7f1fgbu02s_PcsSNTCountry = 0;
+        $a7f1fgbu02s_PriceSNTCountry = 0;
+        $a7f2fgbu10s_PcsSNTCountry = 0;
+        $a7f2fgbu10s_PriceSNTCountry = 0;
+        $a7f2thbu05s_PcsSNTCountry = 0;
+        $a7f2thbu05s_PriceSNTCountry = 0;
+        $a7f2debu10s_PcsSNTCountry = 0;
+        $a7f2debu10s_PriceSNTCountry = 0;
+        $a7f2exbu11s_PcsSNTCountry = 0;
+        $a7f2exbu11s_PriceSNTCountry = 0;
+        $a7f2twbu04s_PcsSNTCountry = 0;
+        $a7f2twbu04s_PriceSNTCountry = 0;
+        $a7f2twbu07s_PcsSNTCountry = 0;
+        $a7f2twbu07s_PriceSNTCountry = 0;
+        $a7f2cebu10s_PcsSNTCountry = 0;
+        $a7f2cebu10s_PriceSNTCountry = 0;
+        $a8f1fgbu02s_PcsSNTCountry = 0;
+        $a8f1fgbu02s_PriceSNTCountry = 0;
+        $a8f2fgbu10s_PcsSNTCountry = 0;
+        $a8f2fgbu10s_PriceSNTCountry = 0;
+        $a8f2thbu05s_PcsSNTCountry = 0;
+        $a8f2thbu05s_PriceSNTCountry = 0;
+        $a8f2debu10s_PcsSNTCountry = 0;
+        $a8f2debu10s_PriceSNTCountry = 0;
+        $a8f2exbu11s_PcsSNTCountry = 0;
+        $a8f2exbu11s_PriceSNTCountry = 0;
+        $a8f2twbu04s_PcsSNTCountry = 0;
+        $a8f2twbu04s_PriceSNTCountry = 0;
+        $a8f2twbu07s_PcsSNTCountry = 0;
+        $a8f2twbu07s_PriceSNTCountry = 0;
+        $a8f2cebu10s_PcsSNTCountry = 0;
+        $a8f2cebu10s_PriceSNTCountry = 0;
+        $DC1_PcsSNTCountry = 0;
+        $DC1_PriceSNTCountry = 0;
+        $DCP_PcsSNTCountry = 0;
+        $DCP_PriceSNTCountry = 0;
+        $DCY_PcsSNTCountry = 0;
+        $DCY_PriceSNTCountry = 0;
+        $DEX_PcsSNTCountry = 0;
+        $DEX_PriceSNTCountry = 0;
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6800,6 +7550,1381 @@ class ProductController extends Controller
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
 
+        foreach ($ItemNoNTCountry as $NTCountry) {
+            if ($NTCountry->PcsAfter > 0 && $NTCountry->PriceAfter > 0) {
+                $NumberNTCountry = ($NTCountry->PriceAfter / $NTCountry->PcsAfter);
+            }else{
+                $NumberNTCountry = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterNTCountry = $NTCountry->PcsAfter;
+            $Pcs_AfterNTCountry = $Pcs_AfterNTCountry + $PCSAfterNTCountry;
+
+            $PriceAfterNTCountry = $NTCountry->PriceAfter;
+            $Price_AfterNTCountry = $Price_AfterNTCountry + $PriceAfterNTCountry;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsNTCountry = $NTCountry->Po_Quantity;
+            $Po_PcsNTCountry = $Po_PcsNTCountry + $PoPcsNTCountry;
+
+            $PoPriceNTCountry = $NTCountry->PriceAvg * $NTCountry->Po_Quantity;
+            $Po_PriceNTCountry = $Po_PriceNTCountry + $PoPriceNTCountry;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsNTCountry = $NTCountry->Neg_Quantity;
+            $Neg_PcsNTCountry = $Neg_PcsNTCountry + $NegPcsNTCountry;
+
+
+            $NegPriceNTCountry = $NumberNTCountry * $NTCountry->Neg_Quantity;
+            $Neg_PriceNTCountry = $Neg_PriceNTCountry + $NegPriceNTCountry;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsNTCountry = $PCSAfterNTCountry + $PoPcsNTCountry + $NegPcsNTCountry;
+            $BackChange_PcsNTCountry = $BackChange_PcsNTCountry + $BackChangePcsNTCountry;
+
+            $BackChangePriceNTCountry = $PriceAfterNTCountry + $PoPriceNTCountry + $NegPriceNTCountry;
+            $BackChange_PriceNTCountry = $BackChange_PriceNTCountry + $BackChangePriceNTCountry;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsNTCountry = $NTCountry->purchase_Quantity;
+            $Purchase_PcsNTCountry = $Purchase_PcsNTCountry + $PurchasePcsNTCountry;
+
+            $PurchasePriceNTCountry = $NTCountry->purchase_Cost;
+            $Purchase_PriceNTCountry = $Purchase_PriceNTCountry + $PurchasePriceNTCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsNTCountry = $NTCountry->a7f1fgbu02s_Quantity + $NTCountry->a7f2fgbu10s_Quantity + $NTCountry->a7f2thbu05s_Quantity + $NTCountry->a7f2debu10s_Quantity + $NTCountry->a7f2exbu11s_Quantity + $NTCountry->a7f2twbu04s_Quantity + $NTCountry->a7f2twbu07s_Quantity + $NTCountry->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsNTCountry = $ReciveTranfer_PcsNTCountry + $ReciveTranferPcsNTCountry;
+
+            $ReciveTranferPriceNTCountry = $ReciveTranferPcsNTCountry * $NTCountry->PriceAvg;
+            $ReciveTranfer_PriceNTCountry = $ReciveTranfer_PriceNTCountry + $ReciveTranferPriceNTCountry;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantityNTCountry = $NTCountry->returncuses_Quantity;
+            $ReturnItem_PCSNTCountry = $ReturnItem_PCSNTCountry + $ReturnItemQuantityNTCountry;
+
+            $ReturnItemPriceNTCountry = $ReturnItemQuantityNTCountry * $NumberNTCountry;
+            $ReturnItem_PriceNTCountry = $ReturnItem_PriceNTCountry + $ReturnItemPriceNTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsNTCountry = $NTCountry->purchase_Quantity + $ReciveTranferPcsNTCountry + $ReturnItemQuantityNTCountry;
+            $AllIn_PcsNTCountry = $AllIn_PcsNTCountry + $AllInPcsNTCountry;
+
+            $AllInPriceNTCountry = $PurchasePriceNTCountry + $ReciveTranferPriceNTCountry + $ReturnItemPriceNTCountry;
+            $AllIn_PriceNTCountry = $AllIn_PriceNTCountry + $AllInPriceNTCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsNTCountry = $NTCountry->dc1_s_Quantity + $NTCountry->dcp_s_Quantity + $NTCountry->dcy_s_Quantity + $NTCountry->dex_s_Quantity;
+            $SendSale_PcsNTCountry = $SendSale_PcsNTCountry + $SendSalePcsNTCountry;
+
+            if ($BackChangePcsNTCountry > 0 && $AllInPcsNTCountry > 0) {
+                $SendSalePriceNTCountry = (($AllInPriceNTCountry + $BackChangePriceNTCountry) / ($AllInPcsNTCountry + $BackChangePcsNTCountry)) * $SendSalePcsNTCountry;
+                $SendSale_PriceNTCountry = $SendSale_PriceNTCountry + $SendSalePriceNTCountry;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsNTCountry = $NTCountry->a8f1fgbu02s_Quantity + $NTCountry->a8f2fgbu10s_Quantity + $NTCountry->a8f2thbu05s_Quantity + $NTCountry->a8f2debu10s_Quantity + $NTCountry->a8f2exbu11s_Quantity + $NTCountry->a8f2twbu04s_Quantity + $NTCountry->a8f2twbu07s_Quantity + $NTCountry->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsNTCountry = $ReciveTranOut_PcsNTCountry + $ReciveTranOutPcsNTCountry;
+
+            if ($AllInPcsNTCountry > 0 && $BackChangePcsNTCountry > 0) {
+                $ReciveTranOutPriceNTCountry = (($AllInPriceNTCountry + $BackChangePriceNTCountry) / ($AllInPcsNTCountry + $BackChangePcsNTCountry)) * $ReciveTranOutPcsNTCountry;
+                $ReciveTranOut_PriceNTCountry = $ReciveTranOut_PriceNTCountry + $ReciveTranOutPriceNTCountry;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsNTCountry = $NTCountry->returnitem_Quantity;
+            $ReturnStore_PcsNTCountry = $ReturnStore_PcsNTCountry + $ReturnStorePcsNTCountry;
+
+            if ($AllInPcsNTCountry > 0 && $BackChangePcsNTCountry > 0) {
+                $ReturnStorePriceNTCountry = (($AllInPriceNTCountry + $BackChangePriceNTCountry) / ($AllInPcsNTCountry + $BackChangePcsNTCountry)) * $ReturnStorePcsNTCountry;
+                $ReturnStore_PriceNTCountry = $ReturnStore_PriceNTCountry + $ReturnStorePriceNTCountry;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsNTCountry = $ReturnStorePcsNTCountry + $ReciveTranOutPcsNTCountry + $SendSalePcsNTCountry;
+            $AllOut_PcsNTCountry = $AllOut_PcsNTCountry + $AllOutPcsNTCountry;
+
+            $AllOutPriceNTCountry = $SendSale_PriceNTCountry + $ReciveTranOut_PriceNTCountry + $ReturnStore_PriceNTCountry;
+            $AllOut_PriceNTCountry = $AllOut_PriceNTCountry + $AllOutPriceNTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsNTCountry = $BackChangePcsNTCountry + $AllInPcsNTCountry + $AllOutPcsNTCountry;
+            $Calculate_PcsNTCountry = $Calculate_PcsNTCountry + $CalculatePcsNTCountry;
+
+            $CalculatePriceNTCountry = $BackChangePriceNTCountry + $AllInPriceNTCountry + $AllOutPriceNTCountry;
+            $Calculate_PriceNTCountry = $Calculate_PriceNTCountry + $CalculatePriceNTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsNTCountry = $NTCountry->item_stock_Quantity;
+            $NewCalculate_PcsNTCountry = $NewCalculate_PcsNTCountry + $NewCalculatePcsNTCountry;
+
+            $NewCalculatePriceNTCountry = $NTCountry->item_stock_Amount;
+            $NewCalculate_PriceNTCountry = $NewCalculate_PriceNTCountry + $NewCalculatePriceNTCountry;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsNTCountry = $NewCalculatePcsNTCountry - $CalculatePcsNTCountry;
+            $Diff_PcsNTCountry = $Diff_PcsNTCountry + $DiffPcsNTCountry;
+
+            $DiffPriceNTCountry = $NewCalculatePriceNTCountry - $CalculatePriceNTCountry;
+            $Diff_PriceNTCountry = $Diff_PriceNTCountry + $DiffPriceNTCountry;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsNTCountry = $CalculatePcsNTCountry;
+            $NewTotal_PcsNTCountry = $NewTotal_PcsNTCountry + $CalculatePcsNTCountry;
+
+            $NewTotalPriceNTCountry = $NewTotalPcsNTCountry * $NTCountry->PriceAvg;
+            $NewTotal_PriceNTCountry = $NewTotal_PriceNTCountry + $NewTotalPriceNTCountry;
+
+            $NewTotalDiffNavNTCountry = $NewTotalPriceNTCountry - $NewCalculatePriceNTCountry;
+            $NewTotalDiff_NavNTCountry = $NewTotalDiff_NavNTCountry + $NewTotalDiffNavNTCountry;
+
+            $NewTotalDiffCalNTCountry = $NewTotalPriceNTCountry - $CalculatePriceNTCountry;
+            $NewTotalDiff_CalNTCountry = $NewTotalDiff_CalNTCountry + $NewTotalDiffCalNTCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsNTCountry = $NTCountry->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsNTCountry = $a7f1fgbu02s_PcsNTCountry + $a7f1fgbu02sPcsNTCountry;
+
+            $a7f1fgbu02sPriceNTCountry = $a7f1fgbu02sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f1fgbu02s_PriceNTCountry = $a7f1fgbu02s_PriceNTCountry + $a7f1fgbu02sPriceNTCountry;
+
+            $a7f2fgbu10sPcsNTCountry = $NTCountry->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsNTCountry = $a7f2fgbu10s_PcsNTCountry + $a7f2fgbu10sPcsNTCountry;
+
+            $a7f2fgbu10sPriceNTCountry = $a7f2fgbu10sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f2fgbu10s_PriceNTCountry = $a7f2fgbu10s_PriceNTCountry + $a7f2fgbu10sPriceNTCountry;
+
+            $a7f2thbu05sPcsNTCountry = $NTCountry->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsNTCountry = $a7f2thbu05s_PcsNTCountry + $a7f2thbu05sPcsNTCountry;
+
+            $a7f2thbu05sPriceNTCountry = $a7f2thbu05sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f2thbu05s_PriceNTCountry = $a7f2thbu05s_PriceNTCountry + $a7f2thbu05sPriceNTCountry;
+
+            $a7f2debu10sPcsNTCountry = $NTCountry->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsNTCountry = $a7f2debu10s_PcsNTCountry + $a7f2debu10sPcsNTCountry;
+
+            $a7f2debu10sPriceNTCountry = $a7f2debu10sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f2debu10s_PriceNTCountry = $a7f2debu10s_PriceNTCountry + $a7f2debu10sPriceNTCountry;
+
+            $a7f2exbu11sPcsNTCountry = $NTCountry->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsNTCountry = $a7f2exbu11s_PcsNTCountry + $a7f2exbu11sPcsNTCountry;
+
+            $a7f2exbu11sPriceNTCountry = $a7f2exbu11sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f2exbu11s_PriceNTCountry = $a7f2exbu11s_PriceNTCountry + $a7f2exbu11sPriceNTCountry;
+
+            $a7f2twbu04sPcsNTCountry = $NTCountry->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsNTCountry = $a7f2twbu04s_PcsNTCountry + $a7f2twbu04sPcsNTCountry;
+
+            $a7f2twbu04sPriceNTCountry = $a7f2twbu04sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f2twbu04s_PriceNTCountry = $a7f2twbu04s_PriceNTCountry + $a7f2twbu04sPriceNTCountry;
+
+            $a7f2twbu07sPcsNTCountry = $NTCountry->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsNTCountry = $a7f2twbu07s_PcsNTCountry + $a7f2twbu07sPcsNTCountry;
+
+            $a7f2twbu07sPriceNTCountry = $a7f2twbu07sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f2twbu07s_PriceNTCountry = $a7f2twbu07s_PriceNTCountry + $a7f2twbu07sPriceNTCountry;
+
+            $a7f2cebu10sPcsNTCountry = $NTCountry->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsNTCountry = $a7f2cebu10s_PcsNTCountry + $a7f2cebu10sPcsNTCountry;
+
+            $a7f2cebu10sPriceNTCountry = $a7f2cebu10sPcsNTCountry * $NTCountry->PriceAvg;
+            $a7f2cebu10s_PriceNTCountry = $a7f2cebu10s_PriceNTCountry + $a7f2cebu10sPriceNTCountry;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsNTCountry = $NTCountry->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsNTCountry = $a8f1fgbu02s_PcsNTCountry + $a8f1fgbu02sPcsNTCountry;
+
+            $a8f1fgbu02sPriceNTCountry = $a8f1fgbu02sPcsNTCountry * $NumberNTCountry;
+            $a8f1fgbu02s_PriceNTCountry = $a8f1fgbu02s_PriceNTCountry + $a8f1fgbu02sPriceNTCountry;
+
+            $a8f2fgbu10sPcsNTCountry = $NTCountry->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsNTCountry = $a8f2fgbu10s_PcsNTCountry + $a8f2fgbu10sPcsNTCountry;
+
+            $a8f2fgbu10sPriceNTCountry = $a8f2fgbu10sPcsNTCountry * $NumberNTCountry;
+            $a8f2fgbu10s_PriceNTCountry = $a8f2fgbu10s_PriceNTCountry + $a8f2fgbu10sPriceNTCountry;
+
+            $a8f2thbu05sPcsNTCountry = $NTCountry->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsNTCountry = $a8f2thbu05s_PcsNTCountry + $a8f2thbu05sPcsNTCountry;
+
+            $a8f2thbu05sPriceNTCountry = $a8f2thbu05sPcsNTCountry * $NumberNTCountry;
+            $a8f2thbu05s_PriceNTCountry = $a8f2thbu05s_PriceNTCountry + $a8f2thbu05sPriceNTCountry;
+
+            $a8f2debu10sPcsNTCountry = $NTCountry->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsNTCountry = $a8f2debu10s_PcsNTCountry + $a8f2debu10sPcsNTCountry;
+
+            $a8f2debu10sPriceNTCountry = $a8f2debu10sPcsNTCountry * $NumberNTCountry;
+            $a8f2debu10s_PriceNTCountry = $a8f2debu10s_PriceNTCountry + $a8f2debu10sPriceNTCountry;
+
+            $a8f2exbu11sPcsNTCountry = $NTCountry->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsNTCountry = $a8f2exbu11s_PcsNTCountry + $a8f2exbu11sPcsNTCountry;
+
+            $a8f2exbu11sPriceNTCountry = $a8f2exbu11sPcsNTCountry * $NumberNTCountry;
+            $a8f2exbu11s_PriceNTCountry = $a8f2exbu11s_PriceNTCountry + $a8f2exbu11sPriceNTCountry;
+
+            $a8f2twbu04sPcsNTCountry = $NTCountry->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsNTCountry = $a8f2twbu04s_PcsNTCountry + $a8f2twbu04sPcsNTCountry;
+
+            $a8f2twbu04sPriceNTCountry = $a8f2twbu04sPcsNTCountry * $NumberNTCountry;
+            $a8f2twbu04s_PriceNTCountry = $a8f2twbu04s_PriceNTCountry + $a8f2twbu04sPriceNTCountry;
+
+            $a8f2twbu07sPcsNTCountry = $NTCountry->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsNTCountry = $a8f2twbu07s_PcsNTCountry + $a8f2twbu07sPcsNTCountry;
+
+            $a8f2twbu07sPriceNTCountry = $a8f2twbu07sPcsNTCountry * $NumberNTCountry;
+            $a8f2twbu07s_PriceNTCountry = $a8f2twbu07s_PriceNTCountry + $a8f2twbu07sPriceNTCountry;
+
+            $a8f2cebu10sPcsNTCountry = $NTCountry->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsNTCountry = $a8f2cebu10s_PcsNTCountry + $a8f2cebu10sPcsNTCountry;
+
+            $a8f2cebu10sPriceNTCountry = $a8f2cebu10sPcsNTCountry * $NumberNTCountry;
+            $a8f2cebu10s_PriceNTCountry = $a8f2cebu10s_PriceNTCountry + $a8f2cebu10sPriceNTCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsNTCountry = $NTCountry->dc1_s_Quantity;
+            $DC1_PcsNTCountry = $DC1_PcsNTCountry + $DC1PcsNTCountry;
+
+            $DC1PriceNTCountry = $DC1PcsNTCountry * $NumberNTCountry;
+            $DC1_PriceNTCountry = $DC1_PriceNTCountry + $DC1PriceNTCountry;
+
+            $DCPPcsNTCountry = $NTCountry->dcp_s_Quantity;
+            $DCP_PcsNTCountry = $DCP_PcsNTCountry + $DCPPcsNTCountry;
+
+            $DCPPriceNTCountry = $DCPPcsNTCountry * $NumberNTCountry;
+            $DCP_PriceNTCountry = $DCP_PriceNTCountry + $DCPPriceNTCountry;
+
+            $DCYPcsNTCountry = $NTCountry->dcy_s_Quantity;
+            $DCY_PcsNTCountry = $DCY_PcsNTCountry + $DCYPcsNTCountry;
+
+            $DCYPriceNTCountry = $DCYPcsNTCountry * $NumberNTCountry;
+            $DCY_PriceNTCountry = $DCY_PriceNTCountry + $DCYPriceNTCountry;
+
+            $DEXPcsNTCountry = $NTCountry->dex_s_Quantity;
+            $DEX_PcsNTCountry = $DEX_PcsNTCountry + $DEXPcsNTCountry;
+
+            $DEXPriceNTCountry = $DEXPcsNTCountry * $NumberNTCountry;
+            $DEX_PriceNTCountry = $DEX_PriceNTCountry + $DEXPriceNTCountry;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        foreach ($ItemNoMTCountry as $MTCountry) {
+            if ($MTCountry->PcsAfter > 0 && $MTCountry->PriceAfter > 0) {
+                $NumberMTCountry = ($MTCountry->PriceAfter / $MTCountry->PcsAfter);
+            }else{
+                $NumberMTCountry = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterMTCountry = $MTCountry->PcsAfter;
+            $Pcs_AfterMTCountry = $Pcs_AfterMTCountry + $PCSAfterMTCountry;
+
+            $PriceAfterMTCountry = $MTCountry->PriceAfter;
+            $Price_AfterMTCountry = $Price_AfterMTCountry + $PriceAfterMTCountry;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsMTCountry = $MTCountry->Po_Quantity;
+            $Po_PcsMTCountry = $Po_PcsMTCountry + $PoPcsMTCountry;
+
+            $PoPriceMTCountry = $MTCountry->PriceAvg * $MTCountry->Po_Quantity;
+            $Po_PriceMTCountry = $Po_PriceMTCountry + $PoPriceMTCountry;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsMTCountry = $MTCountry->Neg_Quantity;
+            $Neg_PcsMTCountry = $Neg_PcsMTCountry + $NegPcsMTCountry;
+
+
+            $NegPriceMTCountry = $NumberMTCountry * $MTCountry->Neg_Quantity;
+            $Neg_PriceMTCountry = $Neg_PriceMTCountry + $NegPriceMTCountry;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsMTCountry = $PCSAfterMTCountry + $PoPcsMTCountry + $NegPcsMTCountry;
+            $BackChange_PcsMTCountry = $BackChange_PcsMTCountry + $BackChangePcsMTCountry;
+
+            $BackChangePriceMTCountry = $PriceAfterMTCountry + $PoPriceMTCountry + $NegPriceMTCountry;
+            $BackChange_PriceMTCountry = $BackChange_PriceMTCountry + $BackChangePriceMTCountry;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsMTCountry = $MTCountry->purchase_Quantity;
+            $Purchase_PcsMTCountry = $Purchase_PcsMTCountry + $PurchasePcsMTCountry;
+
+            $PurchasePriceMTCountry = $MTCountry->purchase_Cost;
+            $Purchase_PriceMTCountry = $Purchase_PriceMTCountry + $PurchasePriceMTCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsMTCountry = $MTCountry->a7f1fgbu02s_Quantity + $MTCountry->a7f2fgbu10s_Quantity + $MTCountry->a7f2thbu05s_Quantity + $MTCountry->a7f2debu10s_Quantity + $MTCountry->a7f2exbu11s_Quantity + $MTCountry->a7f2twbu04s_Quantity + $MTCountry->a7f2twbu07s_Quantity + $MTCountry->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsMTCountry = $ReciveTranfer_PcsMTCountry + $ReciveTranferPcsMTCountry;
+
+            $ReciveTranferPriceMTCountry = $ReciveTranferPcsMTCountry * $MTCountry->PriceAvg;
+            $ReciveTranfer_PriceMTCountry = $ReciveTranfer_PriceMTCountry + $ReciveTranferPriceMTCountry;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantityMTCountry = $MTCountry->returncuses_Quantity;
+            $ReturnItem_PCSMTCountry = $ReturnItem_PCSMTCountry + $ReturnItemQuantityMTCountry;
+
+            $ReturnItemPriceMTCountry = $ReturnItemQuantityMTCountry * $NumberMTCountry;
+            $ReturnItem_PriceMTCountry = $ReturnItem_PriceMTCountry + $ReturnItemPriceMTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsMTCountry = $MTCountry->purchase_Quantity + $ReciveTranferPcsMTCountry + $ReturnItemQuantityMTCountry;
+            $AllIn_PcsMTCountry = $AllIn_PcsMTCountry + $AllInPcsMTCountry;
+
+            $AllInPriceMTCountry = $PurchasePriceMTCountry + $ReciveTranferPriceMTCountry + $ReturnItemPriceMTCountry;
+            $AllIn_PriceMTCountry = $AllIn_PriceMTCountry + $AllInPriceMTCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsMTCountry = $MTCountry->dc1_s_Quantity + $MTCountry->dcp_s_Quantity + $MTCountry->dcy_s_Quantity + $MTCountry->dex_s_Quantity;
+            $SendSale_PcsMTCountry = $SendSale_PcsMTCountry + $SendSalePcsMTCountry;
+
+            if ($BackChangePcsMTCountry > 0 && $AllInPcsMTCountry > 0) {
+                $SendSalePriceMTCountry = (($AllInPriceMTCountry + $BackChangePriceMTCountry) / ($AllInPcsMTCountry + $BackChangePcsMTCountry)) * $SendSalePcsMTCountry;
+                $SendSale_PriceMTCountry = $SendSale_PriceMTCountry + $SendSalePriceMTCountry;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsMTCountry = $MTCountry->a8f1fgbu02s_Quantity + $MTCountry->a8f2fgbu10s_Quantity + $MTCountry->a8f2thbu05s_Quantity + $MTCountry->a8f2debu10s_Quantity + $MTCountry->a8f2exbu11s_Quantity + $MTCountry->a8f2twbu04s_Quantity + $MTCountry->a8f2twbu07s_Quantity + $MTCountry->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsMTCountry = $ReciveTranOut_PcsMTCountry + $ReciveTranOutPcsMTCountry;
+
+            if ($AllInPcsMTCountry > 0 && $BackChangePcsMTCountry > 0) {
+                $ReciveTranOutPriceMTCountry = (($AllInPriceMTCountry + $BackChangePriceMTCountry) / ($AllInPcsMTCountry + $BackChangePcsMTCountry)) * $ReciveTranOutPcsMTCountry;
+                $ReciveTranOut_PriceMTCountry = $ReciveTranOut_PriceMTCountry + $ReciveTranOutPriceMTCountry;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsMTCountry = $MTCountry->returnitem_Quantity;
+            $ReturnStore_PcsMTCountry = $ReturnStore_PcsMTCountry + $ReturnStorePcsMTCountry;
+
+            if ($AllInPcsMTCountry > 0 && $BackChangePcsMTCountry > 0) {
+                $ReturnStorePriceMTCountry = (($AllInPriceMTCountry + $BackChangePriceMTCountry) / ($AllInPcsMTCountry + $BackChangePcsMTCountry)) * $ReturnStorePcsMTCountry;
+                $ReturnStore_PriceMTCountry = $ReturnStore_PriceMTCountry + $ReturnStorePriceMTCountry;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsMTCountry = $ReturnStorePcsMTCountry + $ReciveTranOutPcsMTCountry + $SendSalePcsMTCountry;
+            $AllOut_PcsMTCountry = $AllOut_PcsMTCountry + $AllOutPcsMTCountry;
+
+            $AllOutPriceMTCountry = $SendSale_PriceMTCountry + $ReciveTranOut_PriceMTCountry + $ReturnStore_PriceMTCountry;
+            $AllOut_PriceMTCountry = $AllOut_PriceMTCountry + $AllOutPriceMTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsMTCountry = $BackChangePcsMTCountry + $AllInPcsMTCountry + $AllOutPcsMTCountry;
+            $Calculate_PcsMTCountry = $Calculate_PcsMTCountry + $CalculatePcsMTCountry;
+
+            $CalculatePriceMTCountry = $BackChangePriceMTCountry + $AllInPriceMTCountry + $AllOutPriceMTCountry;
+            $Calculate_PriceMTCountry = $Calculate_PriceMTCountry + $CalculatePriceMTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsMTCountry = $MTCountry->item_stock_Quantity;
+            $NewCalculate_PcsMTCountry = $NewCalculate_PcsMTCountry + $NewCalculatePcsMTCountry;
+
+            $NewCalculatePriceMTCountry = $MTCountry->item_stock_Amount;
+            $NewCalculate_PriceMTCountry = $NewCalculate_PriceMTCountry + $NewCalculatePriceMTCountry;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsMTCountry = $NewCalculatePcsMTCountry - $CalculatePcsMTCountry;
+            $Diff_PcsMTCountry = $Diff_PcsMTCountry + $DiffPcsMTCountry;
+
+            $DiffPriceMTCountry = $NewCalculatePriceMTCountry - $CalculatePriceMTCountry;
+            $Diff_PriceMTCountry = $Diff_PriceMTCountry + $DiffPriceMTCountry;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsMTCountry = $CalculatePcsMTCountry;
+            $NewTotal_PcsMTCountry = $NewTotal_PcsMTCountry + $CalculatePcsMTCountry;
+
+            $NewTotalPriceMTCountry = $NewTotalPcsMTCountry * $MTCountry->PriceAvg;
+            $NewTotal_PriceMTCountry = $NewTotal_PriceMTCountry + $NewTotalPriceMTCountry;
+
+            $NewTotalDiffNavMTCountry = $NewTotalPriceMTCountry - $NewCalculatePriceMTCountry;
+            $NewTotalDiff_NavMTCountry = $NewTotalDiff_NavMTCountry + $NewTotalDiffNavMTCountry;
+
+            $NewTotalDiffCalMTCountry = $NewTotalPriceMTCountry - $CalculatePriceMTCountry;
+            $NewTotalDiff_CalMTCountry = $NewTotalDiff_CalMTCountry + $NewTotalDiffCalMTCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsMTCountry = $MTCountry->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsMTCountry = $a7f1fgbu02s_PcsMTCountry + $a7f1fgbu02sPcsMTCountry;
+
+            $a7f1fgbu02sPriceMTCountry = $a7f1fgbu02sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f1fgbu02s_PriceMTCountry = $a7f1fgbu02s_PriceMTCountry + $a7f1fgbu02sPriceMTCountry;
+
+            $a7f2fgbu10sPcsMTCountry = $MTCountry->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsMTCountry = $a7f2fgbu10s_PcsMTCountry + $a7f2fgbu10sPcsMTCountry;
+
+            $a7f2fgbu10sPriceMTCountry = $a7f2fgbu10sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f2fgbu10s_PriceMTCountry = $a7f2fgbu10s_PriceMTCountry + $a7f2fgbu10sPriceMTCountry;
+
+            $a7f2thbu05sPcsMTCountry = $MTCountry->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsMTCountry = $a7f2thbu05s_PcsMTCountry + $a7f2thbu05sPcsMTCountry;
+
+            $a7f2thbu05sPriceMTCountry = $a7f2thbu05sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f2thbu05s_PriceMTCountry = $a7f2thbu05s_PriceMTCountry + $a7f2thbu05sPriceMTCountry;
+
+            $a7f2debu10sPcsMTCountry = $MTCountry->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsMTCountry = $a7f2debu10s_PcsMTCountry + $a7f2debu10sPcsMTCountry;
+
+            $a7f2debu10sPriceMTCountry = $a7f2debu10sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f2debu10s_PriceMTCountry = $a7f2debu10s_PriceMTCountry + $a7f2debu10sPriceMTCountry;
+
+            $a7f2exbu11sPcsMTCountry = $MTCountry->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsMTCountry = $a7f2exbu11s_PcsMTCountry + $a7f2exbu11sPcsMTCountry;
+
+            $a7f2exbu11sPriceMTCountry = $a7f2exbu11sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f2exbu11s_PriceMTCountry = $a7f2exbu11s_PriceMTCountry + $a7f2exbu11sPriceMTCountry;
+
+            $a7f2twbu04sPcsMTCountry = $MTCountry->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsMTCountry = $a7f2twbu04s_PcsMTCountry + $a7f2twbu04sPcsMTCountry;
+
+            $a7f2twbu04sPriceMTCountry = $a7f2twbu04sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f2twbu04s_PriceMTCountry = $a7f2twbu04s_PriceMTCountry + $a7f2twbu04sPriceMTCountry;
+
+            $a7f2twbu07sPcsMTCountry = $MTCountry->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsMTCountry = $a7f2twbu07s_PcsMTCountry + $a7f2twbu07sPcsMTCountry;
+
+            $a7f2twbu07sPriceMTCountry = $a7f2twbu07sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f2twbu07s_PriceMTCountry = $a7f2twbu07s_PriceMTCountry + $a7f2twbu07sPriceMTCountry;
+
+            $a7f2cebu10sPcsMTCountry = $MTCountry->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsMTCountry = $a7f2cebu10s_PcsMTCountry + $a7f2cebu10sPcsMTCountry;
+
+            $a7f2cebu10sPriceMTCountry = $a7f2cebu10sPcsMTCountry * $MTCountry->PriceAvg;
+            $a7f2cebu10s_PriceMTCountry = $a7f2cebu10s_PriceMTCountry + $a7f2cebu10sPriceMTCountry;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsMTCountry = $MTCountry->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsMTCountry = $a8f1fgbu02s_PcsMTCountry + $a8f1fgbu02sPcsMTCountry;
+
+            $a8f1fgbu02sPriceMTCountry = $a8f1fgbu02sPcsMTCountry * $NumberMTCountry;
+            $a8f1fgbu02s_PriceMTCountry = $a8f1fgbu02s_PriceMTCountry + $a8f1fgbu02sPriceMTCountry;
+
+            $a8f2fgbu10sPcsMTCountry = $MTCountry->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsMTCountry = $a8f2fgbu10s_PcsMTCountry + $a8f2fgbu10sPcsMTCountry;
+
+            $a8f2fgbu10sPriceMTCountry = $a8f2fgbu10sPcsMTCountry * $NumberMTCountry;
+            $a8f2fgbu10s_PriceMTCountry = $a8f2fgbu10s_PriceMTCountry + $a8f2fgbu10sPriceMTCountry;
+
+            $a8f2thbu05sPcsMTCountry = $MTCountry->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsMTCountry = $a8f2thbu05s_PcsMTCountry + $a8f2thbu05sPcsMTCountry;
+
+            $a8f2thbu05sPriceMTCountry = $a8f2thbu05sPcsMTCountry * $NumberMTCountry;
+            $a8f2thbu05s_PriceMTCountry = $a8f2thbu05s_PriceMTCountry + $a8f2thbu05sPriceMTCountry;
+
+            $a8f2debu10sPcsMTCountry = $MTCountry->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsMTCountry = $a8f2debu10s_PcsMTCountry + $a8f2debu10sPcsMTCountry;
+
+            $a8f2debu10sPriceMTCountry = $a8f2debu10sPcsMTCountry * $NumberMTCountry;
+            $a8f2debu10s_PriceMTCountry = $a8f2debu10s_PriceMTCountry + $a8f2debu10sPriceMTCountry;
+
+            $a8f2exbu11sPcsMTCountry = $MTCountry->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsMTCountry = $a8f2exbu11s_PcsMTCountry + $a8f2exbu11sPcsMTCountry;
+
+            $a8f2exbu11sPriceMTCountry = $a8f2exbu11sPcsMTCountry * $NumberMTCountry;
+            $a8f2exbu11s_PriceMTCountry = $a8f2exbu11s_PriceMTCountry + $a8f2exbu11sPriceMTCountry;
+
+            $a8f2twbu04sPcsMTCountry = $MTCountry->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsMTCountry = $a8f2twbu04s_PcsMTCountry + $a8f2twbu04sPcsMTCountry;
+
+            $a8f2twbu04sPriceMTCountry = $a8f2twbu04sPcsMTCountry * $NumberMTCountry;
+            $a8f2twbu04s_PriceMTCountry = $a8f2twbu04s_PriceMTCountry + $a8f2twbu04sPriceMTCountry;
+
+            $a8f2twbu07sPcsMTCountry = $MTCountry->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsMTCountry = $a8f2twbu07s_PcsMTCountry + $a8f2twbu07sPcsMTCountry;
+
+            $a8f2twbu07sPriceMTCountry = $a8f2twbu07sPcsMTCountry * $NumberMTCountry;
+            $a8f2twbu07s_PriceMTCountry = $a8f2twbu07s_PriceMTCountry + $a8f2twbu07sPriceMTCountry;
+
+            $a8f2cebu10sPcsMTCountry = $MTCountry->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsMTCountry = $a8f2cebu10s_PcsMTCountry + $a8f2cebu10sPcsMTCountry;
+
+            $a8f2cebu10sPriceMTCountry = $a8f2cebu10sPcsMTCountry * $NumberMTCountry;
+            $a8f2cebu10s_PriceMTCountry = $a8f2cebu10s_PriceMTCountry + $a8f2cebu10sPriceMTCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsMTCountry = $MTCountry->dc1_s_Quantity;
+            $DC1_PcsMTCountry = $DC1_PcsMTCountry + $DC1PcsMTCountry;
+
+            $DC1PriceMTCountry = $DC1PcsMTCountry * $NumberMTCountry;
+            $DC1_PriceMTCountry = $DC1_PriceMTCountry + $DC1PriceMTCountry;
+
+            $DCPPcsMTCountry = $MTCountry->dcp_s_Quantity;
+            $DCP_PcsMTCountry = $DCP_PcsMTCountry + $DCPPcsMTCountry;
+
+            $DCPPriceMTCountry = $DCPPcsMTCountry * $NumberMTCountry;
+            $DCP_PriceMTCountry = $DCP_PriceMTCountry + $DCPPriceMTCountry;
+
+            $DCYPcsMTCountry = $MTCountry->dcy_s_Quantity;
+            $DCY_PcsMTCountry = $DCY_PcsMTCountry + $DCYPcsMTCountry;
+
+            $DCYPriceMTCountry = $DCYPcsMTCountry * $NumberMTCountry;
+            $DCY_PriceMTCountry = $DCY_PriceMTCountry + $DCYPriceMTCountry;
+
+            $DEXPcsMTCountry = $MTCountry->dex_s_Quantity;
+            $DEX_PcsMTCountry = $DEX_PcsMTCountry + $DEXPcsMTCountry;
+
+            $DEXPriceMTCountry = $DEXPcsMTCountry * $NumberMTCountry;
+            $DEX_PriceMTCountry = $DEX_PriceMTCountry + $DEXPriceMTCountry;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        foreach ($ItemNoTWCountry as $TWCountry) {
+            if ($TWCountry->PcsAfter > 0 && $TWCountry->PriceAfter > 0) {
+                $NumberTWCountry = ($TWCountry->PriceAfter / $TWCountry->PcsAfter);
+            }else{
+                $NumberTWCountry = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterTWCountry = $TWCountry->PcsAfter;
+            $Pcs_AfterTWCountry = $Pcs_AfterTWCountry + $PCSAfterTWCountry;
+
+            $PriceAfterTWCountry = $TWCountry->PriceAfter;
+            $Price_AfterTWCountry = $Price_AfterTWCountry + $PriceAfterTWCountry;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsTWCountry = $TWCountry->Po_Quantity;
+            $Po_PcsTWCountry = $Po_PcsTWCountry + $PoPcsTWCountry;
+
+            $PoPriceTWCountry = $TWCountry->PriceAvg * $TWCountry->Po_Quantity;
+            $Po_PriceTWCountry = $Po_PriceTWCountry + $PoPriceTWCountry;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsTWCountry = $TWCountry->Neg_Quantity;
+            $Neg_PcsTWCountry = $Neg_PcsTWCountry + $NegPcsTWCountry;
+
+
+            $NegPriceTWCountry = $NumberTWCountry * $TWCountry->Neg_Quantity;
+            $Neg_PriceTWCountry = $Neg_PriceTWCountry + $NegPriceTWCountry;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsTWCountry = $PCSAfterTWCountry + $PoPcsTWCountry + $NegPcsTWCountry;
+            $BackChange_PcsTWCountry = $BackChange_PcsTWCountry + $BackChangePcsTWCountry;
+
+            $BackChangePriceTWCountry = $PriceAfterTWCountry + $PoPriceTWCountry + $NegPriceTWCountry;
+            $BackChange_PriceTWCountry = $BackChange_PriceTWCountry + $BackChangePriceTWCountry;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsTWCountry = $TWCountry->purchase_Quantity;
+            $Purchase_PcsTWCountry = $Purchase_PcsTWCountry + $PurchasePcsTWCountry;
+
+            $PurchasePriceTWCountry = $TWCountry->purchase_Cost;
+            $Purchase_PriceTWCountry = $Purchase_PriceTWCountry + $PurchasePriceTWCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsTWCountry = $TWCountry->a7f1fgbu02s_Quantity + $TWCountry->a7f2fgbu10s_Quantity + $TWCountry->a7f2thbu05s_Quantity + $TWCountry->a7f2debu10s_Quantity + $TWCountry->a7f2exbu11s_Quantity + $TWCountry->a7f2twbu04s_Quantity + $TWCountry->a7f2twbu07s_Quantity + $TWCountry->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsTWCountry = $ReciveTranfer_PcsTWCountry + $ReciveTranferPcsTWCountry;
+
+            $ReciveTranferPriceTWCountry = $ReciveTranferPcsTWCountry * $TWCountry->PriceAvg;
+            $ReciveTranfer_PriceTWCountry = $ReciveTranfer_PriceTWCountry + $ReciveTranferPriceTWCountry;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantityTWCountry = $TWCountry->returncuses_Quantity;
+            $ReturnItem_PCSTWCountry = $ReturnItem_PCSTWCountry + $ReturnItemQuantityTWCountry;
+
+            $ReturnItemPriceTWCountry = $ReturnItemQuantityTWCountry * $NumberTWCountry;
+            $ReturnItem_PriceTWCountry = $ReturnItem_PriceTWCountry + $ReturnItemPriceTWCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsTWCountry = $TWCountry->purchase_Quantity + $ReciveTranferPcsTWCountry + $ReturnItemQuantityTWCountry;
+            $AllIn_PcsTWCountry = $AllIn_PcsTWCountry + $AllInPcsTWCountry;
+
+            $AllInPriceTWCountry = $PurchasePriceTWCountry + $ReciveTranferPriceTWCountry + $ReturnItemPriceTWCountry;
+            $AllIn_PriceTWCountry = $AllIn_PriceTWCountry + $AllInPriceTWCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsTWCountry = $TWCountry->dc1_s_Quantity + $TWCountry->dcp_s_Quantity + $TWCountry->dcy_s_Quantity + $TWCountry->dex_s_Quantity;
+            $SendSale_PcsTWCountry = $SendSale_PcsTWCountry + $SendSalePcsTWCountry;
+
+            if ($BackChangePcsTWCountry > 0 && $AllInPcsTWCountry > 0) {
+                $SendSalePriceTWCountry = (($AllInPriceTWCountry + $BackChangePriceTWCountry) / ($AllInPcsTWCountry + $BackChangePcsTWCountry)) * $SendSalePcsTWCountry;
+                $SendSale_PriceTWCountry = $SendSale_PriceTWCountry + $SendSalePriceTWCountry;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsTWCountry = $TWCountry->a8f1fgbu02s_Quantity + $TWCountry->a8f2fgbu10s_Quantity + $TWCountry->a8f2thbu05s_Quantity + $TWCountry->a8f2debu10s_Quantity + $TWCountry->a8f2exbu11s_Quantity + $TWCountry->a8f2twbu04s_Quantity + $TWCountry->a8f2twbu07s_Quantity + $TWCountry->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsTWCountry = $ReciveTranOut_PcsTWCountry + $ReciveTranOutPcsTWCountry;
+
+            if ($AllInPcsTWCountry > 0 && $BackChangePcsTWCountry > 0) {
+                $ReciveTranOutPriceTWCountry = (($AllInPriceTWCountry + $BackChangePriceTWCountry) / ($AllInPcsTWCountry + $BackChangePcsTWCountry)) * $ReciveTranOutPcsTWCountry;
+                $ReciveTranOut_PriceTWCountry = $ReciveTranOut_PriceTWCountry + $ReciveTranOutPriceTWCountry;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsTWCountry = $TWCountry->returnitem_Quantity;
+            $ReturnStore_PcsTWCountry = $ReturnStore_PcsTWCountry + $ReturnStorePcsTWCountry;
+
+            if ($AllInPcsTWCountry > 0 && $BackChangePcsTWCountry > 0) {
+                $ReturnStorePriceTWCountry = (($AllInPriceTWCountry + $BackChangePriceTWCountry) / ($AllInPcsTWCountry + $BackChangePcsTWCountry)) * $ReturnStorePcsTWCountry;
+                $ReturnStore_PriceTWCountry = $ReturnStore_PriceTWCountry + $ReturnStorePriceTWCountry;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsTWCountry = $ReturnStorePcsTWCountry + $ReciveTranOutPcsTWCountry + $SendSalePcsTWCountry;
+            $AllOut_PcsTWCountry = $AllOut_PcsTWCountry + $AllOutPcsTWCountry;
+
+            $AllOutPriceTWCountry = $SendSale_PriceTWCountry + $ReciveTranOut_PriceTWCountry + $ReturnStore_PriceTWCountry;
+            $AllOut_PriceTWCountry = $AllOut_PriceTWCountry + $AllOutPriceTWCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsTWCountry = $BackChangePcsTWCountry + $AllInPcsTWCountry + $AllOutPcsTWCountry;
+            $Calculate_PcsTWCountry = $Calculate_PcsTWCountry + $CalculatePcsTWCountry;
+
+            $CalculatePriceTWCountry = $BackChangePriceTWCountry + $AllInPriceTWCountry + $AllOutPriceTWCountry;
+            $Calculate_PriceTWCountry = $Calculate_PriceTWCountry + $CalculatePriceTWCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsTWCountry = $TWCountry->item_stock_Quantity;
+            $NewCalculate_PcsTWCountry = $NewCalculate_PcsTWCountry + $NewCalculatePcsTWCountry;
+
+            $NewCalculatePriceTWCountry = $TWCountry->item_stock_Amount;
+            $NewCalculate_PriceTWCountry = $NewCalculate_PriceTWCountry + $NewCalculatePriceTWCountry;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsTWCountry = $NewCalculatePcsTWCountry - $CalculatePcsTWCountry;
+            $Diff_PcsTWCountry = $Diff_PcsTWCountry + $DiffPcsTWCountry;
+
+            $DiffPriceTWCountry = $NewCalculatePriceTWCountry - $CalculatePriceTWCountry;
+            $Diff_PriceTWCountry = $Diff_PriceTWCountry + $DiffPriceTWCountry;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsTWCountry = $CalculatePcsTWCountry;
+            $NewTotal_PcsTWCountry = $NewTotal_PcsTWCountry + $CalculatePcsTWCountry;
+
+            $NewTotalPriceTWCountry = $NewTotalPcsTWCountry * $TWCountry->PriceAvg;
+            $NewTotal_PriceTWCountry = $NewTotal_PriceTWCountry + $NewTotalPriceTWCountry;
+
+            $NewTotalDiffNavTWCountry = $NewTotalPriceTWCountry - $NewCalculatePriceTWCountry;
+            $NewTotalDiff_NavTWCountry = $NewTotalDiff_NavTWCountry + $NewTotalDiffNavTWCountry;
+
+            $NewTotalDiffCalTWCountry = $NewTotalPriceTWCountry - $CalculatePriceTWCountry;
+            $NewTotalDiff_CalTWCountry = $NewTotalDiff_CalTWCountry + $NewTotalDiffCalTWCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsTWCountry = $TWCountry->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsTWCountry = $a7f1fgbu02s_PcsTWCountry + $a7f1fgbu02sPcsTWCountry;
+
+            $a7f1fgbu02sPriceTWCountry = $a7f1fgbu02sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f1fgbu02s_PriceTWCountry = $a7f1fgbu02s_PriceTWCountry + $a7f1fgbu02sPriceTWCountry;
+
+            $a7f2fgbu10sPcsTWCountry = $TWCountry->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsTWCountry = $a7f2fgbu10s_PcsTWCountry + $a7f2fgbu10sPcsTWCountry;
+
+            $a7f2fgbu10sPriceTWCountry = $a7f2fgbu10sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f2fgbu10s_PriceTWCountry = $a7f2fgbu10s_PriceTWCountry + $a7f2fgbu10sPriceTWCountry;
+
+            $a7f2thbu05sPcsTWCountry = $TWCountry->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsTWCountry = $a7f2thbu05s_PcsTWCountry + $a7f2thbu05sPcsTWCountry;
+
+            $a7f2thbu05sPriceTWCountry = $a7f2thbu05sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f2thbu05s_PriceTWCountry = $a7f2thbu05s_PriceTWCountry + $a7f2thbu05sPriceTWCountry;
+
+            $a7f2debu10sPcsTWCountry = $TWCountry->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsTWCountry = $a7f2debu10s_PcsTWCountry + $a7f2debu10sPcsTWCountry;
+
+            $a7f2debu10sPriceTWCountry = $a7f2debu10sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f2debu10s_PriceTWCountry = $a7f2debu10s_PriceTWCountry + $a7f2debu10sPriceTWCountry;
+
+            $a7f2exbu11sPcsTWCountry = $TWCountry->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsTWCountry = $a7f2exbu11s_PcsTWCountry + $a7f2exbu11sPcsTWCountry;
+
+            $a7f2exbu11sPriceTWCountry = $a7f2exbu11sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f2exbu11s_PriceTWCountry = $a7f2exbu11s_PriceTWCountry + $a7f2exbu11sPriceTWCountry;
+
+            $a7f2twbu04sPcsTWCountry = $TWCountry->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsTWCountry = $a7f2twbu04s_PcsTWCountry + $a7f2twbu04sPcsTWCountry;
+
+            $a7f2twbu04sPriceTWCountry = $a7f2twbu04sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f2twbu04s_PriceTWCountry = $a7f2twbu04s_PriceTWCountry + $a7f2twbu04sPriceTWCountry;
+
+            $a7f2twbu07sPcsTWCountry = $TWCountry->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsTWCountry = $a7f2twbu07s_PcsTWCountry + $a7f2twbu07sPcsTWCountry;
+
+            $a7f2twbu07sPriceTWCountry = $a7f2twbu07sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f2twbu07s_PriceTWCountry = $a7f2twbu07s_PriceTWCountry + $a7f2twbu07sPriceTWCountry;
+
+            $a7f2cebu10sPcsTWCountry = $TWCountry->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsTWCountry = $a7f2cebu10s_PcsTWCountry + $a7f2cebu10sPcsTWCountry;
+
+            $a7f2cebu10sPriceTWCountry = $a7f2cebu10sPcsTWCountry * $TWCountry->PriceAvg;
+            $a7f2cebu10s_PriceTWCountry = $a7f2cebu10s_PriceTWCountry + $a7f2cebu10sPriceTWCountry;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsTWCountry = $TWCountry->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsTWCountry = $a8f1fgbu02s_PcsTWCountry + $a8f1fgbu02sPcsTWCountry;
+
+            $a8f1fgbu02sPriceTWCountry = $a8f1fgbu02sPcsTWCountry * $NumberTWCountry;
+            $a8f1fgbu02s_PriceTWCountry = $a8f1fgbu02s_PriceTWCountry + $a8f1fgbu02sPriceTWCountry;
+
+            $a8f2fgbu10sPcsTWCountry = $TWCountry->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsTWCountry = $a8f2fgbu10s_PcsTWCountry + $a8f2fgbu10sPcsTWCountry;
+
+            $a8f2fgbu10sPriceTWCountry = $a8f2fgbu10sPcsTWCountry * $NumberTWCountry;
+            $a8f2fgbu10s_PriceTWCountry = $a8f2fgbu10s_PriceTWCountry + $a8f2fgbu10sPriceTWCountry;
+
+            $a8f2thbu05sPcsTWCountry = $TWCountry->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsTWCountry = $a8f2thbu05s_PcsTWCountry + $a8f2thbu05sPcsTWCountry;
+
+            $a8f2thbu05sPriceTWCountry = $a8f2thbu05sPcsTWCountry * $NumberTWCountry;
+            $a8f2thbu05s_PriceTWCountry = $a8f2thbu05s_PriceTWCountry + $a8f2thbu05sPriceTWCountry;
+
+            $a8f2debu10sPcsTWCountry = $TWCountry->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsTWCountry = $a8f2debu10s_PcsTWCountry + $a8f2debu10sPcsTWCountry;
+
+            $a8f2debu10sPriceTWCountry = $a8f2debu10sPcsTWCountry * $NumberTWCountry;
+            $a8f2debu10s_PriceTWCountry = $a8f2debu10s_PriceTWCountry + $a8f2debu10sPriceTWCountry;
+
+            $a8f2exbu11sPcsTWCountry = $TWCountry->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsTWCountry = $a8f2exbu11s_PcsTWCountry + $a8f2exbu11sPcsTWCountry;
+
+            $a8f2exbu11sPriceTWCountry = $a8f2exbu11sPcsTWCountry * $NumberTWCountry;
+            $a8f2exbu11s_PriceTWCountry = $a8f2exbu11s_PriceTWCountry + $a8f2exbu11sPriceTWCountry;
+
+            $a8f2twbu04sPcsTWCountry = $TWCountry->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsTWCountry = $a8f2twbu04s_PcsTWCountry + $a8f2twbu04sPcsTWCountry;
+
+            $a8f2twbu04sPriceTWCountry = $a8f2twbu04sPcsTWCountry * $NumberTWCountry;
+            $a8f2twbu04s_PriceTWCountry = $a8f2twbu04s_PriceTWCountry + $a8f2twbu04sPriceTWCountry;
+
+            $a8f2twbu07sPcsTWCountry = $TWCountry->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsTWCountry = $a8f2twbu07s_PcsTWCountry + $a8f2twbu07sPcsTWCountry;
+
+            $a8f2twbu07sPriceTWCountry = $a8f2twbu07sPcsTWCountry * $NumberTWCountry;
+            $a8f2twbu07s_PriceTWCountry = $a8f2twbu07s_PriceTWCountry + $a8f2twbu07sPriceTWCountry;
+
+            $a8f2cebu10sPcsTWCountry = $TWCountry->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsTWCountry = $a8f2cebu10s_PcsTWCountry + $a8f2cebu10sPcsTWCountry;
+
+            $a8f2cebu10sPriceTWCountry = $a8f2cebu10sPcsTWCountry * $NumberTWCountry;
+            $a8f2cebu10s_PriceTWCountry = $a8f2cebu10s_PriceTWCountry + $a8f2cebu10sPriceTWCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsTWCountry = $TWCountry->dc1_s_Quantity;
+            $DC1_PcsTWCountry = $DC1_PcsTWCountry + $DC1PcsTWCountry;
+
+            $DC1PriceTWCountry = $DC1PcsTWCountry * $NumberTWCountry;
+            $DC1_PriceTWCountry = $DC1_PriceTWCountry + $DC1PriceTWCountry;
+
+            $DCPPcsTWCountry = $TWCountry->dcp_s_Quantity;
+            $DCP_PcsTWCountry = $DCP_PcsTWCountry + $DCPPcsTWCountry;
+
+            $DCPPriceTWCountry = $DCPPcsTWCountry * $NumberTWCountry;
+            $DCP_PriceTWCountry = $DCP_PriceTWCountry + $DCPPriceTWCountry;
+
+            $DCYPcsTWCountry = $TWCountry->dcy_s_Quantity;
+            $DCY_PcsTWCountry = $DCY_PcsTWCountry + $DCYPcsTWCountry;
+
+            $DCYPriceTWCountry = $DCYPcsTWCountry * $NumberTWCountry;
+            $DCY_PriceTWCountry = $DCY_PriceTWCountry + $DCYPriceTWCountry;
+
+            $DEXPcsTWCountry = $TWCountry->dex_s_Quantity;
+            $DEX_PcsTWCountry = $DEX_PcsTWCountry + $DEXPcsTWCountry;
+
+            $DEXPriceTWCountry = $DEXPcsTWCountry * $NumberTWCountry;
+            $DEX_PriceTWCountry = $DEX_PriceTWCountry + $DEXPriceTWCountry;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        foreach ($ItemNoLNCountry as $LNCountry) {
+            if ($LNCountry->PcsAfter > 0 && $LNCountry->PriceAfter > 0) {
+                $NumberLNCountry = ($LNCountry->PriceAfter / $LNCountry->PcsAfter);
+            }else{
+                $NumberLNCountry = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterLNCountry = $LNCountry->PcsAfter;
+            $Pcs_AfterLNCountry = $Pcs_AfterLNCountry + $PCSAfterLNCountry;
+
+            $PriceAfterLNCountry = $LNCountry->PriceAfter;
+            $Price_AfterLNCountry = $Price_AfterLNCountry + $PriceAfterLNCountry;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsLNCountry = $LNCountry->Po_Quantity;
+            $Po_PcsLNCountry = $Po_PcsLNCountry + $PoPcsLNCountry;
+
+            $PoPriceLNCountry = $LNCountry->PriceAvg * $LNCountry->Po_Quantity;
+            $Po_PriceLNCountry = $Po_PriceLNCountry + $PoPriceLNCountry;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsLNCountry = $LNCountry->Neg_Quantity;
+            $Neg_PcsLNCountry = $Neg_PcsLNCountry + $NegPcsLNCountry;
+
+
+            $NegPriceLNCountry = $NumberLNCountry * $LNCountry->Neg_Quantity;
+            $Neg_PriceLNCountry = $Neg_PriceLNCountry + $NegPriceLNCountry;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsLNCountry = $PCSAfterLNCountry + $PoPcsLNCountry + $NegPcsLNCountry;
+            $BackChange_PcsLNCountry = $BackChange_PcsLNCountry + $BackChangePcsLNCountry;
+
+            $BackChangePriceLNCountry = $PriceAfterLNCountry + $PoPriceLNCountry + $NegPriceLNCountry;
+            $BackChange_PriceLNCountry = $BackChange_PriceLNCountry + $BackChangePriceLNCountry;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsLNCountry = $LNCountry->purchase_Quantity;
+            $Purchase_PcsLNCountry = $Purchase_PcsLNCountry + $PurchasePcsLNCountry;
+
+            $PurchasePriceLNCountry = $LNCountry->purchase_Cost;
+            $Purchase_PriceLNCountry = $Purchase_PriceLNCountry + $PurchasePriceLNCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsLNCountry = $LNCountry->a7f1fgbu02s_Quantity + $LNCountry->a7f2fgbu10s_Quantity + $LNCountry->a7f2thbu05s_Quantity + $LNCountry->a7f2debu10s_Quantity + $LNCountry->a7f2exbu11s_Quantity + $LNCountry->a7f2twbu04s_Quantity + $LNCountry->a7f2twbu07s_Quantity + $LNCountry->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsLNCountry = $ReciveTranfer_PcsLNCountry + $ReciveTranferPcsLNCountry;
+
+            $ReciveTranferPriceLNCountry = $ReciveTranferPcsLNCountry * $LNCountry->PriceAvg;
+            $ReciveTranfer_PriceLNCountry = $ReciveTranfer_PriceLNCountry + $ReciveTranferPriceLNCountry;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantityLNCountry = $LNCountry->returncuses_Quantity;
+            $ReturnItem_PCSLNCountry = $ReturnItem_PCSLNCountry + $ReturnItemQuantityLNCountry;
+
+            $ReturnItemPriceLNCountry = $ReturnItemQuantityLNCountry * $NumberLNCountry;
+            $ReturnItem_PriceLNCountry = $ReturnItem_PriceLNCountry + $ReturnItemPriceLNCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsLNCountry = $LNCountry->purchase_Quantity + $ReciveTranferPcsLNCountry + $ReturnItemQuantityLNCountry;
+            $AllIn_PcsLNCountry = $AllIn_PcsLNCountry + $AllInPcsLNCountry;
+
+            $AllInPriceLNCountry = $PurchasePriceLNCountry + $ReciveTranferPriceLNCountry + $ReturnItemPriceLNCountry;
+            $AllIn_PriceLNCountry = $AllIn_PriceLNCountry + $AllInPriceLNCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsLNCountry = $LNCountry->dc1_s_Quantity + $LNCountry->dcp_s_Quantity + $LNCountry->dcy_s_Quantity + $LNCountry->dex_s_Quantity;
+            $SendSale_PcsLNCountry = $SendSale_PcsLNCountry + $SendSalePcsLNCountry;
+
+            if ($BackChangePcsLNCountry > 0 && $AllInPcsLNCountry > 0) {
+                $SendSalePriceLNCountry = (($AllInPriceLNCountry + $BackChangePriceLNCountry) / ($AllInPcsLNCountry + $BackChangePcsLNCountry)) * $SendSalePcsLNCountry;
+                $SendSale_PriceLNCountry = $SendSale_PriceLNCountry + $SendSalePriceLNCountry;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsLNCountry = $LNCountry->a8f1fgbu02s_Quantity + $LNCountry->a8f2fgbu10s_Quantity + $LNCountry->a8f2thbu05s_Quantity + $LNCountry->a8f2debu10s_Quantity + $LNCountry->a8f2exbu11s_Quantity + $LNCountry->a8f2twbu04s_Quantity + $LNCountry->a8f2twbu07s_Quantity + $LNCountry->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsLNCountry = $ReciveTranOut_PcsLNCountry + $ReciveTranOutPcsLNCountry;
+
+            if ($AllInPcsLNCountry > 0 && $BackChangePcsLNCountry > 0) {
+                $ReciveTranOutPriceLNCountry = (($AllInPriceLNCountry + $BackChangePriceLNCountry) / ($AllInPcsLNCountry + $BackChangePcsLNCountry)) * $ReciveTranOutPcsLNCountry;
+                $ReciveTranOut_PriceLNCountry = $ReciveTranOut_PriceLNCountry + $ReciveTranOutPriceLNCountry;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsLNCountry = $LNCountry->returnitem_Quantity;
+            $ReturnStore_PcsLNCountry = $ReturnStore_PcsLNCountry + $ReturnStorePcsLNCountry;
+
+            if ($AllInPcsLNCountry > 0 && $BackChangePcsLNCountry > 0) {
+                $ReturnStorePriceLNCountry = (($AllInPriceLNCountry + $BackChangePriceLNCountry) / ($AllInPcsLNCountry + $BackChangePcsLNCountry)) * $ReturnStorePcsLNCountry;
+                $ReturnStore_PriceLNCountry = $ReturnStore_PriceLNCountry + $ReturnStorePriceLNCountry;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsLNCountry = $ReturnStorePcsLNCountry + $ReciveTranOutPcsLNCountry + $SendSalePcsLNCountry;
+            $AllOut_PcsLNCountry = $AllOut_PcsLNCountry + $AllOutPcsLNCountry;
+
+            $AllOutPriceLNCountry = $SendSale_PriceLNCountry + $ReciveTranOut_PriceLNCountry + $ReturnStore_PriceLNCountry;
+            $AllOut_PriceLNCountry = $AllOut_PriceLNCountry + $AllOutPriceLNCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsLNCountry = $BackChangePcsLNCountry + $AllInPcsLNCountry + $AllOutPcsLNCountry;
+            $Calculate_PcsLNCountry = $Calculate_PcsLNCountry + $CalculatePcsLNCountry;
+
+            $CalculatePriceLNCountry = $BackChangePriceLNCountry + $AllInPriceLNCountry + $AllOutPriceLNCountry;
+            $Calculate_PriceLNCountry = $Calculate_PriceLNCountry + $CalculatePriceLNCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsLNCountry = $LNCountry->item_stock_Quantity;
+            $NewCalculate_PcsLNCountry = $NewCalculate_PcsLNCountry + $NewCalculatePcsLNCountry;
+
+            $NewCalculatePriceLNCountry = $LNCountry->item_stock_Amount;
+            $NewCalculate_PriceLNCountry = $NewCalculate_PriceLNCountry + $NewCalculatePriceLNCountry;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsLNCountry = $NewCalculatePcsLNCountry - $CalculatePcsLNCountry;
+            $Diff_PcsLNCountry = $Diff_PcsLNCountry + $DiffPcsLNCountry;
+
+            $DiffPriceLNCountry = $NewCalculatePriceLNCountry - $CalculatePriceLNCountry;
+            $Diff_PriceLNCountry = $Diff_PriceLNCountry + $DiffPriceLNCountry;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsLNCountry = $CalculatePcsLNCountry;
+            $NewTotal_PcsLNCountry = $NewTotal_PcsLNCountry + $CalculatePcsLNCountry;
+
+            $NewTotalPriceLNCountry = $NewTotalPcsLNCountry * $LNCountry->PriceAvg;
+            $NewTotal_PriceLNCountry = $NewTotal_PriceLNCountry + $NewTotalPriceLNCountry;
+
+            $NewTotalDiffNavLNCountry = $NewTotalPriceLNCountry - $NewCalculatePriceLNCountry;
+            $NewTotalDiff_NavLNCountry = $NewTotalDiff_NavLNCountry + $NewTotalDiffNavLNCountry;
+
+            $NewTotalDiffCalLNCountry = $NewTotalPriceLNCountry - $CalculatePriceLNCountry;
+            $NewTotalDiff_CalLNCountry = $NewTotalDiff_CalLNCountry + $NewTotalDiffCalLNCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsLNCountry = $LNCountry->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsLNCountry = $a7f1fgbu02s_PcsLNCountry + $a7f1fgbu02sPcsLNCountry;
+
+            $a7f1fgbu02sPriceLNCountry = $a7f1fgbu02sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f1fgbu02s_PriceLNCountry = $a7f1fgbu02s_PriceLNCountry + $a7f1fgbu02sPriceLNCountry;
+
+            $a7f2fgbu10sPcsLNCountry = $LNCountry->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsLNCountry = $a7f2fgbu10s_PcsLNCountry + $a7f2fgbu10sPcsLNCountry;
+
+            $a7f2fgbu10sPriceLNCountry = $a7f2fgbu10sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f2fgbu10s_PriceLNCountry = $a7f2fgbu10s_PriceLNCountry + $a7f2fgbu10sPriceLNCountry;
+
+            $a7f2thbu05sPcsLNCountry = $LNCountry->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsLNCountry = $a7f2thbu05s_PcsLNCountry + $a7f2thbu05sPcsLNCountry;
+
+            $a7f2thbu05sPriceLNCountry = $a7f2thbu05sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f2thbu05s_PriceLNCountry = $a7f2thbu05s_PriceLNCountry + $a7f2thbu05sPriceLNCountry;
+
+            $a7f2debu10sPcsLNCountry = $LNCountry->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsLNCountry = $a7f2debu10s_PcsLNCountry + $a7f2debu10sPcsLNCountry;
+
+            $a7f2debu10sPriceLNCountry = $a7f2debu10sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f2debu10s_PriceLNCountry = $a7f2debu10s_PriceLNCountry + $a7f2debu10sPriceLNCountry;
+
+            $a7f2exbu11sPcsLNCountry = $LNCountry->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsLNCountry = $a7f2exbu11s_PcsLNCountry + $a7f2exbu11sPcsLNCountry;
+
+            $a7f2exbu11sPriceLNCountry = $a7f2exbu11sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f2exbu11s_PriceLNCountry = $a7f2exbu11s_PriceLNCountry + $a7f2exbu11sPriceLNCountry;
+
+            $a7f2twbu04sPcsLNCountry = $LNCountry->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsLNCountry = $a7f2twbu04s_PcsLNCountry + $a7f2twbu04sPcsLNCountry;
+
+            $a7f2twbu04sPriceLNCountry = $a7f2twbu04sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f2twbu04s_PriceLNCountry = $a7f2twbu04s_PriceLNCountry + $a7f2twbu04sPriceLNCountry;
+
+            $a7f2twbu07sPcsLNCountry = $LNCountry->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsLNCountry = $a7f2twbu07s_PcsLNCountry + $a7f2twbu07sPcsLNCountry;
+
+            $a7f2twbu07sPriceLNCountry = $a7f2twbu07sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f2twbu07s_PriceLNCountry = $a7f2twbu07s_PriceLNCountry + $a7f2twbu07sPriceLNCountry;
+
+            $a7f2cebu10sPcsLNCountry = $LNCountry->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsLNCountry = $a7f2cebu10s_PcsLNCountry + $a7f2cebu10sPcsLNCountry;
+
+            $a7f2cebu10sPriceLNCountry = $a7f2cebu10sPcsLNCountry * $LNCountry->PriceAvg;
+            $a7f2cebu10s_PriceLNCountry = $a7f2cebu10s_PriceLNCountry + $a7f2cebu10sPriceLNCountry;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsLNCountry = $LNCountry->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsLNCountry = $a8f1fgbu02s_PcsLNCountry + $a8f1fgbu02sPcsLNCountry;
+
+            $a8f1fgbu02sPriceLNCountry = $a8f1fgbu02sPcsLNCountry * $NumberLNCountry;
+            $a8f1fgbu02s_PriceLNCountry = $a8f1fgbu02s_PriceLNCountry + $a8f1fgbu02sPriceLNCountry;
+
+            $a8f2fgbu10sPcsLNCountry = $LNCountry->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsLNCountry = $a8f2fgbu10s_PcsLNCountry + $a8f2fgbu10sPcsLNCountry;
+
+            $a8f2fgbu10sPriceLNCountry = $a8f2fgbu10sPcsLNCountry * $NumberLNCountry;
+            $a8f2fgbu10s_PriceLNCountry = $a8f2fgbu10s_PriceLNCountry + $a8f2fgbu10sPriceLNCountry;
+
+            $a8f2thbu05sPcsLNCountry = $LNCountry->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsLNCountry = $a8f2thbu05s_PcsLNCountry + $a8f2thbu05sPcsLNCountry;
+
+            $a8f2thbu05sPriceLNCountry = $a8f2thbu05sPcsLNCountry * $NumberLNCountry;
+            $a8f2thbu05s_PriceLNCountry = $a8f2thbu05s_PriceLNCountry + $a8f2thbu05sPriceLNCountry;
+
+            $a8f2debu10sPcsLNCountry = $LNCountry->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsLNCountry = $a8f2debu10s_PcsLNCountry + $a8f2debu10sPcsLNCountry;
+
+            $a8f2debu10sPriceLNCountry = $a8f2debu10sPcsLNCountry * $NumberLNCountry;
+            $a8f2debu10s_PriceLNCountry = $a8f2debu10s_PriceLNCountry + $a8f2debu10sPriceLNCountry;
+
+            $a8f2exbu11sPcsLNCountry = $LNCountry->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsLNCountry = $a8f2exbu11s_PcsLNCountry + $a8f2exbu11sPcsLNCountry;
+
+            $a8f2exbu11sPriceLNCountry = $a8f2exbu11sPcsLNCountry * $NumberLNCountry;
+            $a8f2exbu11s_PriceLNCountry = $a8f2exbu11s_PriceLNCountry + $a8f2exbu11sPriceLNCountry;
+
+            $a8f2twbu04sPcsLNCountry = $LNCountry->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsLNCountry = $a8f2twbu04s_PcsLNCountry + $a8f2twbu04sPcsLNCountry;
+
+            $a8f2twbu04sPriceLNCountry = $a8f2twbu04sPcsLNCountry * $NumberLNCountry;
+            $a8f2twbu04s_PriceLNCountry = $a8f2twbu04s_PriceLNCountry + $a8f2twbu04sPriceLNCountry;
+
+            $a8f2twbu07sPcsLNCountry = $LNCountry->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsLNCountry = $a8f2twbu07s_PcsLNCountry + $a8f2twbu07sPcsLNCountry;
+
+            $a8f2twbu07sPriceLNCountry = $a8f2twbu07sPcsLNCountry * $NumberLNCountry;
+            $a8f2twbu07s_PriceLNCountry = $a8f2twbu07s_PriceLNCountry + $a8f2twbu07sPriceLNCountry;
+
+            $a8f2cebu10sPcsLNCountry = $LNCountry->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsLNCountry = $a8f2cebu10s_PcsLNCountry + $a8f2cebu10sPcsLNCountry;
+
+            $a8f2cebu10sPriceLNCountry = $a8f2cebu10sPcsLNCountry * $NumberLNCountry;
+            $a8f2cebu10s_PriceLNCountry = $a8f2cebu10s_PriceLNCountry + $a8f2cebu10sPriceLNCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsLNCountry = $LNCountry->dc1_s_Quantity;
+            $DC1_PcsLNCountry = $DC1_PcsLNCountry + $DC1PcsLNCountry;
+
+            $DC1PriceLNCountry = $DC1PcsLNCountry * $NumberLNCountry;
+            $DC1_PriceLNCountry = $DC1_PriceLNCountry + $DC1PriceLNCountry;
+
+            $DCPPcsLNCountry = $LNCountry->dcp_s_Quantity;
+            $DCP_PcsLNCountry = $DCP_PcsLNCountry + $DCPPcsLNCountry;
+
+            $DCPPriceLNCountry = $DCPPcsLNCountry * $NumberLNCountry;
+            $DCP_PriceLNCountry = $DCP_PriceLNCountry + $DCPPriceLNCountry;
+
+            $DCYPcsLNCountry = $LNCountry->dcy_s_Quantity;
+            $DCY_PcsLNCountry = $DCY_PcsLNCountry + $DCYPcsLNCountry;
+
+            $DCYPriceLNCountry = $DCYPcsLNCountry * $NumberLNCountry;
+            $DCY_PriceLNCountry = $DCY_PriceLNCountry + $DCYPriceLNCountry;
+
+            $DEXPcsLNCountry = $LNCountry->dex_s_Quantity;
+            $DEX_PcsLNCountry = $DEX_PcsLNCountry + $DEXPcsLNCountry;
+
+            $DEXPriceLNCountry = $DEXPcsLNCountry * $NumberLNCountry;
+            $DEX_PriceLNCountry = $DEX_PriceLNCountry + $DEXPriceLNCountry;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        foreach ($ItemNoSNTCountry as $SNTCountry) {
+            if ($SNTCountry->PcsAfter > 0 && $SNTCountry->PriceAfter > 0) {
+                $NumberSNTCountry = ($SNTCountry->PriceAfter / $SNTCountry->PcsAfter);
+            }else{
+                $NumberSNTCountry = 0;
+            }
+            /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
+            $PCSAfterSNTCountry = $SNTCountry->PcsAfter;
+            $Pcs_AfterSNTCountry = $Pcs_AfterSNTCountry + $PCSAfterSNTCountry;
+
+            $PriceAfterSNTCountry = $SNTCountry->PriceAfter;
+            $Price_AfterSNTCountry = $Price_AfterSNTCountry + $PriceAfterSNTCountry;
+
+            /////////////////////////////////////////////////// ปรับเข้า ///////////////////////////////////////////
+            $PoPcsSNTCountry = $SNTCountry->Po_Quantity;
+            $Po_PcsSNTCountry = $Po_PcsSNTCountry + $PoPcsSNTCountry;
+
+            $PoPriceSNTCountry = $SNTCountry->PriceAvg * $SNTCountry->Po_Quantity;
+            $Po_PriceSNTCountry = $Po_PriceSNTCountry + $PoPriceSNTCountry;
+
+            /////////////////////////////////////////////////// ปรับออก ///////////////////////////////////////////
+            $NegPcsSNTCountry = $SNTCountry->Neg_Quantity;
+            $Neg_PcsSNTCountry = $Neg_PcsSNTCountry + $NegPcsSNTCountry;
+
+
+            $NegPriceSNTCountry = $NumberSNTCountry * $SNTCountry->Neg_Quantity;
+            $Neg_PriceSNTCountry = $Neg_PriceSNTCountry + $NegPriceSNTCountry;
+
+            /////////////////////////////////////////////////// หลังปรับ ///////////////////////////////////////////
+
+            $BackChangePcsSNTCountry = $PCSAfterSNTCountry + $PoPcsSNTCountry + $NegPcsSNTCountry;
+            $BackChange_PcsSNTCountry = $BackChange_PcsSNTCountry + $BackChangePcsSNTCountry;
+
+            $BackChangePriceSNTCountry = $PriceAfterSNTCountry + $PoPriceSNTCountry + $NegPriceSNTCountry;
+            $BackChange_PriceSNTCountry = $BackChange_PriceSNTCountry + $BackChangePriceSNTCountry;
+
+            /////////////////////////////////////////////////// ซื้อเข้า ///////////////////////////////////////////
+            $PurchasePcsSNTCountry = $SNTCountry->purchase_Quantity;
+            $Purchase_PcsSNTCountry = $Purchase_PcsSNTCountry + $PurchasePcsSNTCountry;
+
+            $PurchasePriceSNTCountry = $SNTCountry->purchase_Cost;
+            $Purchase_PriceSNTCountry = $Purchase_PriceSNTCountry + $PurchasePriceSNTCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $ReciveTranferPcsSNTCountry = $SNTCountry->a7f1fgbu02s_Quantity + $SNTCountry->a7f2fgbu10s_Quantity + $SNTCountry->a7f2thbu05s_Quantity + $SNTCountry->a7f2debu10s_Quantity + $SNTCountry->a7f2exbu11s_Quantity + $SNTCountry->a7f2twbu04s_Quantity + $SNTCountry->a7f2twbu07s_Quantity + $SNTCountry->a7f2cebu10s_Quantity;
+            $ReciveTranfer_PcsSNTCountry = $ReciveTranfer_PcsSNTCountry + $ReciveTranferPcsSNTCountry;
+
+            $ReciveTranferPriceSNTCountry = $ReciveTranferPcsSNTCountry * $SNTCountry->PriceAvg;
+            $ReciveTranfer_PriceSNTCountry = $ReciveTranfer_PriceSNTCountry + $ReciveTranferPriceSNTCountry;
+
+            /////////////////////////////////////////////////// รับคืน ///////////////////////////////////////////
+
+            $ReturnItemQuantitySNTCountry = $SNTCountry->returncuses_Quantity;
+            $ReturnItem_PCSSNTCountry = $ReturnItem_PCSSNTCountry + $ReturnItemQuantitySNTCountry;
+
+            $ReturnItemPriceSNTCountry = $ReturnItemQuantitySNTCountry * $NumberSNTCountry;
+            $ReturnItem_PriceSNTCountry = $ReturnItem_PriceSNTCountry + $ReturnItemPriceSNTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllInPcsSNTCountry = $SNTCountry->purchase_Quantity + $ReciveTranferPcsSNTCountry + $ReturnItemQuantitySNTCountry;
+            $AllIn_PcsSNTCountry = $AllIn_PcsSNTCountry + $AllInPcsSNTCountry;
+
+            $AllInPriceSNTCountry = $PurchasePriceSNTCountry + $ReciveTranferPriceSNTCountry + $ReturnItemPriceSNTCountry;
+            $AllIn_PriceSNTCountry = $AllIn_PriceSNTCountry + $AllInPriceSNTCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $SendSalePcsSNTCountry = $SNTCountry->dc1_s_Quantity + $SNTCountry->dcp_s_Quantity + $SNTCountry->dcy_s_Quantity + $SNTCountry->dex_s_Quantity;
+            $SendSale_PcsSNTCountry = $SendSale_PcsSNTCountry + $SendSalePcsSNTCountry;
+
+            if ($BackChangePcsSNTCountry > 0 && $AllInPcsSNTCountry > 0) {
+                $SendSalePriceSNTCountry = (($AllInPriceSNTCountry + $BackChangePriceSNTCountry) / ($AllInPcsSNTCountry + $BackChangePcsSNTCountry)) * $SendSalePcsSNTCountry;
+                $SendSale_PriceSNTCountry = $SendSale_PriceSNTCountry + $SendSalePriceSNTCountry;
+            }
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $ReciveTranOutPcsSNTCountry = $SNTCountry->a8f1fgbu02s_Quantity + $SNTCountry->a8f2fgbu10s_Quantity + $SNTCountry->a8f2thbu05s_Quantity + $SNTCountry->a8f2debu10s_Quantity + $SNTCountry->a8f2exbu11s_Quantity + $SNTCountry->a8f2twbu04s_Quantity + $SNTCountry->a8f2twbu07s_Quantity + $SNTCountry->a8f2cebu10s_Quantity;
+            $ReciveTranOut_PcsSNTCountry = $ReciveTranOut_PcsSNTCountry + $ReciveTranOutPcsSNTCountry;
+
+            if ($AllInPcsSNTCountry > 0 && $BackChangePcsSNTCountry > 0) {
+                $ReciveTranOutPriceSNTCountry = (($AllInPriceSNTCountry + $BackChangePriceSNTCountry) / ($AllInPcsSNTCountry + $BackChangePcsSNTCountry)) * $ReciveTranOutPcsSNTCountry;
+                $ReciveTranOut_PriceSNTCountry = $ReciveTranOut_PriceSNTCountry + $ReciveTranOutPriceSNTCountry;
+            }
+
+            /////////////////////////////////////////////////// คืนของร้านค้า ///////////////////////////////////////////
+
+            $ReturnStorePcsSNTCountry = $SNTCountry->returnitem_Quantity;
+            $ReturnStore_PcsSNTCountry = $ReturnStore_PcsSNTCountry + $ReturnStorePcsSNTCountry;
+
+            if ($AllInPcsSNTCountry > 0 && $BackChangePcsSNTCountry > 0) {
+                $ReturnStorePriceSNTCountry = (($AllInPriceSNTCountry + $BackChangePriceSNTCountry) / ($AllInPcsSNTCountry + $BackChangePcsSNTCountry)) * $ReturnStorePcsSNTCountry;
+                $ReturnStore_PriceSNTCountry = $ReturnStore_PriceSNTCountry + $ReturnStorePriceSNTCountry;
+            }
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $AllOutPcsSNTCountry = $ReturnStorePcsSNTCountry + $ReciveTranOutPcsSNTCountry + $SendSalePcsSNTCountry;
+            $AllOut_PcsSNTCountry = $AllOut_PcsSNTCountry + $AllOutPcsSNTCountry;
+
+            $AllOutPriceSNTCountry = $SendSale_PriceSNTCountry + $ReciveTranOut_PriceSNTCountry + $ReturnStore_PriceSNTCountry;
+            $AllOut_PriceSNTCountry = $AllOut_PriceSNTCountry + $AllOutPriceSNTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $CalculatePcsSNTCountry = $BackChangePcsSNTCountry + $AllInPcsSNTCountry + $AllOutPcsSNTCountry;
+            $Calculate_PcsSNTCountry = $Calculate_PcsSNTCountry + $CalculatePcsSNTCountry;
+
+            $CalculatePriceSNTCountry = $BackChangePriceSNTCountry + $AllInPriceSNTCountry + $AllOutPriceSNTCountry;
+            $Calculate_PriceSNTCountry = $Calculate_PriceSNTCountry + $CalculatePriceSNTCountry;
+
+            /////////////////////////////////////////////////// รวม ///////////////////////////////////////////
+
+            $NewCalculatePcsSNTCountry = $SNTCountry->item_stock_Quantity;
+            $NewCalculate_PcsSNTCountry = $NewCalculate_PcsSNTCountry + $NewCalculatePcsSNTCountry;
+
+            $NewCalculatePriceSNTCountry = $SNTCountry->item_stock_Amount;
+            $NewCalculate_PriceSNTCountry = $NewCalculate_PriceSNTCountry + $NewCalculatePriceSNTCountry;
+
+            /////////////////////////////////////////////////// ผลต่าง ///////////////////////////////////////////
+
+            $DiffPcsSNTCountry = $NewCalculatePcsSNTCountry - $CalculatePcsSNTCountry;
+            $Diff_PcsSNTCountry = $Diff_PcsSNTCountry + $DiffPcsSNTCountry;
+
+            $DiffPriceSNTCountry = $NewCalculatePriceSNTCountry - $CalculatePriceSNTCountry;
+            $Diff_PriceSNTCountry = $Diff_PriceSNTCountry + $DiffPriceSNTCountry;
+
+            /////////////////////////////////////////////////// คงเหลือ มูลค่าใหม่ ///////////////////////////////////////////
+
+            $NewTotalPcsSNTCountry = $CalculatePcsSNTCountry;
+            $NewTotal_PcsSNTCountry = $NewTotal_PcsSNTCountry + $CalculatePcsSNTCountry;
+
+            $NewTotalPriceSNTCountry = $NewTotalPcsSNTCountry * $SNTCountry->PriceAvg;
+            $NewTotal_PriceSNTCountry = $NewTotal_PriceSNTCountry + $NewTotalPriceSNTCountry;
+
+            $NewTotalDiffNavSNTCountry = $NewTotalPriceSNTCountry - $NewCalculatePriceSNTCountry;
+            $NewTotalDiff_NavSNTCountry = $NewTotalDiff_NavSNTCountry + $NewTotalDiffNavSNTCountry;
+
+            $NewTotalDiffCalSNTCountry = $NewTotalPriceSNTCountry - $CalculatePriceSNTCountry;
+            $NewTotalDiff_CalSNTCountry = $NewTotalDiff_CalSNTCountry + $NewTotalDiffCalSNTCountry;
+
+            /////////////////////////////////////////////////// รับโอน ///////////////////////////////////////////
+
+            $a7f1fgbu02sPcsSNTCountry = $SNTCountry->a7f1fgbu02s_Quantity;
+            $a7f1fgbu02s_PcsSNTCountry = $a7f1fgbu02s_PcsSNTCountry + $a7f1fgbu02sPcsSNTCountry;
+
+            $a7f1fgbu02sPriceSNTCountry = $a7f1fgbu02sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f1fgbu02s_PriceSNTCountry = $a7f1fgbu02s_PriceSNTCountry + $a7f1fgbu02sPriceSNTCountry;
+
+            $a7f2fgbu10sPcsSNTCountry = $SNTCountry->a7f2fgbu10s_Quantity;
+            $a7f2fgbu10s_PcsSNTCountry = $a7f2fgbu10s_PcsSNTCountry + $a7f2fgbu10sPcsSNTCountry;
+
+            $a7f2fgbu10sPriceSNTCountry = $a7f2fgbu10sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f2fgbu10s_PriceSNTCountry = $a7f2fgbu10s_PriceSNTCountry + $a7f2fgbu10sPriceSNTCountry;
+
+            $a7f2thbu05sPcsSNTCountry = $SNTCountry->a7f2thbu05s_Quantity;
+            $a7f2thbu05s_PcsSNTCountry = $a7f2thbu05s_PcsSNTCountry + $a7f2thbu05sPcsSNTCountry;
+
+            $a7f2thbu05sPriceSNTCountry = $a7f2thbu05sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f2thbu05s_PriceSNTCountry = $a7f2thbu05s_PriceSNTCountry + $a7f2thbu05sPriceSNTCountry;
+
+            $a7f2debu10sPcsSNTCountry = $SNTCountry->a7f2debu10s_Quantity;
+            $a7f2debu10s_PcsSNTCountry = $a7f2debu10s_PcsSNTCountry + $a7f2debu10sPcsSNTCountry;
+
+            $a7f2debu10sPriceSNTCountry = $a7f2debu10sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f2debu10s_PriceSNTCountry = $a7f2debu10s_PriceSNTCountry + $a7f2debu10sPriceSNTCountry;
+
+            $a7f2exbu11sPcsSNTCountry = $SNTCountry->a7f2exbu11s_Quantity;
+            $a7f2exbu11s_PcsSNTCountry = $a7f2exbu11s_PcsSNTCountry + $a7f2exbu11sPcsSNTCountry;
+
+            $a7f2exbu11sPriceSNTCountry = $a7f2exbu11sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f2exbu11s_PriceSNTCountry = $a7f2exbu11s_PriceSNTCountry + $a7f2exbu11sPriceSNTCountry;
+
+            $a7f2twbu04sPcsSNTCountry = $SNTCountry->a7f2twbu04s_Quantity;
+            $a7f2twbu04s_PcsSNTCountry = $a7f2twbu04s_PcsSNTCountry + $a7f2twbu04sPcsSNTCountry;
+
+            $a7f2twbu04sPriceSNTCountry = $a7f2twbu04sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f2twbu04s_PriceSNTCountry = $a7f2twbu04s_PriceSNTCountry + $a7f2twbu04sPriceSNTCountry;
+
+            $a7f2twbu07sPcsSNTCountry = $SNTCountry->a7f2twbu07s_Quantity;
+            $a7f2twbu07s_PcsSNTCountry = $a7f2twbu07s_PcsSNTCountry + $a7f2twbu07sPcsSNTCountry;
+
+            $a7f2twbu07sPriceSNTCountry = $a7f2twbu07sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f2twbu07s_PriceSNTCountry = $a7f2twbu07s_PriceSNTCountry + $a7f2twbu07sPriceSNTCountry;
+
+            $a7f2cebu10sPcsSNTCountry = $SNTCountry->a7f2cebu10s_Quantity;
+            $a7f2cebu10s_PcsSNTCountry = $a7f2cebu10s_PcsSNTCountry + $a7f2cebu10sPcsSNTCountry;
+
+            $a7f2cebu10sPriceSNTCountry = $a7f2cebu10sPcsSNTCountry * $SNTCountry->PriceAvg;
+            $a7f2cebu10s_PriceSNTCountry = $a7f2cebu10s_PriceSNTCountry + $a7f2cebu10sPriceSNTCountry;
+
+            /////////////////////////////////////////////////// โอนออก ///////////////////////////////////////////
+
+            $a8f1fgbu02sPcsSNTCountry = $SNTCountry->a8f1fgbu02s_Quantity;
+            $a8f1fgbu02s_PcsSNTCountry = $a8f1fgbu02s_PcsSNTCountry + $a8f1fgbu02sPcsSNTCountry;
+
+            $a8f1fgbu02sPriceSNTCountry = $a8f1fgbu02sPcsSNTCountry * $NumberSNTCountry;
+            $a8f1fgbu02s_PriceSNTCountry = $a8f1fgbu02s_PriceSNTCountry + $a8f1fgbu02sPriceSNTCountry;
+
+            $a8f2fgbu10sPcsSNTCountry = $SNTCountry->a8f2fgbu10s_Quantity;
+            $a8f2fgbu10s_PcsSNTCountry = $a8f2fgbu10s_PcsSNTCountry + $a8f2fgbu10sPcsSNTCountry;
+
+            $a8f2fgbu10sPriceSNTCountry = $a8f2fgbu10sPcsSNTCountry * $NumberSNTCountry;
+            $a8f2fgbu10s_PriceSNTCountry = $a8f2fgbu10s_PriceSNTCountry + $a8f2fgbu10sPriceSNTCountry;
+
+            $a8f2thbu05sPcsSNTCountry = $SNTCountry->a8f2thbu05s_Quantity;
+            $a8f2thbu05s_PcsSNTCountry = $a8f2thbu05s_PcsSNTCountry + $a8f2thbu05sPcsSNTCountry;
+
+            $a8f2thbu05sPriceSNTCountry = $a8f2thbu05sPcsSNTCountry * $NumberSNTCountry;
+            $a8f2thbu05s_PriceSNTCountry = $a8f2thbu05s_PriceSNTCountry + $a8f2thbu05sPriceSNTCountry;
+
+            $a8f2debu10sPcsSNTCountry = $SNTCountry->a8f2debu10s_Quantity;
+            $a8f2debu10s_PcsSNTCountry = $a8f2debu10s_PcsSNTCountry + $a8f2debu10sPcsSNTCountry;
+
+            $a8f2debu10sPriceSNTCountry = $a8f2debu10sPcsSNTCountry * $NumberSNTCountry;
+            $a8f2debu10s_PriceSNTCountry = $a8f2debu10s_PriceSNTCountry + $a8f2debu10sPriceSNTCountry;
+
+            $a8f2exbu11sPcsSNTCountry = $SNTCountry->a8f2exbu11s_Quantity;
+            $a8f2exbu11s_PcsSNTCountry = $a8f2exbu11s_PcsSNTCountry + $a8f2exbu11sPcsSNTCountry;
+
+            $a8f2exbu11sPriceSNTCountry = $a8f2exbu11sPcsSNTCountry * $NumberSNTCountry;
+            $a8f2exbu11s_PriceSNTCountry = $a8f2exbu11s_PriceSNTCountry + $a8f2exbu11sPriceSNTCountry;
+
+            $a8f2twbu04sPcsSNTCountry = $SNTCountry->a8f2twbu04s_Quantity;
+            $a8f2twbu04s_PcsSNTCountry = $a8f2twbu04s_PcsSNTCountry + $a8f2twbu04sPcsSNTCountry;
+
+            $a8f2twbu04sPriceSNTCountry = $a8f2twbu04sPcsSNTCountry * $NumberSNTCountry;
+            $a8f2twbu04s_PriceSNTCountry = $a8f2twbu04s_PriceSNTCountry + $a8f2twbu04sPriceSNTCountry;
+
+            $a8f2twbu07sPcsSNTCountry = $SNTCountry->a8f2twbu07s_Quantity;
+            $a8f2twbu07s_PcsSNTCountry = $a8f2twbu07s_PcsSNTCountry + $a8f2twbu07sPcsSNTCountry;
+
+            $a8f2twbu07sPriceSNTCountry = $a8f2twbu07sPcsSNTCountry * $NumberSNTCountry;
+            $a8f2twbu07s_PriceSNTCountry = $a8f2twbu07s_PriceSNTCountry + $a8f2twbu07sPriceSNTCountry;
+
+            $a8f2cebu10sPcsSNTCountry = $SNTCountry->a8f2cebu10s_Quantity;
+            $a8f2cebu10s_PcsSNTCountry = $a8f2cebu10s_PcsSNTCountry + $a8f2cebu10sPcsSNTCountry;
+
+            $a8f2cebu10sPriceSNTCountry = $a8f2cebu10sPcsSNTCountry * $NumberSNTCountry;
+            $a8f2cebu10s_PriceSNTCountry = $a8f2cebu10s_PriceSNTCountry + $a8f2cebu10sPriceSNTCountry;
+
+            /////////////////////////////////////////////////// ส่งขาย ///////////////////////////////////////////
+
+            $DC1PcsSNTCountry = $SNTCountry->dc1_s_Quantity;
+            $DC1_PcsSNTCountry = $DC1_PcsSNTCountry + $DC1PcsSNTCountry;
+
+            $DC1PriceSNTCountry = $DC1PcsSNTCountry * $NumberSNTCountry;
+            $DC1_PriceSNTCountry = $DC1_PriceSNTCountry + $DC1PriceSNTCountry;
+
+            $DCPPcsSNTCountry = $SNTCountry->dcp_s_Quantity;
+            $DCP_PcsSNTCountry = $DCP_PcsSNTCountry + $DCPPcsSNTCountry;
+
+            $DCPPriceSNTCountry = $DCPPcsSNTCountry * $NumberSNTCountry;
+            $DCP_PriceSNTCountry = $DCP_PriceSNTCountry + $DCPPriceSNTCountry;
+
+            $DCYPcsSNTCountry = $SNTCountry->dcy_s_Quantity;
+            $DCY_PcsSNTCountry = $DCY_PcsSNTCountry + $DCYPcsSNTCountry;
+
+            $DCYPriceSNTCountry = $DCYPcsSNTCountry * $NumberSNTCountry;
+            $DCY_PriceSNTCountry = $DCY_PriceSNTCountry + $DCYPriceSNTCountry;
+
+            $DEXPcsSNTCountry = $SNTCountry->dex_s_Quantity;
+            $DEX_PcsSNTCountry = $DEX_PcsSNTCountry + $DEXPcsSNTCountry;
+
+            $DEXPriceSNTCountry = $DEXPcsSNTCountry * $NumberSNTCountry;
+            $DEX_PriceSNTCountry = $DEX_PriceSNTCountry + $DEXPriceSNTCountry;
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
 
         $Pcs_AfterAllProduct = $Pcs_AfterMT + $Pcs_AfterNT + $Pcs_AfterLN + $Pcs_AfterTW;
         $Price_AfterAllProduct = $Price_AfterMT + $Price_AfterNT + $Price_AfterLN + $Price_AfterTW;
@@ -7121,6 +9246,86 @@ class ProductController extends Controller
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
 
+        $Pcs_AfterAllCountry = $Pcs_AfterMTCountry + $Pcs_AfterNTCountry + $Pcs_AfterLNCountry + $Pcs_AfterTWCountry + $Pcs_AfterSNTCountry;
+        $Price_AfterAllCountry = $Price_AfterMTCountry + $Price_AfterNTCountry + $Price_AfterLNCountry + $Price_AfterTWCountry + $Price_AfterSNTCountry;
+        $Pcs_AfterAllCountry =  $Pcs_AfterMTCountry + $Pcs_AfterNTCountry + $Pcs_AfterLNCountry + $Pcs_AfterTWCountry + $Pcs_AfterSNTCountry;
+        $Price_AfterAllCountry =  $Price_AfterMTCountry + $Price_AfterNTCountry + $Price_AfterLNCountry + $Price_AfterTWCountry + $Price_AfterSNTCountry;
+        $Po_PcsAllCountry = $Po_PcsMTCountry + $Po_PcsNTCountry + $Po_PcsLNCountry + $Po_PcsTWCountry + $Po_PcsSNTCountry;
+        $Po_PriceAllCountry =  $Po_PriceMTCountry + $Po_PriceNTCountry + $Po_PriceLNCountry + $Po_PriceTWCountry + $Po_PriceSNTCountry;
+        $Neg_PcsAllCountry =  $Neg_PcsMTCountry + $Neg_PcsNTCountry + $Neg_PcsLNCountry + $Neg_PcsTWCountry + $Neg_PcsSNTCountry;
+        $Neg_PriceAllCountry =  $Neg_PriceMTCountry + $Neg_PriceNTCountry + $Neg_PriceLNCountry + $Neg_PriceTWCountry + $Neg_PriceSNTCountry;
+        $BackChange_PcsAllCountry =  $BackChange_PcsMTCountry + $BackChange_PcsNTCountry + $BackChange_PcsLNCountry + $BackChange_PcsTWCountry + $BackChange_PcsSNTCountry;
+        $BackChange_PriceAllCountry =  $BackChange_PriceMTCountry + $BackChange_PriceNTCountry + $BackChange_PriceLNCountry + $BackChange_PriceTWCountry + $BackChange_PriceSNTCountry;
+        $Purchase_PcsAllCountry =  $Purchase_PcsMTCountry + $Purchase_PcsNTCountry + $Purchase_PcsLNCountry + $Purchase_PcsTWCountry + $Purchase_PcsSNTCountry;
+        $Purchase_PriceAllCountry =  $Purchase_PriceMTCountry + $Purchase_PriceNTCountry + $Purchase_PriceLNCountry + $Purchase_PriceTWCountry + $Purchase_PriceSNTCountry;
+        $ReciveTranfer_PcsAllCountry =  $ReciveTranfer_PcsMTCountry + $ReciveTranfer_PcsNTCountry + $ReciveTranfer_PcsLNCountry + $ReciveTranfer_PcsTWCountry + $ReciveTranfer_PcsSNTCountry;
+        $ReciveTranfer_PriceAllCountry =  $ReciveTranfer_PriceMTCountry + $ReciveTranfer_PriceNTCountry + $ReciveTranfer_PriceLNCountry + $ReciveTranfer_PriceTWCountry + $ReciveTranfer_PriceSNTCountry;
+        $ReturnItem_PCSAllCountry =  $ReturnItem_PCSMTCountry + $ReturnItem_PCSNTCountry + $ReturnItem_PCSLNCountry + $ReturnItem_PCSTWCountry + $ReturnItem_PCSSNTCountry;
+        $ReturnItem_PriceAllCountry =  $ReturnItem_PriceMTCountry + $ReturnItem_PriceNTCountry + $ReturnItem_PriceLNCountry + $ReturnItem_PriceTWCountry + $ReturnItem_PriceSNTCountry;
+        $AllIn_PcsAllCountry =  $AllIn_PcsMTCountry + $AllIn_PcsNTCountry + $AllIn_PcsLNCountry + $AllIn_PcsTWCountry + $AllIn_PcsSNTCountry;
+        $AllIn_PriceAllCountry =  $AllIn_PriceMTCountry + $AllIn_PriceNTCountry + $AllIn_PriceLNCountry + $AllIn_PriceTWCountry + $AllIn_PriceSNTCountry;
+        $SendSale_PcsAllCountry =  $SendSale_PcsMTCountry + $SendSale_PcsNTCountry + $SendSale_PcsLNCountry + $SendSale_PcsTWCountry + $SendSale_PcsSNTCountry;
+        $SendSale_PriceAllCountry =  $SendSale_PriceMTCountry + $SendSale_PriceNTCountry + $SendSale_PriceLNCountry + $SendSale_PriceTWCountry + $SendSale_PriceSNTCountry;
+        $ReciveTranOut_PcsAllCountry =  $ReciveTranOut_PcsMTCountry + $ReciveTranOut_PcsNTCountry + $ReciveTranOut_PcsLNCountry + $ReciveTranOut_PcsTWCountry + $ReciveTranOut_PcsSNTCountry;
+        $ReciveTranOut_PriceAllCountry =  $ReciveTranOut_PriceMTCountry + $ReciveTranOut_PriceNTCountry + $ReciveTranOut_PriceLNCountry + $ReciveTranOut_PriceTWCountry + $ReciveTranOut_PriceSNTCountry;
+        $ReturnStore_PcsAllCountry =  $ReturnStore_PcsMTCountry + $ReturnStore_PcsNTCountry + $ReturnStore_PcsLNCountry + $ReturnStore_PcsTWCountry + $ReturnStore_PcsSNTCountry;
+        $ReturnStore_PriceAllCountry =  $ReturnStore_PriceMTCountry + $ReturnStore_PriceNTCountry + $ReturnStore_PriceLNCountry + $ReturnStore_PriceTWCountry + $ReturnStore_PriceSNTCountry;
+        $AllOut_PcsAllCountry =  $AllOut_PcsMTCountry + $AllOut_PcsNTCountry + $AllOut_PcsLNCountry + $AllOut_PcsTWCountry + $AllOut_PcsSNTCountry;
+        $AllOut_PriceAllCountry =  $AllOut_PriceMTCountry + $AllOut_PriceNTCountry + $AllOut_PriceLNCountry + $AllOut_PriceTWCountry + $AllOut_PriceSNTCountry;
+        $Calculate_PcsAllCountry =  $Calculate_PcsMTCountry + $Calculate_PcsNTCountry + $Calculate_PcsLNCountry + $Calculate_PcsTWCountry + $Calculate_PcsSNTCountry;
+        $Calculate_PriceAllCountry =  $Calculate_PriceMTCountry + $Calculate_PriceNTCountry + $Calculate_PriceLNCountry + $Calculate_PriceTWCountry + $Calculate_PriceSNTCountry;
+        $NewCalculate_PcsAllCountry = $NewCalculate_PcsMTCountry + $NewCalculate_PcsNTCountry + $NewCalculate_PcsLNCountry + $NewCalculate_PcsTWCountry + $NewCalculate_PcsSNTCountry;
+        $NewCalculate_PriceAllCountry = $NewCalculate_PriceMTCountry + $NewCalculate_PriceNTCountry + $NewCalculate_PriceLNCountry + $NewCalculate_PriceTWCountry + $NewCalculate_PriceSNTCountry;
+        $Diff_PcsAllCountry = $Diff_PcsMTCountry + $Diff_PcsNTCountry + $Diff_PcsLNCountry + $Diff_PcsTWCountry + $Diff_PcsSNTCountry;
+        $Diff_PriceAllCountry = $Diff_PriceMTCountry + $Diff_PriceNTCountry + $Diff_PriceLNCountry + $Diff_PriceTWCountry + $Diff_PriceSNTCountry;
+        $NewTotal_PcsAllCountry = $NewTotal_PcsMTCountry + $NewTotal_PcsNTCountry + $NewTotal_PcsLNCountry + $NewTotal_PcsTWCountry + $NewTotal_PcsSNTCountry;
+        $NewTotal_PriceAllCountry = $NewTotal_PriceMTCountry + $NewTotal_PriceNTCountry + $NewTotal_PriceLNCountry + $NewTotal_PriceTWCountry + $NewTotal_PriceSNTCountry;
+        $NewTotalDiff_NavAllCountry = $NewTotalDiff_NavMTCountry + $NewTotalDiff_NavNTCountry + $NewTotalDiff_NavLNCountry + $NewTotalDiff_NavTWCountry + $NewTotalDiff_NavSNTCountry;
+        $NewTotalDiff_CalAllCountry = $NewTotalDiff_CalMTCountry + $NewTotalDiff_CalNTCountry + $NewTotalDiff_CalLNCountry + $NewTotalDiff_CalTWCountry + $NewTotalDiff_CalSNTCountry;
+        $a7f1fgbu02s_PcsAllCountry = $a7f1fgbu02s_PcsMTCountry + $a7f1fgbu02s_PcsNTCountry + $a7f1fgbu02s_PcsLNCountry + $a7f1fgbu02s_PcsTWCountry + $a7f1fgbu02s_PcsSNTCountry;
+        $a7f1fgbu02s_PriceAllCountry = $a7f1fgbu02s_PriceMTCountry + $a7f1fgbu02s_PriceNTCountry + $a7f1fgbu02s_PriceLNCountry + $a7f1fgbu02s_PriceTWCountry + $a7f1fgbu02s_PriceSNTCountry;
+        $a7f2fgbu10s_PcsAllCountry = $a7f2fgbu10s_PcsMTCountry + $a7f2fgbu10s_PcsNTCountry + $a7f2fgbu10s_PcsLNCountry + $a7f2fgbu10s_PcsTWCountry + $a7f2fgbu10s_PcsSNTCountry;
+        $a7f2fgbu10s_PriceAllCountry = $a7f2fgbu10s_PriceMTCountry + $a7f2fgbu10s_PriceNTCountry + $a7f2fgbu10s_PriceLNCountry + $a7f2fgbu10s_PriceTWCountry + $a7f2fgbu10s_PriceSNTCountry;
+        $a7f2thbu05s_PcsAllCountry = $a7f2thbu05s_PcsMTCountry + $a7f2thbu05s_PcsNTCountry + $a7f2thbu05s_PcsLNCountry + $a7f2thbu05s_PcsTWCountry + $a7f2thbu05s_PcsSNTCountry;
+        $a7f2thbu05s_PriceAllCountry = $a7f2thbu05s_PriceMTCountry + $a7f2thbu05s_PriceNTCountry + $a7f2thbu05s_PriceLNCountry + $a7f2thbu05s_PriceTWCountry + $a7f2thbu05s_PriceSNTCountry;
+        $a7f2debu10s_PcsAllCountry = $a7f2debu10s_PcsMTCountry + $a7f2debu10s_PcsNTCountry + $a7f2debu10s_PcsLNCountry + $a7f2debu10s_PcsTWCountry + $a7f2debu10s_PcsSNTCountry;
+        $a7f2debu10s_PriceAllCountry = $a7f2debu10s_PriceMTCountry + $a7f2debu10s_PriceNTCountry + $a7f2debu10s_PriceLNCountry + $a7f2debu10s_PriceTWCountry + $a7f2debu10s_PriceSNTCountry;
+        $a7f2exbu11s_PcsAllCountry = $a7f2exbu11s_PcsMTCountry + $a7f2exbu11s_PcsNTCountry + $a7f2exbu11s_PcsLNCountry + $a7f2exbu11s_PcsTWCountry + $a7f2exbu11s_PcsSNTCountry;
+        $a7f2exbu11s_PriceAllCountry = $a7f2exbu11s_PriceMTCountry + $a7f2exbu11s_PriceNTCountry + $a7f2exbu11s_PriceLNCountry + $a7f2exbu11s_PriceTWCountry + $a7f2exbu11s_PriceSNTCountry;
+        $a7f2twbu04s_PcsAllCountry = $a7f2twbu04s_PcsMTCountry + $a7f2twbu04s_PcsNTCountry + $a7f2twbu04s_PcsLNCountry + $a7f2twbu04s_PcsTWCountry + $a7f2twbu04s_PcsSNTCountry;
+        $a7f2twbu04s_PriceAllCountry = $a7f2twbu04s_PriceMTCountry + $a7f2twbu04s_PriceNTCountry + $a7f2twbu04s_PriceLNCountry + $a7f2twbu04s_PriceTWCountry + $a7f2twbu04s_PriceSNTCountry;
+        $a7f2twbu07s_PcsAllCountry = $a7f2twbu07s_PcsMTCountry + $a7f2twbu07s_PcsNTCountry + $a7f2twbu07s_PcsLNCountry + $a7f2twbu07s_PcsTWCountry + $a7f2twbu07s_PcsSNTCountry;
+        $a7f2twbu07s_PriceAllCountry = $a7f2twbu07s_PriceMTCountry + $a7f2twbu07s_PriceNTCountry + $a7f2twbu07s_PriceLNCountry + $a7f2twbu07s_PriceTWCountry + $a7f2twbu07s_PriceSNTCountry;
+        $a7f2cebu10s_PcsAllCountry = $a7f2cebu10s_PcsMTCountry + $a7f2cebu10s_PcsNTCountry + $a7f2cebu10s_PcsLNCountry + $a7f2cebu10s_PcsTWCountry + $a7f2cebu10s_PcsSNTCountry;
+        $a7f2cebu10s_PriceAllCountry = $a7f2cebu10s_PriceMTCountry + $a7f2cebu10s_PriceNTCountry + $a7f2cebu10s_PriceLNCountry + $a7f2cebu10s_PriceTWCountry + $a7f2cebu10s_PriceSNTCountry;
+        $a8f1fgbu02s_PcsAllCountry = $a8f1fgbu02s_PcsMTCountry + $a8f1fgbu02s_PcsNTCountry + $a8f1fgbu02s_PcsLNCountry + $a8f1fgbu02s_PcsTWCountry + $a8f1fgbu02s_PcsSNTCountry;
+        $a8f1fgbu02s_PriceAllCountry = $a8f1fgbu02s_PriceMTCountry + $a8f1fgbu02s_PriceNTCountry + $a8f1fgbu02s_PriceLNCountry + $a8f1fgbu02s_PriceTWCountry + $a8f1fgbu02s_PriceSNTCountry;
+        $a8f2fgbu10s_PcsAllCountry = $a8f2fgbu10s_PcsMTCountry + $a8f2fgbu10s_PcsNTCountry + $a8f2fgbu10s_PcsLNCountry + $a8f2fgbu10s_PcsTWCountry + $a8f2fgbu10s_PcsSNTCountry;
+        $a8f2fgbu10s_PriceAllCountry = $a8f2fgbu10s_PriceMTCountry + $a8f2fgbu10s_PriceNTCountry + $a8f2fgbu10s_PriceLNCountry + $a8f2fgbu10s_PriceTWCountry + $a8f2fgbu10s_PriceSNTCountry;
+        $a8f2thbu05s_PcsAllCountry = $a8f2thbu05s_PcsMTCountry + $a8f2thbu05s_PcsNTCountry + $a8f2thbu05s_PcsLNCountry + $a8f2thbu05s_PcsTWCountry + $a8f2thbu05s_PcsSNTCountry;
+        $a8f2thbu05s_PriceAllCountry = $a8f2thbu05s_PriceMTCountry + $a8f2thbu05s_PriceNTCountry + $a8f2thbu05s_PriceLNCountry + $a8f2thbu05s_PriceTWCountry + $a8f2thbu05s_PriceSNTCountry;
+        $a8f2debu10s_PcsAllCountry = $a8f2debu10s_PcsMTCountry + $a8f2debu10s_PcsNTCountry + $a8f2debu10s_PcsLNCountry + $a8f2debu10s_PcsTWCountry + $a8f2debu10s_PcsSNTCountry;
+        $a8f2debu10s_PriceAllCountry = $a8f2debu10s_PriceMTCountry + $a8f2debu10s_PriceNTCountry + $a8f2debu10s_PriceLNCountry + $a8f2debu10s_PriceTWCountry + $a8f2debu10s_PriceSNTCountry;
+        $a8f2exbu11s_PcsAllCountry = $a8f2exbu11s_PcsMTCountry + $a8f2exbu11s_PcsNTCountry + $a8f2exbu11s_PcsLNCountry + $a8f2exbu11s_PcsTWCountry + $a8f2exbu11s_PcsSNTCountry;
+        $a8f2exbu11s_PriceAllCountry = $a8f2exbu11s_PriceMTCountry + $a8f2exbu11s_PriceNTCountry + $a8f2exbu11s_PriceLNCountry + $a8f2exbu11s_PriceTWCountry + $a8f2exbu11s_PriceSNTCountry;
+        $a8f2twbu04s_PcsAllCountry = $a8f2twbu04s_PcsMTCountry + $a8f2twbu04s_PcsNTCountry + $a8f2twbu04s_PcsLNCountry + $a8f2twbu04s_PcsTWCountry + $a8f2twbu04s_PcsSNTCountry;
+        $a8f2twbu04s_PriceAllCountry = $a8f2twbu04s_PriceMTCountry + $a8f2twbu04s_PriceNTCountry + $a8f2twbu04s_PriceLNCountry + $a8f2twbu04s_PriceTWCountry + $a8f2twbu04s_PriceSNTCountry;
+        $a8f2twbu07s_PcsAllCountry = $a8f2twbu07s_PcsMTCountry + $a8f2twbu07s_PcsNTCountry + $a8f2twbu07s_PcsLNCountry + $a8f2twbu07s_PcsTWCountry + $a8f2twbu07s_PcsSNTCountry;
+        $a8f2twbu07s_PriceAllCountry = $a8f2twbu07s_PriceMTCountry + $a8f2twbu07s_PriceNTCountry + $a8f2twbu07s_PriceLNCountry + $a8f2twbu07s_PriceTWCountry + $a8f2twbu07s_PriceSNTCountry;
+        $a8f2cebu10s_PcsAllCountry = $a8f2cebu10s_PcsMTCountry + $a8f2cebu10s_PcsNTCountry + $a8f2cebu10s_PcsLNCountry + $a8f2cebu10s_PcsTWCountry + $a8f2cebu10s_PcsSNTCountry;
+        $a8f2cebu10s_PriceAllCountry = $a8f2cebu10s_PriceMTCountry + $a8f2cebu10s_PriceNTCountry + $a8f2cebu10s_PriceLNCountry + $a8f2cebu10s_PriceTWCountry + $a8f2cebu10s_PriceSNTCountry;
+        $DC1_PcsAllCountry = $DC1_PcsMTCountry + $DC1_PcsNTCountry + $DC1_PcsLNCountry + $DC1_PcsTWCountry + $DC1_PcsSNTCountry;
+        $DC1_PriceAllCountry = $DC1_PriceMTCountry + $DC1_PriceNTCountry + $DC1_PriceLNCountry + $DC1_PriceTWCountry + $DC1_PriceSNTCountry;
+        $DCP_PcsAllCountry = $DCP_PcsMTCountry + $DCP_PcsNTCountry + $DCP_PcsLNCountry + $DCP_PcsTWCountry + $DCP_PcsSNTCountry;
+        $DCP_PriceAllCountry = $DCP_PriceMTCountry + $DCP_PriceNTCountry + $DCP_PriceLNCountry + $DCP_PriceTWCountry + $DCP_PriceSNTCountry;
+        $DCY_PcsAllCountry = $DCY_PcsMTCountry + $DCY_PcsNTCountry + $DCY_PcsLNCountry + $DCY_PcsTWCountry + $DCY_PcsSNTCountry;
+        $DCY_PriceAllCountry = $DCY_PriceMTCountry + $DCY_PriceNTCountry + $DCY_PriceLNCountry + $DCY_PriceTWCountry + $DCY_PriceSNTCountry;
+        $DEX_PcsAllCountry = $DEX_PcsMTCountry + $DEX_PcsNTCountry + $DEX_PcsLNCountry + $DEX_PcsTWCountry + $DEX_PcsSNTCountry;
+        $DEX_PriceAllCountry = $DEX_PriceMTCountry + $DEX_PriceNTCountry + $DEX_PriceLNCountry + $DEX_PriceTWCountry + $DEX_PriceSNTCountry;
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
         $Pcs_AfterAllDC1 = $Pcs_AfterAllProduct + $Pcs_AfterAllSale;
         $Price_AfterAllDC1 = $Price_AfterAllProduct + $Price_AfterAllSale;
         $Pcs_AfterAllDC1 =  $Pcs_AfterAllProduct + $Pcs_AfterAllSale;
@@ -7197,6 +9402,86 @@ class ProductController extends Controller
         $DCY_PriceAllDC1 = $DCY_PriceAllProduct + $DCY_PriceAllSale;
         $DEX_PcsAllDC1 = $DEX_PcsAllProduct + $DEX_PcsAllSale;
         $DEX_PriceAllDC1 = $DEX_PriceAllProduct + $DEX_PriceAllSale;
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterAllTotal = $Pcs_AfterAllDC1 + $Pcs_AfterAllDCP + $Pcs_AfterAllDCY + $Pcs_AfterAllCountry;
+        $Price_AfterAllTotal = $Price_AfterAllDC1 + $Price_AfterAllDCP + $Price_AfterAllDCY + $Price_AfterAllCountry;
+        $Pcs_AfterAllTotal =  $Pcs_AfterAllDC1 + $Pcs_AfterAllDCP + $Pcs_AfterAllDCY + $Pcs_AfterAllCountry;
+        $Price_AfterAllTotal =  $Price_AfterAllDC1 + $Price_AfterAllDCP + $Price_AfterAllDCY + $Price_AfterAllCountry;
+        $Po_PcsAllTotal = $Po_PcsAllDC1 + $Po_PcsAllDCP + $Po_PcsAllDCY + $Po_PcsAllCountry;
+        $Po_PriceAllTotal =  $Po_PriceAllDC1 + $Po_PriceAllDCP + $Po_PriceAllDCY + $Po_PriceAllCountry;
+        $Neg_PcsAllTotal =  $Neg_PcsAllDC1 + $Neg_PcsAllDCP + $Neg_PcsAllDCY + $Neg_PcsAllCountry;
+        $Neg_PriceAllTotal =  $Neg_PriceAllDC1 + $Neg_PriceAllDCP + $Neg_PriceAllDCY + $Neg_PriceAllCountry;
+        $BackChange_PcsAllTotal =  $BackChange_PcsAllDC1 + $BackChange_PcsAllDCP + $BackChange_PcsAllDCY + $BackChange_PcsAllCountry;
+        $BackChange_PriceAllTotal =  $BackChange_PriceAllDC1 + $BackChange_PriceAllDCP + $BackChange_PriceAllDCY + $BackChange_PriceAllCountry;
+        $Purchase_PcsAllTotal =  $Purchase_PcsAllDC1 + $Purchase_PcsAllDCP + $Purchase_PcsAllDCY + $Purchase_PcsAllCountry;
+        $Purchase_PriceAllTotal =  $Purchase_PriceAllDC1 + $Purchase_PriceAllDCP + $Purchase_PriceAllDCY + $Purchase_PriceAllCountry;
+        $ReciveTranfer_PcsAllTotal =  $ReciveTranfer_PcsAllDC1 + $ReciveTranfer_PcsAllDCP + $ReciveTranfer_PcsAllDCY + $ReciveTranfer_PcsAllCountry;
+        $ReciveTranfer_PriceAllTotal =  $ReciveTranfer_PriceAllDC1 + $ReciveTranfer_PriceAllDCP + $ReciveTranfer_PriceAllDCY + $ReciveTranfer_PriceAllCountry             ;
+        $ReturnItem_PCSAllTotal =  $ReturnItem_PCSAllDC1 + $ReturnItem_PCSAllDCP + $ReturnItem_PCSAllDCY + $ReturnItem_PCSAllCountry;
+        $ReturnItem_PriceAllTotal =  $ReturnItem_PriceAllDC1 + $ReturnItem_PriceAllDCP + $ReturnItem_PriceAllDCY + $ReturnItem_PriceAllCountry;
+        $AllIn_PcsAllTotal =  $AllIn_PcsAllDC1 + $AllIn_PcsAllDCP + $AllIn_PcsAllDCY + $AllIn_PcsAllCountry;
+        $AllIn_PriceAllTotal =  $AllIn_PriceAllDC1 + $AllIn_PriceAllDCP + $AllIn_PriceAllDCY + $AllIn_PriceAllCountry;
+        $SendSale_PcsAllTotal =  $SendSale_PcsAllDC1 + $SendSale_PcsAllDCP + $SendSale_PcsAllDCY + $SendSale_PcsAllCountry;
+        $SendSale_PriceAllTotal =  $SendSale_PriceAllDC1 + $SendSale_PriceAllDCP + $SendSale_PriceAllDCY + $SendSale_PriceAllCountry;
+        $ReciveTranOut_PcsAllTotal =  $ReciveTranOut_PcsAllDC1 + $ReciveTranOut_PcsAllDCP + $ReciveTranOut_PcsAllDCY + $ReciveTranOut_PcsAllCountry;
+        $ReciveTranOut_PriceAllTotal =  $ReciveTranOut_PriceAllDC1 + $ReciveTranOut_PriceAllDCP + $ReciveTranOut_PriceAllDCY + $ReciveTranOut_PriceAllCountry             ;
+        $ReturnStore_PcsAllTotal =  $ReturnStore_PcsAllDC1 + $ReturnStore_PcsAllDCP + $ReturnStore_PcsAllDCY + $ReturnStore_PcsAllCountry;
+        $ReturnStore_PriceAllTotal =  $ReturnStore_PriceAllDC1 + $ReturnStore_PriceAllDCP + $ReturnStore_PriceAllDCY + $ReturnStore_PriceAllCountry;
+        $AllOut_PcsAllTotal =  $AllOut_PcsAllDC1 + $AllOut_PcsAllDCP + $AllOut_PcsAllDCY + $AllOut_PcsAllCountry;
+        $AllOut_PriceAllTotal =  $AllOut_PriceAllDC1 + $AllOut_PriceAllDCP + $AllOut_PriceAllDCY + $AllOut_PriceAllCountry;
+        $Calculate_PcsAllTotal =  $Calculate_PcsAllDC1 + $Calculate_PcsAllDCP + $Calculate_PcsAllDCY + $Calculate_PcsAllCountry;
+        $Calculate_PriceAllTotal =  $Calculate_PriceAllDC1 + $Calculate_PriceAllDCP + $Calculate_PriceAllDCY + $Calculate_PriceAllCountry;
+        $NewCalculate_PcsAllTotal = $NewCalculate_PcsAllDC1 + $NewCalculate_PcsAllDCP + $NewCalculate_PcsAllDCY + $NewCalculate_PcsAllCountry;
+        $NewCalculate_PriceAllTotal = $NewCalculate_PriceAllDC1 + $NewCalculate_PriceAllDCP + $NewCalculate_PriceAllDCY + $NewCalculate_PriceAllCountry            ;
+        $Diff_PcsAllTotal = $Diff_PcsAllDC1 + $Diff_PcsAllDCP + $Diff_PcsAllDCY + $Diff_PcsAllCountry;
+        $Diff_PriceAllTotal = $Diff_PriceAllDC1 + $Diff_PriceAllDCP + $Diff_PriceAllDCY + $Diff_PriceAllCountry;
+        $NewTotal_PcsAllTotal = $NewTotal_PcsAllDC1 + $NewTotal_PcsAllDCP + $NewTotal_PcsAllDCY + $NewTotal_PcsAllCountry;
+        $NewTotal_PriceAllTotal = $NewTotal_PriceAllDC1 + $NewTotal_PriceAllDCP + $NewTotal_PriceAllDCY + $NewTotal_PriceAllCountry;
+        $NewTotalDiff_NavAllTotal = $NewTotalDiff_NavAllDC1 + $NewTotalDiff_NavAllDCP + $NewTotalDiff_NavAllDCY + $NewTotalDiff_NavAllCountry;
+        $NewTotalDiff_CalAllTotal = $NewTotalDiff_CalAllDC1 + $NewTotalDiff_CalAllDCP + $NewTotalDiff_CalAllDCY + $NewTotalDiff_CalAllCountry;
+        $a7f1fgbu02s_PcsAllTotal = $a7f1fgbu02s_PcsAllDC1 + $a7f1fgbu02s_PcsAllDCP + $a7f1fgbu02s_PcsAllDCY + $a7f1fgbu02s_PcsAllCountry;
+        $a7f1fgbu02s_PriceAllTotal = $a7f1fgbu02s_PriceAllDC1 + $a7f1fgbu02s_PriceAllDCP + $a7f1fgbu02s_PriceAllDCY + $a7f1fgbu02s_PriceAllCountry;
+        $a7f2fgbu10s_PcsAllTotal = $a7f2fgbu10s_PcsAllDC1 + $a7f2fgbu10s_PcsAllDCP + $a7f2fgbu10s_PcsAllDCY + $a7f2fgbu10s_PcsAllCountry;
+        $a7f2fgbu10s_PriceAllTotal = $a7f2fgbu10s_PriceAllDC1 + $a7f2fgbu10s_PriceAllDCP + $a7f2fgbu10s_PriceAllDCY + $a7f2fgbu10s_PriceAllCountry;
+        $a7f2thbu05s_PcsAllTotal = $a7f2thbu05s_PcsAllDC1 + $a7f2thbu05s_PcsAllDCP + $a7f2thbu05s_PcsAllDCY + $a7f2thbu05s_PcsAllCountry;
+        $a7f2thbu05s_PriceAllTotal = $a7f2thbu05s_PriceAllDC1 + $a7f2thbu05s_PriceAllDCP + $a7f2thbu05s_PriceAllDCY + $a7f2thbu05s_PriceAllCountry;
+        $a7f2debu10s_PcsAllTotal = $a7f2debu10s_PcsAllDC1 + $a7f2debu10s_PcsAllDCP + $a7f2debu10s_PcsAllDCY + $a7f2debu10s_PcsAllCountry;
+        $a7f2debu10s_PriceAllTotal = $a7f2debu10s_PriceAllDC1 + $a7f2debu10s_PriceAllDCP + $a7f2debu10s_PriceAllDCY + $a7f2debu10s_PriceAllCountry;
+        $a7f2exbu11s_PcsAllTotal = $a7f2exbu11s_PcsAllDC1 + $a7f2exbu11s_PcsAllDCP + $a7f2exbu11s_PcsAllDCY + $a7f2exbu11s_PcsAllCountry;
+        $a7f2exbu11s_PriceAllTotal = $a7f2exbu11s_PriceAllDC1 + $a7f2exbu11s_PriceAllDCP + $a7f2exbu11s_PriceAllDCY + $a7f2exbu11s_PriceAllCountry;
+        $a7f2twbu04s_PcsAllTotal = $a7f2twbu04s_PcsAllDC1 + $a7f2twbu04s_PcsAllDCP + $a7f2twbu04s_PcsAllDCY + $a7f2twbu04s_PcsAllCountry;
+        $a7f2twbu04s_PriceAllTotal = $a7f2twbu04s_PriceAllDC1 + $a7f2twbu04s_PriceAllDCP + $a7f2twbu04s_PriceAllDCY + $a7f2twbu04s_PriceAllCountry;
+        $a7f2twbu07s_PcsAllTotal = $a7f2twbu07s_PcsAllDC1 + $a7f2twbu07s_PcsAllDCP + $a7f2twbu07s_PcsAllDCY + $a7f2twbu07s_PcsAllCountry;
+        $a7f2twbu07s_PriceAllTotal = $a7f2twbu07s_PriceAllDC1 + $a7f2twbu07s_PriceAllDCP + $a7f2twbu07s_PriceAllDCY + $a7f2twbu07s_PriceAllCountry;
+        $a7f2cebu10s_PcsAllTotal = $a7f2cebu10s_PcsAllDC1 + $a7f2cebu10s_PcsAllDCP + $a7f2cebu10s_PcsAllDCY + $a7f2cebu10s_PcsAllCountry;
+        $a7f2cebu10s_PriceAllTotal = $a7f2cebu10s_PriceAllDC1 + $a7f2cebu10s_PriceAllDCP + $a7f2cebu10s_PriceAllDCY + $a7f2cebu10s_PriceAllCountry;
+        $a8f1fgbu02s_PcsAllTotal = $a8f1fgbu02s_PcsAllDC1 + $a8f1fgbu02s_PcsAllDCP + $a8f1fgbu02s_PcsAllDCY + $a8f1fgbu02s_PcsAllCountry;
+        $a8f1fgbu02s_PriceAllTotal = $a8f1fgbu02s_PriceAllDC1 + $a8f1fgbu02s_PriceAllDCP + $a8f1fgbu02s_PriceAllDCY + $a8f1fgbu02s_PriceAllCountry;
+        $a8f2fgbu10s_PcsAllTotal = $a8f2fgbu10s_PcsAllDC1 + $a8f2fgbu10s_PcsAllDCP + $a8f2fgbu10s_PcsAllDCY + $a8f2fgbu10s_PcsAllCountry;
+        $a8f2fgbu10s_PriceAllTotal = $a8f2fgbu10s_PriceAllDC1 + $a8f2fgbu10s_PriceAllDCP + $a8f2fgbu10s_PriceAllDCY + $a8f2fgbu10s_PriceAllCountry;
+        $a8f2thbu05s_PcsAllTotal = $a8f2thbu05s_PcsAllDC1 + $a8f2thbu05s_PcsAllDCP + $a8f2thbu05s_PcsAllDCY + $a8f2thbu05s_PcsAllCountry;
+        $a8f2thbu05s_PriceAllTotal = $a8f2thbu05s_PriceAllDC1 + $a8f2thbu05s_PriceAllDCP + $a8f2thbu05s_PriceAllDCY + $a8f2thbu05s_PriceAllCountry;
+        $a8f2debu10s_PcsAllTotal = $a8f2debu10s_PcsAllDC1 + $a8f2debu10s_PcsAllDCP + $a8f2debu10s_PcsAllDCY + $a8f2debu10s_PcsAllCountry;
+        $a8f2debu10s_PriceAllTotal = $a8f2debu10s_PriceAllDC1 + $a8f2debu10s_PriceAllDCP + $a8f2debu10s_PriceAllDCY + $a8f2debu10s_PriceAllCountry;
+        $a8f2exbu11s_PcsAllTotal = $a8f2exbu11s_PcsAllDC1 + $a8f2exbu11s_PcsAllDCP + $a8f2exbu11s_PcsAllDCY + $a8f2exbu11s_PcsAllCountry;
+        $a8f2exbu11s_PriceAllTotal = $a8f2exbu11s_PriceAllDC1 + $a8f2exbu11s_PriceAllDCP + $a8f2exbu11s_PriceAllDCY + $a8f2exbu11s_PriceAllCountry;
+        $a8f2twbu04s_PcsAllTotal = $a8f2twbu04s_PcsAllDC1 + $a8f2twbu04s_PcsAllDCP + $a8f2twbu04s_PcsAllDCY + $a8f2twbu04s_PcsAllCountry;
+        $a8f2twbu04s_PriceAllTotal = $a8f2twbu04s_PriceAllDC1 + $a8f2twbu04s_PriceAllDCP + $a8f2twbu04s_PriceAllDCY + $a8f2twbu04s_PriceAllCountry;
+        $a8f2twbu07s_PcsAllTotal = $a8f2twbu07s_PcsAllDC1 + $a8f2twbu07s_PcsAllDCP + $a8f2twbu07s_PcsAllDCY + $a8f2twbu07s_PcsAllCountry;
+        $a8f2twbu07s_PriceAllTotal = $a8f2twbu07s_PriceAllDC1 + $a8f2twbu07s_PriceAllDCP + $a8f2twbu07s_PriceAllDCY + $a8f2twbu07s_PriceAllCountry;
+        $a8f2cebu10s_PcsAllTotal = $a8f2cebu10s_PcsAllDC1 + $a8f2cebu10s_PcsAllDCP + $a8f2cebu10s_PcsAllDCY + $a8f2cebu10s_PcsAllCountry;
+        $a8f2cebu10s_PriceAllTotal = $a8f2cebu10s_PriceAllDC1 + $a8f2cebu10s_PriceAllDCP + $a8f2cebu10s_PriceAllDCY + $a8f2cebu10s_PriceAllCountry;
+        $DC1_PcsAllTotal = $DC1_PcsAllDC1 + $DC1_PcsAllDCP + $DC1_PcsAllDCY + $DC1_PcsAllCountry;
+        $DC1_PriceAllTotal = $DC1_PriceAllDC1 + $DC1_PriceAllDCP + $DC1_PriceAllDCY + $DC1_PriceAllCountry;
+        $DCP_PcsAllTotal = $DCP_PcsAllDC1 + $DCP_PcsAllDCP + $DCP_PcsAllDCY + $DCP_PcsAllCountry;
+        $DCP_PriceAllTotal = $DCP_PriceAllDC1 + $DCP_PriceAllDCP + $DCP_PriceAllDCY + $DCP_PriceAllCountry;
+        $DCY_PcsAllTotal = $DCY_PcsAllDC1 + $DCY_PcsAllDCP + $DCY_PcsAllDCY + $DCY_PcsAllCountry;
+        $DCY_PriceAllTotal = $DCY_PriceAllDC1 + $DCY_PriceAllDCP + $DCY_PriceAllDCY + $DCY_PriceAllCountry;
+        $DEX_PcsAllTotal = $DEX_PcsAllDC1 + $DEX_PcsAllDCP + $DEX_PcsAllDCY + $DEX_PcsAllCountry;
+        $DEX_PriceAllTotal = $DEX_PriceAllDC1 + $DEX_PriceAllDCP + $DEX_PriceAllDCY + $DEX_PriceAllCountry;
 
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -8835,6 +11120,552 @@ class ProductController extends Controller
         $DCY_PriceAllDCP = number_format($DCY_PriceAllDCP, 0);
         $DEX_PcsAllDCP = number_format($DEX_PcsAllDCP, 0);
         $DEX_PriceAllDCP = number_format($DEX_PriceAllDCP, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterNTCountry = number_format($Pcs_AfterNTCountry, 0);
+        $Price_AfterNTCountry = number_format($Price_AfterNTCountry, 0);
+        $Po_PcsNTCountry = number_format($Po_PcsNTCountry, 0);
+        $Po_PriceNTCountry = number_format($Po_PriceNTCountry, 0);
+        $Neg_PcsNTCountry = number_format($Neg_PcsNTCountry, 0);
+        $Neg_PriceNTCountry = number_format($Neg_PriceNTCountry, 0);
+        $BackChange_PcsNTCountry = number_format($BackChange_PcsNTCountry, 0);
+        $BackChange_PriceNTCountry = number_format($BackChange_PriceNTCountry, 0);
+        $Purchase_PcsNTCountry = number_format($Purchase_PcsNTCountry, 0);
+        $Purchase_PriceNTCountry = number_format($Purchase_PriceNTCountry, 0);
+        $ReciveTranfer_PcsNTCountry = number_format($ReciveTranfer_PcsNTCountry, 0);
+        $ReciveTranfer_PriceNTCountry = number_format($ReciveTranfer_PriceNTCountry, 0);
+        $ReturnItem_PCSNTCountry = number_format($ReturnItem_PCSNTCountry, 0);
+        $ReturnItem_PriceNTCountry = number_format($ReturnItem_PriceNTCountry, 0);
+        $AllIn_PcsNTCountry = number_format($AllIn_PcsNTCountry, 0);
+        $AllIn_PriceNTCountry = number_format($AllIn_PriceNTCountry, 0);
+        $SendSale_PcsNTCountry = number_format($SendSale_PcsNTCountry, 0);
+        $SendSale_PriceNTCountry = number_format($SendSale_PriceNTCountry, 0);
+        $ReciveTranOut_PcsNTCountry = number_format($ReciveTranOut_PcsNTCountry, 0);
+        $ReciveTranOut_PriceNTCountry = number_format($ReciveTranOut_PriceNTCountry, 0);
+        $ReturnStore_PcsNTCountry = number_format($ReturnStore_PcsNTCountry, 0);
+        $ReturnStore_PriceNTCountry = number_format($ReturnStore_PriceNTCountry, 0);
+        $AllOut_PcsNTCountry = number_format($AllOut_PcsNTCountry, 0);
+        $AllOut_PriceNTCountry = number_format($AllOut_PriceNTCountry, 0);
+        $Calculate_PcsNTCountry = number_format($Calculate_PcsNTCountry, 0);
+        $Calculate_PriceNTCountry = number_format($Calculate_PriceNTCountry, 0);
+        $NewCalculate_PcsNTCountry = number_format($NewCalculate_PcsNTCountry, 0);
+        $NewCalculate_PriceNTCountry = number_format($NewCalculate_PriceNTCountry, 0);
+        $Diff_PcsNTCountry = number_format($Diff_PcsNTCountry, 0);
+        $Diff_PriceNTCountry = number_format($Diff_PriceNTCountry, 0);
+        $NewTotal_PcsNTCountry = number_format($NewTotal_PcsNTCountry, 0);
+        $NewTotal_PriceNTCountry = number_format($NewTotal_PriceNTCountry, 0);
+        $NewTotalDiff_NavNTCountry = number_format($NewTotalDiff_NavNTCountry, 0);
+        $NewTotalDiff_CalNTCountry = number_format($NewTotalDiff_CalNTCountry, 0);
+        $a7f1fgbu02s_PcsNTCountry = number_format($a7f1fgbu02s_PcsNTCountry, 0);
+        $a7f1fgbu02s_PriceNTCountry = number_format($a7f1fgbu02s_PriceNTCountry, 0);
+        $a7f2fgbu10s_PcsNTCountry = number_format($a7f2fgbu10s_PcsNTCountry, 0);
+        $a7f2fgbu10s_PriceNTCountry = number_format($a7f2fgbu10s_PriceNTCountry, 0);
+        $a7f2thbu05s_PcsNTCountry = number_format($a7f2thbu05s_PcsNTCountry, 0);
+        $a7f2thbu05s_PriceNTCountry = number_format($a7f2thbu05s_PriceNTCountry, 0);
+        $a7f2debu10s_PcsNTCountry = number_format($a7f2debu10s_PcsNTCountry, 0);
+        $a7f2debu10s_PriceNTCountry = number_format($a7f2debu10s_PriceNTCountry, 0);
+        $a7f2exbu11s_PcsNTCountry = number_format($a7f2exbu11s_PcsNTCountry, 0);
+        $a7f2exbu11s_PriceNTCountry = number_format($a7f2exbu11s_PriceNTCountry, 0);
+        $a7f2twbu04s_PcsNTCountry = number_format($a7f2twbu04s_PcsNTCountry, 0);
+        $a7f2twbu04s_PriceNTCountry = number_format($a7f2twbu04s_PriceNTCountry, 0);
+        $a7f2twbu07s_PcsNTCountry = number_format($a7f2twbu07s_PcsNTCountry, 0);
+        $a7f2twbu07s_PriceNTCountry = number_format($a7f2twbu07s_PriceNTCountry, 0);
+        $a7f2cebu10s_PcsNTCountry = number_format($a7f2cebu10s_PcsNTCountry, 0);
+        $a7f2cebu10s_PriceNTCountry = number_format($a7f2cebu10s_PriceNTCountry, 0);
+        $a8f1fgbu02s_PcsNTCountry = number_format($a8f1fgbu02s_PcsNTCountry, 0);
+        $a8f1fgbu02s_PriceNTCountry = number_format($a8f1fgbu02s_PriceNTCountry, 0);
+        $a8f2fgbu10s_PcsNTCountry = number_format($a8f2fgbu10s_PcsNTCountry, 0);
+        $a8f2fgbu10s_PriceNTCountry = number_format($a8f2fgbu10s_PriceNTCountry, 0);
+        $a8f2thbu05s_PcsNTCountry = number_format($a8f2thbu05s_PcsNTCountry, 0);
+        $a8f2thbu05s_PriceNTCountry = number_format($a8f2thbu05s_PriceNTCountry, 0);
+        $a8f2debu10s_PcsNTCountry = number_format($a8f2debu10s_PcsNTCountry, 0);
+        $a8f2debu10s_PriceNTCountry = number_format($a8f2debu10s_PriceNTCountry, 0);
+        $a8f2exbu11s_PcsNTCountry = number_format($a8f2exbu11s_PcsNTCountry, 0);
+        $a8f2exbu11s_PriceNTCountry = number_format($a8f2exbu11s_PriceNTCountry, 0);
+        $a8f2twbu04s_PcsNTCountry = number_format($a8f2twbu04s_PcsNTCountry, 0);
+        $a8f2twbu04s_PriceNTCountry = number_format($a8f2twbu04s_PriceNTCountry, 0);
+        $a8f2twbu07s_PcsNTCountry = number_format($a8f2twbu07s_PcsNTCountry, 0);
+        $a8f2twbu07s_PriceNTCountry = number_format($a8f2twbu07s_PriceNTCountry, 0);
+        $a8f2cebu10s_PcsNTCountry = number_format($a8f2cebu10s_PcsNTCountry, 0);
+        $a8f2cebu10s_PriceNTCountry = number_format($a8f2cebu10s_PriceNTCountry, 0);
+        $DC1_PcsNTCountry = number_format($DC1_PcsNTCountry, 0);
+        $DC1_PriceNTCountry = number_format($DC1_PriceNTCountry, 0);
+        $DCP_PcsNTCountry = number_format($DCP_PcsNTCountry, 0);
+        $DCP_PriceNTCountry = number_format($DCP_PriceNTCountry, 0);
+        $DCY_PcsNTCountry = number_format($DCY_PcsNTCountry, 0);
+        $DCY_PriceNTCountry = number_format($DCY_PriceNTCountry, 0);
+        $DEX_PcsNTCountry = number_format($DEX_PcsNTCountry, 0);
+        $DEX_PriceNTCountry = number_format($DEX_PriceNTCountry, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterMTCountry = number_format($Pcs_AfterMTCountry, 0);
+        $Price_AfterMTCountry = number_format($Price_AfterMTCountry, 0);
+        $Po_PcsMTCountry = number_format($Po_PcsMTCountry, 0);
+        $Po_PriceMTCountry = number_format($Po_PriceMTCountry, 0);
+        $Neg_PcsMTCountry = number_format($Neg_PcsMTCountry, 0);
+        $Neg_PriceMTCountry = number_format($Neg_PriceMTCountry, 0);
+        $BackChange_PcsMTCountry = number_format($BackChange_PcsMTCountry, 0);
+        $BackChange_PriceMTCountry = number_format($BackChange_PriceMTCountry, 0);
+        $Purchase_PcsMTCountry = number_format($Purchase_PcsMTCountry, 0);
+        $Purchase_PriceMTCountry = number_format($Purchase_PriceMTCountry, 0);
+        $ReciveTranfer_PcsMTCountry = number_format($ReciveTranfer_PcsMTCountry, 0);
+        $ReciveTranfer_PriceMTCountry = number_format($ReciveTranfer_PriceMTCountry, 0);
+        $ReturnItem_PCSMTCountry = number_format($ReturnItem_PCSMTCountry, 0);
+        $ReturnItem_PriceMTCountry = number_format($ReturnItem_PriceMTCountry, 0);
+        $AllIn_PcsMTCountry = number_format($AllIn_PcsMTCountry, 0);
+        $AllIn_PriceMTCountry = number_format($AllIn_PriceMTCountry, 0);
+        $SendSale_PcsMTCountry = number_format($SendSale_PcsMTCountry, 0);
+        $SendSale_PriceMTCountry = number_format($SendSale_PriceMTCountry, 0);
+        $ReciveTranOut_PcsMTCountry = number_format($ReciveTranOut_PcsMTCountry, 0);
+        $ReciveTranOut_PriceMTCountry = number_format($ReciveTranOut_PriceMTCountry, 0);
+        $ReturnStore_PcsMTCountry = number_format($ReturnStore_PcsMTCountry, 0);
+        $ReturnStore_PriceMTCountry = number_format($ReturnStore_PriceMTCountry, 0);
+        $AllOut_PcsMTCountry = number_format($AllOut_PcsMTCountry, 0);
+        $AllOut_PriceMTCountry = number_format($AllOut_PriceMTCountry, 0);
+        $Calculate_PcsMTCountry = number_format($Calculate_PcsMTCountry, 0);
+        $Calculate_PriceMTCountry = number_format($Calculate_PriceMTCountry, 0);
+        $NewCalculate_PcsMTCountry = number_format($NewCalculate_PcsMTCountry, 0);
+        $NewCalculate_PriceMTCountry = number_format($NewCalculate_PriceMTCountry, 0);
+        $Diff_PcsMTCountry = number_format($Diff_PcsMTCountry, 0);
+        $Diff_PriceMTCountry = number_format($Diff_PriceMTCountry, 0);
+        $NewTotal_PcsMTCountry = number_format($NewTotal_PcsMTCountry, 0);
+        $NewTotal_PriceMTCountry = number_format($NewTotal_PriceMTCountry, 0);
+        $NewTotalDiff_NavMTCountry = number_format($NewTotalDiff_NavMTCountry, 0);
+        $NewTotalDiff_CalMTCountry = number_format($NewTotalDiff_CalMTCountry, 0);
+        $a7f1fgbu02s_PcsMTCountry = number_format($a7f1fgbu02s_PcsMTCountry, 0);
+        $a7f1fgbu02s_PriceMTCountry = number_format($a7f1fgbu02s_PriceMTCountry, 0);
+        $a7f2fgbu10s_PcsMTCountry = number_format($a7f2fgbu10s_PcsMTCountry, 0);
+        $a7f2fgbu10s_PriceMTCountry = number_format($a7f2fgbu10s_PriceMTCountry, 0);
+        $a7f2thbu05s_PcsMTCountry = number_format($a7f2thbu05s_PcsMTCountry, 0);
+        $a7f2thbu05s_PriceMTCountry = number_format($a7f2thbu05s_PriceMTCountry, 0);
+        $a7f2debu10s_PcsMTCountry = number_format($a7f2debu10s_PcsMTCountry, 0);
+        $a7f2debu10s_PriceMTCountry = number_format($a7f2debu10s_PriceMTCountry, 0);
+        $a7f2exbu11s_PcsMTCountry = number_format($a7f2exbu11s_PcsMTCountry, 0);
+        $a7f2exbu11s_PriceMTCountry = number_format($a7f2exbu11s_PriceMTCountry, 0);
+        $a7f2twbu04s_PcsMTCountry = number_format($a7f2twbu04s_PcsMTCountry, 0);
+        $a7f2twbu04s_PriceMTCountry = number_format($a7f2twbu04s_PriceMTCountry, 0);
+        $a7f2twbu07s_PcsMTCountry = number_format($a7f2twbu07s_PcsMTCountry, 0);
+        $a7f2twbu07s_PriceMTCountry = number_format($a7f2twbu07s_PriceMTCountry, 0);
+        $a7f2cebu10s_PcsMTCountry = number_format($a7f2cebu10s_PcsMTCountry, 0);
+        $a7f2cebu10s_PriceMTCountry = number_format($a7f2cebu10s_PriceMTCountry, 0);
+        $a8f1fgbu02s_PcsMTCountry = number_format($a8f1fgbu02s_PcsMTCountry, 0);
+        $a8f1fgbu02s_PriceMTCountry = number_format($a8f1fgbu02s_PriceMTCountry, 0);
+        $a8f2fgbu10s_PcsMTCountry = number_format($a8f2fgbu10s_PcsMTCountry, 0);
+        $a8f2fgbu10s_PriceMTCountry = number_format($a8f2fgbu10s_PriceMTCountry, 0);
+        $a8f2thbu05s_PcsMTCountry = number_format($a8f2thbu05s_PcsMTCountry, 0);
+        $a8f2thbu05s_PriceMTCountry = number_format($a8f2thbu05s_PriceMTCountry, 0);
+        $a8f2debu10s_PcsMTCountry = number_format($a8f2debu10s_PcsMTCountry, 0);
+        $a8f2debu10s_PriceMTCountry = number_format($a8f2debu10s_PriceMTCountry, 0);
+        $a8f2exbu11s_PcsMTCountry = number_format($a8f2exbu11s_PcsMTCountry, 0);
+        $a8f2exbu11s_PriceMTCountry = number_format($a8f2exbu11s_PriceMTCountry, 0);
+        $a8f2twbu04s_PcsMTCountry = number_format($a8f2twbu04s_PcsMTCountry, 0);
+        $a8f2twbu04s_PriceMTCountry = number_format($a8f2twbu04s_PriceMTCountry, 0);
+        $a8f2twbu07s_PcsMTCountry = number_format($a8f2twbu07s_PcsMTCountry, 0);
+        $a8f2twbu07s_PriceMTCountry = number_format($a8f2twbu07s_PriceMTCountry, 0);
+        $a8f2cebu10s_PcsMTCountry = number_format($a8f2cebu10s_PcsMTCountry, 0);
+        $a8f2cebu10s_PriceMTCountry = number_format($a8f2cebu10s_PriceMTCountry, 0);
+        $DC1_PcsMTCountry = number_format($DC1_PcsMTCountry, 0);
+        $DC1_PriceMTCountry = number_format($DC1_PriceMTCountry, 0);
+        $DCP_PcsMTCountry = number_format($DCP_PcsMTCountry, 0);
+        $DCP_PriceMTCountry = number_format($DCP_PriceMTCountry, 0);
+        $DCY_PcsMTCountry = number_format($DCY_PcsMTCountry, 0);
+        $DCY_PriceMTCountry = number_format($DCY_PriceMTCountry, 0);
+        $DEX_PcsMTCountry = number_format($DEX_PcsMTCountry, 0);
+        $DEX_PriceMTCountry = number_format($DEX_PriceMTCountry, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterTWCountry = number_format($Pcs_AfterTWCountry, 0);
+        $Price_AfterTWCountry = number_format($Price_AfterTWCountry, 0);
+        $Po_PcsTWCountry = number_format($Po_PcsTWCountry, 0);
+        $Po_PriceTWCountry = number_format($Po_PriceTWCountry, 0);
+        $Neg_PcsTWCountry = number_format($Neg_PcsTWCountry, 0);
+        $Neg_PriceTWCountry = number_format($Neg_PriceTWCountry, 0);
+        $BackChange_PcsTWCountry = number_format($BackChange_PcsTWCountry, 0);
+        $BackChange_PriceTWCountry = number_format($BackChange_PriceTWCountry, 0);
+        $Purchase_PcsTWCountry = number_format($Purchase_PcsTWCountry, 0);
+        $Purchase_PriceTWCountry = number_format($Purchase_PriceTWCountry, 0);
+        $ReciveTranfer_PcsTWCountry = number_format($ReciveTranfer_PcsTWCountry, 0);
+        $ReciveTranfer_PriceTWCountry = number_format($ReciveTranfer_PriceTWCountry, 0);
+        $ReturnItem_PCSTWCountry = number_format($ReturnItem_PCSTWCountry, 0);
+        $ReturnItem_PriceTWCountry = number_format($ReturnItem_PriceTWCountry, 0);
+        $AllIn_PcsTWCountry = number_format($AllIn_PcsTWCountry, 0);
+        $AllIn_PriceTWCountry = number_format($AllIn_PriceTWCountry, 0);
+        $SendSale_PcsTWCountry = number_format($SendSale_PcsTWCountry, 0);
+        $SendSale_PriceTWCountry = number_format($SendSale_PriceTWCountry, 0);
+        $ReciveTranOut_PcsTWCountry = number_format($ReciveTranOut_PcsTWCountry, 0);
+        $ReciveTranOut_PriceTWCountry = number_format($ReciveTranOut_PriceTWCountry, 0);
+        $ReturnStore_PcsTWCountry = number_format($ReturnStore_PcsTWCountry, 0);
+        $ReturnStore_PriceTWCountry = number_format($ReturnStore_PriceTWCountry, 0);
+        $AllOut_PcsTWCountry = number_format($AllOut_PcsTWCountry, 0);
+        $AllOut_PriceTWCountry = number_format($AllOut_PriceTWCountry, 0);
+        $Calculate_PcsTWCountry = number_format($Calculate_PcsTWCountry, 0);
+        $Calculate_PriceTWCountry = number_format($Calculate_PriceTWCountry, 0);
+        $NewCalculate_PcsTWCountry = number_format($NewCalculate_PcsTWCountry, 0);
+        $NewCalculate_PriceTWCountry = number_format($NewCalculate_PriceTWCountry, 0);
+        $Diff_PcsTWCountry = number_format($Diff_PcsTWCountry, 0);
+        $Diff_PriceTWCountry = number_format($Diff_PriceTWCountry, 0);
+        $NewTotal_PcsTWCountry = number_format($NewTotal_PcsTWCountry, 0);
+        $NewTotal_PriceTWCountry = number_format($NewTotal_PriceTWCountry, 0);
+        $NewTotalDiff_NavTWCountry = number_format($NewTotalDiff_NavTWCountry, 0);
+        $NewTotalDiff_CalTWCountry = number_format($NewTotalDiff_CalTWCountry, 0);
+        $a7f1fgbu02s_PcsTWCountry = number_format($a7f1fgbu02s_PcsTWCountry, 0);
+        $a7f1fgbu02s_PriceTWCountry = number_format($a7f1fgbu02s_PriceTWCountry, 0);
+        $a7f2fgbu10s_PcsTWCountry = number_format($a7f2fgbu10s_PcsTWCountry, 0);
+        $a7f2fgbu10s_PriceTWCountry = number_format($a7f2fgbu10s_PriceTWCountry, 0);
+        $a7f2thbu05s_PcsTWCountry = number_format($a7f2thbu05s_PcsTWCountry, 0);
+        $a7f2thbu05s_PriceTWCountry = number_format($a7f2thbu05s_PriceTWCountry, 0);
+        $a7f2debu10s_PcsTWCountry = number_format($a7f2debu10s_PcsTWCountry, 0);
+        $a7f2debu10s_PriceTWCountry = number_format($a7f2debu10s_PriceTWCountry, 0);
+        $a7f2exbu11s_PcsTWCountry = number_format($a7f2exbu11s_PcsTWCountry, 0);
+        $a7f2exbu11s_PriceTWCountry = number_format($a7f2exbu11s_PriceTWCountry, 0);
+        $a7f2twbu04s_PcsTWCountry = number_format($a7f2twbu04s_PcsTWCountry, 0);
+        $a7f2twbu04s_PriceTWCountry = number_format($a7f2twbu04s_PriceTWCountry, 0);
+        $a7f2twbu07s_PcsTWCountry = number_format($a7f2twbu07s_PcsTWCountry, 0);
+        $a7f2twbu07s_PriceTWCountry = number_format($a7f2twbu07s_PriceTWCountry, 0);
+        $a7f2cebu10s_PcsTWCountry = number_format($a7f2cebu10s_PcsTWCountry, 0);
+        $a7f2cebu10s_PriceTWCountry = number_format($a7f2cebu10s_PriceTWCountry, 0);
+        $a8f1fgbu02s_PcsTWCountry = number_format($a8f1fgbu02s_PcsTWCountry, 0);
+        $a8f1fgbu02s_PriceTWCountry = number_format($a8f1fgbu02s_PriceTWCountry, 0);
+        $a8f2fgbu10s_PcsTWCountry = number_format($a8f2fgbu10s_PcsTWCountry, 0);
+        $a8f2fgbu10s_PriceTWCountry = number_format($a8f2fgbu10s_PriceTWCountry, 0);
+        $a8f2thbu05s_PcsTWCountry = number_format($a8f2thbu05s_PcsTWCountry, 0);
+        $a8f2thbu05s_PriceTWCountry = number_format($a8f2thbu05s_PriceTWCountry, 0);
+        $a8f2debu10s_PcsTWCountry = number_format($a8f2debu10s_PcsTWCountry, 0);
+        $a8f2debu10s_PriceTWCountry = number_format($a8f2debu10s_PriceTWCountry, 0);
+        $a8f2exbu11s_PcsTWCountry = number_format($a8f2exbu11s_PcsTWCountry, 0);
+        $a8f2exbu11s_PriceTWCountry = number_format($a8f2exbu11s_PriceTWCountry, 0);
+        $a8f2twbu04s_PcsTWCountry = number_format($a8f2twbu04s_PcsTWCountry, 0);
+        $a8f2twbu04s_PriceTWCountry = number_format($a8f2twbu04s_PriceTWCountry, 0);
+        $a8f2twbu07s_PcsTWCountry = number_format($a8f2twbu07s_PcsTWCountry, 0);
+        $a8f2twbu07s_PriceTWCountry = number_format($a8f2twbu07s_PriceTWCountry, 0);
+        $a8f2cebu10s_PcsTWCountry = number_format($a8f2cebu10s_PcsTWCountry, 0);
+        $a8f2cebu10s_PriceTWCountry = number_format($a8f2cebu10s_PriceTWCountry, 0);
+        $DC1_PcsTWCountry = number_format($DC1_PcsTWCountry, 0);
+        $DC1_PriceTWCountry = number_format($DC1_PriceTWCountry, 0);
+        $DCP_PcsTWCountry = number_format($DCP_PcsTWCountry, 0);
+        $DCP_PriceTWCountry = number_format($DCP_PriceTWCountry, 0);
+        $DCY_PcsTWCountry = number_format($DCY_PcsTWCountry, 0);
+        $DCY_PriceTWCountry = number_format($DCY_PriceTWCountry, 0);
+        $DEX_PcsTWCountry = number_format($DEX_PcsTWCountry, 0);
+        $DEX_PriceTWCountry = number_format($DEX_PriceTWCountry, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterLNCountry = number_format($Pcs_AfterLNCountry, 0);
+        $Price_AfterLNCountry = number_format($Price_AfterLNCountry, 0);
+        $Po_PcsLNCountry = number_format($Po_PcsLNCountry, 0);
+        $Po_PriceLNCountry = number_format($Po_PriceLNCountry, 0);
+        $Neg_PcsLNCountry = number_format($Neg_PcsLNCountry, 0);
+        $Neg_PriceLNCountry = number_format($Neg_PriceLNCountry, 0);
+        $BackChange_PcsLNCountry = number_format($BackChange_PcsLNCountry, 0);
+        $BackChange_PriceLNCountry = number_format($BackChange_PriceLNCountry, 0);
+        $Purchase_PcsLNCountry = number_format($Purchase_PcsLNCountry, 0);
+        $Purchase_PriceLNCountry = number_format($Purchase_PriceLNCountry, 0);
+        $ReciveTranfer_PcsLNCountry = number_format($ReciveTranfer_PcsLNCountry, 0);
+        $ReciveTranfer_PriceLNCountry = number_format($ReciveTranfer_PriceLNCountry, 0);
+        $ReturnItem_PCSLNCountry = number_format($ReturnItem_PCSLNCountry, 0);
+        $ReturnItem_PriceLNCountry = number_format($ReturnItem_PriceLNCountry, 0);
+        $AllIn_PcsLNCountry = number_format($AllIn_PcsLNCountry, 0);
+        $AllIn_PriceLNCountry = number_format($AllIn_PriceLNCountry, 0);
+        $SendSale_PcsLNCountry = number_format($SendSale_PcsLNCountry, 0);
+        $SendSale_PriceLNCountry = number_format($SendSale_PriceLNCountry, 0);
+        $ReciveTranOut_PcsLNCountry = number_format($ReciveTranOut_PcsLNCountry, 0);
+        $ReciveTranOut_PriceLNCountry = number_format($ReciveTranOut_PriceLNCountry, 0);
+        $ReturnStore_PcsLNCountry = number_format($ReturnStore_PcsLNCountry, 0);
+        $ReturnStore_PriceLNCountry = number_format($ReturnStore_PriceLNCountry, 0);
+        $AllOut_PcsLNCountry = number_format($AllOut_PcsLNCountry, 0);
+        $AllOut_PriceLNCountry = number_format($AllOut_PriceLNCountry, 0);
+        $Calculate_PcsLNCountry = number_format($Calculate_PcsLNCountry, 0);
+        $Calculate_PriceLNCountry = number_format($Calculate_PriceLNCountry, 0);
+        $NewCalculate_PcsLNCountry = number_format($NewCalculate_PcsLNCountry, 0);
+        $NewCalculate_PriceLNCountry = number_format($NewCalculate_PriceLNCountry, 0);
+        $Diff_PcsLNCountry = number_format($Diff_PcsLNCountry, 0);
+        $Diff_PriceLNCountry = number_format($Diff_PriceLNCountry, 0);
+        $NewTotal_PcsLNCountry = number_format($NewTotal_PcsLNCountry, 0);
+        $NewTotal_PriceLNCountry = number_format($NewTotal_PriceLNCountry, 0);
+        $NewTotalDiff_NavLNCountry = number_format($NewTotalDiff_NavLNCountry, 0);
+        $NewTotalDiff_CalLNCountry = number_format($NewTotalDiff_CalLNCountry, 0);
+        $a7f1fgbu02s_PcsLNCountry = number_format($a7f1fgbu02s_PcsLNCountry, 0);
+        $a7f1fgbu02s_PriceLNCountry = number_format($a7f1fgbu02s_PriceLNCountry, 0);
+        $a7f2fgbu10s_PcsLNCountry = number_format($a7f2fgbu10s_PcsLNCountry, 0);
+        $a7f2fgbu10s_PriceLNCountry = number_format($a7f2fgbu10s_PriceLNCountry, 0);
+        $a7f2thbu05s_PcsLNCountry = number_format($a7f2thbu05s_PcsLNCountry, 0);
+        $a7f2thbu05s_PriceLNCountry = number_format($a7f2thbu05s_PriceLNCountry, 0);
+        $a7f2debu10s_PcsLNCountry = number_format($a7f2debu10s_PcsLNCountry, 0);
+        $a7f2debu10s_PriceLNCountry = number_format($a7f2debu10s_PriceLNCountry, 0);
+        $a7f2exbu11s_PcsLNCountry = number_format($a7f2exbu11s_PcsLNCountry, 0);
+        $a7f2exbu11s_PriceLNCountry = number_format($a7f2exbu11s_PriceLNCountry, 0);
+        $a7f2twbu04s_PcsLNCountry = number_format($a7f2twbu04s_PcsLNCountry, 0);
+        $a7f2twbu04s_PriceLNCountry = number_format($a7f2twbu04s_PriceLNCountry, 0);
+        $a7f2twbu07s_PcsLNCountry = number_format($a7f2twbu07s_PcsLNCountry, 0);
+        $a7f2twbu07s_PriceLNCountry = number_format($a7f2twbu07s_PriceLNCountry, 0);
+        $a7f2cebu10s_PcsLNCountry = number_format($a7f2cebu10s_PcsLNCountry, 0);
+        $a7f2cebu10s_PriceLNCountry = number_format($a7f2cebu10s_PriceLNCountry, 0);
+        $a8f1fgbu02s_PcsLNCountry = number_format($a8f1fgbu02s_PcsLNCountry, 0);
+        $a8f1fgbu02s_PriceLNCountry = number_format($a8f1fgbu02s_PriceLNCountry, 0);
+        $a8f2fgbu10s_PcsLNCountry = number_format($a8f2fgbu10s_PcsLNCountry, 0);
+        $a8f2fgbu10s_PriceLNCountry = number_format($a8f2fgbu10s_PriceLNCountry, 0);
+        $a8f2thbu05s_PcsLNCountry = number_format($a8f2thbu05s_PcsLNCountry, 0);
+        $a8f2thbu05s_PriceLNCountry = number_format($a8f2thbu05s_PriceLNCountry, 0);
+        $a8f2debu10s_PcsLNCountry = number_format($a8f2debu10s_PcsLNCountry, 0);
+        $a8f2debu10s_PriceLNCountry = number_format($a8f2debu10s_PriceLNCountry, 0);
+        $a8f2exbu11s_PcsLNCountry = number_format($a8f2exbu11s_PcsLNCountry, 0);
+        $a8f2exbu11s_PriceLNCountry = number_format($a8f2exbu11s_PriceLNCountry, 0);
+        $a8f2twbu04s_PcsLNCountry = number_format($a8f2twbu04s_PcsLNCountry, 0);
+        $a8f2twbu04s_PriceLNCountry = number_format($a8f2twbu04s_PriceLNCountry, 0);
+        $a8f2twbu07s_PcsLNCountry = number_format($a8f2twbu07s_PcsLNCountry, 0);
+        $a8f2twbu07s_PriceLNCountry = number_format($a8f2twbu07s_PriceLNCountry, 0);
+        $a8f2cebu10s_PcsLNCountry = number_format($a8f2cebu10s_PcsLNCountry, 0);
+        $a8f2cebu10s_PriceLNCountry = number_format($a8f2cebu10s_PriceLNCountry, 0);
+        $DC1_PcsLNCountry = number_format($DC1_PcsLNCountry, 0);
+        $DC1_PriceLNCountry = number_format($DC1_PriceLNCountry, 0);
+        $DCP_PcsLNCountry = number_format($DCP_PcsLNCountry, 0);
+        $DCP_PriceLNCountry = number_format($DCP_PriceLNCountry, 0);
+        $DCY_PcsLNCountry = number_format($DCY_PcsLNCountry, 0);
+        $DCY_PriceLNCountry = number_format($DCY_PriceLNCountry, 0);
+        $DEX_PcsLNCountry = number_format($DEX_PcsLNCountry, 0);
+        $DEX_PriceLNCountry = number_format($DEX_PriceLNCountry, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterSNTCountry = number_format($Pcs_AfterSNTCountry, 0);
+        $Price_AfterSNTCountry = number_format($Price_AfterSNTCountry, 0);
+        $Po_PcsSNTCountry = number_format($Po_PcsSNTCountry, 0);
+        $Po_PriceSNTCountry = number_format($Po_PriceSNTCountry, 0);
+        $Neg_PcsSNTCountry = number_format($Neg_PcsSNTCountry, 0);
+        $Neg_PriceSNTCountry = number_format($Neg_PriceSNTCountry, 0);
+        $BackChange_PcsSNTCountry = number_format($BackChange_PcsSNTCountry, 0);
+        $BackChange_PriceSNTCountry = number_format($BackChange_PriceSNTCountry, 0);
+        $Purchase_PcsSNTCountry = number_format($Purchase_PcsSNTCountry, 0);
+        $Purchase_PriceSNTCountry = number_format($Purchase_PriceSNTCountry, 0);
+        $ReciveTranfer_PcsSNTCountry = number_format($ReciveTranfer_PcsSNTCountry, 0);
+        $ReciveTranfer_PriceSNTCountry = number_format($ReciveTranfer_PriceSNTCountry, 0);
+        $ReturnItem_PCSSNTCountry = number_format($ReturnItem_PCSSNTCountry, 0);
+        $ReturnItem_PriceSNTCountry = number_format($ReturnItem_PriceSNTCountry, 0);
+        $AllIn_PcsSNTCountry = number_format($AllIn_PcsSNTCountry, 0);
+        $AllIn_PriceSNTCountry = number_format($AllIn_PriceSNTCountry, 0);
+        $SendSale_PcsSNTCountry = number_format($SendSale_PcsSNTCountry, 0);
+        $SendSale_PriceSNTCountry = number_format($SendSale_PriceSNTCountry, 0);
+        $ReciveTranOut_PcsSNTCountry = number_format($ReciveTranOut_PcsSNTCountry, 0);
+        $ReciveTranOut_PriceSNTCountry = number_format($ReciveTranOut_PriceSNTCountry, 0);
+        $ReturnStore_PcsSNTCountry = number_format($ReturnStore_PcsSNTCountry, 0);
+        $ReturnStore_PriceSNTCountry = number_format($ReturnStore_PriceSNTCountry, 0);
+        $AllOut_PcsSNTCountry = number_format($AllOut_PcsSNTCountry, 0);
+        $AllOut_PriceSNTCountry = number_format($AllOut_PriceSNTCountry, 0);
+        $Calculate_PcsSNTCountry = number_format($Calculate_PcsSNTCountry, 0);
+        $Calculate_PriceSNTCountry = number_format($Calculate_PriceSNTCountry, 0);
+        $NewCalculate_PcsSNTCountry = number_format($NewCalculate_PcsSNTCountry, 0);
+        $NewCalculate_PriceSNTCountry = number_format($NewCalculate_PriceSNTCountry, 0);
+        $Diff_PcsSNTCountry = number_format($Diff_PcsSNTCountry, 0);
+        $Diff_PriceSNTCountry = number_format($Diff_PriceSNTCountry, 0);
+        $NewTotal_PcsSNTCountry = number_format($NewTotal_PcsSNTCountry, 0);
+        $NewTotal_PriceSNTCountry = number_format($NewTotal_PriceSNTCountry, 0);
+        $NewTotalDiff_NavSNTCountry = number_format($NewTotalDiff_NavSNTCountry, 0);
+        $NewTotalDiff_CalSNTCountry = number_format($NewTotalDiff_CalSNTCountry, 0);
+        $a7f1fgbu02s_PcsSNTCountry = number_format($a7f1fgbu02s_PcsSNTCountry, 0);
+        $a7f1fgbu02s_PriceSNTCountry = number_format($a7f1fgbu02s_PriceSNTCountry, 0);
+        $a7f2fgbu10s_PcsSNTCountry = number_format($a7f2fgbu10s_PcsSNTCountry, 0);
+        $a7f2fgbu10s_PriceSNTCountry = number_format($a7f2fgbu10s_PriceSNTCountry, 0);
+        $a7f2thbu05s_PcsSNTCountry = number_format($a7f2thbu05s_PcsSNTCountry, 0);
+        $a7f2thbu05s_PriceSNTCountry = number_format($a7f2thbu05s_PriceSNTCountry, 0);
+        $a7f2debu10s_PcsSNTCountry = number_format($a7f2debu10s_PcsSNTCountry, 0);
+        $a7f2debu10s_PriceSNTCountry = number_format($a7f2debu10s_PriceSNTCountry, 0);
+        $a7f2exbu11s_PcsSNTCountry = number_format($a7f2exbu11s_PcsSNTCountry, 0);
+        $a7f2exbu11s_PriceSNTCountry = number_format($a7f2exbu11s_PriceSNTCountry, 0);
+        $a7f2twbu04s_PcsSNTCountry = number_format($a7f2twbu04s_PcsSNTCountry, 0);
+        $a7f2twbu04s_PriceSNTCountry = number_format($a7f2twbu04s_PriceSNTCountry, 0);
+        $a7f2twbu07s_PcsSNTCountry = number_format($a7f2twbu07s_PcsSNTCountry, 0);
+        $a7f2twbu07s_PriceSNTCountry = number_format($a7f2twbu07s_PriceSNTCountry, 0);
+        $a7f2cebu10s_PcsSNTCountry = number_format($a7f2cebu10s_PcsSNTCountry, 0);
+        $a7f2cebu10s_PriceSNTCountry = number_format($a7f2cebu10s_PriceSNTCountry, 0);
+        $a8f1fgbu02s_PcsSNTCountry = number_format($a8f1fgbu02s_PcsSNTCountry, 0);
+        $a8f1fgbu02s_PriceSNTCountry = number_format($a8f1fgbu02s_PriceSNTCountry, 0);
+        $a8f2fgbu10s_PcsSNTCountry = number_format($a8f2fgbu10s_PcsSNTCountry, 0);
+        $a8f2fgbu10s_PriceSNTCountry = number_format($a8f2fgbu10s_PriceSNTCountry, 0);
+        $a8f2thbu05s_PcsSNTCountry = number_format($a8f2thbu05s_PcsSNTCountry, 0);
+        $a8f2thbu05s_PriceSNTCountry = number_format($a8f2thbu05s_PriceSNTCountry, 0);
+        $a8f2debu10s_PcsSNTCountry = number_format($a8f2debu10s_PcsSNTCountry, 0);
+        $a8f2debu10s_PriceSNTCountry = number_format($a8f2debu10s_PriceSNTCountry, 0);
+        $a8f2exbu11s_PcsSNTCountry = number_format($a8f2exbu11s_PcsSNTCountry, 0);
+        $a8f2exbu11s_PriceSNTCountry = number_format($a8f2exbu11s_PriceSNTCountry, 0);
+        $a8f2twbu04s_PcsSNTCountry = number_format($a8f2twbu04s_PcsSNTCountry, 0);
+        $a8f2twbu04s_PriceSNTCountry = number_format($a8f2twbu04s_PriceSNTCountry, 0);
+        $a8f2twbu07s_PcsSNTCountry = number_format($a8f2twbu07s_PcsSNTCountry, 0);
+        $a8f2twbu07s_PriceSNTCountry = number_format($a8f2twbu07s_PriceSNTCountry, 0);
+        $a8f2cebu10s_PcsSNTCountry = number_format($a8f2cebu10s_PcsSNTCountry, 0);
+        $a8f2cebu10s_PriceSNTCountry = number_format($a8f2cebu10s_PriceSNTCountry, 0);
+        $DC1_PcsSNTCountry = number_format($DC1_PcsSNTCountry, 0);
+        $DC1_PriceSNTCountry = number_format($DC1_PriceSNTCountry, 0);
+        $DCP_PcsSNTCountry = number_format($DCP_PcsSNTCountry, 0);
+        $DCP_PriceSNTCountry = number_format($DCP_PriceSNTCountry, 0);
+        $DCY_PcsSNTCountry = number_format($DCY_PcsSNTCountry, 0);
+        $DCY_PriceSNTCountry = number_format($DCY_PriceSNTCountry, 0);
+        $DEX_PcsSNTCountry = number_format($DEX_PcsSNTCountry, 0);
+        $DEX_PriceSNTCountry = number_format($DEX_PriceSNTCountry, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterAllCountry = number_format($Pcs_AfterAllCountry, 0);
+        $Price_AfterAllCountry = number_format($Price_AfterAllCountry, 0);
+        $Po_PcsAllCountry = number_format($Po_PcsAllCountry, 0);
+        $Po_PriceAllCountry = number_format($Po_PriceAllCountry, 0);
+        $Neg_PcsAllCountry = number_format($Neg_PcsAllCountry, 0);
+        $Neg_PriceAllCountry = number_format($Neg_PriceAllCountry, 0);
+        $BackChange_PcsAllCountry = number_format($BackChange_PcsAllCountry, 0);
+        $BackChange_PriceAllCountry = number_format($BackChange_PriceAllCountry, 0);
+        $Purchase_PcsAllCountry = number_format($Purchase_PcsAllCountry, 0);
+        $Purchase_PriceAllCountry = number_format($Purchase_PriceAllCountry, 0);
+        $ReciveTranfer_PcsAllCountry = number_format($ReciveTranfer_PcsAllCountry, 0);
+        $ReciveTranfer_PriceAllCountry = number_format($ReciveTranfer_PriceAllCountry, 0);
+        $ReturnItem_PCSAllCountry = number_format($ReturnItem_PCSAllCountry, 0);
+        $ReturnItem_PriceAllCountry = number_format($ReturnItem_PriceAllCountry, 0);
+        $AllIn_PcsAllCountry = number_format($AllIn_PcsAllCountry, 0);
+        $AllIn_PriceAllCountry = number_format($AllIn_PriceAllCountry, 0);
+        $SendSale_PcsAllCountry = number_format($SendSale_PcsAllCountry, 0);
+        $SendSale_PriceAllCountry = number_format($SendSale_PriceAllCountry, 0);
+        $ReciveTranOut_PcsAllCountry = number_format($ReciveTranOut_PcsAllCountry, 0);
+        $ReciveTranOut_PriceAllCountry = number_format($ReciveTranOut_PriceAllCountry, 0);
+        $ReturnStore_PcsAllCountry = number_format($ReturnStore_PcsAllCountry, 0);
+        $ReturnStore_PriceAllCountry = number_format($ReturnStore_PriceAllCountry, 0);
+        $AllOut_PcsAllCountry = number_format($AllOut_PcsAllCountry, 0);
+        $AllOut_PriceAllCountry = number_format($AllOut_PriceAllCountry, 0);
+        $Calculate_PcsAllCountry = number_format($Calculate_PcsAllCountry, 0);
+        $Calculate_PriceAllCountry = number_format($Calculate_PriceAllCountry, 0);
+        $NewCalculate_PcsAllCountry = number_format($NewCalculate_PcsAllCountry, 0);
+        $NewCalculate_PriceAllCountry = number_format($NewCalculate_PriceAllCountry, 0);
+        $Diff_PcsAllCountry = number_format($Diff_PcsAllCountry, 0);
+        $Diff_PriceAllCountry = number_format($Diff_PriceAllCountry, 0);
+        $NewTotal_PcsAllCountry = number_format($NewTotal_PcsAllCountry, 0);
+        $NewTotal_PriceAllCountry = number_format($NewTotal_PriceAllCountry, 0);
+        $NewTotalDiff_NavAllCountry = number_format($NewTotalDiff_NavAllCountry, 0);
+        $NewTotalDiff_CalAllCountry = number_format($NewTotalDiff_CalAllCountry, 0);
+        $a7f1fgbu02s_PcsAllCountry = number_format($a7f1fgbu02s_PcsAllCountry, 0);
+        $a7f1fgbu02s_PriceAllCountry = number_format($a7f1fgbu02s_PriceAllCountry, 0);
+        $a7f2fgbu10s_PcsAllCountry = number_format($a7f2fgbu10s_PcsAllCountry, 0);
+        $a7f2fgbu10s_PriceAllCountry = number_format($a7f2fgbu10s_PriceAllCountry, 0);
+        $a7f2thbu05s_PcsAllCountry = number_format($a7f2thbu05s_PcsAllCountry, 0);
+        $a7f2thbu05s_PriceAllCountry = number_format($a7f2thbu05s_PriceAllCountry, 0);
+        $a7f2debu10s_PcsAllCountry = number_format($a7f2debu10s_PcsAllCountry, 0);
+        $a7f2debu10s_PriceAllCountry = number_format($a7f2debu10s_PriceAllCountry, 0);
+        $a7f2exbu11s_PcsAllCountry = number_format($a7f2exbu11s_PcsAllCountry, 0);
+        $a7f2exbu11s_PriceAllCountry = number_format($a7f2exbu11s_PriceAllCountry, 0);
+        $a7f2twbu04s_PcsAllCountry = number_format($a7f2twbu04s_PcsAllCountry, 0);
+        $a7f2twbu04s_PriceAllCountry = number_format($a7f2twbu04s_PriceAllCountry, 0);
+        $a7f2twbu07s_PcsAllCountry = number_format($a7f2twbu07s_PcsAllCountry, 0);
+        $a7f2twbu07s_PriceAllCountry = number_format($a7f2twbu07s_PriceAllCountry, 0);
+        $a7f2cebu10s_PcsAllCountry = number_format($a7f2cebu10s_PcsAllCountry, 0);
+        $a7f2cebu10s_PriceAllCountry = number_format($a7f2cebu10s_PriceAllCountry, 0);
+        $a8f1fgbu02s_PcsAllCountry = number_format($a8f1fgbu02s_PcsAllCountry, 0);
+        $a8f1fgbu02s_PriceAllCountry = number_format($a8f1fgbu02s_PriceAllCountry, 0);
+        $a8f2fgbu10s_PcsAllCountry = number_format($a8f2fgbu10s_PcsAllCountry, 0);
+        $a8f2fgbu10s_PriceAllCountry = number_format($a8f2fgbu10s_PriceAllCountry, 0);
+        $a8f2thbu05s_PcsAllCountry = number_format($a8f2thbu05s_PcsAllCountry, 0);
+        $a8f2thbu05s_PriceAllCountry = number_format($a8f2thbu05s_PriceAllCountry, 0);
+        $a8f2debu10s_PcsAllCountry = number_format($a8f2debu10s_PcsAllCountry, 0);
+        $a8f2debu10s_PriceAllCountry = number_format($a8f2debu10s_PriceAllCountry, 0);
+        $a8f2exbu11s_PcsAllCountry = number_format($a8f2exbu11s_PcsAllCountry, 0);
+        $a8f2exbu11s_PriceAllCountry = number_format($a8f2exbu11s_PriceAllCountry, 0);
+        $a8f2twbu04s_PcsAllCountry = number_format($a8f2twbu04s_PcsAllCountry, 0);
+        $a8f2twbu04s_PriceAllCountry = number_format($a8f2twbu04s_PriceAllCountry, 0);
+        $a8f2twbu07s_PcsAllCountry = number_format($a8f2twbu07s_PcsAllCountry, 0);
+        $a8f2twbu07s_PriceAllCountry = number_format($a8f2twbu07s_PriceAllCountry, 0);
+        $a8f2cebu10s_PcsAllCountry = number_format($a8f2cebu10s_PcsAllCountry, 0);
+        $a8f2cebu10s_PriceAllCountry = number_format($a8f2cebu10s_PriceAllCountry, 0);
+        $DC1_PcsAllCountry = number_format($DC1_PcsAllCountry, 0);
+        $DC1_PriceAllCountry = number_format($DC1_PriceAllCountry, 0);
+        $DCP_PcsAllCountry = number_format($DCP_PcsAllCountry, 0);
+        $DCP_PriceAllCountry = number_format($DCP_PriceAllCountry, 0);
+        $DCY_PcsAllCountry = number_format($DCY_PcsAllCountry, 0);
+        $DCY_PriceAllCountry = number_format($DCY_PriceAllCountry, 0);
+        $DEX_PcsAllCountry = number_format($DEX_PcsAllCountry, 0);
+        $DEX_PriceAllCountry = number_format($DEX_PriceAllCountry, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterAllTotal = number_format($Pcs_AfterAllTotal, 0);
+        $Price_AfterAllTotal = number_format($Price_AfterAllTotal, 0);
+        $Po_PcsAllTotal = number_format($Po_PcsAllTotal, 0);
+        $Po_PriceAllTotal = number_format($Po_PriceAllTotal, 0);
+        $Neg_PcsAllTotal = number_format($Neg_PcsAllTotal, 0);
+        $Neg_PriceAllTotal = number_format($Neg_PriceAllTotal, 0);
+        $BackChange_PcsAllTotal = number_format($BackChange_PcsAllTotal, 0);
+        $BackChange_PriceAllTotal = number_format($BackChange_PriceAllTotal, 0);
+        $Purchase_PcsAllTotal = number_format($Purchase_PcsAllTotal, 0);
+        $Purchase_PriceAllTotal = number_format($Purchase_PriceAllTotal, 0);
+        $ReciveTranfer_PcsAllTotal = number_format($ReciveTranfer_PcsAllTotal, 0);
+        $ReciveTranfer_PriceAllTotal = number_format($ReciveTranfer_PriceAllTotal, 0);
+        $ReturnItem_PCSAllTotal = number_format($ReturnItem_PCSAllTotal, 0);
+        $ReturnItem_PriceAllTotal = number_format($ReturnItem_PriceAllTotal, 0);
+        $AllIn_PcsAllTotal = number_format($AllIn_PcsAllTotal, 0);
+        $AllIn_PriceAllTotal = number_format($AllIn_PriceAllTotal, 0);
+        $SendSale_PcsAllTotal = number_format($SendSale_PcsAllTotal, 0);
+        $SendSale_PriceAllTotal = number_format($SendSale_PriceAllTotal, 0);
+        $ReciveTranOut_PcsAllTotal = number_format($ReciveTranOut_PcsAllTotal, 0);
+        $ReciveTranOut_PriceAllTotal = number_format($ReciveTranOut_PriceAllTotal, 0);
+        $ReturnStore_PcsAllTotal = number_format($ReturnStore_PcsAllTotal, 0);
+        $ReturnStore_PriceAllTotal = number_format($ReturnStore_PriceAllTotal, 0);
+        $AllOut_PcsAllTotal = number_format($AllOut_PcsAllTotal, 0);
+        $AllOut_PriceAllTotal = number_format($AllOut_PriceAllTotal, 0);
+        $Calculate_PcsAllTotal = number_format($Calculate_PcsAllTotal, 0);
+        $Calculate_PriceAllTotal = number_format($Calculate_PriceAllTotal, 0);
+        $NewCalculate_PcsAllTotal = number_format($NewCalculate_PcsAllTotal, 0);
+        $NewCalculate_PriceAllTotal = number_format($NewCalculate_PriceAllTotal, 0);
+        $Diff_PcsAllTotal = number_format($Diff_PcsAllTotal, 0);
+        $Diff_PriceAllTotal = number_format($Diff_PriceAllTotal, 0);
+        $NewTotal_PcsAllTotal = number_format($NewTotal_PcsAllTotal, 0);
+        $NewTotal_PriceAllTotal = number_format($NewTotal_PriceAllTotal, 0);
+        $NewTotalDiff_NavAllTotal = number_format($NewTotalDiff_NavAllTotal, 0);
+        $NewTotalDiff_CalAllTotal = number_format($NewTotalDiff_CalAllTotal, 0);
+        $a7f1fgbu02s_PcsAllTotal = number_format($a7f1fgbu02s_PcsAllTotal, 0);
+        $a7f1fgbu02s_PriceAllTotal = number_format($a7f1fgbu02s_PriceAllTotal, 0);
+        $a7f2fgbu10s_PcsAllTotal = number_format($a7f2fgbu10s_PcsAllTotal, 0);
+        $a7f2fgbu10s_PriceAllTotal = number_format($a7f2fgbu10s_PriceAllTotal, 0);
+        $a7f2thbu05s_PcsAllTotal = number_format($a7f2thbu05s_PcsAllTotal, 0);
+        $a7f2thbu05s_PriceAllTotal = number_format($a7f2thbu05s_PriceAllTotal, 0);
+        $a7f2debu10s_PcsAllTotal = number_format($a7f2debu10s_PcsAllTotal, 0);
+        $a7f2debu10s_PriceAllTotal = number_format($a7f2debu10s_PriceAllTotal, 0);
+        $a7f2exbu11s_PcsAllTotal = number_format($a7f2exbu11s_PcsAllTotal, 0);
+        $a7f2exbu11s_PriceAllTotal = number_format($a7f2exbu11s_PriceAllTotal, 0);
+        $a7f2twbu04s_PcsAllTotal = number_format($a7f2twbu04s_PcsAllTotal, 0);
+        $a7f2twbu04s_PriceAllTotal = number_format($a7f2twbu04s_PriceAllTotal, 0);
+        $a7f2twbu07s_PcsAllTotal = number_format($a7f2twbu07s_PcsAllTotal, 0);
+        $a7f2twbu07s_PriceAllTotal = number_format($a7f2twbu07s_PriceAllTotal, 0);
+        $a7f2cebu10s_PcsAllTotal = number_format($a7f2cebu10s_PcsAllTotal, 0);
+        $a7f2cebu10s_PriceAllTotal = number_format($a7f2cebu10s_PriceAllTotal, 0);
+        $a8f1fgbu02s_PcsAllTotal = number_format($a8f1fgbu02s_PcsAllTotal, 0);
+        $a8f1fgbu02s_PriceAllTotal = number_format($a8f1fgbu02s_PriceAllTotal, 0);
+        $a8f2fgbu10s_PcsAllTotal = number_format($a8f2fgbu10s_PcsAllTotal, 0);
+        $a8f2fgbu10s_PriceAllTotal = number_format($a8f2fgbu10s_PriceAllTotal, 0);
+        $a8f2thbu05s_PcsAllTotal = number_format($a8f2thbu05s_PcsAllTotal, 0);
+        $a8f2thbu05s_PriceAllTotal = number_format($a8f2thbu05s_PriceAllTotal, 0);
+        $a8f2debu10s_PcsAllTotal = number_format($a8f2debu10s_PcsAllTotal, 0);
+        $a8f2debu10s_PriceAllTotal = number_format($a8f2debu10s_PriceAllTotal, 0);
+        $a8f2exbu11s_PcsAllTotal = number_format($a8f2exbu11s_PcsAllTotal, 0);
+        $a8f2exbu11s_PriceAllTotal = number_format($a8f2exbu11s_PriceAllTotal, 0);
+        $a8f2twbu04s_PcsAllTotal = number_format($a8f2twbu04s_PcsAllTotal, 0);
+        $a8f2twbu04s_PriceAllTotal = number_format($a8f2twbu04s_PriceAllTotal, 0);
+        $a8f2twbu07s_PcsAllTotal = number_format($a8f2twbu07s_PcsAllTotal, 0);
+        $a8f2twbu07s_PriceAllTotal = number_format($a8f2twbu07s_PriceAllTotal, 0);
+        $a8f2cebu10s_PcsAllTotal = number_format($a8f2cebu10s_PcsAllTotal, 0);
+        $a8f2cebu10s_PriceAllTotal = number_format($a8f2cebu10s_PriceAllTotal, 0);
+        $DC1_PcsAllTotal = number_format($DC1_PcsAllTotal, 0);
+        $DC1_PriceAllTotal = number_format($DC1_PriceAllTotal, 0);
+        $DCP_PcsAllTotal = number_format($DCP_PcsAllTotal, 0);
+        $DCP_PriceAllTotal = number_format($DCP_PriceAllTotal, 0);
+        $DCY_PcsAllTotal = number_format($DCY_PcsAllTotal, 0);
+        $DCY_PriceAllTotal = number_format($DCY_PriceAllTotal, 0);
+        $DEX_PcsAllTotal = number_format($DEX_PcsAllTotal, 0);
+        $DEX_PriceAllTotal = number_format($DEX_PriceAllTotal, 0);
 
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -10516,6 +13347,566 @@ class ProductController extends Controller
             $DCY_PriceAllDCP,
             $DEX_PcsAllDCP,
             $DEX_PriceAllDCP,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterNTCountry,
+            $Price_AfterNTCountry,
+            $Pcs_AfterNTCountry,
+            $Price_AfterNTCountry,
+            $Po_PcsNTCountry,
+            $Po_PriceNTCountry,
+            $Neg_PcsNTCountry,
+            $Neg_PriceNTCountry,
+            $BackChange_PcsNTCountry,
+            $BackChange_PriceNTCountry,
+            $Purchase_PcsNTCountry,
+            $Purchase_PriceNTCountry,
+            $ReciveTranfer_PcsNTCountry,
+            $ReciveTranfer_PriceNTCountry,
+            $ReturnItem_PCSNTCountry,
+            $ReturnItem_PriceNTCountry,
+            $AllIn_PcsNTCountry,
+            $AllIn_PriceNTCountry,
+            $SendSale_PcsNTCountry,
+            $SendSale_PriceNTCountry,
+            $ReciveTranOut_PcsNTCountry,
+            $ReciveTranOut_PriceNTCountry,
+            $ReturnStore_PcsNTCountry,
+            $ReturnStore_PriceNTCountry,
+            $AllOut_PcsNTCountry,
+            $AllOut_PriceNTCountry,
+            $Calculate_PcsNTCountry,
+            $Calculate_PriceNTCountry,
+            $NewCalculate_PcsNTCountry,
+            $NewCalculate_PriceNTCountry,
+            $Diff_PcsNTCountry,
+            $Diff_PriceNTCountry,
+            $NewTotal_PcsNTCountry,
+            $NewTotal_PriceNTCountry,
+            $NewTotalDiff_NavNTCountry,
+            $NewTotalDiff_CalNTCountry,
+            $a7f1fgbu02s_PcsNTCountry,
+            $a7f1fgbu02s_PriceNTCountry,
+            $a7f2fgbu10s_PcsNTCountry,
+            $a7f2fgbu10s_PriceNTCountry,
+            $a7f2thbu05s_PcsNTCountry,
+            $a7f2thbu05s_PriceNTCountry,
+            $a7f2debu10s_PcsNTCountry,
+            $a7f2debu10s_PriceNTCountry,
+            $a7f2exbu11s_PcsNTCountry,
+            $a7f2exbu11s_PriceNTCountry,
+            $a7f2twbu04s_PcsNTCountry,
+            $a7f2twbu04s_PriceNTCountry,
+            $a7f2twbu07s_PcsNTCountry,
+            $a7f2twbu07s_PriceNTCountry,
+            $a7f2cebu10s_PcsNTCountry,
+            $a7f2cebu10s_PriceNTCountry,
+            $a8f1fgbu02s_PcsNTCountry,
+            $a8f1fgbu02s_PriceNTCountry,
+            $a8f2fgbu10s_PcsNTCountry,
+            $a8f2fgbu10s_PriceNTCountry,
+            $a8f2thbu05s_PcsNTCountry,
+            $a8f2thbu05s_PriceNTCountry,
+            $a8f2debu10s_PcsNTCountry,
+            $a8f2debu10s_PriceNTCountry,
+            $a8f2exbu11s_PcsNTCountry,
+            $a8f2exbu11s_PriceNTCountry,
+            $a8f2twbu04s_PcsNTCountry,
+            $a8f2twbu04s_PriceNTCountry,
+            $a8f2twbu07s_PcsNTCountry,
+            $a8f2twbu07s_PriceNTCountry,
+            $a8f2cebu10s_PcsNTCountry,
+            $a8f2cebu10s_PriceNTCountry,
+            $DC1_PcsNTCountry,
+            $DC1_PriceNTCountry,
+            $DCP_PcsNTCountry,
+            $DCP_PriceNTCountry,
+            $DCY_PcsNTCountry,
+            $DCY_PriceNTCountry,
+            $DEX_PcsNTCountry,
+            $DEX_PriceNTCountry,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterMTCountry,
+            $Price_AfterMTCountry,
+            $Pcs_AfterMTCountry,
+            $Price_AfterMTCountry,
+            $Po_PcsMTCountry,
+            $Po_PriceMTCountry,
+            $Neg_PcsMTCountry,
+            $Neg_PriceMTCountry,
+            $BackChange_PcsMTCountry,
+            $BackChange_PriceMTCountry,
+            $Purchase_PcsMTCountry,
+            $Purchase_PriceMTCountry,
+            $ReciveTranfer_PcsMTCountry,
+            $ReciveTranfer_PriceMTCountry,
+            $ReturnItem_PCSMTCountry,
+            $ReturnItem_PriceMTCountry,
+            $AllIn_PcsMTCountry,
+            $AllIn_PriceMTCountry,
+            $SendSale_PcsMTCountry,
+            $SendSale_PriceMTCountry,
+            $ReciveTranOut_PcsMTCountry,
+            $ReciveTranOut_PriceMTCountry,
+            $ReturnStore_PcsMTCountry,
+            $ReturnStore_PriceMTCountry,
+            $AllOut_PcsMTCountry,
+            $AllOut_PriceMTCountry,
+            $Calculate_PcsMTCountry,
+            $Calculate_PriceMTCountry,
+            $NewCalculate_PcsMTCountry,
+            $NewCalculate_PriceMTCountry,
+            $Diff_PcsMTCountry,
+            $Diff_PriceMTCountry,
+            $NewTotal_PcsMTCountry,
+            $NewTotal_PriceMTCountry,
+            $NewTotalDiff_NavMTCountry,
+            $NewTotalDiff_CalMTCountry,
+            $a7f1fgbu02s_PcsMTCountry,
+            $a7f1fgbu02s_PriceMTCountry,
+            $a7f2fgbu10s_PcsMTCountry,
+            $a7f2fgbu10s_PriceMTCountry,
+            $a7f2thbu05s_PcsMTCountry,
+            $a7f2thbu05s_PriceMTCountry,
+            $a7f2debu10s_PcsMTCountry,
+            $a7f2debu10s_PriceMTCountry,
+            $a7f2exbu11s_PcsMTCountry,
+            $a7f2exbu11s_PriceMTCountry,
+            $a7f2twbu04s_PcsMTCountry,
+            $a7f2twbu04s_PriceMTCountry,
+            $a7f2twbu07s_PcsMTCountry,
+            $a7f2twbu07s_PriceMTCountry,
+            $a7f2cebu10s_PcsMTCountry,
+            $a7f2cebu10s_PriceMTCountry,
+            $a8f1fgbu02s_PcsMTCountry,
+            $a8f1fgbu02s_PriceMTCountry,
+            $a8f2fgbu10s_PcsMTCountry,
+            $a8f2fgbu10s_PriceMTCountry,
+            $a8f2thbu05s_PcsMTCountry,
+            $a8f2thbu05s_PriceMTCountry,
+            $a8f2debu10s_PcsMTCountry,
+            $a8f2debu10s_PriceMTCountry,
+            $a8f2exbu11s_PcsMTCountry,
+            $a8f2exbu11s_PriceMTCountry,
+            $a8f2twbu04s_PcsMTCountry,
+            $a8f2twbu04s_PriceMTCountry,
+            $a8f2twbu07s_PcsMTCountry,
+            $a8f2twbu07s_PriceMTCountry,
+            $a8f2cebu10s_PcsMTCountry,
+            $a8f2cebu10s_PriceMTCountry,
+            $DC1_PcsMTCountry,
+            $DC1_PriceMTCountry,
+            $DCP_PcsMTCountry,
+            $DCP_PriceMTCountry,
+            $DCY_PcsMTCountry,
+            $DCY_PriceMTCountry,
+            $DEX_PcsMTCountry,
+            $DEX_PriceMTCountry,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterTWCountry,
+            $Price_AfterTWCountry,
+            $Pcs_AfterTWCountry,
+            $Price_AfterTWCountry,
+            $Po_PcsTWCountry,
+            $Po_PriceTWCountry,
+            $Neg_PcsTWCountry,
+            $Neg_PriceTWCountry,
+            $BackChange_PcsTWCountry,
+            $BackChange_PriceTWCountry,
+            $Purchase_PcsTWCountry,
+            $Purchase_PriceTWCountry,
+            $ReciveTranfer_PcsTWCountry,
+            $ReciveTranfer_PriceTWCountry,
+            $ReturnItem_PCSTWCountry,
+            $ReturnItem_PriceTWCountry,
+            $AllIn_PcsTWCountry,
+            $AllIn_PriceTWCountry,
+            $SendSale_PcsTWCountry,
+            $SendSale_PriceTWCountry,
+            $ReciveTranOut_PcsTWCountry,
+            $ReciveTranOut_PriceTWCountry,
+            $ReturnStore_PcsTWCountry,
+            $ReturnStore_PriceTWCountry,
+            $AllOut_PcsTWCountry,
+            $AllOut_PriceTWCountry,
+            $Calculate_PcsTWCountry,
+            $Calculate_PriceTWCountry,
+            $NewCalculate_PcsTWCountry,
+            $NewCalculate_PriceTWCountry,
+            $Diff_PcsTWCountry,
+            $Diff_PriceTWCountry,
+            $NewTotal_PcsTWCountry,
+            $NewTotal_PriceTWCountry,
+            $NewTotalDiff_NavTWCountry,
+            $NewTotalDiff_CalTWCountry,
+            $a7f1fgbu02s_PcsTWCountry,
+            $a7f1fgbu02s_PriceTWCountry,
+            $a7f2fgbu10s_PcsTWCountry,
+            $a7f2fgbu10s_PriceTWCountry,
+            $a7f2thbu05s_PcsTWCountry,
+            $a7f2thbu05s_PriceTWCountry,
+            $a7f2debu10s_PcsTWCountry,
+            $a7f2debu10s_PriceTWCountry,
+            $a7f2exbu11s_PcsTWCountry,
+            $a7f2exbu11s_PriceTWCountry,
+            $a7f2twbu04s_PcsTWCountry,
+            $a7f2twbu04s_PriceTWCountry,
+            $a7f2twbu07s_PcsTWCountry,
+            $a7f2twbu07s_PriceTWCountry,
+            $a7f2cebu10s_PcsTWCountry,
+            $a7f2cebu10s_PriceTWCountry,
+            $a8f1fgbu02s_PcsTWCountry,
+            $a8f1fgbu02s_PriceTWCountry,
+            $a8f2fgbu10s_PcsTWCountry,
+            $a8f2fgbu10s_PriceTWCountry,
+            $a8f2thbu05s_PcsTWCountry,
+            $a8f2thbu05s_PriceTWCountry,
+            $a8f2debu10s_PcsTWCountry,
+            $a8f2debu10s_PriceTWCountry,
+            $a8f2exbu11s_PcsTWCountry,
+            $a8f2exbu11s_PriceTWCountry,
+            $a8f2twbu04s_PcsTWCountry,
+            $a8f2twbu04s_PriceTWCountry,
+            $a8f2twbu07s_PcsTWCountry,
+            $a8f2twbu07s_PriceTWCountry,
+            $a8f2cebu10s_PcsTWCountry,
+            $a8f2cebu10s_PriceTWCountry,
+            $DC1_PcsTWCountry,
+            $DC1_PriceTWCountry,
+            $DCP_PcsTWCountry,
+            $DCP_PriceTWCountry,
+            $DCY_PcsTWCountry,
+            $DCY_PriceTWCountry,
+            $DEX_PcsTWCountry,
+            $DEX_PriceTWCountry,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterLNCountry,
+            $Price_AfterLNCountry,
+            $Pcs_AfterLNCountry,
+            $Price_AfterLNCountry,
+            $Po_PcsLNCountry,
+            $Po_PriceLNCountry,
+            $Neg_PcsLNCountry,
+            $Neg_PriceLNCountry,
+            $BackChange_PcsLNCountry,
+            $BackChange_PriceLNCountry,
+            $Purchase_PcsLNCountry,
+            $Purchase_PriceLNCountry,
+            $ReciveTranfer_PcsLNCountry,
+            $ReciveTranfer_PriceLNCountry,
+            $ReturnItem_PCSLNCountry,
+            $ReturnItem_PriceLNCountry,
+            $AllIn_PcsLNCountry,
+            $AllIn_PriceLNCountry,
+            $SendSale_PcsLNCountry,
+            $SendSale_PriceLNCountry,
+            $ReciveTranOut_PcsLNCountry,
+            $ReciveTranOut_PriceLNCountry,
+            $ReturnStore_PcsLNCountry,
+            $ReturnStore_PriceLNCountry,
+            $AllOut_PcsLNCountry,
+            $AllOut_PriceLNCountry,
+            $Calculate_PcsLNCountry,
+            $Calculate_PriceLNCountry,
+            $NewCalculate_PcsLNCountry,
+            $NewCalculate_PriceLNCountry,
+            $Diff_PcsLNCountry,
+            $Diff_PriceLNCountry,
+            $NewTotal_PcsLNCountry,
+            $NewTotal_PriceLNCountry,
+            $NewTotalDiff_NavLNCountry,
+            $NewTotalDiff_CalLNCountry,
+            $a7f1fgbu02s_PcsLNCountry,
+            $a7f1fgbu02s_PriceLNCountry,
+            $a7f2fgbu10s_PcsLNCountry,
+            $a7f2fgbu10s_PriceLNCountry,
+            $a7f2thbu05s_PcsLNCountry,
+            $a7f2thbu05s_PriceLNCountry,
+            $a7f2debu10s_PcsLNCountry,
+            $a7f2debu10s_PriceLNCountry,
+            $a7f2exbu11s_PcsLNCountry,
+            $a7f2exbu11s_PriceLNCountry,
+            $a7f2twbu04s_PcsLNCountry,
+            $a7f2twbu04s_PriceLNCountry,
+            $a7f2twbu07s_PcsLNCountry,
+            $a7f2twbu07s_PriceLNCountry,
+            $a7f2cebu10s_PcsLNCountry,
+            $a7f2cebu10s_PriceLNCountry,
+            $a8f1fgbu02s_PcsLNCountry,
+            $a8f1fgbu02s_PriceLNCountry,
+            $a8f2fgbu10s_PcsLNCountry,
+            $a8f2fgbu10s_PriceLNCountry,
+            $a8f2thbu05s_PcsLNCountry,
+            $a8f2thbu05s_PriceLNCountry,
+            $a8f2debu10s_PcsLNCountry,
+            $a8f2debu10s_PriceLNCountry,
+            $a8f2exbu11s_PcsLNCountry,
+            $a8f2exbu11s_PriceLNCountry,
+            $a8f2twbu04s_PcsLNCountry,
+            $a8f2twbu04s_PriceLNCountry,
+            $a8f2twbu07s_PcsLNCountry,
+            $a8f2twbu07s_PriceLNCountry,
+            $a8f2cebu10s_PcsLNCountry,
+            $a8f2cebu10s_PriceLNCountry,
+            $DC1_PcsLNCountry,
+            $DC1_PriceLNCountry,
+            $DCP_PcsLNCountry,
+            $DCP_PriceLNCountry,
+            $DCY_PcsLNCountry,
+            $DCY_PriceLNCountry,
+            $DEX_PcsLNCountry,
+            $DEX_PriceLNCountry,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterSNTCountry,
+            $Price_AfterSNTCountry,
+            $Pcs_AfterSNTCountry,
+            $Price_AfterSNTCountry,
+            $Po_PcsSNTCountry,
+            $Po_PriceSNTCountry,
+            $Neg_PcsSNTCountry,
+            $Neg_PriceSNTCountry,
+            $BackChange_PcsSNTCountry,
+            $BackChange_PriceSNTCountry,
+            $Purchase_PcsSNTCountry,
+            $Purchase_PriceSNTCountry,
+            $ReciveTranfer_PcsSNTCountry,
+            $ReciveTranfer_PriceSNTCountry,
+            $ReturnItem_PCSSNTCountry,
+            $ReturnItem_PriceSNTCountry,
+            $AllIn_PcsSNTCountry,
+            $AllIn_PriceSNTCountry,
+            $SendSale_PcsSNTCountry,
+            $SendSale_PriceSNTCountry,
+            $ReciveTranOut_PcsSNTCountry,
+            $ReciveTranOut_PriceSNTCountry,
+            $ReturnStore_PcsSNTCountry,
+            $ReturnStore_PriceSNTCountry,
+            $AllOut_PcsSNTCountry,
+            $AllOut_PriceSNTCountry,
+            $Calculate_PcsSNTCountry,
+            $Calculate_PriceSNTCountry,
+            $NewCalculate_PcsSNTCountry,
+            $NewCalculate_PriceSNTCountry,
+            $Diff_PcsSNTCountry,
+            $Diff_PriceSNTCountry,
+            $NewTotal_PcsSNTCountry,
+            $NewTotal_PriceSNTCountry,
+            $NewTotalDiff_NavSNTCountry,
+            $NewTotalDiff_CalSNTCountry,
+            $a7f1fgbu02s_PcsSNTCountry,
+            $a7f1fgbu02s_PriceSNTCountry,
+            $a7f2fgbu10s_PcsSNTCountry,
+            $a7f2fgbu10s_PriceSNTCountry,
+            $a7f2thbu05s_PcsSNTCountry,
+            $a7f2thbu05s_PriceSNTCountry,
+            $a7f2debu10s_PcsSNTCountry,
+            $a7f2debu10s_PriceSNTCountry,
+            $a7f2exbu11s_PcsSNTCountry,
+            $a7f2exbu11s_PriceSNTCountry,
+            $a7f2twbu04s_PcsSNTCountry,
+            $a7f2twbu04s_PriceSNTCountry,
+            $a7f2twbu07s_PcsSNTCountry,
+            $a7f2twbu07s_PriceSNTCountry,
+            $a7f2cebu10s_PcsSNTCountry,
+            $a7f2cebu10s_PriceSNTCountry,
+            $a8f1fgbu02s_PcsSNTCountry,
+            $a8f1fgbu02s_PriceSNTCountry,
+            $a8f2fgbu10s_PcsSNTCountry,
+            $a8f2fgbu10s_PriceSNTCountry,
+            $a8f2thbu05s_PcsSNTCountry,
+            $a8f2thbu05s_PriceSNTCountry,
+            $a8f2debu10s_PcsSNTCountry,
+            $a8f2debu10s_PriceSNTCountry,
+            $a8f2exbu11s_PcsSNTCountry,
+            $a8f2exbu11s_PriceSNTCountry,
+            $a8f2twbu04s_PcsSNTCountry,
+            $a8f2twbu04s_PriceSNTCountry,
+            $a8f2twbu07s_PcsSNTCountry,
+            $a8f2twbu07s_PriceSNTCountry,
+            $a8f2cebu10s_PcsSNTCountry,
+            $a8f2cebu10s_PriceSNTCountry,
+            $DC1_PcsSNTCountry,
+            $DC1_PriceSNTCountry,
+            $DCP_PcsSNTCountry,
+            $DCP_PriceSNTCountry,
+            $DCY_PcsSNTCountry,
+            $DCY_PriceSNTCountry,
+            $DEX_PcsSNTCountry,
+            $DEX_PriceSNTCountry,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterAllCountry,
+            $Price_AfterAllCountry,
+            $Pcs_AfterAllCountry,
+            $Price_AfterAllCountry,
+            $Po_PcsAllCountry,
+            $Po_PriceAllCountry,
+            $Neg_PcsAllCountry,
+            $Neg_PriceAllCountry,
+            $BackChange_PcsAllCountry,
+            $BackChange_PriceAllCountry,
+            $Purchase_PcsAllCountry,
+            $Purchase_PriceAllCountry,
+            $ReciveTranfer_PcsAllCountry,
+            $ReciveTranfer_PriceAllCountry,
+            $ReturnItem_PCSAllCountry,
+            $ReturnItem_PriceAllCountry,
+            $AllIn_PcsAllCountry,
+            $AllIn_PriceAllCountry,
+            $SendSale_PcsAllCountry,
+            $SendSale_PriceAllCountry,
+            $ReciveTranOut_PcsAllCountry,
+            $ReciveTranOut_PriceAllCountry,
+            $ReturnStore_PcsAllCountry,
+            $ReturnStore_PriceAllCountry,
+            $AllOut_PcsAllCountry,
+            $AllOut_PriceAllCountry,
+            $Calculate_PcsAllCountry,
+            $Calculate_PriceAllCountry,
+            $NewCalculate_PcsAllCountry,
+            $NewCalculate_PriceAllCountry,
+            $Diff_PcsAllCountry,
+            $Diff_PriceAllCountry,
+            $NewTotal_PcsAllCountry,
+            $NewTotal_PriceAllCountry,
+            $NewTotalDiff_NavAllCountry,
+            $NewTotalDiff_CalAllCountry,
+            $a7f1fgbu02s_PcsAllCountry,
+            $a7f1fgbu02s_PriceAllCountry,
+            $a7f2fgbu10s_PcsAllCountry,
+            $a7f2fgbu10s_PriceAllCountry,
+            $a7f2thbu05s_PcsAllCountry,
+            $a7f2thbu05s_PriceAllCountry,
+            $a7f2debu10s_PcsAllCountry,
+            $a7f2debu10s_PriceAllCountry,
+            $a7f2exbu11s_PcsAllCountry,
+            $a7f2exbu11s_PriceAllCountry,
+            $a7f2twbu04s_PcsAllCountry,
+            $a7f2twbu04s_PriceAllCountry,
+            $a7f2twbu07s_PcsAllCountry,
+            $a7f2twbu07s_PriceAllCountry,
+            $a7f2cebu10s_PcsAllCountry,
+            $a7f2cebu10s_PriceAllCountry,
+            $a8f1fgbu02s_PcsAllCountry,
+            $a8f1fgbu02s_PriceAllCountry,
+            $a8f2fgbu10s_PcsAllCountry,
+            $a8f2fgbu10s_PriceAllCountry,
+            $a8f2thbu05s_PcsAllCountry,
+            $a8f2thbu05s_PriceAllCountry,
+            $a8f2debu10s_PcsAllCountry,
+            $a8f2debu10s_PriceAllCountry,
+            $a8f2exbu11s_PcsAllCountry,
+            $a8f2exbu11s_PriceAllCountry,
+            $a8f2twbu04s_PcsAllCountry,
+            $a8f2twbu04s_PriceAllCountry,
+            $a8f2twbu07s_PcsAllCountry,
+            $a8f2twbu07s_PriceAllCountry,
+            $a8f2cebu10s_PcsAllCountry,
+            $a8f2cebu10s_PriceAllCountry,
+            $DC1_PcsAllCountry,
+            $DC1_PriceAllCountry,
+            $DCP_PcsAllCountry,
+            $DCP_PriceAllCountry,
+            $DCY_PcsAllCountry,
+            $DCY_PriceAllCountry,
+            $DEX_PcsAllCountry,
+            $DEX_PriceAllCountry,
+
+             ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterAllTotal,
+            $Price_AfterAllTotal,
+            $Pcs_AfterAllTotal,
+            $Price_AfterAllTotal,
+            $Po_PcsAllTotal,
+            $Po_PriceAllTotal,
+            $Neg_PcsAllTotal,
+            $Neg_PriceAllTotal,
+            $BackChange_PcsAllTotal,
+            $BackChange_PriceAllTotal,
+            $Purchase_PcsAllTotal,
+            $Purchase_PriceAllTotal,
+            $ReciveTranfer_PcsAllTotal,
+            $ReciveTranfer_PriceAllTotal,
+            $ReturnItem_PCSAllTotal,
+            $ReturnItem_PriceAllTotal,
+            $AllIn_PcsAllTotal,
+            $AllIn_PriceAllTotal,
+            $SendSale_PcsAllTotal,
+            $SendSale_PriceAllTotal,
+            $ReciveTranOut_PcsAllTotal,
+            $ReciveTranOut_PriceAllTotal,
+            $ReturnStore_PcsAllTotal,
+            $ReturnStore_PriceAllTotal,
+            $AllOut_PcsAllTotal,
+            $AllOut_PriceAllTotal,
+            $Calculate_PcsAllTotal,
+            $Calculate_PriceAllTotal,
+            $NewCalculate_PcsAllTotal,
+            $NewCalculate_PriceAllTotal,
+            $Diff_PcsAllTotal,
+            $Diff_PriceAllTotal,
+            $NewTotal_PcsAllTotal,
+            $NewTotal_PriceAllTotal,
+            $NewTotalDiff_NavAllTotal,
+            $NewTotalDiff_CalAllTotal,
+            $a7f1fgbu02s_PcsAllTotal,
+            $a7f1fgbu02s_PriceAllTotal,
+            $a7f2fgbu10s_PcsAllTotal,
+            $a7f2fgbu10s_PriceAllTotal,
+            $a7f2thbu05s_PcsAllTotal,
+            $a7f2thbu05s_PriceAllTotal,
+            $a7f2debu10s_PcsAllTotal,
+            $a7f2debu10s_PriceAllTotal,
+            $a7f2exbu11s_PcsAllTotal,
+            $a7f2exbu11s_PriceAllTotal,
+            $a7f2twbu04s_PcsAllTotal,
+            $a7f2twbu04s_PriceAllTotal,
+            $a7f2twbu07s_PcsAllTotal,
+            $a7f2twbu07s_PriceAllTotal,
+            $a7f2cebu10s_PcsAllTotal,
+            $a7f2cebu10s_PriceAllTotal,
+            $a8f1fgbu02s_PcsAllTotal,
+            $a8f1fgbu02s_PriceAllTotal,
+            $a8f2fgbu10s_PcsAllTotal,
+            $a8f2fgbu10s_PriceAllTotal,
+            $a8f2thbu05s_PcsAllTotal,
+            $a8f2thbu05s_PriceAllTotal,
+            $a8f2debu10s_PcsAllTotal,
+            $a8f2debu10s_PriceAllTotal,
+            $a8f2exbu11s_PcsAllTotal,
+            $a8f2exbu11s_PriceAllTotal,
+            $a8f2twbu04s_PcsAllTotal,
+            $a8f2twbu04s_PriceAllTotal,
+            $a8f2twbu07s_PcsAllTotal,
+            $a8f2twbu07s_PriceAllTotal,
+            $a8f2cebu10s_PcsAllTotal,
+            $a8f2cebu10s_PriceAllTotal,
+            $DC1_PcsAllTotal,
+            $DC1_PriceAllTotal,
+            $DCP_PcsAllTotal,
+            $DCP_PriceAllTotal,
+            $DCY_PcsAllTotal,
+            $DCY_PriceAllTotal,
+            $DEX_PcsAllTotal,
+            $DEX_PriceAllTotal,
         ];
 
         return response()->json($Data);

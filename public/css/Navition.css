@@ -1,3 +1,22 @@
+@media print {
+    .col-1{
+        margin-top: 5px !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;  /* ปรับตามที่คุณต้องการ */
+    }
+    .print-review{
+        display: none;
+    }
+    .btn-Print{
+        display: none;
+    }
+    td{
+        font-size: 12px;
+    }
+    h2{
+        display: none;
+    }
+}
 body {
     margin: auto;
 }
@@ -389,6 +408,25 @@ a:hover {
     width: 50%;
     padding: 7px;
     border-radius: 7px;
+}
+
+.btn-Print{
+    position: fixed;
+    justify-content: right;
+    top: 2%;
+    right: 5%;
+    width: 7%;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #3498db;
+    cursor: pointer;
+}
+.btn-Print:hover{
+    background-color: #3498db;
+    color: white;
 }
 
 @keyframes textcolor {

@@ -11,7 +11,7 @@
 
 <body>
     <div class="container col-1">
-        <div class="header">
+        <div class="header print-review">
             <div class="mx-1 mt-1">
                 <label for="">Navition</label>
             </div>
@@ -42,7 +42,7 @@
             <hr>
         </div>
         <div>
-            <h2 align="center">แยกประเภทสินค้า</h2>
+            <h2 align="center">แยกประเภทสินค้า</h2><button class="btn-Print" onclick="Print()">Print</button>
             <div class="table-block">
                 <table class="table-tabledata" id="table-data">
                     <thead>
@@ -55,153 +55,153 @@
                             <td colspan="8">ส่งขาย</td>
                         </tr>
                         <tr>
-                            <td colspan="2">ยกมา</td>
-                            <td colspan="2">ยกมาใหม่</td>
-                            <td colspan="4"></td>
-                            <td colspan="2">คงเหลือ</td>
-                            <td colspan="8">รับเข้า</td>
-                            <td colspan="8">จ่ายออก</td>
-                            <td colspan="2">คงเหลือ คำนวณ</td>
-                            <td colspan="2">คงเหลือ NAV</td>
-                            <td colspan="2"></td>
-                            <td colspan="4">คงเหลือ มูลค่าใหม่</td>
-                            <td colspan="2">ทออวนโรงงาน 1</td>
-                            <td colspan="2">ทออวนโรงงาน 2</td>
-                            <td colspan="2">ต่อแห โรงงาน 2</td>
-                            <td colspan="2">รับคืน TD อ.10</td>
-                            <td colspan="2">เส้นใย โรงงาน 2</td>
-                            <td colspan="2">ตีด้าย 2 โรงงาน 2</td>
-                            <td colspan="2">ตีด้าย 3 โรงงาน 2</td>
-                            <td colspan="2">ตีด้าย 4 อ.11</td>
-                            <td colspan="2">ทออวนโรงงาน 1</td>
-                            <td colspan="2">ทออวนโรงงาน 2</td>
-                            <td colspan="2">ต่อแห โรงงาน 2</td>
-                            <td colspan="2">รับคืน TD อ.10</td>
-                            <td colspan="2">เส้นใย โรงงาน 2</td>
-                            <td colspan="2">ตีด้าย 2 โรงงาน 2</td>
-                            <td colspan="2">ตีด้าย 3 โรงงาน 2</td>
-                            <td colspan="2">ตีด้าย 4 อ.11</td>
-                            <td colspan="2">DC1</td>
-                            <td colspan="2">DCY</td>
-                            <td colspan="2">DCP</td>
-                            <td colspan="2">ตปท</td>
+                            <td colspan="2" style="background-color: rgb(200,155,255);">ยกมา</td>
+                            <td colspan="2" style="background-color: rgb(200,155,255);">ยกมาใหม่</td>
+                            <td colspan="4" style="background-color: rgb(200,155,255);"></td>
+                            <td colspan="2" style="background-color: rgb(200,155,255);">คงเหลือ</td>
+                            <td colspan="8" style="background-color: rgb(160,255,200);">รับเข้า</td>
+                            <td colspan="8" style="background-color: rgb(255,155,155);">จ่ายออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,255);">คงเหลือ คำนวณ</td>
+                            <td colspan="2" style="background-color: rgb(255,120,120);">คงเหลือ NAV</td>
+                            <td colspan="2" style="background-color: rgb(255,120,120);"></td>
+                            <td colspan="4" style="background-color: rgb(200,100,255);">คงเหลือ มูลค่าใหม่</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 1</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ต่อแห โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับคืน TD อ.10</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">เส้นใย โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 2 โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 3 โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 4 อ.11</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 1</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ต่อแห โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับคืน TD อ.10</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">เส้นใย โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 2 โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 3 โรงงาน 2</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 4 อ.11</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">DC1</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">DCY</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">DCP</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ตปท</td>
                         </tr>
                         <tr>
                             <td colspan="2">{{ $d_before }}/{{ $m_before }}/{{ $y_before }}</td>
                             <td colspan="2">{{ $d_before }}/{{ $m_before }}/{{ $y_before }}</td>
-                            <td colspan="2">ปรับเข้า</td>
-                            <td colspan="2">ปรับออก</td>
-                            <td colspan="2">หลังปรับ</td>
-                            <td colspan="2">ซื้อเข้า</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับคืน</td>
-                            <td colspan="2">รวม</td>
-                            <td colspan="2">ส่งขาย</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">คืนของร้านค้า</td>
-                            <td colspan="2">รวม</td>
+                            <td colspan="2" style="background-color: rgb(200,155,255);">ปรับเข้า</td>
+                            <td colspan="2" style="background-color: rgb(200,155,255);">ปรับออก</td>
+                            <td colspan="2" style="background-color: rgb(200,155,255);">หลังปรับ</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ซื้อเข้า</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับคืน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รวม</td>
+                            <td colspan="2" style="background-color: rgb(255,155,155);">ส่งขาย</td>
+                            <td colspan="2" style="background-color: rgb(255,155,155);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(245,255,89);">คืนของร้านค้า</td>
+                            <td colspan="2" style="background-color: rgb(255,155,155);">รวม</td>
                             <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
                             <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
-                            <td colspan="2">ผลต่างคำนวน/NAV</td>
+                            <td colspan="2" style="background-color: rgb(255,155,155);">ผลต่างคำนวน/NAV</td>
                             <td colspan="4">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">รับโอน</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">โอนออก</td>
-                            <td colspan="2">ขายออก</td>
-                            <td colspan="2">ขายออก</td>
-                            <td colspan="2">ขายออก</td>
-                            <td colspan="2">ขายออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">โอนออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
                         </tr>
                         <tr>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>ผลต่างNAV</td>
-                            <td>ผลต่างคำนวน</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
-                            <td>pcs</td>
-                            <td>มูลค่า</td>
+                            <td style="background-color: rgb(200,155,255);">pcs</td>
+                            <td style="background-color: rgb(200,155,255);">มูลค่า</td>
+                            <td style="background-color: rgb(200,155,255);">pcs</td>
+                            <td style="background-color: rgb(200,155,255);">มูลค่า</td>
+                            <td style="background-color: rgb(200,155,255);">pcs</td>
+                            <td style="background-color: rgb(200,155,255);">มูลค่า</td>
+                            <td style="background-color: rgb(200,155,255);">pcs</td>
+                            <td style="background-color: rgb(200,155,255);">มูลค่า</td>
+                            <td style="background-color: rgb(200,155,255);">pcs</td>
+                            <td style="background-color: rgb(200,155,255);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(255,155,155);">pcs</td>
+                            <td style="background-color: rgb(255,155,155);">มูลค่า</td>
+                            <td style="background-color: rgb(255,155,155);">pcs</td>
+                            <td style="background-color: rgb(255,155,155);">มูลค่า</td>
+                            <td style="background-color: rgb(245,255,89);">pcs</td>
+                            <td style="background-color: rgb(245,255,89);">มูลค่า</td>
+                            <td style="background-color: rgb(255,155,155);">pcs</td>
+                            <td style="background-color: rgb(255,155,155);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,255);">pcs</td>
+                            <td style="background-color: rgb(160,255,255);">มูลค่า</td>
+                            <td style="background-color: rgb(255,155,155);">pcs</td>
+                            <td style="background-color: rgb(255,155,155);">มูลค่า</td>
+                            <td style="background-color: rgb(255,155,155);">pcs</td>
+                            <td style="background-color: rgb(255,155,155);">มูลค่า</td>
+                            <td style="background-color: rgb(130,170,255);">pcs</td>
+                            <td style="background-color: rgb(130,170,255);">มูลค่า</td>
+                            <td style="background-color: rgb(130,170,255);">ผลต่างNAV</td>
+                            <td style="background-color: rgb(130,170,255);">ผลต่างคำนวน</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                            <td style="background-color: rgb(160,255,200);">pcs</td>
+                            <td style="background-color: rgb(160,255,200);">มูลค่า</td>
                         </tr>
                     </thead>
                     <tr>
@@ -1135,232 +1135,232 @@
                     <tr>
                         <td colspan="2">รวมสินค้า</td>
                         <td>
-                            <div id="PcsAfterAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="PcsAfterAllProduct"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="PriceAfterAllProduct"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="Pcs_AfterAllProduct"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="Price_AfterAllProduct"></div>
                         </td>
                         <td>
-                            <div id="PoPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="PoPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="PoPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="PoPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NegPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NegPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NegPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NegPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="BackPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="BackPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="BackPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="BackPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="PurchasePcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="PurchasePriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranferPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranferPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnItemPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnItemPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="AllInPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="AllInPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="SendSalePcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="SendSalePriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranOutPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranOutPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnStorePcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnStorePriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="AllOutPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="AllOutPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="CalculatePcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="CalculatePriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NewCalculatePcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NewCalculatePriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DiffPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DiffPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalDiffNavAllProduct"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalDiffCalAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f1fgbu02sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f1fgbu02sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2fgbu10sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2fgbu10sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2thbu05sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2thbu05sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2debu10sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2debu10sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2exbu11sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2exbu11sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu04sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu04sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu07sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu07sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2cebu10sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2cebu10sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f1fgbu02sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f1fgbu02sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2fgbu10sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2fgbu10sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2thbu05sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2thbu05sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2debu10sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2debu10sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2exbu11sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2exbu11sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu04sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu04sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu07sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu07sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2cebu10sPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2cebu10sPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DC1PcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DC1PriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DCPPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DCPPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DCYPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DCYPriceAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DEXPcsAllProduct"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceAllProduct"></div>
+                            <div style="color: rgb(0,150,255);" id="DEXPriceAllProduct"></div>
                         </td>
                     </tr>
                     <tr>
@@ -2755,463 +2755,463 @@
                     <tr>
                         <td colspan="2">รวมสินค้าซื้อมา-ขายไป</td>
                         <td>
-                            <div id="PcsAfterAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="PcsAfterAllSale"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="PriceAfterAllSale"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="Pcs_AfterAllSale"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="Price_AfterAllSale"></div>
                         </td>
                         <td>
-                            <div id="PoPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="PoPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="PoPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="PoPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="NegPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NegPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="NegPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NegPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="BackPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="BackPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="BackPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="BackPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="PurchasePcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="PurchasePriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranferPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranferPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnItemPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnItemPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="AllInPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="AllInPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="SendSalePcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="SendSalePriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranOutPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReciveTranOutPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnStorePcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="ReturnStorePriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="AllOutPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="AllOutPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="CalculatePcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="CalculatePriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NewCalculatePcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NewCalculatePriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DiffPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DiffPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalDiffNavAllSale"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="NewTotalDiffCalAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f1fgbu02sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f1fgbu02sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2fgbu10sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2fgbu10sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2thbu05sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2thbu05sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2debu10sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2debu10sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2exbu11sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2exbu11sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu04sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu04sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu07sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2twbu07sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2cebu10sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a7f2cebu10sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f1fgbu02sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f1fgbu02sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2fgbu10sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2fgbu10sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2thbu05sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2thbu05sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2debu10sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2debu10sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2exbu11sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2exbu11sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu04sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu04sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu07sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2twbu07sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2cebu10sPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="a8f2cebu10sPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DC1PcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DC1PriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DCPPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DCPPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DCYPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DCYPriceAllSale"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DEXPcsAllSale"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceAllSale"></div>
+                            <div style="color: rgb(0,150,255);" id="DEXPriceAllSale"></div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม DC 1</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม DC 1</td>
                         <td>
-                            <div id="PcsAfterAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterAllDC1"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterAllDC1"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterAllDC1"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterAllDC1"></div>
                         </td>
                         <td>
-                            <div id="PoPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="PoPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NegPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NegPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="BackPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="BackPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavAllDC1"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsAllDC1"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceAllDC1"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceAllDC1"></div>
                         </td>
                     </tr>
                     <tr>
@@ -3915,234 +3915,234 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม DCY</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม DCY</td>
                         <td>
-                            <div id="PcsAfterAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterAllDCY"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterAllDCY"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterAllDCY"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterAllDCY"></div>
                         </td>
                         <td>
-                            <div id="PoPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="PoPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NegPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NegPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="BackPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="BackPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavAllDCY"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsAllDCY"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceAllDCY"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceAllDCY"></div>
                         </td>
                     </tr>
                     <tr>
@@ -4845,234 +4845,234 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม DCP</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม DCP</td>
                         <td>
-                            <div id="PcsAfterAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterAllDCP"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterAllDCP"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterAllDCP"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterAllDCP"></div>
                         </td>
                         <td>
-                            <div id="PoPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="PoPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NegPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NegPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="BackPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="BackPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavAllDCP"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsAllDCP"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceAllDCP"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceAllDCP"></div>
                         </td>
                     </tr>
                     <tr>
@@ -5083,25 +5083,1621 @@
                     </tr>
                     <tr>
                         <td>NT อวนกำ</td>
+                        <td>
+                            <div id="PcsAfterNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceNTCountry"></div>
+                        </td>
                     </tr>
                     <tr>
                         <td>MT อวนรุม</td>
+                        <td>
+                            <div id="PcsAfterMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsMTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceMTCountry"></div>
+                        </td>
                     </tr>
                     <tr>
                         <td>TW ตีด้าย</td>
+                        <td>
+                            <div id="PcsAfterTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsTWCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceTWCountry"></div>
+                        </td>
                     </tr>
                     <tr>
                         <td>LN เส้นใย</td>
+                        <td>
+                            <div id="PcsAfterLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsLNCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceLNCountry"></div>
+                        </td>
                     </tr>
                     <tr>
                         <td>สินค้าซื้อมา-ขายไป</td>
                         <td>SNT อวนกำ</td>
+                        <td>
+                            <div id="PcsAfterSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsSNTCountry"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceSNTCountry"></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม ตปท.</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม ตปท.</td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="PoPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="PoPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NegPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NegPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="BackPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="BackPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsAllCountry"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceAllCountry"></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวมทั้งหมด</td>
+                        <td colspan="3" style="color: rgb(255,25,0);">รวมทั้งหมด</td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="PcsAfterAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="PriceAfterAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="Pcs_AfterAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="Price_AfterAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="PoPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="PoPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NegPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NegPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="BackPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="BackPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="PurchasePcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="PurchasePriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranferPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranferPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReturnItemPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReturnItemPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="AllInPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="AllInPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="SendSalePcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="SendSalePriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranOutPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranOutPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReturnStorePcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="ReturnStorePriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="AllOutPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="AllOutPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="CalculatePcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="CalculatePriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NewCalculatePcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NewCalculatePriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DiffPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DiffPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NewTotalPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NewTotalPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NewTotalDiffNavAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="NewTotalDiffCalAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2thbu05sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2thbu05sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2debu10sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2debu10sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2exbu11sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2exbu11sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu04sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu04sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu07sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu07sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2cebu10sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a7f2cebu10sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f1fgbu02sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f1fgbu02sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2fgbu10sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2fgbu10sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2thbu05sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2thbu05sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2debu10sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2debu10sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2exbu11sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2exbu11sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu04sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu04sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu07sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu07sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2cebu10sPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="a8f2cebu10sPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DC1PcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DC1PriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DCPPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DCPPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DCYPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DCYPriceAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DEXPcsAllTotal"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DEXPriceAllTotal"></div>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -5723,6 +7319,227 @@ $.ajax({
 
             //////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterNTCountry', 'PriceAfterNTCountry', 'Pcs_AfterNTCountry', 'Price_AfterNTCountry',
+            'PoPcsNTCountry', 'PoPriceNTCountry', 'NegPcsNTCountry', 'NegPriceNTCountry', 'BackPcsNTCountry',
+            'BackPriceNTCountry', 'PurchasePcsNTCountry', 'PurchasePriceNTCountry', 'ReciveTranferPcsNTCountry',
+            'ReciveTranferPriceNTCountry', 'ReturnItemPcsNTCountry', 'ReturnItemPriceNTCountry',
+            'AllInPcsNTCountry', 'AllInPriceNTCountry', 'SendSalePcsNTCountry', 'SendSalePriceNTCountry',
+            'ReciveTranOutPcsNTCountry', 'ReciveTranOutPriceNTCountry', 'ReturnStorePcsNTCountry',
+            'ReturnStorePriceNTCountry', 'AllOutPcsNTCountry', 'AllOutPriceNTCountry', 'CalculatePcsNTCountry',
+            'CalculatePriceNTCountry', 'NewCalculatePcsNTCountry', 'NewCalculatePriceNTCountry',
+            'DiffPcsNTCountry', 'DiffPriceNTCountry', 'NewTotalPcsNTCountry', 'NewTotalPriceNTCountry',
+            'NewTotalDiffNavNTCountry', 'NewTotalDiffCalNTCountry',
+            'a7f1fgbu02sPcsNTCountry', 'a7f1fgbu02sPriceNTCountry', 'a7f2fgbu10sPcsNTCountry',
+            'a7f2fgbu10sPriceNTCountry',
+            'a7f2thbu05sPcsNTCountry', 'a7f2thbu05sPriceNTCountry', 'a7f2debu10sPcsNTCountry',
+            'a7f2debu10sPriceNTCountry',
+            'a7f2exbu11sPcsNTCountry', 'a7f2exbu11sPriceNTCountry', 'a7f2twbu04sPcsNTCountry',
+            'a7f2twbu04sPriceNTCountry',
+            'a7f2twbu07sPcsNTCountry', 'a7f2twbu07sPriceNTCountry', 'a7f2cebu10sPcsNTCountry',
+            'a7f2cebu10sPriceNTCountry',
+            'a8f1fgbu02sPcsNTCountry', 'a8f1fgbu02sPriceNTCountry', 'a8f2fgbu10sPcsNTCountry',
+            'a8f2fgbu10sPriceNTCountry',
+            'a8f2thbu05sPcsNTCountry', 'a8f2thbu05sPriceNTCountry', 'a8f2debu10sPcsNTCountry',
+            'a8f2debu10sPriceNTCountry',
+            'a8f2exbu11sPcsNTCountry', 'a8f2exbu11sPriceNTCountry', 'a8f2twbu04sPcsNTCountry',
+            'a8f2twbu04sPriceNTCountry',
+            'a8f2twbu07sPcsNTCountry', 'a8f2twbu07sPriceNTCountry', 'a8f2cebu10sPcsNTCountry',
+            'a8f2cebu10sPriceNTCountry',
+            'DC1PcsNTCountry', 'DC1PriceNTCountry', 'DCPPcsNTCountry', 'DCPPriceNTCountry',
+            'DCYPcsNTCountry', 'DCYPriceNTCountry', 'DEXPcsNTCountry', 'DEXPriceNTCountry',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterMTCountry', 'PriceAfterMTCountry', 'Pcs_AfterMTCountry', 'Price_AfterMTCountry',
+            'PoPcsMTCountry', 'PoPriceMTCountry', 'NegPcsMTCountry', 'NegPriceMTCountry', 'BackPcsMTCountry',
+            'BackPriceMTCountry', 'PurchasePcsMTCountry', 'PurchasePriceMTCountry', 'ReciveTranferPcsMTCountry',
+            'ReciveTranferPriceMTCountry', 'ReturnItemPcsMTCountry', 'ReturnItemPriceMTCountry',
+            'AllInPcsMTCountry', 'AllInPriceMTCountry', 'SendSalePcsMTCountry', 'SendSalePriceMTCountry',
+            'ReciveTranOutPcsMTCountry', 'ReciveTranOutPriceMTCountry', 'ReturnStorePcsMTCountry',
+            'ReturnStorePriceMTCountry', 'AllOutPcsMTCountry', 'AllOutPriceMTCountry', 'CalculatePcsMTCountry',
+            'CalculatePriceMTCountry', 'NewCalculatePcsMTCountry', 'NewCalculatePriceMTCountry',
+            'DiffPcsMTCountry', 'DiffPriceMTCountry', 'NewTotalPcsMTCountry', 'NewTotalPriceMTCountry',
+            'NewTotalDiffNavMTCountry', 'NewTotalDiffCalMTCountry',
+            'a7f1fgbu02sPcsMTCountry', 'a7f1fgbu02sPriceMTCountry', 'a7f2fgbu10sPcsMTCountry',
+            'a7f2fgbu10sPriceMTCountry',
+            'a7f2thbu05sPcsMTCountry', 'a7f2thbu05sPriceMTCountry', 'a7f2debu10sPcsMTCountry',
+            'a7f2debu10sPriceMTCountry',
+            'a7f2exbu11sPcsMTCountry', 'a7f2exbu11sPriceMTCountry', 'a7f2twbu04sPcsMTCountry',
+            'a7f2twbu04sPriceMTCountry',
+            'a7f2twbu07sPcsMTCountry', 'a7f2twbu07sPriceMTCountry', 'a7f2cebu10sPcsMTCountry',
+            'a7f2cebu10sPriceMTCountry',
+            'a8f1fgbu02sPcsMTCountry', 'a8f1fgbu02sPriceMTCountry', 'a8f2fgbu10sPcsMTCountry',
+            'a8f2fgbu10sPriceMTCountry',
+            'a8f2thbu05sPcsMTCountry', 'a8f2thbu05sPriceMTCountry', 'a8f2debu10sPcsMTCountry',
+            'a8f2debu10sPriceMTCountry',
+            'a8f2exbu11sPcsMTCountry', 'a8f2exbu11sPriceMTCountry', 'a8f2twbu04sPcsMTCountry',
+            'a8f2twbu04sPriceMTCountry',
+            'a8f2twbu07sPcsMTCountry', 'a8f2twbu07sPriceMTCountry', 'a8f2cebu10sPcsMTCountry',
+            'a8f2cebu10sPriceMTCountry',
+            'DC1PcsMTCountry', 'DC1PriceMTCountry', 'DCPPcsMTCountry', 'DCPPriceMTCountry',
+            'DCYPcsMTCountry', 'DCYPriceMTCountry', 'DEXPcsMTCountry', 'DEXPriceMTCountry',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterTWCountry', 'PriceAfterTWCountry', 'Pcs_AfterTWCountry', 'Price_AfterTWCountry',
+            'PoPcsTWCountry', 'PoPriceTWCountry', 'NegPcsTWCountry', 'NegPriceTWCountry', 'BackPcsTWCountry',
+            'BackPriceTWCountry', 'PurchasePcsTWCountry', 'PurchasePriceTWCountry', 'ReciveTranferPcsTWCountry',
+            'ReciveTranferPriceTWCountry', 'ReturnItemPcsTWCountry', 'ReturnItemPriceTWCountry',
+            'AllInPcsTWCountry', 'AllInPriceTWCountry', 'SendSalePcsTWCountry', 'SendSalePriceTWCountry',
+            'ReciveTranOutPcsTWCountry', 'ReciveTranOutPriceTWCountry', 'ReturnStorePcsTWCountry',
+            'ReturnStorePriceTWCountry', 'AllOutPcsTWCountry', 'AllOutPriceTWCountry', 'CalculatePcsTWCountry',
+            'CalculatePriceTWCountry', 'NewCalculatePcsTWCountry', 'NewCalculatePriceTWCountry',
+            'DiffPcsTWCountry', 'DiffPriceTWCountry', 'NewTotalPcsTWCountry', 'NewTotalPriceTWCountry',
+            'NewTotalDiffNavTWCountry', 'NewTotalDiffCalTWCountry',
+            'a7f1fgbu02sPcsTWCountry', 'a7f1fgbu02sPriceTWCountry', 'a7f2fgbu10sPcsTWCountry',
+            'a7f2fgbu10sPriceTWCountry',
+            'a7f2thbu05sPcsTWCountry', 'a7f2thbu05sPriceTWCountry', 'a7f2debu10sPcsTWCountry',
+            'a7f2debu10sPriceTWCountry',
+            'a7f2exbu11sPcsTWCountry', 'a7f2exbu11sPriceTWCountry', 'a7f2twbu04sPcsTWCountry',
+            'a7f2twbu04sPriceTWCountry',
+            'a7f2twbu07sPcsTWCountry', 'a7f2twbu07sPriceTWCountry', 'a7f2cebu10sPcsTWCountry',
+            'a7f2cebu10sPriceTWCountry',
+            'a8f1fgbu02sPcsTWCountry', 'a8f1fgbu02sPriceTWCountry', 'a8f2fgbu10sPcsTWCountry',
+            'a8f2fgbu10sPriceTWCountry',
+            'a8f2thbu05sPcsTWCountry', 'a8f2thbu05sPriceTWCountry', 'a8f2debu10sPcsTWCountry',
+            'a8f2debu10sPriceTWCountry',
+            'a8f2exbu11sPcsTWCountry', 'a8f2exbu11sPriceTWCountry', 'a8f2twbu04sPcsTWCountry',
+            'a8f2twbu04sPriceTWCountry',
+            'a8f2twbu07sPcsTWCountry', 'a8f2twbu07sPriceTWCountry', 'a8f2cebu10sPcsTWCountry',
+            'a8f2cebu10sPriceTWCountry',
+            'DC1PcsTWCountry', 'DC1PriceTWCountry', 'DCPPcsTWCountry', 'DCPPriceTWCountry',
+            'DCYPcsTWCountry', 'DCYPriceTWCountry', 'DEXPcsTWCountry', 'DEXPriceTWCountry',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterLNCountry', 'PriceAfterLNCountry', 'Pcs_AfterLNCountry', 'Price_AfterLNCountry',
+            'PoPcsLNCountry', 'PoPriceLNCountry', 'NegPcsLNCountry', 'NegPriceLNCountry', 'BackPcsLNCountry',
+            'BackPriceLNCountry', 'PurchasePcsLNCountry', 'PurchasePriceLNCountry', 'ReciveTranferPcsLNCountry',
+            'ReciveTranferPriceLNCountry', 'ReturnItemPcsLNCountry', 'ReturnItemPriceLNCountry',
+            'AllInPcsLNCountry', 'AllInPriceLNCountry', 'SendSalePcsLNCountry', 'SendSalePriceLNCountry',
+            'ReciveTranOutPcsLNCountry', 'ReciveTranOutPriceLNCountry', 'ReturnStorePcsLNCountry',
+            'ReturnStorePriceLNCountry', 'AllOutPcsLNCountry', 'AllOutPriceLNCountry', 'CalculatePcsLNCountry',
+            'CalculatePriceLNCountry', 'NewCalculatePcsLNCountry', 'NewCalculatePriceLNCountry',
+            'DiffPcsLNCountry', 'DiffPriceLNCountry', 'NewTotalPcsLNCountry', 'NewTotalPriceLNCountry',
+            'NewTotalDiffNavLNCountry', 'NewTotalDiffCalLNCountry',
+            'a7f1fgbu02sPcsLNCountry', 'a7f1fgbu02sPriceLNCountry', 'a7f2fgbu10sPcsLNCountry',
+            'a7f2fgbu10sPriceLNCountry',
+            'a7f2thbu05sPcsLNCountry', 'a7f2thbu05sPriceLNCountry', 'a7f2debu10sPcsLNCountry',
+            'a7f2debu10sPriceLNCountry',
+            'a7f2exbu11sPcsLNCountry', 'a7f2exbu11sPriceLNCountry', 'a7f2twbu04sPcsLNCountry',
+            'a7f2twbu04sPriceLNCountry',
+            'a7f2twbu07sPcsLNCountry', 'a7f2twbu07sPriceLNCountry', 'a7f2cebu10sPcsLNCountry',
+            'a7f2cebu10sPriceLNCountry',
+            'a8f1fgbu02sPcsLNCountry', 'a8f1fgbu02sPriceLNCountry', 'a8f2fgbu10sPcsLNCountry',
+            'a8f2fgbu10sPriceLNCountry',
+            'a8f2thbu05sPcsLNCountry', 'a8f2thbu05sPriceLNCountry', 'a8f2debu10sPcsLNCountry',
+            'a8f2debu10sPriceLNCountry',
+            'a8f2exbu11sPcsLNCountry', 'a8f2exbu11sPriceLNCountry', 'a8f2twbu04sPcsLNCountry',
+            'a8f2twbu04sPriceLNCountry',
+            'a8f2twbu07sPcsLNCountry', 'a8f2twbu07sPriceLNCountry', 'a8f2cebu10sPcsLNCountry',
+            'a8f2cebu10sPriceLNCountry',
+            'DC1PcsLNCountry', 'DC1PriceLNCountry', 'DCPPcsLNCountry', 'DCPPriceLNCountry',
+            'DCYPcsLNCountry', 'DCYPriceLNCountry', 'DEXPcsLNCountry', 'DEXPriceLNCountry',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterSNTCountry', 'PriceAfterSNTCountry', 'Pcs_AfterSNTCountry', 'Price_AfterSNTCountry',
+            'PoPcsSNTCountry', 'PoPriceSNTCountry', 'NegPcsSNTCountry', 'NegPriceSNTCountry', 'BackPcsSNTCountry',
+            'BackPriceSNTCountry', 'PurchasePcsSNTCountry', 'PurchasePriceSNTCountry', 'ReciveTranferPcsSNTCountry',
+            'ReciveTranferPriceSNTCountry', 'ReturnItemPcsSNTCountry', 'ReturnItemPriceSNTCountry',
+            'AllInPcsSNTCountry', 'AllInPriceSNTCountry', 'SendSalePcsSNTCountry', 'SendSalePriceSNTCountry',
+            'ReciveTranOutPcsSNTCountry', 'ReciveTranOutPriceSNTCountry', 'ReturnStorePcsSNTCountry',
+            'ReturnStorePriceSNTCountry', 'AllOutPcsSNTCountry', 'AllOutPriceSNTCountry', 'CalculatePcsSNTCountry',
+            'CalculatePriceSNTCountry', 'NewCalculatePcsSNTCountry', 'NewCalculatePriceSNTCountry',
+            'DiffPcsSNTCountry', 'DiffPriceSNTCountry', 'NewTotalPcsSNTCountry', 'NewTotalPriceSNTCountry',
+            'NewTotalDiffNavSNTCountry', 'NewTotalDiffCalSNTCountry',
+            'a7f1fgbu02sPcsSNTCountry', 'a7f1fgbu02sPriceSNTCountry', 'a7f2fgbu10sPcsSNTCountry',
+            'a7f2fgbu10sPriceSNTCountry',
+            'a7f2thbu05sPcsSNTCountry', 'a7f2thbu05sPriceSNTCountry', 'a7f2debu10sPcsSNTCountry',
+            'a7f2debu10sPriceSNTCountry',
+            'a7f2exbu11sPcsSNTCountry', 'a7f2exbu11sPriceSNTCountry', 'a7f2twbu04sPcsSNTCountry',
+            'a7f2twbu04sPriceSNTCountry',
+            'a7f2twbu07sPcsSNTCountry', 'a7f2twbu07sPriceSNTCountry', 'a7f2cebu10sPcsSNTCountry',
+            'a7f2cebu10sPriceSNTCountry',
+            'a8f1fgbu02sPcsSNTCountry', 'a8f1fgbu02sPriceSNTCountry', 'a8f2fgbu10sPcsSNTCountry',
+            'a8f2fgbu10sPriceSNTCountry',
+            'a8f2thbu05sPcsSNTCountry', 'a8f2thbu05sPriceSNTCountry', 'a8f2debu10sPcsSNTCountry',
+            'a8f2debu10sPriceSNTCountry',
+            'a8f2exbu11sPcsSNTCountry', 'a8f2exbu11sPriceSNTCountry', 'a8f2twbu04sPcsSNTCountry',
+            'a8f2twbu04sPriceSNTCountry',
+            'a8f2twbu07sPcsSNTCountry', 'a8f2twbu07sPriceSNTCountry', 'a8f2cebu10sPcsSNTCountry',
+            'a8f2cebu10sPriceSNTCountry',
+            'DC1PcsSNTCountry', 'DC1PriceSNTCountry', 'DCPPcsSNTCountry', 'DCPPriceSNTCountry',
+            'DCYPcsSNTCountry', 'DCYPriceSNTCountry', 'DEXPcsSNTCountry', 'DEXPriceSNTCountry',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterAllCountry', 'PriceAfterAllCountry', 'Pcs_AfterAllCountry', 'Price_AfterAllCountry',
+            'PoPcsAllCountry', 'PoPriceAllCountry', 'NegPcsAllCountry', 'NegPriceAllCountry', 'BackPcsAllCountry',
+            'BackPriceAllCountry', 'PurchasePcsAllCountry', 'PurchasePriceAllCountry', 'ReciveTranferPcsAllCountry',
+            'ReciveTranferPriceAllCountry', 'ReturnItemPcsAllCountry', 'ReturnItemPriceAllCountry',
+            'AllInPcsAllCountry', 'AllInPriceAllCountry', 'SendSalePcsAllCountry', 'SendSalePriceAllCountry',
+            'ReciveTranOutPcsAllCountry', 'ReciveTranOutPriceAllCountry', 'ReturnStorePcsAllCountry',
+            'ReturnStorePriceAllCountry', 'AllOutPcsAllCountry', 'AllOutPriceAllCountry', 'CalculatePcsAllCountry',
+            'CalculatePriceAllCountry', 'NewCalculatePcsAllCountry', 'NewCalculatePriceAllCountry',
+            'DiffPcsAllCountry', 'DiffPriceAllCountry', 'NewTotalPcsAllCountry', 'NewTotalPriceAllCountry',
+            'NewTotalDiffNavAllCountry', 'NewTotalDiffCalAllCountry',
+            'a7f1fgbu02sPcsAllCountry', 'a7f1fgbu02sPriceAllCountry', 'a7f2fgbu10sPcsAllCountry',
+            'a7f2fgbu10sPriceAllCountry',
+            'a7f2thbu05sPcsAllCountry', 'a7f2thbu05sPriceAllCountry', 'a7f2debu10sPcsAllCountry',
+            'a7f2debu10sPriceAllCountry',
+            'a7f2exbu11sPcsAllCountry', 'a7f2exbu11sPriceAllCountry', 'a7f2twbu04sPcsAllCountry',
+            'a7f2twbu04sPriceAllCountry',
+            'a7f2twbu07sPcsAllCountry', 'a7f2twbu07sPriceAllCountry', 'a7f2cebu10sPcsAllCountry',
+            'a7f2cebu10sPriceAllCountry',
+            'a8f1fgbu02sPcsAllCountry', 'a8f1fgbu02sPriceAllCountry', 'a8f2fgbu10sPcsAllCountry',
+            'a8f2fgbu10sPriceAllCountry',
+            'a8f2thbu05sPcsAllCountry', 'a8f2thbu05sPriceAllCountry', 'a8f2debu10sPcsAllCountry',
+            'a8f2debu10sPriceAllCountry',
+            'a8f2exbu11sPcsAllCountry', 'a8f2exbu11sPriceAllCountry', 'a8f2twbu04sPcsAllCountry',
+            'a8f2twbu04sPriceAllCountry',
+            'a8f2twbu07sPcsAllCountry', 'a8f2twbu07sPriceAllCountry', 'a8f2cebu10sPcsAllCountry',
+            'a8f2cebu10sPriceAllCountry',
+            'DC1PcsAllCountry', 'DC1PriceAllCountry', 'DCPPcsAllCountry', 'DCPPriceAllCountry',
+            'DCYPcsAllCountry', 'DCYPriceAllCountry', 'DEXPcsAllCountry', 'DEXPriceAllCountry',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterAllTotal', 'PriceAfterAllTotal', 'Pcs_AfterAllTotal', 'Price_AfterAllTotal',
+            'PoPcsAllTotal', 'PoPriceAllTotal', 'NegPcsAllTotal', 'NegPriceAllTotal', 'BackPcsAllTotal',
+            'BackPriceAllTotal', 'PurchasePcsAllTotal', 'PurchasePriceAllTotal', 'ReciveTranferPcsAllTotal',
+            'ReciveTranferPriceAllTotal', 'ReturnItemPcsAllTotal', 'ReturnItemPriceAllTotal',
+            'AllInPcsAllTotal', 'AllInPriceAllTotal', 'SendSalePcsAllTotal', 'SendSalePriceAllTotal',
+            'ReciveTranOutPcsAllTotal', 'ReciveTranOutPriceAllTotal', 'ReturnStorePcsAllTotal',
+            'ReturnStorePriceAllTotal', 'AllOutPcsAllTotal', 'AllOutPriceAllTotal', 'CalculatePcsAllTotal',
+            'CalculatePriceAllTotal', 'NewCalculatePcsAllTotal', 'NewCalculatePriceAllTotal',
+            'DiffPcsAllTotal', 'DiffPriceAllTotal', 'NewTotalPcsAllTotal', 'NewTotalPriceAllTotal',
+            'NewTotalDiffNavAllTotal', 'NewTotalDiffCalAllTotal',
+            'a7f1fgbu02sPcsAllTotal', 'a7f1fgbu02sPriceAllTotal', 'a7f2fgbu10sPcsAllTotal',
+            'a7f2fgbu10sPriceAllTotal',
+            'a7f2thbu05sPcsAllTotal', 'a7f2thbu05sPriceAllTotal', 'a7f2debu10sPcsAllTotal',
+            'a7f2debu10sPriceAllTotal',
+            'a7f2exbu11sPcsAllTotal', 'a7f2exbu11sPriceAllTotal', 'a7f2twbu04sPcsAllTotal',
+            'a7f2twbu04sPriceAllTotal',
+            'a7f2twbu07sPcsAllTotal', 'a7f2twbu07sPriceAllTotal', 'a7f2cebu10sPcsAllTotal',
+            'a7f2cebu10sPriceAllTotal',
+            'a8f1fgbu02sPcsAllTotal', 'a8f1fgbu02sPriceAllTotal', 'a8f2fgbu10sPcsAllTotal',
+            'a8f2fgbu10sPriceAllTotal',
+            'a8f2thbu05sPcsAllTotal', 'a8f2thbu05sPriceAllTotal', 'a8f2debu10sPcsAllTotal',
+            'a8f2debu10sPriceAllTotal',
+            'a8f2exbu11sPcsAllTotal', 'a8f2exbu11sPriceAllTotal', 'a8f2twbu04sPcsAllTotal',
+            'a8f2twbu04sPriceAllTotal',
+            'a8f2twbu07sPcsAllTotal', 'a8f2twbu07sPriceAllTotal', 'a8f2cebu10sPcsAllTotal',
+            'a8f2cebu10sPriceAllTotal',
+            'DC1PcsAllTotal', 'DC1PriceAllTotal', 'DCPPcsAllTotal', 'DCPPriceAllTotal',
+            'DCYPcsAllTotal', 'DCYPriceAllTotal', 'DEXPcsAllTotal', 'DEXPriceAllTotal',
         ];
 
         response.forEach((elementData, index) => {
@@ -5734,4 +7551,8 @@ $.ajax({
         console.error(error);
     }
 });
+
+function Print() {
+    window.print();
+}
 </script>
