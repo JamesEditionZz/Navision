@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navition</title>
     <link rel="stylesheet" href="{{ asset('css/navition.css') }}">
+    <script src="{{ asset('/js/ajax.js') }}"></script>
 </head>
 
 <body>
@@ -210,6 +211,234 @@
                     <tr>
                         <td>NT</td>
                         <td>อวนกำโมโน</td>
+                        <td>
+                            <div id="PcsAfterNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceNT_1"></div>
+                        </td>
                     </tr>
                     <tr>
                         <td>NT</td>
@@ -349,8 +578,52 @@
         <h1>Loading</h1>
     </div>
 </body>
+
 </html>
 <script>
-    // var modeloading = document.querySelector(".loading-data");
-    // modeloading.style.display = "block";
+var modeloading = document.querySelector(".loading-data");
+modeloading.style.display = "block";
+
+$.ajax({
+    type: "GET",
+    url: "{{ Route('DataDC1') }}",
+    success: function(response) {
+        
+        modeloading.style.display = "none";
+
+        Data = [
+            'PcsAfterNT_1', 'PriceAfterNT_1', 'Pcs_AfterNT_1', 'Price_AfterNT_1',
+            'PoPcsNT_1', 'PoPriceNT_1', 'NegPcsNT_1', 'NegPriceNT_1', 'BackPcsNT_1',
+            'BackPriceNT_1', 'PurchasePcsNT_1', 'PurchasePriceNT_1', 'ReciveTranferPcsNT_1',
+            'ReciveTranferPriceNT_1', 'ReturnItemPcsNT_1', 'ReturnItemPriceNT_1',
+            'AllInPcsNT_1', 'AllInPriceNT_1', 'SendSalePcsNT_1', 'SendSalePriceNT_1',
+            'ReciveTranOutPcsNT_1', 'ReciveTranOutPriceNT_1', 'ReturnStorePcsNT_1',
+            'ReturnStorePriceNT_1', 'AllOutPcsNT_1', 'AllOutPriceNT_1', 'CalculatePcsNT_1',
+            'CalculatePriceNT_1', 'NewCalculatePcsNT_1', 'NewCalculatePriceNT_1',
+            'DiffPcsNT_1', 'DiffPriceNT_1', 'NewTotalPcsNT_1', 'NewTotalPriceNT_1',
+            'NewTotalDiffNavNT_1', 'NewTotalDiffCalNT_1',
+            'a7f1fgbu02sPcsNT_1', 'a7f1fgbu02sPriceNT_1', 'a7f2fgbu10sPcsNT_1', 'a7f2fgbu10sPriceNT_1',
+            'a7f2thbu05sPcsNT_1', 'a7f2thbu05sPriceNT_1', 'a7f2debu10sPcsNT_1', 'a7f2debu10sPriceNT_1',
+            'a7f2exbu11sPcsNT_1', 'a7f2exbu11sPriceNT_1', 'a7f2twbu04sPcsNT_1', 'a7f2twbu04sPriceNT_1',
+            'a7f2twbu07sPcsNT_1', 'a7f2twbu07sPriceNT_1', 'a7f2cebu10sPcsNT_1', 'a7f2cebu10sPriceNT_1',
+            'a8f1fgbu02sPcsNT_1', 'a8f1fgbu02sPriceNT_1', 'a8f2fgbu10sPcsNT_1', 'a8f2fgbu10sPriceNT_1',
+            'a8f2thbu05sPcsNT_1', 'a8f2thbu05sPriceNT_1', 'a8f2debu10sPcsNT_1', 'a8f2debu10sPriceNT_1',
+            'a8f2exbu11sPcsNT_1', 'a8f2exbu11sPriceNT_1', 'a8f2twbu04sPcsNT_1', 'a8f2twbu04sPriceNT_1',
+            'a8f2twbu07sPcsNT_1', 'a8f2twbu07sPriceNT_1', 'a8f2cebu10sPcsNT_1', 'a8f2cebu10sPriceNT_1',
+            'DC1PcsNT_1', 'DC1PriceNT_1', 'DCPPcsNT_1', 'DCPPriceNT_1',
+            'DCYPcsNT_1', 'DCYPriceNT_1', 'DEXPcsNT_1', 'DEXPriceNT_1',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+        ];
+
+        response.forEach((elementData, index) => {
+            var element = Data[index];
+            $('#' + element).text(elementData);
+        });
+    },
+    error: function(error) {
+        console.error(error);
+    }
+});
 </script>

@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DC1Controller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\ProductController;
@@ -31,6 +32,7 @@ Route::get('/DC1', [Controller::class,'DC1'])->name('DC1');
 Route::post('/DataAs', [DatalistController::class,'DataAs'])->name('DataAs');
 Route::get('/Data/Product', [ProductController::class,'DataProduct'])->name('DataProduct');
 Route::get('/Data/Customer', [CustomerController::class,'DataCustomer'])->name('DataCustomer');
+Route::get('/Data/DC1', [DC1Controller::class,'DataDC1'])->name('DataDC1');
 
 //Search
 Route::post('/searchItemNo', [DatalistController::class,'searchItemNo'])->name('searchItemNo');
