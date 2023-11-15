@@ -566,7 +566,10 @@ class ProductController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '=', 'DC1')
-            ->Where('dataother.Item No', 'LIKE', 'SFN%')
+            ->where(function ($query){
+                $query->where('dataother.Item No', 'LIKE', 'SFN%')
+                ->orWhere('dataother.Item No', 'LIKE', 'FN%');
+            })
             ->get();
 
         //////////////////////////////////////////////////////////////////////////////////
@@ -1055,7 +1058,7 @@ class ProductController extends Controller
             ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
-            ->where('dataother.Customer', '=', 'DCY')
+            ->where('dataother.Customer', '=', 'DCP')
             ->where('dataother.Item No', 'LIKE', 'TW%')
             ->get();
 
