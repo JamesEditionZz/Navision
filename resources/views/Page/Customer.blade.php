@@ -1251,7 +1251,6 @@ $.ajax({
             var element = Data[index];
             $('#' + element).text(elementData);
         });
-
     },
     error: function(error) {
         console.error(error);
