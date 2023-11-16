@@ -3228,6 +3228,234 @@
                     </tr>
                     <tr>
                         <td colspan="3">รวม</td>
+                        <td>
+                            <div id="PcsAfterMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceMT_All"></div>
+                        </td>
                     </tr>
                     <tr>
                         <td rowspan="7">ด้ายโพลี</td>
@@ -3638,6 +3866,30 @@ $.ajax({
             'a8f2twbu07sPcsMT_6', 'a8f2twbu07sPriceMT_6', 'a8f2cebu10sPcsMT_6', 'a8f2cebu10sPriceMT_6',
             'DC1PcsMT_6', 'DC1PriceMT_6', 'DCPPcsMT_6', 'DCPPriceMT_6',
             'DCYPcsMT_6', 'DCYPriceMT_6', 'DEXPcsMT_6', 'DEXPriceMT_6',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterMT_All', 'PriceAfterMT_All', 'Pcs_AfterMT_All', 'Price_AfterMT_All',
+            'PoPcsMT_All', 'PoPriceMT_All', 'NegPcsMT_All', 'NegPriceMT_All', 'BackPcsMT_All',
+            'BackPriceMT_All', 'PurchasePcsMT_All', 'PurchasePriceMT_All', 'ReciveTranferPcsMT_All',
+            'ReciveTranferPriceMT_All', 'ReturnItemPcsMT_All', 'ReturnItemPriceMT_All',
+            'AllInPcsMT_All', 'AllInPriceMT_All', 'SendSalePcsMT_All', 'SendSalePriceMT_All',
+            'ReciveTranOutPcsMT_All', 'ReciveTranOutPriceMT_All', 'ReturnStorePcsMT_All',
+            'ReturnStorePriceMT_All', 'AllOutPcsMT_All', 'AllOutPriceMT_All', 'CalculatePcsMT_All',
+            'CalculatePriceMT_All', 'NewCalculatePcsMT_All', 'NewCalculatePriceMT_All',
+            'DiffPcsMT_All', 'DiffPriceMT_All', 'NewTotalPcsMT_All', 'NewTotalPriceMT_All',
+            'NewTotalDiffNavMT_All', 'NewTotalDiffCalMT_All',
+            'a7f1fgbu02sPcsMT_All', 'a7f1fgbu02sPriceMT_All', 'a7f2fgbu10sPcsMT_All', 'a7f2fgbu10sPriceMT_All',
+            'a7f2thbu05sPcsMT_All', 'a7f2thbu05sPriceMT_All', 'a7f2debu10sPcsMT_All', 'a7f2debu10sPriceMT_All',
+            'a7f2exbu11sPcsMT_All', 'a7f2exbu11sPriceMT_All', 'a7f2twbu04sPcsMT_All', 'a7f2twbu04sPriceMT_All',
+            'a7f2twbu07sPcsMT_All', 'a7f2twbu07sPriceMT_All', 'a7f2cebu10sPcsMT_All', 'a7f2cebu10sPriceMT_All',
+            'a8f1fgbu02sPcsMT_All', 'a8f1fgbu02sPriceMT_All', 'a8f2fgbu10sPcsMT_All', 'a8f2fgbu10sPriceMT_All',
+            'a8f2thbu05sPcsMT_All', 'a8f2thbu05sPriceMT_All', 'a8f2debu10sPcsMT_All', 'a8f2debu10sPriceMT_All',
+            'a8f2exbu11sPcsMT_All', 'a8f2exbu11sPriceMT_All', 'a8f2twbu04sPcsMT_All', 'a8f2twbu04sPriceMT_All',
+            'a8f2twbu07sPcsMT_All', 'a8f2twbu07sPriceMT_All', 'a8f2cebu10sPcsMT_All', 'a8f2cebu10sPriceMT_All',
+            'DC1PcsMT_All', 'DC1PriceMT_All', 'DCPPcsMT_All', 'DCPPriceMT_All',
+            'DCYPcsMT_All', 'DCYPriceMT_All', 'DEXPcsMT_All', 'DEXPriceMT_All',
 
             //////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////

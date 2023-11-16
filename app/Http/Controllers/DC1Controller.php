@@ -4401,6 +4401,88 @@ class DC1Controller extends Controller
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
 
+        $Pcs_AfterMT_All =  $Pcs_AfterMT_1 + $Pcs_AfterMT_2 + $Pcs_AfterMT_3 + $Pcs_AfterMT_4 + $Pcs_AfterMT_5 + $Pcs_AfterMT_6;
+        $Price_AfterMT_All = $Price_AfterMT_1 + $Price_AfterMT_2 + $Price_AfterMT_3 + $Price_AfterMT_4 + $Price_AfterMT_5 + $Price_AfterMT_6;
+        $Pcs_AfterMT_All =  $Pcs_AfterMT_1 + $Pcs_AfterMT_2 + $Pcs_AfterMT_3 + $Pcs_AfterMT_4 + $Pcs_AfterMT_5 + $Pcs_AfterMT_6;
+        $Price_AfterMT_All =  $Price_AfterMT_1 + $Price_AfterMT_2 + $Price_AfterMT_3 + $Price_AfterMT_4 + $Price_AfterMT_5 + $Price_AfterMT_6;
+        $Po_PcsMT_All = $Po_PcsMT_1 + $Po_PcsMT_2 + $Po_PcsMT_3 + $Po_PcsMT_4 + $Po_PcsMT_5 + $Po_PcsMT_6;
+        $Po_PriceMT_All =  $Po_PriceMT_1 + $Po_PriceMT_2 + $Po_PriceMT_3 + $Po_PriceMT_4 + $Po_PriceMT_5 + $Po_PriceMT_6;
+        $Neg_PcsMT_All =  $Neg_PcsMT_1 + $Neg_PcsMT_2 + $Neg_PcsMT_3 + $Neg_PcsMT_4 + $Neg_PcsMT_5 + $Neg_PcsMT_6;
+        $Neg_PriceMT_All =  $Neg_PriceMT_1 + $Neg_PriceMT_2 + $Neg_PriceMT_3 + $Neg_PriceMT_4 + $Neg_PriceMT_5 + $Neg_PriceMT_6;
+        $BackChange_PcsMT_All =  $BackChange_PcsMT_1 + $BackChange_PcsMT_2 + $BackChange_PcsMT_3 + $BackChange_PcsMT_4 + $BackChange_PcsMT_5 + $BackChange_PcsMT_6;
+        $BackChange_PriceMT_All =  $BackChange_PriceMT_1 + $BackChange_PriceMT_2 + $BackChange_PriceMT_3 + $BackChange_PriceMT_4 + $BackChange_PriceMT_5 + $BackChange_PriceMT_6;
+        $Purchase_PcsMT_All =  $Purchase_PcsMT_1 + $Purchase_PcsMT_2 + $Purchase_PcsMT_3 + $Purchase_PcsMT_4 + $Purchase_PcsMT_5 + $Purchase_PcsMT_6;
+        $Purchase_PriceMT_All =  $Purchase_PriceMT_1 + $Purchase_PriceMT_2 + $Purchase_PriceMT_3 + $Purchase_PriceMT_4 + $Purchase_PriceMT_5 + $Purchase_PriceMT_6;
+        $ReciveTranfer_PcsMT_All =  $ReciveTranfer_PcsMT_1 + $ReciveTranfer_PcsMT_2 + $ReciveTranfer_PcsMT_3 + $ReciveTranfer_PcsMT_4 + $ReciveTranfer_PcsMT_5 + $ReciveTranfer_PcsMT_6;
+        $ReciveTranfer_PriceMT_All =  $ReciveTranfer_PriceMT_1 + $ReciveTranfer_PriceMT_2 + $ReciveTranfer_PriceMT_3 + $ReciveTranfer_PriceMT_4 + $ReciveTranfer_PriceMT_5 + $ReciveTranfer_PriceMT_6;
+        $ReturnItem_PCSMT_All =  $ReturnItem_PCSMT_1 + $ReturnItem_PCSMT_2 + $ReturnItem_PCSMT_3 + $ReturnItem_PCSMT_4 + $ReturnItem_PCSMT_5 + $ReturnItem_PCSMT_6;
+        $ReturnItem_PriceMT_All =  $ReturnItem_PriceMT_1 + $ReturnItem_PriceMT_2 + $ReturnItem_PriceMT_3 + $ReturnItem_PriceMT_4 + $ReturnItem_PriceMT_5 + $ReturnItem_PriceMT_6;
+        $AllIn_PcsMT_All =  $AllIn_PcsMT_1 + $AllIn_PcsMT_2 + $AllIn_PcsMT_3 + $AllIn_PcsMT_4 + $AllIn_PcsMT_5 + $AllIn_PcsMT_6;
+        $AllIn_PriceMT_All =  $AllIn_PriceMT_1 + $AllIn_PriceMT_2 + $AllIn_PriceMT_3 + $AllIn_PriceMT_4 + $AllIn_PriceMT_5 + $AllIn_PriceMT_6;
+        $SendSale_PcsMT_All =  $SendSale_PcsMT_1 + $SendSale_PcsMT_2 + $SendSale_PcsMT_3 + $SendSale_PcsMT_4 + $SendSale_PcsMT_5 + $SendSale_PcsMT_6;
+        $SendSale_PriceMT_All =  $SendSale_PriceMT_1 + $SendSale_PriceMT_2 + $SendSale_PriceMT_3 + $SendSale_PriceMT_4 + $SendSale_PriceMT_5 + $SendSale_PriceMT_6;
+        $ReciveTranOut_PcsMT_All =  $ReciveTranOut_PcsMT_1 + $ReciveTranOut_PcsMT_2 + $ReciveTranOut_PcsMT_3 + $ReciveTranOut_PcsMT_4 + $ReciveTranOut_PcsMT_5 + $ReciveTranOut_PcsMT_6;
+        $ReciveTranOut_PriceMT_All =  $ReciveTranOut_PriceMT_1 + $ReciveTranOut_PriceMT_2 + $ReciveTranOut_PriceMT_3 + $ReciveTranOut_PriceMT_4 + $ReciveTranOut_PriceMT_5 + $ReciveTranOut_PriceMT_6;
+        $ReturnStore_PcsMT_All =  $ReturnStore_PcsMT_1 + $ReturnStore_PcsMT_2 + $ReturnStore_PcsMT_3 + $ReturnStore_PcsMT_4 + $ReturnStore_PcsMT_5 + $ReturnStore_PcsMT_6;
+        $ReturnStore_PriceMT_All =  $ReturnStore_PriceMT_1 + $ReturnStore_PriceMT_2 + $ReturnStore_PriceMT_3 + $ReturnStore_PriceMT_4 + $ReturnStore_PriceMT_5 + $ReturnStore_PriceMT_6;
+        $AllOut_PcsMT_All =  $AllOut_PcsMT_1 + $AllOut_PcsMT_2 + $AllOut_PcsMT_3 + $AllOut_PcsMT_4 + $AllOut_PcsMT_5 + $AllOut_PcsMT_6;
+        $AllOut_PriceMT_All =  $AllOut_PriceMT_1 + $AllOut_PriceMT_2 + $AllOut_PriceMT_3 + $AllOut_PriceMT_4 + $AllOut_PriceMT_5 + $AllOut_PriceMT_6;
+        $Calculate_PcsMT_All =  $Calculate_PcsMT_1 + $Calculate_PcsMT_2 + $Calculate_PcsMT_3 + $Calculate_PcsMT_4 + $Calculate_PcsMT_5 + $Calculate_PcsMT_6;
+        $Calculate_PriceMT_All =  $Calculate_PriceMT_1 + $Calculate_PriceMT_2 + $Calculate_PriceMT_3 + $Calculate_PriceMT_4 + $Calculate_PriceMT_5 + $Calculate_PriceMT_6;
+        $NewCalculate_PcsMT_All = $NewCalculate_PcsMT_1 + $NewCalculate_PcsMT_2 + $NewCalculate_PcsMT_3 + $NewCalculate_PcsMT_4 + $NewCalculate_PcsMT_5 + $NewCalculate_PcsMT_6;
+        $NewCalculate_PriceMT_All = $NewCalculate_PriceMT_1 + $NewCalculate_PriceMT_2 + $NewCalculate_PriceMT_3 + $NewCalculate_PriceMT_4 + $NewCalculate_PriceMT_5 + $NewCalculate_PriceMT_6;
+        $Diff_PcsMT_All = $Diff_PcsMT_1 + $Diff_PcsMT_2 + $Diff_PcsMT_3 + $Diff_PcsMT_4 + $Diff_PcsMT_5 + $Diff_PcsMT_6;
+        $Diff_PriceMT_All = $Diff_PriceMT_1 + $Diff_PriceMT_2 + $Diff_PriceMT_3 + $Diff_PriceMT_4 + $Diff_PriceMT_5 + $Diff_PriceMT_6;
+        $NewTotal_PcsMT_All = $NewTotal_PcsMT_1 + $NewTotal_PcsMT_2 + $NewTotal_PcsMT_3 + $NewTotal_PcsMT_4 + $NewTotal_PcsMT_5 + $NewTotal_PcsMT_6;
+        $NewTotal_PriceMT_All = $NewTotal_PriceMT_1 + $NewTotal_PriceMT_2 + $NewTotal_PriceMT_3 + $NewTotal_PriceMT_4 + $NewTotal_PriceMT_5 + $NewTotal_PriceMT_6;
+        $NewTotalDiff_NavMT_All = $NewTotalDiff_NavMT_1 + $NewTotalDiff_NavMT_2 + $NewTotalDiff_NavMT_3 + $NewTotalDiff_NavMT_4 + $NewTotalDiff_NavMT_5 + $NewTotalDiff_NavMT_6;
+        $NewTotalDiff_CalMT_All = $NewTotalDiff_CalMT_1 + $NewTotalDiff_CalMT_2 + $NewTotalDiff_CalMT_3 + $NewTotalDiff_CalMT_4 + $NewTotalDiff_CalMT_5 + $NewTotalDiff_CalMT_6;
+        $a7f1fgbu02s_PcsMT_All = $a7f1fgbu02s_PcsMT_1 + $a7f1fgbu02s_PcsMT_2 + $a7f1fgbu02s_PcsMT_3 + $a7f1fgbu02s_PcsMT_4 + $a7f1fgbu02s_PcsMT_5 + $a7f1fgbu02s_PcsMT_6;
+        $a7f1fgbu02s_PriceMT_All = $a7f1fgbu02s_PriceMT_1 + $a7f1fgbu02s_PriceMT_2 + $a7f1fgbu02s_PriceMT_3 + $a7f1fgbu02s_PriceMT_4 + $a7f1fgbu02s_PriceMT_5 + $a7f1fgbu02s_PriceMT_6;
+        $a7f2fgbu10s_PcsMT_All = $a7f2fgbu10s_PcsMT_1 + $a7f2fgbu10s_PcsMT_2 + $a7f2fgbu10s_PcsMT_3 + $a7f2fgbu10s_PcsMT_4 + $a7f2fgbu10s_PcsMT_5 + $a7f2fgbu10s_PcsMT_6;
+        $a7f2fgbu10s_PriceMT_All = $a7f2fgbu10s_PriceMT_1 + $a7f2fgbu10s_PriceMT_2 + $a7f2fgbu10s_PriceMT_3 + $a7f2fgbu10s_PriceMT_4 + $a7f2fgbu10s_PriceMT_5 + $a7f2fgbu10s_PriceMT_6;
+        $a7f2thbu05s_PcsMT_All = $a7f2thbu05s_PcsMT_1 + $a7f2thbu05s_PcsMT_2 + $a7f2thbu05s_PcsMT_3 + $a7f2thbu05s_PcsMT_4 + $a7f2thbu05s_PcsMT_5 + $a7f2thbu05s_PcsMT_6;
+        $a7f2thbu05s_PriceMT_All = $a7f2thbu05s_PriceMT_1 + $a7f2thbu05s_PriceMT_2 + $a7f2thbu05s_PriceMT_3 + $a7f2thbu05s_PriceMT_4 + $a7f2thbu05s_PriceMT_5 + $a7f2thbu05s_PriceMT_6;
+        $a7f2debu10s_PcsMT_All = $a7f2debu10s_PcsMT_1 + $a7f2debu10s_PcsMT_2 + $a7f2debu10s_PcsMT_3 + $a7f2debu10s_PcsMT_4 + $a7f2debu10s_PcsMT_5 + $a7f2debu10s_PcsMT_6;
+        $a7f2debu10s_PriceMT_All = $a7f2debu10s_PriceMT_1 + $a7f2debu10s_PriceMT_2 + $a7f2debu10s_PriceMT_3 + $a7f2debu10s_PriceMT_4 + $a7f2debu10s_PriceMT_5 + $a7f2debu10s_PriceMT_6;
+        $a7f2exbu11s_PcsMT_All = $a7f2exbu11s_PcsMT_1 + $a7f2exbu11s_PcsMT_2 + $a7f2exbu11s_PcsMT_3 + $a7f2exbu11s_PcsMT_4 + $a7f2exbu11s_PcsMT_5 + $a7f2exbu11s_PcsMT_6;
+        $a7f2exbu11s_PriceMT_All = $a7f2exbu11s_PriceMT_1 + $a7f2exbu11s_PriceMT_2 + $a7f2exbu11s_PriceMT_3 + $a7f2exbu11s_PriceMT_4 + $a7f2exbu11s_PriceMT_5 + $a7f2exbu11s_PriceMT_6;
+        $a7f2twbu04s_PcsMT_All = $a7f2twbu04s_PcsMT_1 + $a7f2twbu04s_PcsMT_2 + $a7f2twbu04s_PcsMT_3 + $a7f2twbu04s_PcsMT_4 + $a7f2twbu04s_PcsMT_5 + $a7f2twbu04s_PcsMT_6;
+        $a7f2twbu04s_PriceMT_All = $a7f2twbu04s_PriceMT_1 + $a7f2twbu04s_PriceMT_2 + $a7f2twbu04s_PriceMT_3 + $a7f2twbu04s_PriceMT_4 + $a7f2twbu04s_PriceMT_5 + $a7f2twbu04s_PriceMT_6;
+        $a7f2twbu07s_PcsMT_All = $a7f2twbu07s_PcsMT_1 + $a7f2twbu07s_PcsMT_2 + $a7f2twbu07s_PcsMT_3 + $a7f2twbu07s_PcsMT_4 + $a7f2twbu07s_PcsMT_5 + $a7f2twbu07s_PcsMT_6;
+        $a7f2twbu07s_PriceMT_All = $a7f2twbu07s_PriceMT_1 + $a7f2twbu07s_PriceMT_2 + $a7f2twbu07s_PriceMT_3 + $a7f2twbu07s_PriceMT_4 + $a7f2twbu07s_PriceMT_5 + $a7f2twbu07s_PriceMT_6;
+        $a7f2cebu10s_PcsMT_All = $a7f2cebu10s_PcsMT_1 + $a7f2cebu10s_PcsMT_2 + $a7f2cebu10s_PcsMT_3 + $a7f2cebu10s_PcsMT_4 + $a7f2cebu10s_PcsMT_5 + $a7f2cebu10s_PcsMT_6;
+        $a7f2cebu10s_PriceMT_All = $a7f2cebu10s_PriceMT_1 + $a7f2cebu10s_PriceMT_2 + $a7f2cebu10s_PriceMT_3 + $a7f2cebu10s_PriceMT_4 + $a7f2cebu10s_PriceMT_5 + $a7f2cebu10s_PriceMT_6;
+        $a8f1fgbu02s_PcsMT_All = $a8f1fgbu02s_PcsMT_1 + $a8f1fgbu02s_PcsMT_2 + $a8f1fgbu02s_PcsMT_3 + $a8f1fgbu02s_PcsMT_4 + $a8f1fgbu02s_PcsMT_5 + $a8f1fgbu02s_PcsMT_6;
+        $a8f1fgbu02s_PriceMT_All = $a8f1fgbu02s_PriceMT_1 + $a8f1fgbu02s_PriceMT_2 + $a8f1fgbu02s_PriceMT_3 + $a8f1fgbu02s_PriceMT_4 + $a8f1fgbu02s_PriceMT_5 + $a8f1fgbu02s_PriceMT_6;
+        $a8f2fgbu10s_PcsMT_All = $a8f2fgbu10s_PcsMT_1 + $a8f2fgbu10s_PcsMT_2 + $a8f2fgbu10s_PcsMT_3 + $a8f2fgbu10s_PcsMT_4 + $a8f2fgbu10s_PcsMT_5 + $a8f2fgbu10s_PcsMT_6;
+        $a8f2fgbu10s_PriceMT_All = $a8f2fgbu10s_PriceMT_1 + $a8f2fgbu10s_PriceMT_2 + $a8f2fgbu10s_PriceMT_3 + $a8f2fgbu10s_PriceMT_4 + $a8f2fgbu10s_PriceMT_5 + $a8f2fgbu10s_PriceMT_6;
+        $a8f2thbu05s_PcsMT_All = $a8f2thbu05s_PcsMT_1 + $a8f2thbu05s_PcsMT_2 + $a8f2thbu05s_PcsMT_3 + $a8f2thbu05s_PcsMT_4 + $a8f2thbu05s_PcsMT_5 + $a8f2thbu05s_PcsMT_6;
+        $a8f2thbu05s_PriceMT_All = $a8f2thbu05s_PriceMT_1 + $a8f2thbu05s_PriceMT_2 + $a8f2thbu05s_PriceMT_3 + $a8f2thbu05s_PriceMT_4 + $a8f2thbu05s_PriceMT_5 + $a8f2thbu05s_PriceMT_6;
+        $a8f2debu10s_PcsMT_All = $a8f2debu10s_PcsMT_1 + $a8f2debu10s_PcsMT_2 + $a8f2debu10s_PcsMT_3 + $a8f2debu10s_PcsMT_4 + $a8f2debu10s_PcsMT_5 + $a8f2debu10s_PcsMT_6;
+        $a8f2debu10s_PriceMT_All = $a8f2debu10s_PriceMT_1 + $a8f2debu10s_PriceMT_2 + $a8f2debu10s_PriceMT_3 + $a8f2debu10s_PriceMT_4 + $a8f2debu10s_PriceMT_5 + $a8f2debu10s_PriceMT_6;
+        $a8f2exbu11s_PcsMT_All = $a8f2exbu11s_PcsMT_1 + $a8f2exbu11s_PcsMT_2 + $a8f2exbu11s_PcsMT_3 + $a8f2exbu11s_PcsMT_4 + $a8f2exbu11s_PcsMT_5 + $a8f2exbu11s_PcsMT_6;
+        $a8f2exbu11s_PriceMT_All = $a8f2exbu11s_PriceMT_1 + $a8f2exbu11s_PriceMT_2 + $a8f2exbu11s_PriceMT_3 + $a8f2exbu11s_PriceMT_4 + $a8f2exbu11s_PriceMT_5 + $a8f2exbu11s_PriceMT_6;
+        $a8f2twbu04s_PcsMT_All = $a8f2twbu04s_PcsMT_1 + $a8f2twbu04s_PcsMT_2 + $a8f2twbu04s_PcsMT_3 + $a8f2twbu04s_PcsMT_4 + $a8f2twbu04s_PcsMT_5 + $a8f2twbu04s_PcsMT_6;
+        $a8f2twbu04s_PriceMT_All = $a8f2twbu04s_PriceMT_1 + $a8f2twbu04s_PriceMT_2 + $a8f2twbu04s_PriceMT_3 + $a8f2twbu04s_PriceMT_4 + $a8f2twbu04s_PriceMT_5 + $a8f2twbu04s_PriceMT_6;
+        $a8f2twbu07s_PcsMT_All = $a8f2twbu07s_PcsMT_1 + $a8f2twbu07s_PcsMT_2 + $a8f2twbu07s_PcsMT_3 + $a8f2twbu07s_PcsMT_4 + $a8f2twbu07s_PcsMT_5 + $a8f2twbu07s_PcsMT_6;
+        $a8f2twbu07s_PriceMT_All = $a8f2twbu07s_PriceMT_1 + $a8f2twbu07s_PriceMT_2 + $a8f2twbu07s_PriceMT_3 + $a8f2twbu07s_PriceMT_4 + $a8f2twbu07s_PriceMT_5 + $a8f2twbu07s_PriceMT_6;
+        $a8f2cebu10s_PcsMT_All = $a8f2cebu10s_PcsMT_1 + $a8f2cebu10s_PcsMT_2 + $a8f2cebu10s_PcsMT_3 + $a8f2cebu10s_PcsMT_4 + $a8f2cebu10s_PcsMT_5 + $a8f2cebu10s_PcsMT_6;
+        $a8f2cebu10s_PriceMT_All = $a8f2cebu10s_PriceMT_1 + $a8f2cebu10s_PriceMT_2 + $a8f2cebu10s_PriceMT_3 + $a8f2cebu10s_PriceMT_4 + $a8f2cebu10s_PriceMT_5 + $a8f2cebu10s_PriceMT_6;
+        $DC1_PcsMT_All = $DC1_PcsMT_1 + $DC1_PcsMT_2 + $DC1_PcsMT_3 + $DC1_PcsMT_4 + $DC1_PcsMT_5 + $DC1_PcsMT_6;
+        $DC1_PriceMT_All = $DC1_PriceMT_1 + $DC1_PriceMT_2 + $DC1_PriceMT_3 + $DC1_PriceMT_4 + $DC1_PriceMT_5 + $DC1_PriceMT_6;
+        $DCP_PcsMT_All = $DCP_PcsMT_1 + $DCP_PcsMT_2 + $DCP_PcsMT_3 + $DCP_PcsMT_4 + $DCP_PcsMT_5 + $DCP_PcsMT_6;
+        $DCP_PriceMT_All = $DCP_PriceMT_1 + $DCP_PriceMT_2 + $DCP_PriceMT_3 + $DCP_PriceMT_4 + $DCP_PriceMT_5 + $DCP_PriceMT_6;
+        $DCY_PcsMT_All = $DCY_PcsMT_1 + $DCY_PcsMT_2 + $DCY_PcsMT_3 + $DCY_PcsMT_4 + $DCY_PcsMT_5 + $DCY_PcsMT_6;
+        $DCY_PriceMT_All = $DCY_PriceMT_1 + $DCY_PriceMT_2 + $DCY_PriceMT_3 + $DCY_PriceMT_4 + $DCY_PriceMT_5 + $DCY_PriceMT_6;
+        $DEX_PcsMT_All = $DEX_PcsMT_1 + $DEX_PcsMT_2 + $DEX_PcsMT_3 + $DEX_PcsMT_4 + $DEX_PcsMT_5 + $DEX_PcsMT_6;
+        $DEX_PriceMT_All = $DEX_PriceMT_1 + $DEX_PriceMT_2 + $DEX_PriceMT_3 + $DEX_PriceMT_4 + $DEX_PriceMT_5 + $DEX_PriceMT_6;
+        
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
+
         $Pcs_AfterNT_1 = number_format($Pcs_AfterNT_1, 0);
         $Price_AfterNT_1 = number_format($Price_AfterNT_1, 0);
         $Po_PcsNT_1 = number_format($Po_PcsNT_1, 0);
@@ -5425,6 +5507,85 @@ class DC1Controller extends Controller
         $DCY_PriceMT_6 = number_format($DCY_PriceMT_6, 0);
         $DEX_PcsMT_6 = number_format($DEX_PcsMT_6, 0);
         $DEX_PriceMT_6 = number_format($DEX_PriceMT_6, 0);
+
+        // /////////////////////////////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterMT_All = number_format($Pcs_AfterMT_All, 0);
+        $Price_AfterMT_All = number_format($Price_AfterMT_All, 0);
+        $Po_PcsMT_All = number_format($Po_PcsMT_All, 0);
+        $Po_PriceMT_All = number_format($Po_PriceMT_All, 0);
+        $Neg_PcsMT_All = number_format($Neg_PcsMT_All, 0);
+        $Neg_PriceMT_All = number_format($Neg_PriceMT_All, 0);
+        $BackChange_PcsMT_All = number_format($BackChange_PcsMT_All, 0);
+        $BackChange_PriceMT_All = number_format($BackChange_PriceMT_All, 0);
+        $Purchase_PcsMT_All = number_format($Purchase_PcsMT_All, 0);
+        $Purchase_PriceMT_All = number_format($Purchase_PriceMT_All, 0);
+        $ReciveTranfer_PcsMT_All = number_format($ReciveTranfer_PcsMT_All, 0);
+        $ReciveTranfer_PriceMT_All = number_format($ReciveTranfer_PriceMT_All, 0);
+        $ReturnItem_PCSMT_All = number_format($ReturnItem_PCSMT_All, 0);
+        $ReturnItem_PriceMT_All = number_format($ReturnItem_PriceMT_All, 0);
+        $AllIn_PcsMT_All = number_format($AllIn_PcsMT_All, 0);
+        $AllIn_PriceMT_All = number_format($AllIn_PriceMT_All, 0);
+        $SendSale_PcsMT_All = number_format($SendSale_PcsMT_All, 0);
+        $SendSale_PriceMT_All = number_format($SendSale_PriceMT_All, 0);
+        $ReciveTranOut_PcsMT_All = number_format($ReciveTranOut_PcsMT_All, 0);
+        $ReciveTranOut_PriceMT_All = number_format($ReciveTranOut_PriceMT_All, 0);
+        $ReturnStore_PcsMT_All = number_format($ReturnStore_PcsMT_All, 0);
+        $ReturnStore_PriceMT_All = number_format($ReturnStore_PriceMT_All, 0);
+        $AllOut_PcsMT_All = number_format($AllOut_PcsMT_All, 0);
+        $AllOut_PriceMT_All = number_format($AllOut_PriceMT_All, 0);
+        $Calculate_PcsMT_All = number_format($Calculate_PcsMT_All, 0);
+        $Calculate_PriceMT_All = number_format($Calculate_PriceMT_All, 0);
+        $NewCalculate_PcsMT_All = number_format($NewCalculate_PcsMT_All, 0);
+        $NewCalculate_PriceMT_All = number_format($NewCalculate_PriceMT_All, 0);
+        $Diff_PcsMT_All = number_format($Diff_PcsMT_All, 0);
+        $Diff_PriceMT_All = number_format($Diff_PriceMT_All, 0);
+        $NewTotal_PcsMT_All = number_format($NewTotal_PcsMT_All, 0);
+        $NewTotal_PriceMT_All = number_format($NewTotal_PriceMT_All, 0);
+        $NewTotalDiff_NavMT_All = number_format($NewTotalDiff_NavMT_All, 0);
+        $NewTotalDiff_CalMT_All = number_format($NewTotalDiff_CalMT_All, 0);
+        $a7f1fgbu02s_PcsMT_All = number_format($a7f1fgbu02s_PcsMT_All, 0);
+        $a7f1fgbu02s_PriceMT_All = number_format($a7f1fgbu02s_PriceMT_All, 0);
+        $a7f2fgbu10s_PcsMT_All = number_format($a7f2fgbu10s_PcsMT_All, 0);
+        $a7f2fgbu10s_PriceMT_All = number_format($a7f2fgbu10s_PriceMT_All, 0);
+        $a7f2thbu05s_PcsMT_All = number_format($a7f2thbu05s_PcsMT_All, 0);
+        $a7f2thbu05s_PriceMT_All = number_format($a7f2thbu05s_PriceMT_All, 0);
+        $a7f2debu10s_PcsMT_All = number_format($a7f2debu10s_PcsMT_All, 0);
+        $a7f2debu10s_PriceMT_All = number_format($a7f2debu10s_PriceMT_All, 0);
+        $a7f2exbu11s_PcsMT_All = number_format($a7f2exbu11s_PcsMT_All, 0);
+        $a7f2exbu11s_PriceMT_All = number_format($a7f2exbu11s_PriceMT_All, 0);
+        $a7f2twbu04s_PcsMT_All = number_format($a7f2twbu04s_PcsMT_All, 0);
+        $a7f2twbu04s_PriceMT_All = number_format($a7f2twbu04s_PriceMT_All, 0);
+        $a7f2twbu07s_PcsMT_All = number_format($a7f2twbu07s_PcsMT_All, 0);
+        $a7f2twbu07s_PriceMT_All = number_format($a7f2twbu07s_PriceMT_All, 0);
+        $a7f2cebu10s_PcsMT_All = number_format($a7f2cebu10s_PcsMT_All, 0);
+        $a7f2cebu10s_PriceMT_All = number_format($a7f2cebu10s_PriceMT_All, 0);
+        $a8f1fgbu02s_PcsMT_All = number_format($a8f1fgbu02s_PcsMT_All, 0);
+        $a8f1fgbu02s_PriceMT_All = number_format($a8f1fgbu02s_PriceMT_All, 0);
+        $a8f2fgbu10s_PcsMT_All = number_format($a8f2fgbu10s_PcsMT_All, 0);
+        $a8f2fgbu10s_PriceMT_All = number_format($a8f2fgbu10s_PriceMT_All, 0);
+        $a8f2thbu05s_PcsMT_All = number_format($a8f2thbu05s_PcsMT_All, 0);
+        $a8f2thbu05s_PriceMT_All = number_format($a8f2thbu05s_PriceMT_All, 0);
+        $a8f2debu10s_PcsMT_All = number_format($a8f2debu10s_PcsMT_All, 0);
+        $a8f2debu10s_PriceMT_All = number_format($a8f2debu10s_PriceMT_All, 0);
+        $a8f2exbu11s_PcsMT_All = number_format($a8f2exbu11s_PcsMT_All, 0);
+        $a8f2exbu11s_PriceMT_All = number_format($a8f2exbu11s_PriceMT_All, 0);
+        $a8f2twbu04s_PcsMT_All = number_format($a8f2twbu04s_PcsMT_All, 0);
+        $a8f2twbu04s_PriceMT_All = number_format($a8f2twbu04s_PriceMT_All, 0);
+        $a8f2twbu07s_PcsMT_All = number_format($a8f2twbu07s_PcsMT_All, 0);
+        $a8f2twbu07s_PriceMT_All = number_format($a8f2twbu07s_PriceMT_All, 0);
+        $a8f2cebu10s_PcsMT_All = number_format($a8f2cebu10s_PcsMT_All, 0);
+        $a8f2cebu10s_PriceMT_All = number_format($a8f2cebu10s_PriceMT_All, 0);
+        $DC1_PcsMT_All = number_format($DC1_PcsMT_All, 0);
+        $DC1_PriceMT_All = number_format($DC1_PriceMT_All, 0);
+        $DCP_PcsMT_All = number_format($DCP_PcsMT_All, 0);
+        $DCP_PriceMT_All = number_format($DCP_PriceMT_All, 0);
+        $DCY_PcsMT_All = number_format($DCY_PcsMT_All, 0);
+        $DCY_PriceMT_All = number_format($DCY_PriceMT_All, 0);
+        $DEX_PcsMT_All = number_format($DEX_PcsMT_All, 0);
+        $DEX_PriceMT_All = number_format($DEX_PriceMT_All, 0);
 
         // /////////////////////////////////////////////////////////////////////////////////////
         // /////////////////////////////////////////////////////////////////////////////////////
@@ -6467,6 +6628,86 @@ class DC1Controller extends Controller
             $DCY_PriceMT_6,
             $DEX_PcsMT_6,
             $DEX_PriceMT_6,
+
+            /////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////
+
+            $Pcs_AfterMT_All,
+            $Price_AfterMT_All,
+            $Pcs_AfterMT_All,
+            $Price_AfterMT_All,
+            $Po_PcsMT_All,
+            $Po_PriceMT_All,
+            $Neg_PcsMT_All,
+            $Neg_PriceMT_All,
+            $BackChange_PcsMT_All,
+            $BackChange_PriceMT_All,
+            $Purchase_PcsMT_All,
+            $Purchase_PriceMT_All,
+            $ReciveTranfer_PcsMT_All,
+            $ReciveTranfer_PriceMT_All,
+            $ReturnItem_PCSMT_All,
+            $ReturnItem_PriceMT_All,
+            $AllIn_PcsMT_All,
+            $AllIn_PriceMT_All,
+            $SendSale_PcsMT_All,
+            $SendSale_PriceMT_All,
+            $ReciveTranOut_PcsMT_All,
+            $ReciveTranOut_PriceMT_All,
+            $ReturnStore_PcsMT_All,
+            $ReturnStore_PriceMT_All,
+            $AllOut_PcsMT_All,
+            $AllOut_PriceMT_All,
+            $Calculate_PcsMT_All,
+            $Calculate_PriceMT_All,
+            $NewCalculate_PcsMT_All,
+            $NewCalculate_PriceMT_All,
+            $Diff_PcsMT_All,
+            $Diff_PriceMT_All,
+            $NewTotal_PcsMT_All,
+            $NewTotal_PriceMT_All,
+            $NewTotalDiff_NavMT_All,
+            $NewTotalDiff_CalMT_All,
+            $a7f1fgbu02s_PcsMT_All,
+            $a7f1fgbu02s_PriceMT_All,
+            $a7f2fgbu10s_PcsMT_All,
+            $a7f2fgbu10s_PriceMT_All,
+            $a7f2thbu05s_PcsMT_All,
+            $a7f2thbu05s_PriceMT_All,
+            $a7f2debu10s_PcsMT_All,
+            $a7f2debu10s_PriceMT_All,
+            $a7f2exbu11s_PcsMT_All,
+            $a7f2exbu11s_PriceMT_All,
+            $a7f2twbu04s_PcsMT_All,
+            $a7f2twbu04s_PriceMT_All,
+            $a7f2twbu07s_PcsMT_All,
+            $a7f2twbu07s_PriceMT_All,
+            $a7f2cebu10s_PcsMT_All,
+            $a7f2cebu10s_PriceMT_All,
+            $a8f1fgbu02s_PcsMT_All,
+            $a8f1fgbu02s_PriceMT_All,
+            $a8f2fgbu10s_PcsMT_All,
+            $a8f2fgbu10s_PriceMT_All,
+            $a8f2thbu05s_PcsMT_All,
+            $a8f2thbu05s_PriceMT_All,
+            $a8f2debu10s_PcsMT_All,
+            $a8f2debu10s_PriceMT_All,
+            $a8f2exbu11s_PcsMT_All,
+            $a8f2exbu11s_PriceMT_All,
+            $a8f2twbu04s_PcsMT_All,
+            $a8f2twbu04s_PriceMT_All,
+            $a8f2twbu07s_PcsMT_All,
+            $a8f2twbu07s_PriceMT_All,
+            $a8f2cebu10s_PcsMT_All,
+            $a8f2cebu10s_PriceMT_All,
+            $DC1_PcsMT_All,
+            $DC1_PriceMT_All,
+            $DCP_PcsMT_All,
+            $DCP_PriceMT_All,
+            $DCY_PcsMT_All,
+            $DCY_PriceMT_All,
+            $DEX_PcsMT_All,
+            $DEX_PriceMT_All,
 
             /////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////////////////////////////////////////////
