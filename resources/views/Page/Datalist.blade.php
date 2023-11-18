@@ -271,7 +271,7 @@ searchItemNo.addEventListener('keydown', function(event) {
         var ItemNo = searchItemNo.value;
         $.ajax({
             type: "POST",
-            url: "{{ Route('searchItemNo') }}",
+            url: "{{ Route('searchDatalist') }}",
             data: {
                 ItemNo: ItemNo,
             },
@@ -296,7 +296,7 @@ function SearchItemNo() {
     var ItemNo = document.getElementById('searchItemNo').value;
     $.ajax({
         type: "POST",
-        url: "{{ Route('searchItemNo') }}",
+        url: "{{ Route('searchDatalist') }}",
         data: {
             ItemNo: ItemNo,
         },

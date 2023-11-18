@@ -429,75 +429,75 @@ class ProductController extends Controller
             ->where('dataother.Item No', 'LIKE', 'STW%')
             ->get();
 
-            //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////
 
         $ItemNoSLN = DB::table('item_all')
-        ->select(
-            'dataother.Item No as Item_No',
-            'dataother.PriceAvg',
-            'dataother.PcsAfter',
-            'dataother.PriceAfter',
-            'po.Quantity as Po_Quantity',
-            'Neg.Quantity as Neg_Quantity',
-            'purchase.Quantity as purchase_Quantity',
-            'purchase.Cost Amount (Actual) as purchase_Cost',
-            'returncuses.Quantity as returncuses_Quantity',
-            'คืนของs.Quantity as returnitem_Quantity',
-            'item_stock.Quantity as item_stock_Quantity',
-            'item_stock.Amount as item_stock_Amount',
-            'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
-            'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
-            'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
-            'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
-            'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
-            'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
-            'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
-            'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
-            'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
-            'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
-            'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
-            'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
-            'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
-            'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
-            'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
-            'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
-            'dc1_s.Quantity as dc1_s_Quantity',
-            'dcp_s.Quantity as dcp_s_Quantity',
-            'dcy_s.Quantity as dcy_s_Quantity',
-            'dex_s.Quantity as dex_s_Quantity',
-        )
-        ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
-        ->leftJoin('po', 'item_all.No', 'po.Item No')
-        ->leftJoin('neg', 'item_all.No', 'neg.Item No')
-        ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
-        ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
-        ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
-        ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
-        ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
-        ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
-        ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
-        ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
-        ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
-        ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
-        ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
-        ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
-        ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
-        ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
-        ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
-        ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
-        ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
-        ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
-        ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
-        ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
-        ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
-        ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
-        ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
-        ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
-        ->where('dataother.Customer', '=', 'DC1')
-        ->where('dataother.Item No', 'LIKE', 'SLN%')
-        ->get();
+            ->select(
+                'dataother.Item No as Item_No',
+                'dataother.PriceAvg',
+                'dataother.PcsAfter',
+                'dataother.PriceAfter',
+                'po.Quantity as Po_Quantity',
+                'Neg.Quantity as Neg_Quantity',
+                'purchase.Quantity as purchase_Quantity',
+                'purchase.Cost Amount (Actual) as purchase_Cost',
+                'returncuses.Quantity as returncuses_Quantity',
+                'คืนของs.Quantity as returnitem_Quantity',
+                'item_stock.Quantity as item_stock_Quantity',
+                'item_stock.Amount as item_stock_Amount',
+                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                'dc1_s.Quantity as dc1_s_Quantity',
+                'dcp_s.Quantity as dcp_s_Quantity',
+                'dcy_s.Quantity as dcy_s_Quantity',
+                'dex_s.Quantity as dex_s_Quantity',
+            )
+            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->leftJoin('po', 'item_all.No', 'po.Item No')
+            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+            ->where('dataother.Customer', '=', 'DC1')
+            ->where('dataother.Item No', 'LIKE', 'SLN%')
+            ->get();
 
         //////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////
@@ -566,9 +566,9 @@ class ProductController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '=', 'DC1')
-            ->where(function ($query){
+            ->where(function ($query) {
                 $query->where('dataother.Item No', 'LIKE', 'SFN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'FN%');
+                    ->orWhere('dataother.Item No', 'LIKE', 'FN%');
             })
             ->get();
 
@@ -1199,8 +1199,8 @@ class ProductController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '<>', 'DC1')
-            ->where('dataother.Customer', '<>', 'DCP') 
-            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Customer', '<>', 'DCP')
+            ->where('dataother.Customer', '<>', 'DCY')
             ->where('dataother.Item No', 'LIKE', 'NT%')
             ->get();
 
@@ -1271,8 +1271,8 @@ class ProductController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '<>', 'DC1')
-            ->where('dataother.Customer', '<>', 'DCP') 
-            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Customer', '<>', 'DCP')
+            ->where('dataother.Customer', '<>', 'DCY')
             ->where('dataother.Item No', 'LIKE', 'MT%')
             ->get();
 
@@ -1343,8 +1343,8 @@ class ProductController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '<>', 'DC1')
-            ->where('dataother.Customer', '<>', 'DCP') 
-            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Customer', '<>', 'DCP')
+            ->where('dataother.Customer', '<>', 'DCY')
             ->where('dataother.Item No', 'LIKE', 'TW%')
             ->get();
 
@@ -1415,8 +1415,8 @@ class ProductController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '<>', 'DC1')
-            ->where('dataother.Customer', '<>', 'DCP') 
-            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Customer', '<>', 'DCP')
+            ->where('dataother.Customer', '<>', 'DCY')
             ->where('dataother.Item No', 'LIKE', 'LN%')
             ->get();
 
@@ -1487,8 +1487,8 @@ class ProductController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '<>', 'DC1')
-            ->where('dataother.Customer', '<>', 'DCP') 
-            ->where('dataother.Customer', '<>', 'DCY') 
+            ->where('dataother.Customer', '<>', 'DCP')
+            ->where('dataother.Customer', '<>', 'DCY')
             ->where('dataother.Item No', 'LIKE', 'SNT%')
             ->get();
 
@@ -3144,7 +3144,7 @@ class ProductController extends Controller
         foreach ($ItemNoNT as $NT) {
             if ($NT->PcsAfter > 0 && $NT->PriceAfter > 0) {
                 $NumberNT = ($NT->PriceAfter / $NT->PcsAfter);
-            }else{
+            } else {
                 $NumberNT = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -3409,7 +3409,6 @@ class ProductController extends Controller
 
             $DEXPriceNT = $DEXPcsNT * $NumberNT;
             $DEX_PriceNT = $DEX_PriceNT + $DEXPriceNT;
-
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3421,7 +3420,7 @@ class ProductController extends Controller
         foreach ($ItemNoMT as $MT) {
             if ($MT->PcsAfter > 0 && $MT->PriceAfter > 0) {
                 $NumberMT = ($MT->PriceAfter / $MT->PcsAfter);
-            }else{
+            } else {
                 $NumberMT = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -3686,7 +3685,6 @@ class ProductController extends Controller
 
             $DEXPriceMT = $DEXPcsMT * $NumberMT;
             $DEX_PriceMT = $DEX_PriceMT + $DEXPriceMT;
-
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3698,7 +3696,7 @@ class ProductController extends Controller
         foreach ($ItemNoTW as $TW) {
             if ($TW->PcsAfter > 0 && $TW->PriceAfter > 0) {
                 $NumberTW = ($TW->PriceAfter / $TW->PcsAfter);
-            }else{
+            } else {
                 $NumberTW = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -3963,7 +3961,6 @@ class ProductController extends Controller
 
             $DEXPriceTW = $DEXPcsTW * $NumberTW;
             $DEX_PriceTW = $DEX_PriceTW + $DEXPriceTW;
-
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3975,7 +3972,7 @@ class ProductController extends Controller
         foreach ($ItemNoLN as $LN) {
             if ($LN->PcsAfter > 0 && $LN->PriceAfter > 0) {
                 $NumberLN = ($LN->PriceAfter / $LN->PcsAfter);
-            }else{
+            } else {
                 $NumberLN = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -4240,7 +4237,6 @@ class ProductController extends Controller
 
             $DEXPriceLN = $DEXPcsLN * $NumberLN;
             $DEX_PriceLN = $DEX_PriceLN + $DEXPriceLN;
-
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4251,7 +4247,7 @@ class ProductController extends Controller
         foreach ($ItemNoAS as $AS) {
             if ($AS->PcsAfter > 0 && $AS->PriceAfter > 0) {
                 $NumberAS = ($AS->PriceAfter / $AS->PcsAfter);
-            }else{
+            } else {
                 $NumberAS = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -4516,7 +4512,6 @@ class ProductController extends Controller
 
             $DEXPriceAS = $DEXPcsAS * $NumberAS;
             $DEX_PriceAS = $DEX_PriceAS + $DEXPriceAS;
-
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4528,7 +4523,7 @@ class ProductController extends Controller
         foreach ($ItemNoSTW as $STW) {
             if ($STW->PcsAfter > 0 && $STW->PriceAfter > 0) {
                 $NumberSTW = ($STW->PriceAfter / $STW->PcsAfter);
-            }else{
+            } else {
                 $NumberSTW = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -4793,7 +4788,6 @@ class ProductController extends Controller
 
             $DEXPriceSTW = $DEXPcsSTW * $NumberSTW;
             $DEX_PriceSTW = $DEX_PriceSTW + $DEXPriceSTW;
-
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4805,7 +4799,7 @@ class ProductController extends Controller
         foreach ($ItemNoSLN as $SLN) {
             if ($SLN->PcsAfter > 0 && $SLN->PriceAfter > 0) {
                 $NumberSLN = ($SLN->PriceAfter / $SLN->PcsAfter);
-            }else{
+            } else {
                 $NumberSLN = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -5081,7 +5075,7 @@ class ProductController extends Controller
         foreach ($ItemNoSFN as $SFN) {
             if ($SFN->PcsAfter > 0 && $SFN->PriceAfter > 0) {
                 $NumberSFN = ($SFN->PriceAfter / $SFN->PcsAfter);
-            }else{
+            } else {
                 $NumberSFN = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -5356,7 +5350,7 @@ class ProductController extends Controller
         foreach ($ItemNoSMT as $SMT) {
             if ($SMT->PcsAfter > 0 && $SMT->PriceAfter > 0) {
                 $NumberSMT = ($SMT->PriceAfter / $SMT->PcsAfter);
-            }else{
+            } else {
                 $NumberSMT = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -5622,7 +5616,7 @@ class ProductController extends Controller
             $DEXPriceSMT = $DEXPcsSMT * $NumberSMT;
             $DEX_PriceSMT = $DEX_PriceSMT + $DEXPriceSMT;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -5631,7 +5625,7 @@ class ProductController extends Controller
         foreach ($ItemNoSNT as $SNT) {
             if ($SNT->PcsAfter > 0 && $SNT->PriceAfter > 0) {
                 $NumberSNT = ($SNT->PriceAfter / $SNT->PcsAfter);
-            }else{
+            } else {
                 $NumberSNT = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -5897,7 +5891,7 @@ class ProductController extends Controller
             $DEXPriceSNT = $DEXPcsSNT * $NumberSNT;
             $DEX_PriceSNT = $DEX_PriceSNT + $DEXPriceSNT;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -5906,7 +5900,7 @@ class ProductController extends Controller
         foreach ($ItemNoNTDCY as $NTDCY) {
             if ($NTDCY->PcsAfter > 0 && $NTDCY->PriceAfter > 0) {
                 $NumberNTDCY = ($NTDCY->PriceAfter / $NTDCY->PcsAfter);
-            }else{
+            } else {
                 $NumberNTDCY = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -6172,7 +6166,7 @@ class ProductController extends Controller
             $DEXPriceNTDCY = $DEXPcsNTDCY * $NumberNTDCY;
             $DEX_PriceNTDCY = $DEX_PriceNTDCY + $DEXPriceNTDCY;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -6181,7 +6175,7 @@ class ProductController extends Controller
         foreach ($ItemNoTWDCY as $TWDCY) {
             if ($TWDCY->PcsAfter > 0 && $TWDCY->PriceAfter > 0) {
                 $NumberTWDCY = ($TWDCY->PriceAfter / $TWDCY->PcsAfter);
-            }else{
+            } else {
                 $NumberTWDCY = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -6447,7 +6441,7 @@ class ProductController extends Controller
             $DEXPriceTWDCY = $DEXPcsTWDCY * $NumberTWDCY;
             $DEX_PriceTWDCY = $DEX_PriceTWDCY + $DEXPriceTWDCY;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -6456,7 +6450,7 @@ class ProductController extends Controller
         foreach ($ItemNoSNTDCY as $SNTDCY) {
             if ($SNTDCY->PcsAfter > 0 && $SNTDCY->PriceAfter > 0) {
                 $NumberSNTDCY = ($SNTDCY->PriceAfter / $SNTDCY->PcsAfter);
-            }else{
+            } else {
                 $NumberSNTDCY = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -6722,7 +6716,7 @@ class ProductController extends Controller
             $DEXPriceSNTDCY = $DEXPcsSNTDCY * $NumberSNTDCY;
             $DEX_PriceSNTDCY = $DEX_PriceSNTDCY + $DEXPriceSNTDCY;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -6731,7 +6725,7 @@ class ProductController extends Controller
         foreach ($ItemNoNTDCP as $NTDCP) {
             if ($NTDCP->PcsAfter > 0 && $NTDCP->PriceAfter > 0) {
                 $NumberNTDCP = ($NTDCP->PriceAfter / $NTDCP->PcsAfter);
-            }else{
+            } else {
                 $NumberNTDCP = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -6997,7 +6991,7 @@ class ProductController extends Controller
             $DEXPriceNTDCP = $DEXPcsNTDCP * $NumberNTDCP;
             $DEX_PriceNTDCP = $DEX_PriceNTDCP + $DEXPriceNTDCP;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -7006,7 +7000,7 @@ class ProductController extends Controller
         foreach ($ItemNoTWDCP as $TWDCP) {
             if ($TWDCP->PcsAfter > 0 && $TWDCP->PriceAfter > 0) {
                 $NumberTWDCP = ($TWDCP->PriceAfter / $TWDCP->PcsAfter);
-            }else{
+            } else {
                 $NumberTWDCP = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -7272,7 +7266,7 @@ class ProductController extends Controller
             $DEXPriceTWDCP = $DEXPcsTWDCP * $NumberTWDCP;
             $DEX_PriceTWDCP = $DEX_PriceTWDCP + $DEXPriceTWDCP;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -7281,7 +7275,7 @@ class ProductController extends Controller
         foreach ($ItemNoLNDCP as $LNDCP) {
             if ($LNDCP->PcsAfter > 0 && $LNDCP->PriceAfter > 0) {
                 $NumberLNDCP = ($LNDCP->PriceAfter / $LNDCP->PcsAfter);
-            }else{
+            } else {
                 $NumberLNDCP = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -7547,7 +7541,7 @@ class ProductController extends Controller
             $DEXPriceLNDCP = $DEXPcsLNDCP * $NumberLNDCP;
             $DEX_PriceLNDCP = $DEX_PriceLNDCP + $DEXPriceLNDCP;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -7556,7 +7550,7 @@ class ProductController extends Controller
         foreach ($ItemNoNTCountry as $NTCountry) {
             if ($NTCountry->PcsAfter > 0 && $NTCountry->PriceAfter > 0) {
                 $NumberNTCountry = ($NTCountry->PriceAfter / $NTCountry->PcsAfter);
-            }else{
+            } else {
                 $NumberNTCountry = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -7822,7 +7816,7 @@ class ProductController extends Controller
             $DEXPriceNTCountry = $DEXPcsNTCountry * $NumberNTCountry;
             $DEX_PriceNTCountry = $DEX_PriceNTCountry + $DEXPriceNTCountry;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -7831,7 +7825,7 @@ class ProductController extends Controller
         foreach ($ItemNoMTCountry as $MTCountry) {
             if ($MTCountry->PcsAfter > 0 && $MTCountry->PriceAfter > 0) {
                 $NumberMTCountry = ($MTCountry->PriceAfter / $MTCountry->PcsAfter);
-            }else{
+            } else {
                 $NumberMTCountry = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -8097,7 +8091,7 @@ class ProductController extends Controller
             $DEXPriceMTCountry = $DEXPcsMTCountry * $NumberMTCountry;
             $DEX_PriceMTCountry = $DEX_PriceMTCountry + $DEXPriceMTCountry;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -8106,7 +8100,7 @@ class ProductController extends Controller
         foreach ($ItemNoTWCountry as $TWCountry) {
             if ($TWCountry->PcsAfter > 0 && $TWCountry->PriceAfter > 0) {
                 $NumberTWCountry = ($TWCountry->PriceAfter / $TWCountry->PcsAfter);
-            }else{
+            } else {
                 $NumberTWCountry = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -8372,7 +8366,7 @@ class ProductController extends Controller
             $DEXPriceTWCountry = $DEXPcsTWCountry * $NumberTWCountry;
             $DEX_PriceTWCountry = $DEX_PriceTWCountry + $DEXPriceTWCountry;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -8381,7 +8375,7 @@ class ProductController extends Controller
         foreach ($ItemNoLNCountry as $LNCountry) {
             if ($LNCountry->PcsAfter > 0 && $LNCountry->PriceAfter > 0) {
                 $NumberLNCountry = ($LNCountry->PriceAfter / $LNCountry->PcsAfter);
-            }else{
+            } else {
                 $NumberLNCountry = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -8647,7 +8641,7 @@ class ProductController extends Controller
             $DEXPriceLNCountry = $DEXPcsLNCountry * $NumberLNCountry;
             $DEX_PriceLNCountry = $DEX_PriceLNCountry + $DEXPriceLNCountry;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -8656,7 +8650,7 @@ class ProductController extends Controller
         foreach ($ItemNoSNTCountry as $SNTCountry) {
             if ($SNTCountry->PcsAfter > 0 && $SNTCountry->PriceAfter > 0) {
                 $NumberSNTCountry = ($SNTCountry->PriceAfter / $SNTCountry->PcsAfter);
-            }else{
+            } else {
                 $NumberSNTCountry = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -8922,7 +8916,7 @@ class ProductController extends Controller
             $DEXPriceSNTCountry = $DEXPcsSNTCountry * $NumberSNTCountry;
             $DEX_PriceSNTCountry = $DEX_PriceSNTCountry + $DEXPriceSNTCountry;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -9142,11 +9136,11 @@ class ProductController extends Controller
         $a7f2cebu10s_PcsAllDCY = $a7f2cebu10s_PcsNTDCY + $a7f2cebu10s_PcsTWDCY + $a7f2cebu10s_PcsSNTDCY;
         $a7f2cebu10s_PriceAllDCY = $a7f2cebu10s_PriceNTDCY + $a7f2cebu10s_PriceTWDCY + $a7f2cebu10s_PriceSNTDCY;
         $a8f1fgbu02s_PcsAllDCY = $a8f1fgbu02s_PcsNTDCY + $a8f1fgbu02s_PcsTWDCY + $a8f1fgbu02s_PcsSNTDCY;
-        $a8f1fgbu02s_PriceAllDCY = $a8f1fgbu02s_PriceNTDCY + $a8f1fgbu02s_PriceTWDCY + $a8f1fgbu02s_PriceSNTDCY   ;
+        $a8f1fgbu02s_PriceAllDCY = $a8f1fgbu02s_PriceNTDCY + $a8f1fgbu02s_PriceTWDCY + $a8f1fgbu02s_PriceSNTDCY;
         $a8f2fgbu10s_PcsAllDCY = $a8f2fgbu10s_PcsNTDCY + $a8f2fgbu10s_PcsTWDCY + $a8f2fgbu10s_PcsSNTDCY;
-        $a8f2fgbu10s_PriceAllDCY = $a8f2fgbu10s_PriceNTDCY + $a8f2fgbu10s_PriceTWDCY + $a8f2fgbu10s_PriceSNTDCY   ;
+        $a8f2fgbu10s_PriceAllDCY = $a8f2fgbu10s_PriceNTDCY + $a8f2fgbu10s_PriceTWDCY + $a8f2fgbu10s_PriceSNTDCY;
         $a8f2thbu05s_PcsAllDCY = $a8f2thbu05s_PcsNTDCY + $a8f2thbu05s_PcsTWDCY + $a8f2thbu05s_PcsSNTDCY;
-        $a8f2thbu05s_PriceAllDCY = $a8f2thbu05s_PriceNTDCY + $a8f2thbu05s_PriceTWDCY + $a8f2thbu05s_PriceSNTDCY   ;
+        $a8f2thbu05s_PriceAllDCY = $a8f2thbu05s_PriceNTDCY + $a8f2thbu05s_PriceTWDCY + $a8f2thbu05s_PriceSNTDCY;
         $a8f2debu10s_PcsAllDCY = $a8f2debu10s_PcsNTDCY + $a8f2debu10s_PcsTWDCY + $a8f2debu10s_PcsSNTDCY;
         $a8f2debu10s_PriceAllDCY = $a8f2debu10s_PriceNTDCY + $a8f2debu10s_PriceTWDCY + $a8f2debu10s_PriceSNTDCY;
         $a8f2exbu11s_PcsAllDCY = $a8f2exbu11s_PcsNTDCY + $a8f2exbu11s_PcsTWDCY + $a8f2exbu11s_PcsSNTDCY;
@@ -9422,7 +9416,7 @@ class ProductController extends Controller
         $Purchase_PcsAllTotal =  $Purchase_PcsAllDC1 + $Purchase_PcsAllDCP + $Purchase_PcsAllDCY + $Purchase_PcsAllCountry;
         $Purchase_PriceAllTotal =  $Purchase_PriceAllDC1 + $Purchase_PriceAllDCP + $Purchase_PriceAllDCY + $Purchase_PriceAllCountry;
         $ReciveTranfer_PcsAllTotal =  $ReciveTranfer_PcsAllDC1 + $ReciveTranfer_PcsAllDCP + $ReciveTranfer_PcsAllDCY + $ReciveTranfer_PcsAllCountry;
-        $ReciveTranfer_PriceAllTotal =  $ReciveTranfer_PriceAllDC1 + $ReciveTranfer_PriceAllDCP + $ReciveTranfer_PriceAllDCY + $ReciveTranfer_PriceAllCountry             ;
+        $ReciveTranfer_PriceAllTotal =  $ReciveTranfer_PriceAllDC1 + $ReciveTranfer_PriceAllDCP + $ReciveTranfer_PriceAllDCY + $ReciveTranfer_PriceAllCountry;
         $ReturnItem_PCSAllTotal =  $ReturnItem_PCSAllDC1 + $ReturnItem_PCSAllDCP + $ReturnItem_PCSAllDCY + $ReturnItem_PCSAllCountry;
         $ReturnItem_PriceAllTotal =  $ReturnItem_PriceAllDC1 + $ReturnItem_PriceAllDCP + $ReturnItem_PriceAllDCY + $ReturnItem_PriceAllCountry;
         $AllIn_PcsAllTotal =  $AllIn_PcsAllDC1 + $AllIn_PcsAllDCP + $AllIn_PcsAllDCY + $AllIn_PcsAllCountry;
@@ -9430,7 +9424,7 @@ class ProductController extends Controller
         $SendSale_PcsAllTotal =  $SendSale_PcsAllDC1 + $SendSale_PcsAllDCP + $SendSale_PcsAllDCY + $SendSale_PcsAllCountry;
         $SendSale_PriceAllTotal =  $SendSale_PriceAllDC1 + $SendSale_PriceAllDCP + $SendSale_PriceAllDCY + $SendSale_PriceAllCountry;
         $ReciveTranOut_PcsAllTotal =  $ReciveTranOut_PcsAllDC1 + $ReciveTranOut_PcsAllDCP + $ReciveTranOut_PcsAllDCY + $ReciveTranOut_PcsAllCountry;
-        $ReciveTranOut_PriceAllTotal =  $ReciveTranOut_PriceAllDC1 + $ReciveTranOut_PriceAllDCP + $ReciveTranOut_PriceAllDCY + $ReciveTranOut_PriceAllCountry             ;
+        $ReciveTranOut_PriceAllTotal =  $ReciveTranOut_PriceAllDC1 + $ReciveTranOut_PriceAllDCP + $ReciveTranOut_PriceAllDCY + $ReciveTranOut_PriceAllCountry;
         $ReturnStore_PcsAllTotal =  $ReturnStore_PcsAllDC1 + $ReturnStore_PcsAllDCP + $ReturnStore_PcsAllDCY + $ReturnStore_PcsAllCountry;
         $ReturnStore_PriceAllTotal =  $ReturnStore_PriceAllDC1 + $ReturnStore_PriceAllDCP + $ReturnStore_PriceAllDCY + $ReturnStore_PriceAllCountry;
         $AllOut_PcsAllTotal =  $AllOut_PcsAllDC1 + $AllOut_PcsAllDCP + $AllOut_PcsAllDCY + $AllOut_PcsAllCountry;
@@ -9438,7 +9432,7 @@ class ProductController extends Controller
         $Calculate_PcsAllTotal =  $Calculate_PcsAllDC1 + $Calculate_PcsAllDCP + $Calculate_PcsAllDCY + $Calculate_PcsAllCountry;
         $Calculate_PriceAllTotal =  $Calculate_PriceAllDC1 + $Calculate_PriceAllDCP + $Calculate_PriceAllDCY + $Calculate_PriceAllCountry;
         $NewCalculate_PcsAllTotal = $NewCalculate_PcsAllDC1 + $NewCalculate_PcsAllDCP + $NewCalculate_PcsAllDCY + $NewCalculate_PcsAllCountry;
-        $NewCalculate_PriceAllTotal = $NewCalculate_PriceAllDC1 + $NewCalculate_PriceAllDCP + $NewCalculate_PriceAllDCY + $NewCalculate_PriceAllCountry            ;
+        $NewCalculate_PriceAllTotal = $NewCalculate_PriceAllDC1 + $NewCalculate_PriceAllDCP + $NewCalculate_PriceAllDCY + $NewCalculate_PriceAllCountry;
         $Diff_PcsAllTotal = $Diff_PcsAllDC1 + $Diff_PcsAllDCP + $Diff_PcsAllDCY + $Diff_PcsAllCountry;
         $Diff_PriceAllTotal = $Diff_PriceAllDC1 + $Diff_PriceAllDCP + $Diff_PriceAllDCY + $Diff_PriceAllCountry;
         $NewTotal_PcsAllTotal = $NewTotal_PcsAllDC1 + $NewTotal_PcsAllDCP + $NewTotal_PcsAllDCY + $NewTotal_PcsAllCountry;
@@ -13271,7 +13265,7 @@ class ProductController extends Controller
             $DEX_PcsLNDCP,
             $DEX_PriceLNDCP,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterAllDCP,
@@ -13351,7 +13345,7 @@ class ProductController extends Controller
             $DEX_PcsAllDCP,
             $DEX_PriceAllDCP,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterNTCountry,
@@ -13431,7 +13425,7 @@ class ProductController extends Controller
             $DEX_PcsNTCountry,
             $DEX_PriceNTCountry,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterMTCountry,
@@ -13511,7 +13505,7 @@ class ProductController extends Controller
             $DEX_PcsMTCountry,
             $DEX_PriceMTCountry,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterTWCountry,
@@ -13591,7 +13585,7 @@ class ProductController extends Controller
             $DEX_PcsTWCountry,
             $DEX_PriceTWCountry,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterLNCountry,
@@ -13671,7 +13665,7 @@ class ProductController extends Controller
             $DEX_PcsLNCountry,
             $DEX_PriceLNCountry,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterSNTCountry,
@@ -13751,7 +13745,7 @@ class ProductController extends Controller
             $DEX_PcsSNTCountry,
             $DEX_PriceSNTCountry,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterAllCountry,
@@ -13831,7 +13825,7 @@ class ProductController extends Controller
             $DEX_PcsAllCountry,
             $DEX_PriceAllCountry,
 
-             ///////////////////////////
+            ///////////////////////////
             ///////////////////////////
 
             $Pcs_AfterAllTotal,
@@ -13913,6 +13907,5 @@ class ProductController extends Controller
         ];
 
         return response()->json($Data);
-
     }
 }

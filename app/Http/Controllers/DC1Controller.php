@@ -76,7 +76,7 @@ class DC1Controller extends Controller
             ->where('dataother.Customer', '=', 'DC1')
             ->get();
 
-        
+
         //////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////
@@ -2565,9 +2565,9 @@ class DC1Controller extends Controller
                 $DEXPriceNT_1 = $DEXPcsNT_1 * $NumberNT_1;
                 $DEX_PriceNT_1 = $DEX_PriceNT_1 + $DEXPriceNT_1;
 
-            /////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
 
             } elseif ($rowitem->Category === "อวนกำไนลอน" && $Code_1[0] === "NT") {
                 if ($rowitem->PcsAfter > 0 && $rowitem->PriceAfter > 0) {
@@ -2838,9 +2838,9 @@ class DC1Controller extends Controller
                 $DEXPriceNT_2 = $DEXPcsNT_2 * $NumberNT_2;
                 $DEX_PriceNT_2 = $DEX_PriceNT_2 + $DEXPriceNT_2;
 
-            /////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
 
             } elseif ($rowitem->Category === "อวนมัลติโมโน" && $Code_1[0] === "NT") {
                 if ($rowitem->PcsAfter > 0 && $rowitem->PriceAfter > 0) {
@@ -3111,9 +3111,9 @@ class DC1Controller extends Controller
                 $DEXPriceNT_3 = $DEXPcsNT_3 * $NumberNT_3;
                 $DEX_PriceNT_3 = $DEX_PriceNT_3 + $DEXPriceNT_3;
 
-            /////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
 
             } elseif ($rowitem->Category === "อวนโพลี" && $Code_1[0] === "NT") {
                 if ($rowitem->PcsAfter > 0 && $rowitem->PriceAfter > 0) {
@@ -10043,7 +10043,7 @@ class DC1Controller extends Controller
         $DCY_PriceNT_All = $DCY_PriceNT_1 + $DCY_PriceNT_2 + $DCY_PriceNT_3 + $DCY_PriceNT_4 + $DCY_PriceSNT_1 + $DCY_PriceSNT_2;
         $DEX_PcsNT_All = $DEX_PcsNT_1 + $DEX_PcsNT_2 + $DEX_PcsNT_3 + $DEX_PcsNT_4 + $DEX_PcsSNT_1 + $DEX_PcsSNT_2;
         $DEX_PriceNT_All = $DEX_PriceNT_1 + $DEX_PriceNT_2 + $DEX_PriceNT_3 + $DEX_PriceNT_4 + $DEX_PriceSNT_1 + $DEX_PriceSNT_2;
-        
+
 
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
@@ -10125,7 +10125,7 @@ class DC1Controller extends Controller
         $DCY_PriceMT_All = $DCY_PriceMT_1 + $DCY_PriceMT_2 + $DCY_PriceMT_3 + $DCY_PriceMT_4 + $DCY_PriceMT_5 + $DCY_PriceMT_6;
         $DEX_PcsMT_All = $DEX_PcsMT_1 + $DEX_PcsMT_2 + $DEX_PcsMT_3 + $DEX_PcsMT_4 + $DEX_PcsMT_5 + $DEX_PcsMT_6;
         $DEX_PriceMT_All = $DEX_PriceMT_1 + $DEX_PriceMT_2 + $DEX_PriceMT_3 + $DEX_PriceMT_4 + $DEX_PriceMT_5 + $DEX_PriceMT_6;
-        
+
 
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
@@ -10207,7 +10207,7 @@ class DC1Controller extends Controller
         $DCY_PriceTW_All = $DCY_PriceTW_1 + $DCY_PriceTW_2 + $DCY_PriceSTW_1 + $DCY_PriceSTW_2 + $DCY_PriceLN_1 + $DCY_PriceSLN_1;
         $DEX_PcsTW_All = $DEX_PcsTW_1 + $DEX_PcsTW_2 + $DEX_PcsSTW_1 + $DEX_PcsSTW_2 + $DEX_PcsLN_1 + $DEX_PcsSLN_1;
         $DEX_PriceTW_All = $DEX_PriceTW_1 + $DEX_PriceTW_2 + $DEX_PriceSTW_1 + $DEX_PriceSTW_2 + $DEX_PriceLN_1 + $DEX_PriceSLN_1;
-        
+
 
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
@@ -10307,7 +10307,7 @@ class DC1Controller extends Controller
         $Purchase_PcsTotal_All =  $Purchase_PcsNT_All + $Purchase_PcsMT_All + $Purchase_PcsTW_All + $Purchase_PcsAS_All;
         $Purchase_PriceTotal_All =  $Purchase_PriceNT_All + $Purchase_PriceMT_All + $Purchase_PriceTW_All + $Purchase_PriceAS_All;
         $ReciveTranfer_PcsTotal_All =  $ReciveTranfer_PcsNT_All + $ReciveTranfer_PcsMT_All + $ReciveTranfer_PcsTW_All + $ReciveTranfer_PcsAS_All;
-        $ReciveTranfer_PriceTotal_All =  $ReciveTranfer_PriceNT_All + $ReciveTranfer_PriceMT_All + $ReciveTranfer_PriceTW_All + $ReciveTranfer_PriceAS_All             ;
+        $ReciveTranfer_PriceTotal_All =  $ReciveTranfer_PriceNT_All + $ReciveTranfer_PriceMT_All + $ReciveTranfer_PriceTW_All + $ReciveTranfer_PriceAS_All;
         $ReturnItem_PCSTotal_All =  $ReturnItem_PCSNT_All + $ReturnItem_PCSMT_All + $ReturnItem_PCSTW_All + $ReturnItem_PCSAS_All;
         $ReturnItem_PriceTotal_All =  $ReturnItem_PriceNT_All + $ReturnItem_PriceMT_All + $ReturnItem_PriceTW_All + $ReturnItem_PriceAS_All;
         $AllIn_PcsTotal_All =  $AllIn_PcsNT_All + $AllIn_PcsMT_All + $AllIn_PcsTW_All + $AllIn_PcsAS_All;
@@ -10315,7 +10315,7 @@ class DC1Controller extends Controller
         $SendSale_PcsTotal_All =  $SendSale_PcsNT_All + $SendSale_PcsMT_All + $SendSale_PcsTW_All + $SendSale_PcsAS_All;
         $SendSale_PriceTotal_All =  $SendSale_PriceNT_All + $SendSale_PriceMT_All + $SendSale_PriceTW_All + $SendSale_PriceAS_All;
         $ReciveTranOut_PcsTotal_All =  $ReciveTranOut_PcsNT_All + $ReciveTranOut_PcsMT_All + $ReciveTranOut_PcsTW_All + $ReciveTranOut_PcsAS_All;
-        $ReciveTranOut_PriceTotal_All =  $ReciveTranOut_PriceNT_All + $ReciveTranOut_PriceMT_All + $ReciveTranOut_PriceTW_All + $ReciveTranOut_PriceAS_All             ;
+        $ReciveTranOut_PriceTotal_All =  $ReciveTranOut_PriceNT_All + $ReciveTranOut_PriceMT_All + $ReciveTranOut_PriceTW_All + $ReciveTranOut_PriceAS_All;
         $ReturnStore_PcsTotal_All =  $ReturnStore_PcsNT_All + $ReturnStore_PcsMT_All + $ReturnStore_PcsTW_All + $ReturnStore_PcsAS_All;
         $ReturnStore_PriceTotal_All =  $ReturnStore_PriceNT_All + $ReturnStore_PriceMT_All + $ReturnStore_PriceTW_All + $ReturnStore_PriceAS_All;
         $AllOut_PcsTotal_All =  $AllOut_PcsNT_All + $AllOut_PcsMT_All + $AllOut_PcsTW_All + $AllOut_PcsAS_All;
@@ -10323,7 +10323,7 @@ class DC1Controller extends Controller
         $Calculate_PcsTotal_All =  $Calculate_PcsNT_All + $Calculate_PcsMT_All + $Calculate_PcsTW_All + $Calculate_PcsAS_All;
         $Calculate_PriceTotal_All =  $Calculate_PriceNT_All + $Calculate_PriceMT_All + $Calculate_PriceTW_All + $Calculate_PriceAS_All;
         $NewCalculate_PcsTotal_All = $NewCalculate_PcsNT_All + $NewCalculate_PcsMT_All + $NewCalculate_PcsTW_All + $NewCalculate_PcsAS_All;
-        $NewCalculate_PriceTotal_All = $NewCalculate_PriceNT_All + $NewCalculate_PriceMT_All + $NewCalculate_PriceTW_All + $NewCalculate_PriceAS_All            ;
+        $NewCalculate_PriceTotal_All = $NewCalculate_PriceNT_All + $NewCalculate_PriceMT_All + $NewCalculate_PriceTW_All + $NewCalculate_PriceAS_All;
         $Diff_PcsTotal_All = $Diff_PcsNT_All + $Diff_PcsMT_All + $Diff_PcsTW_All + $Diff_PcsAS_All;
         $Diff_PriceTotal_All = $Diff_PriceNT_All + $Diff_PriceMT_All + $Diff_PriceTW_All + $Diff_PriceAS_All;
         $NewTotal_PcsTotal_All = $NewTotal_PcsNT_All + $NewTotal_PcsMT_All + $NewTotal_PcsTW_All + $NewTotal_PcsAS_All;
@@ -15625,7 +15625,7 @@ class DC1Controller extends Controller
             /////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////////////////////////////////////////////
 
-            
+
         ];
 
         return response()->json($Data);

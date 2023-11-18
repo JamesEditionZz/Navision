@@ -9,7376 +9,1151 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class PostController extends Controller
 {
-    public function uploadfile0(Request $request){
-        if ($request->hasFile('file0')) {
-            $file0 = $request->file('file0');
-            $filePath = $file0->getRealPath();
+  public function uploadfile0(Request $request)
+  {
+    if ($request->hasFile('file0')) {
+      $file0 = $request->file('file0');
+      $filePath = $file0->getRealPath();
 
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("ITEM NO");
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("ITEM NO");
 
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "ITEM NO" ไม่พบในไฟล์ Excel');
-            }
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "ITEM NO" ไม่พบในไฟล์ Excel');
+      }
 
-            $data = $worksheet->toArray();
+      $data = $worksheet->toArray();
 
-            DB::table('item_All')->delete();
+      DB::table('item_All')->delete();
 
-            foreach (array_slice($data, 1) as $row) {
-                $UnitCost = str_replace(',', '', trim($row[1]));
-                $UnitCost = str_replace(['(', ')'], '', $UnitCost);
+      foreach (array_slice($data, 1) as $row) {
+        $UnitCost = str_replace(',', '', trim($row[1]));
+        $UnitCost = str_replace(['(', ')'], '', $UnitCost);
 
-                DB::table('item_All')->insert([
-                    'No' => $row[0],
-                    'Unit Cost Decha' => $UnitCost,
-                    'Inventory Posting Group' => $row[2],
-                    'Full Description' => $row[3],
-                    'Item Search Description 1' => $row[4],
-                    'Item Search Description 2' => $row[5],
-                    'Item Search Description 3' => $row[6],
-                ]);
-            }
-        }
+        DB::table('item_All')->insert([
+          'No' => $row[0],
+          'Unit Cost Decha' => $UnitCost,
+          'Inventory Posting Group' => $row[2],
+          'Full Description' => $row[3],
+          'Item Search Description 1' => $row[4],
+          'Item Search Description 2' => $row[5],
+          'Item Search Description 3' => $row[6],
+        ]);
+      }
     }
+  }
 
-    public function uploadfile1(Request $request)
-    {
-        if ($request->hasFile('file1')) {
-            $file1 = $request->file('file1');
-            $filePath = $file1->getRealPath();
+  public function uploadfile1(Request $request)
+  {
+    if ($request->hasFile('Inputfile1')) {
+      $file1 = $request->file('Inputfile1');
+      $filePath = $file1->getRealPath();
 
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("Positive");
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("Positive");
 
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "PO" ไม่พบในไฟล์ Excel');
-            }
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "PO" ไม่พบในไฟล์ Excel');
+      }
+      $data = $worksheet->toArray();
 
-            $data = $worksheet->toArray();
+      DB::table('po')->delete();
 
-            DB::table('po')->delete();
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[9]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
 
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[9]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
+        $checkData = DB::table('po')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
 
-                if (strpos($row[0], "AS") === 0) {
-                    $numAS = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numAS > 0) {
-                        $AS = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $AS->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "FN") === 0) {
-                    $numFN = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numFN > 0) {
-                        $FN = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $FN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SFN") === 0) {
-                    $numSFN = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numSFN > 0) {
-                        $SFN = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SFN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "LN") === 0) {
-                    $numLN = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numLN > 0) {
-                        $LN = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $LN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SLN") === 0) {
-                    $numSLN = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numSLN > 0) {
-                        $SLN = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SLN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "MT") === 0) {
-                    $numMT = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numMT > 0) {
-                        $MT = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $MT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SMT") === 0) {
-                    $numSMT = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numSMT > 0) {
-                        $SMT = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SMT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "NT") === 0) {
-                    $numNT = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numNT > 0) {
-                        $NT = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $NT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SNT") === 0) {
-                    $numSNT = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numSNT > 0) {
-                        $SNT = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SNT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "TW") === 0) {
-                    $numTW = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numTW > 0) {
-                        $TW = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $TW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "STW") === 0) {
-                    $numSTW = DB::table('po')->where('Item No', $row[0])->count();
-                    if ($numSTW > 0) {
-                        $STW = DB::table('po')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $STW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                        DB::table('po')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('po')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+        if (!empty($checkData->ItemNo) && $checkData->ItemNo == $row[0]) {
+          DB::table('po')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
+          ]);
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          DB::table('po')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+          ]);
         }
+      }
+      return response()->json(['success' => 'อัพโหลดข้อมูลเรียบร้อยแล้ว']);
     }
+    return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+  }
 
-    public function uploadfile2(Request $request)
-    {
-        if ($request->hasFile('file2')) {
-            $file2 = $request->file('file2');
-            $filePath = $file2->getRealPath();
+  public function uploadfile2(Request $request)
+  {
+    if ($request->hasFile('Inputfile2')) {
+      $file2 = $request->file('Inputfile2');
+      $filePath = $file2->getRealPath();
 
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("Negative");
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("Negative");
 
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "Negative" ไม่พบในไฟล์ Excel');
-            }
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "Negative" ไม่พบในไฟล์ Excel');
+      }
 
-            $data = $worksheet->toArray();
+      $data = $worksheet->toArray();
 
-            DB::table('neg')->delete();
+      DB::table('neg')->delete();
 
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[9]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[9]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
 
-                if (strpos($row[0], "AS") === 0) {
-                    $numAS = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numAS > 0) {
-                        $AS = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $AS->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
+        $checkData = DB::table('neg')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
 
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "FN") === 0) {
-                    $numFN = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numFN > 0) {
-                        $FN = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $FN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SFN") === 0) {
-                    $numSFN = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numSFN > 0) {
-                        $SFN = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SFN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "LN") === 0) {
-                    $numLN = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numLN > 0) {
-                        $LN = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $LN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SLN") === 0) {
-                    $numSLN = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numSLN > 0) {
-                        $SLN = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SLN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "MT") === 0) {
-                    $numMT = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numMT > 0) {
-                        $MT = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $MT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SMT") === 0) {
-                    $numSMT = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numSMT > 0) {
-                        $SMT = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SMT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "NT") === 0) {
-                    $numNT = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numNT > 0) {
-                        $NT = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $NT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SNT") === 0) {
-                    $numSNT = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numSNT > 0) {
-                        $SNT = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SNT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "TW") === 0) {
-                    $numTW = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numTW > 0) {
-                        $TW = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $TW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "STW") === 0) {
-                    $numSTW = DB::table('neg')->where('Item No', $row[0])->count();
-                    if ($numSTW > 0) {
-                        $STW = DB::table('neg')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $STW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                        DB::table('neg')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('neg')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+        if (!empty($checkData->ItemNo) && $checkData->ItemNo == $row[0]) {
+          DB::table('neg')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
+          ]);
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          DB::table('neg')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+          ]);
         }
+      }
+      return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
     }
+    return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+  }
 
-    public function uploadfile3(Request $request)
-    {
-        if ($request->hasFile('file3')) {
-            $file3 = $request->file('file3');
-            $filePath = $file3->getRealPath();
+  public function uploadfile3(Request $request)
+  {
+    if ($request->hasFile('Inputfile3')) {
+      $file3 = $request->file('Inputfile3');
+      $filePath = $file3->getRealPath();
 
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("PC");
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("PC");
 
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "PC" ไม่พบในไฟล์ Excel');
-            }
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "PC" ไม่พบในไฟล์ Excel');
+      }
 
-            $data = $worksheet->toArray();
+      $data = $worksheet->toArray();
 
-            DB::table('purchase')->delete();
+      DB::table('purchase')->delete();
 
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[9]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[9]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
 
-                if (strpos($row[0], "AS") === 0) {
-                    $numAS = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numAS > 0) {
-                        $AS = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $AS->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
+        $checkData = DB::table('purchase')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
 
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "FN") === 0) {
-                    $numFN = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numFN > 0) {
-                        $FN = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $FN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SFN") === 0) {
-                    $numSFN = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numSFN > 0) {
-                        $SFN = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SFN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "LN") === 0) {
-                    $numLN = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numLN > 0) {
-                        $LN = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $LN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SLN") === 0) {
-                    $numSLN = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numSLN > 0) {
-                        $SLN = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SLN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "MT") === 0) {
-                    $numMT = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numMT > 0) {
-                        $MT = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $MT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SMT") === 0) {
-                    $numSMT = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numSMT > 0) {
-                        $SMT = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SMT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "NT") === 0) {
-                    $numNT = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numNT > 0) {
-                        $NT = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $NT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SNT") === 0) {
-                    $numSNT = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numSNT > 0) {
-                        $SNT = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SNT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "TW") === 0) {
-                    $numTW = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numTW > 0) {
-                        $TW = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $TW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "STW") === 0) {
-                    $numSTW = DB::table('purchase')->where('Item No', $row[0])->count();
-                    if ($numSTW > 0) {
-                        $STW = DB::table('purchase')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $STW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                        DB::table('purchase')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('purchase')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                        ]);
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+        if (!empty($checkData->ItemNo) && $checkData->ItemNo == $row[0]) {
+          DB::table('purchase')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
+          ]);
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          DB::table('purchase')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+          ]);
         }
+      }
+      return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
     }
+    // return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+  }
 
-    public function uploadfile4(Request $request)
-    {
-        if ($request->hasFile('file4')) {
-            $file4 = $request->file('file4');
-            $filePath = $file4->getRealPath();
+  public function uploadfile4(Request $request)
+  {
+    if ($request->hasFile('Inputfile4')) {
+      $file4 = $request->file('Inputfile4');
+      $filePath = $file4->getRealPath();
 
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("SRR");
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("SRR");
 
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "SRR" ไม่พบในไฟล์ Excel');
-            }
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "SRR" ไม่พบในไฟล์ Excel');
+      }
 
-            $data = $worksheet->toArray();
+      $data = $worksheet->toArray();
 
-            DB::table('returncuses')->delete();
+      DB::table('returncuses')->delete();
 
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[9]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
-                $sales_Amount_Actual = str_replace(',', '', trim($row[21]));
-                $sales_Amount_Actual = str_replace(['(', ')'], '', $sales_Amount_Actual);
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[9]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
+        $sales_Amount_Actual = str_replace(',', '', trim($row[21]));
+        $sales_Amount_Actual = str_replace(['(', ')'], '', $sales_Amount_Actual);
 
-                if (strpos($row[0], "AS") === 0) {
-                    $numAS = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numAS > 0) {
-                        $AS = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $AS->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $AS->SalesAmount;
+        $checkData = DB::table('returncuses')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
 
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "FN") === 0) {
-                    $numFN = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numFN > 0) {
-                        $FN = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $FN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $FN->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SFN") === 0) {
-                    $numSFN = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numSFN > 0) {
-                        $SFN = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SFN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $SFN->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "LN") === 0) {
-                    $numLN = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numLN > 0) {
-                        $LN = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $LN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $LN->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SLN") === 0) {
-                    $numSLN = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numSLN > 0) {
-                        $SLN = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SLN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $SLN->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "MT") === 0) {
-                    $numMT = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numMT > 0) {
-                        $MT = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $MT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $MT->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SMT") === 0) {
-                    $numSMT = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numSMT > 0) {
-                        $SMT = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SMT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $SMT->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "NT") === 0) {
-                    $numNT = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numNT > 0) {
-                        $NT = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $NT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $NT->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SNT") === 0) {
-                    $numSNT = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numSNT > 0) {
-                        $SNT = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SNT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $SNT->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "TW") === 0) {
-                    $numTW = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numTW > 0) {
-                        $TW = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $TW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $TW->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "STW") === 0) {
-                    $numSTW = DB::table('returncuses')->where('Item No', $row[0])->count();
-                    if ($numSTW > 0) {
-                        $STW = DB::table('returncuses')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $STW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-                        $sales_Amount_Actual = $sales_Amount_Actual + $STW->SalesAmount;
-
-                        DB::table('returncuses')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('returncuses')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Sales Amount (Actual)' => $sales_Amount_Actual,
-                        ]);
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+        if (!empty($checkData->ItemNo) && $checkData->ItemNo == $row[0]) {
+          DB::table('returncuses')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount,
+            'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData->SalesAmount
+          ]);
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          DB::table('returncuses')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+            'Sales Amount (Actual)' => $sales_Amount_Actual,
+          ]);
         }
+      }
+      return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+    } else {
+      return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
     }
-
-    public function uploadfile5(Request $request)
-    {
-        if ($request->hasFile('file5')) {
-            $file5 = $request->file('file5');
-            $filePath = $file5->getRealPath();
-
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("TFRC");
-
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "TFRC" ไม่พบในไฟล์ Excel');
-            }
-
-            $data = $worksheet->toArray();
-
-            DB::table('a71__f1_fg_bu02s')->delete();
-            DB::table('a72__f2_fg_bu10s')->delete();
-            DB::table('a73__f2_th_bu05s')->delete();
-            DB::table('a74__f2_de_bu10s')->delete();
-            DB::table('a75__f2_ex_bu11s')->delete();
-            DB::table('a76__f2_tw_bu04s')->delete();
-            DB::table('a77__f2_tw_bu07s')->delete();
-            DB::table('a78__f2_ce_bu10s')->delete();
-
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[11]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[19]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
-
-                if ($row[9] === "F1-FG-BU02") {
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a71__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a71__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-FG-BU10"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a72__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a72__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-TH-BU05"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a73__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a73__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-DE-BU10"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a74__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a74__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-EX-BU11"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a75__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a75__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-TW-BU04"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a76__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a76__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-TW-BU07"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a77__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a77__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-CE-BU10"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a78__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a78__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+  }
+
+  public function uploadfile5(Request $request)
+  {
+    if ($request->hasFile('Inputfile5')) {
+      $file5 = $request->file('Inputfile5');
+      $filePath = $file5->getRealPath();
+
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("TFRC");
+
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "TFRC" ไม่พบในไฟล์ Excel');
+      }
+
+      $data = $worksheet->toArray();
+
+      DB::table('a71__f1_fg_bu02s')->delete();
+      DB::table('a72__f2_fg_bu10s')->delete();
+      DB::table('a73__f2_th_bu05s')->delete();
+      DB::table('a74__f2_de_bu10s')->delete();
+      DB::table('a75__f2_ex_bu11s')->delete();
+      DB::table('a76__f2_tw_bu04s')->delete();
+      DB::table('a77__f2_tw_bu07s')->delete();
+      DB::table('a78__f2_ce_bu10s')->delete();
+
+      ///  วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[11]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[19]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
+
+        $checkData1 = DB::table('a71__f1_fg_bu02s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData2 = DB::table('a72__f2_fg_bu10s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData3 = DB::table('a73__f2_th_bu05s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData4 = DB::table('a74__f2_de_bu10s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData5 = DB::table('a75__f2_ex_bu11s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData6 = DB::table('a76__f2_tw_bu04s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData7 = DB::table('a77__f2_tw_bu07s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData8 = DB::table('a78__f2_ce_bu10s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+
+        if ($row[9] == 'F1-FG-BU02') {
+          if (!empty($checkData1->ItemNo) && $checkData1->ItemNo == $row[1]) {
+            DB::table('a71__f1_fg_bu02s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData1->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
+            ]);
+          } else {
+            DB::table('a71__f1_fg_bu02s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-FG-BU10') {
+          if (!empty($checkData2->ItemNo) && $checkData2->ItemNo == $row[1]) {
+            DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+            ]);
+          } else {
+            DB::table('a72__f2_fg_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-TH-BU05') {
+          if (!empty($checkData3->ItemNo) && $checkData3->ItemNo == $row[1]) {
+            DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+            ]);
+          } else {
+            DB::table('a73__f2_th_bu05s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-DE-BU10') {
+          if (!empty($checkData4->ItemNo) && $checkData4->ItemNo == $row[1]) {
+            DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData4->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
+            ]);
+          } else {
+
+            DB::table('a74__f2_de_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-DE-BU10') {
+          if (!empty($checkData5->ItemNo) && $checkData5->ItemNo == $row[1]) {
+            DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData5->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData5->CostAmount,
+            ]);
+          } else {
+            DB::table('a75__f2_ex_bu11s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-TW-BU04') {
+          if (!empty($checkData6->ItemNo) && $checkData6->ItemNo == $row[1]) {
+            DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData6->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData6->CostAmount,
+            ]);
+          } else {
+            DB::table('a76__f2_tw_bu04s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] === 'F2-TW-BU07') {
+          if (!empty($checkData7->ItemNo) && $checkData7->ItemNo == $row[1]) {
+            DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData7->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData7->CostAmount,
+            ]);
+          } else {
+            DB::table('a77__f2_tw_bu07s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] === 'F2-CE-BU10') {
+          if (!empty($checkData8->ItemNo) && $checkData8->ItemNo == $row[1]) {
+            DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData8->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData8->CostAmount,
+            ]);
+          } else {
+            DB::table('a78__f2_ce_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        }
+      }
+      return response()->json(['error' => 'อัปโหลดข้อมูลเรียบร้อยแล้ว']);
+    } else {
+      return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+    }
+  }
+
+  public function uploadfile6(Request $request)
+  {
+    if ($request->hasFile('Inputfile6')) {
+      $file6 = $request->file('Inputfile6');
+      $filePath = $file6->getRealPath();
+
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("6.คืนของร้านค้า");
+
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "6.คืนของร้านค้า" ไม่พบในไฟล์ Excel');
+      }
+
+      $data = $worksheet->toArray();
+
+      DB::table('คืนของs')->delete();
+
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[9]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
+        $purchase_Amount_Actual = str_replace(',', '', trim($row[19]));
+        $purchase_Amount_Actual = str_replace(['(', ')'], '', $purchase_Amount_Actual);
+
+        $checkData = DB::table('คืนของs')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as PurchaseAmount')->where('Item No', $row[0])->first();
+
+        if (!empty($checkData->ItemNo) && $checkData->ItemNo == $row[0]) {
+          DB::table('คืนของs')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + +$checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount,
+            'Purchase Amount (Actual)' => $purchase_Amount_Actual + +$checkData->PurchaseAmount,
+          ]);
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          DB::table('คืนของs')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
+          ]);
         }
+      }
+      return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+    } else {
+      return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
     }
+  }
 
-    public function uploadfile6(Request $request)
-    {
-        if ($request->hasFile('file6')) {
-            $file6 = $request->file('file6');
-            $filePath = $file6->getRealPath();
+  public function uploadfile7(Request $request)
+  {
+    if ($request->hasFile('Inputfile7')) {
+      $file7 = $request->file('Inputfile7');
+      $filePath = $file7->getRealPath();
 
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("6.คืนของร้านค้า");
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("TFSM");
 
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "6.คืนของร้านค้า" ไม่พบในไฟล์ Excel');
-            }
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "TFSM" ไม่พบในไฟล์ Excel');
+      }
 
-            $data = $worksheet->toArray();
+      $data = $worksheet->toArray();
 
-            DB::table('คืนของs')->delete();
+      DB::table('a81__f1_fg_bu02s')->delete();
+      DB::table('a82__f2_fg_bu10s')->delete();
+      DB::table('a83__f2_th_bu05s')->delete();
+      DB::table('a84__f2_de_bu10s')->delete();
+      DB::table('a85__f2_ex_bu11s')->delete();
+      DB::table('a86__f2_tw_bu04s')->delete();
+      DB::table('a87__f2_tw_bu07s')->delete();
+      DB::table('a88__f2_ce_bu10s')->delete();
 
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[9]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[17]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
-                $purchase_Amount_Actual = str_replace(',', '', trim($row[19]));
-                $purchase_Amount_Actual = str_replace(['(', ')'], '', $purchase_Amount_Actual);
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[11]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[19]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
 
-                if (strpos($row[0], "AS") === 0) {
-                    $numAS = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numAS > 0) {
-                        $AS = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $AS->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $AS->Purchase;
+        $checkData1 = DB::table('a81__f1_fg_bu02s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData2 = DB::table('a82__f2_fg_bu10s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData3 = DB::table('a83__f2_th_bu05s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData4 = DB::table('a84__f2_de_bu10s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData5 = DB::table('a85__f2_ex_bu11s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData6 = DB::table('a86__f2_tw_bu04s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData7 = DB::table('a87__f2_tw_bu07s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
+        $checkData8 = DB::table('a88__f2_ce_bu10s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "FN") === 0) {
-                    $numFN = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numFN > 0) {
-                        $FN = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $FN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $FN->Purchase;
+        if ($row[9] == 'F1-FG-BU02') {
+          if (!empty($checkData1->ItemNo) && $checkData1->ItemNo == $row[1]) {
+            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData1->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
+            ]);
+          } else {
+            DB::table('a81__f1_fg_bu02s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-FG-BU10') {
+          if (!empty($checkData2->ItemNo) && $checkData2->ItemNo == $row[1]) {
+            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+            ]);
+          } else {
+            DB::table('a82__f2_fg_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-TH-BU05') {
+          if (!empty($checkData3->ItemNo) && $checkData3->ItemNo == $row[1]) {
+            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+            ]);
+          } else {
+            DB::table('a83__f2_th_bu05s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-DE-BU10') {
+          if (!empty($checkData4->ItemNo) && $checkData4->ItemNo == $row[1]) {
+            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData4->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
+            ]);
+          } else {
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SFN") === 0) {
-                    $numSFN = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numSFN > 0) {
-                        $SFN = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SFN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $SFN->Purchase;
+            DB::table('a84__f2_de_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-DE-BU10') {
+          if (!empty($checkData5->ItemNo) && $checkData5->ItemNo == $row[1]) {
+            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData5->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData5->CostAmount,
+            ]);
+          } else {
+            DB::table('a85__f2_ex_bu11s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] == 'F2-TW-BU04') {
+          if (!empty($checkData6->ItemNo) && $checkData6->ItemNo == $row[1]) {
+            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData6->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData6->CostAmount,
+            ]);
+          } else {
+            DB::table('a86__f2_tw_bu04s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] === 'F2-TW-BU07') {
+          if (!empty($checkData7->ItemNo) && $checkData7->ItemNo == $row[1]) {
+            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData7->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData7->CostAmount,
+            ]);
+          } else {
+            DB::table('a87__f2_tw_bu07s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        } elseif ($row[9] === 'F2-CE-BU10') {
+          if (!empty($checkData8->ItemNo) && $checkData8->ItemNo == $row[1]) {
+            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData8->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData8->CostAmount,
+            ]);
+          } else {
+            DB::table('a88__f2_ce_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+          }
+        }
+      }
+      return response()->json(['success' => 'อัปโหลดข้อมูลเรียบร้อยแล้ว']);
+    } else {
+      return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+    }
+  }
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "LN") === 0) {
-                    $numLN = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numLN > 0) {
-                        $LN = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $LN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $LN->Purchase;
+  public function uploadfile8(Request $request)
+  {
+    if ($request->hasFile('Inputfile8')) {
+      $file8 = $request->file('Inputfile8');
+      $filePath = $file8->getRealPath();
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SLN") === 0) {
-                    $numSLN = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numSLN > 0) {
-                        $SLN = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SLN->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $SLN->Purchase;
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("SHH");
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "MT") === 0) {
-                    $numMT = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numMT > 0) {
-                        $MT = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $MT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $MT->Purchase;
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "SHH" ไม่พบในไฟล์ Excel');
+      }
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SMT") === 0) {
-                    $numSMT = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numSMT > 0) {
-                        $SMT = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SMT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $SMT->Purchase;
+      $data = $worksheet->toArray();
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "NT") === 0) {
-                    $numNT = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numNT > 0) {
-                        $NT = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $NT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $NT->Purchase;
+      DB::table('dc1_s')->delete();
+      DB::table('dcp_s')->delete();
+      DB::table('dcy_s')->delete();
+      DB::table('dex_s')->delete();
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SNT") === 0) {
-                    $numSNT = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numSNT > 0) {
-                        $SNT = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SNT->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $SNT->Purchase;
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 1) as $row) {
+        $quantity = str_replace(',', '', trim($row[10]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $cost_Amount_Actual = str_replace(',', '', trim($row[18]));
+        $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
+        $sales_Amount_Actual = str_replace(',', '', trim($row[22]));
+        $sales_Amount_Actual = str_replace(['(', ')'], '', $sales_Amount_Actual);
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "TW") === 0) {
-                    $numTW = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numTW > 0) {
-                        $TW = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $TW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $TW->Purchase;
+        $checkData1 = DB::table('dc1_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
+        $checkData2 = DB::table('dcy_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
+        $checkData3 = DB::table('dcp_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
+        $checkData4 = DB::table('dex_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "STW") === 0) {
-                    $numSTW = DB::table('คืนของs')->where('Item No', $row[0])->count();
-                    if ($numSTW > 0) {
-                        $STW = DB::table('คืนของs')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Purchase Amount (Actual) as Purchase')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $STW->Quantity;
-                        $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-                        $purchase_Amount_Actual = $purchase_Amount_Actual + $STW->Purchase;
+        if (strpos($row[0], "DC1")) {
+          if (!empty($checkData1->ItemNo) && $checkData1->ItemNo == $row[1]) {
+            DB::table('dc1_s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData1->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData1->SalesAmount,
+            ]);
+          } else {
+            DB::table('dc1_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+          }
+        } elseif (strpos($row[0], "DCY")) {
+          if (!empty($checkData2->ItemNo) && $checkData2->ItemNo == $row[1]) {
+            DB::table('dcy_s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData2->SalesAmount,
+            ]);
+          } else {
+            DB::table('dcy_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+          }
+        } elseif (strpos($row[0], "DCP")) {
+          if (!empty($checkData3->ItemNo) && $checkData3->ItemNo == $row[1]) {
+            DB::table('dcp_s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData3->SalesAmount,
+            ]);
+          } else {
+            DB::table('dcp_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+          }
+        } elseif (strpos($row[0], "DEX")) {
+          if (!empty($checkData4->ItemNo) && $checkData4->ItemNo == $row[1]) {
+            DB::table('dex_s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData4->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData4->SalesAmount,
+            ]);
+          } else {
+            DB::table('dex_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+          }
+        }
+      }
+      return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+    } else {
+      return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+    }
+  }
+  public function uploadfile9(Request $request)
+  {
+    if ($request->hasFile('Inputfile9')) {
+      $file9 = $request->file('Inputfile9');
+      $filePath = $file9->getRealPath();
 
-                        DB::table('คืนของs')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    } else {
-                        DB::table('คืนของs')->insert([
-                            'Item No' => $row[0],
-                            'Global Dimension 2 Code' => $row[14],
-                            'Full Description' => $row[1],
-                            'Unit of Measure Code' => $row[12],
-                            'Quantity' => $quantity,
-                            'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
-                        ]);
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getSheetByName("Inventory Balance");
+
+      if (!$worksheet instanceof Worksheet) {
+        return redirect()->back()->with('error', 'Sheet "Inventory Balance" ไม่พบในไฟล์ Excel');
+      }
+
+      $data = $worksheet->toArray();
+
+      DB::table('item_stock')->delete();
+
+      // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
+      foreach (array_slice($data, 6) as $row) {
+        $quantity = str_replace(',', '', trim($row[7]));
+        $quantity = str_replace(['(', ')'], '', $quantity);
+        $Cost_Unit = str_replace(',', '', trim($row[8]));
+        $Cost_Unit = str_replace(['(', ')'], '', $Cost_Unit);
+        $Amount = str_replace(',', '', trim($row[9]));
+        $Amount = str_replace(['(', ')'], '', $Amount);
+        $Estimate_Amount = str_replace(',', '', trim($row[10]));
+        $Estimate_Amount = str_replace(['(', ')'], '', $Estimate_Amount);
+        $Inventory = str_replace(',', '', trim($row[11]));
+        $Inventory = str_replace(['(', ')'], '', $Inventory);
+
+        $checkData = DB::table('item_stock')->select('Item No as ItemNo', 'Quantity', 'Cost per Unit as CostUnit', 'Amount', 'Estimate Amount as EstimateAmount', 'Inventory')->where('Item No', $row[0])->first();
+
+        if (!empty($checkData->ItemNo) && $checkData->ItemNo == $row[0]) {
+          DB::table('item_stock')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost per Unit' => $Cost_Unit + $checkData->CostUnit,
+            'Amount' => $Amount + $checkData->Amount,
+            'Estimate Amount' => $Estimate_Amount + $checkData->EstimateAmount,
+            'Inventory' => $Inventory + $checkData->Inventory,
+          ]);
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          DB::table('item_stock')->insert([
+            'Item No' => $row[0],
+            'goodname1' => $row[2],
+            'branchcode' => $row[5],
+            'groupname' => $row[6],
+            'Quantity' => $quantity,
+            'Cost per Unit' => $Cost_Unit,
+            'Amount' => $Amount,
+            'Estimate Amount' => $Estimate_Amount,
+            'Inventory' => $Inventory,
+            'Last Stock-In' => $row[12],
+            'Entry Type' => $row[13],
+          ]);
         }
+      }
+      return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+    } else {
+      return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
     }
-
-    public function uploadfile7(Request $request)
-    {
-        if ($request->hasFile('file7')) {
-            $file7 = $request->file('file7');
-            $filePath = $file7->getRealPath();
-
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("TFSM");
-
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "TFSM" ไม่พบในไฟล์ Excel');
-            }
-
-            $data = $worksheet->toArray();
-
-            DB::table('a81__f1_fg_bu02s')->delete();
-            DB::table('a82__f2_fg_bu10s')->delete();
-            DB::table('a83__f2_th_bu05s')->delete();
-            DB::table('a84__f2_de_bu10s')->delete();
-            DB::table('a85__f2_ex_bu11s')->delete();
-            DB::table('a86__f2_tw_bu04s')->delete();
-            DB::table('a87__f2_tw_bu07s')->delete();
-            DB::table('a88__f2_ce_bu10s')->delete();
-
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[11]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[19]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
-
-                if ($row[9] === "F1-FG-BU02") {
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a81__f1_fg_bu02s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a81__f1_fg_bu02s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a81__f1_fg_bu02s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-FG-BU10"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a82__f2_fg_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a82__f2_fg_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a82__f2_fg_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-TH-BU05"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a83__f2_th_bu05s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a83__f2_th_bu05s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a83__f2_th_bu05s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-DE-BU10"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a84__f2_de_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a84__f2_de_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a84__f2_de_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-EX-BU11"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a85__f2_ex_bu11s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a85__f2_ex_bu11s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-TW-BU04"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a86__f2_tw_bu04s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a86__f2_tw_bu04s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a86__f2_tw_bu04s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-TW-BU07"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a87__f2_tw_bu07s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a87__f2_tw_bu07s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a87__f2_tw_bu07s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }else if($row[9] === "F2-CE-BU10"){
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('a88__f2_ce_bu10s')->select('Quantity', 'Cost Amount (Actual) as CostAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-
-                            DB::table('a88__f2_ce_bu10s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('a88__f2_ce_bu10s')->insert([
-                                'A' => $row[0],
-                                'Location' => $row[9],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[16],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[14],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+  }
+
+  public function uploadfile10(Request $request)
+  {
+    $upload10 = $request->input('confirm');
+
+    if ($upload10 == 1) {
+      $ItemNo = DB::table('item_all')
+        ->select(
+          'dataother.Item No as ItemCode',
+          'dataother.Customer',
+          'dataother.Category',
+          'item_all.No',
+          'dataother.PriceAvg',
+          'dataother.PcsAfter',
+          'dataother.PriceAfter',
+          'po.Quantity as Po_Quantity',
+          'Neg.Quantity as Neg_Quantity',
+          'purchase.Quantity as purchase_Quantity',
+          'purchase.Cost Amount (Actual) as purchase_Cost',
+          'returncuses.Quantity as returncuses_Quantity',
+          'คืนของs.Quantity as returnitem_Quantity',
+          'item_stock.Quantity as item_stock_Quantity',
+          'item_stock.Amount as item_stock_Amount',
+          'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+          'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+          'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+          'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+          'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+          'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+          'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+          'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+          'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+          'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+          'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+          'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+          'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+          'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+          'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+          'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+          'dc1_s.Quantity as dc1_s_Quantity',
+          'dcp_s.Quantity as dcp_s_Quantity',
+          'dcy_s.Quantity as dcy_s_Quantity',
+          'dex_s.Quantity as dex_s_Quantity',
+        )
+        ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+        ->leftJoin('po', 'item_all.No', 'po.Item No')
+        ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+        ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+        ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+        ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+        ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+        ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+        ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+        ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+        ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+        ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+        ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+        ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+        ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+        ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+        ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+        ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+        ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+        ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+        ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+        ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+        ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+        ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+        ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+        ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+        ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+        ->orderBy('item_all.No')
+        ->get();
+
+      foreach ($ItemNo as $row) {
+        $PcsAf = floatval($row->PcsAfter);
+        $PriceAf = floatval($row->PriceAfter);
+        if ($PcsAf > 0 && $PriceAf > 0) {
+          $Avg = $PriceAf / $PcsAf;
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          $Avg = $row->PriceAvg;
         }
-    }
 
-    public function uploadfile8(Request $request)
-    {
-        if ($request->hasFile('file8')) {
-            $file8 = $request->file('file8');
-            $filePath = $file8->getRealPath();
-
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("SHH");
-
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "SHH" ไม่พบในไฟล์ Excel');
-            }
-
-            $data = $worksheet->toArray();
-
-            DB::table('dc1_s')->delete();
-            DB::table('dcp_s')->delete();
-            DB::table('dcy_s')->delete();
-            DB::table('dex_s')->delete();
-
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 1) as $row) {
-                $quantity = str_replace(',', '', trim($row[10]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $cost_Amount_Actual = str_replace(',', '', trim($row[18]));
-                $cost_Amount_Actual = str_replace(['(', ')'], '', $cost_Amount_Actual);
-                $sales_Amount_Actual = str_replace(',', '', trim($row[22]));
-                $sales_Amount_Actual = str_replace(['(', ')'], '', $sales_Amount_Actual);
-
-                if (strpos($row[0], "DC1")) {
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $AS->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $FN->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SFN->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $LN->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SLN->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $MT->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SMT->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $NT->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SNT->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $TW->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('dc1_s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('dc1_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $STW->SalesAmount;
-    
-                            DB::table('dc1_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dc1_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }
-                if (strpos($row[0], "DCP")) {
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $AS->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $FN->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SFN->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $LN->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SLN->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $MT->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SMT->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $NT->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SNT->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $TW->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('dcp_s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('dcp_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $STW->SalesAmount;
-    
-                            DB::table('dcp_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcp_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }
-                if (strpos($row[0], "DCY")) {
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $AS->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $FN->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SFN->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $LN->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SLN->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $MT->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SMT->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $NT->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SNT->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $TW->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('dcy_s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('dcy_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $STW->SalesAmount;
-    
-                            DB::table('dcy_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dcy_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }
-                if (strpos($row[0], "DEX")) {
-                    if (strpos($row[1], "AS") === 0) {
-                        $numAS = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numAS > 0) {
-                            $AS = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $AS->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $AS->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $AS->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "FN") === 0) {
-                        $numFN = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numFN > 0) {
-                            $FN = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $FN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $FN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $FN->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SFN") === 0) {
-                        $numSFN = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numSFN > 0) {
-                            $SFN = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SFN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SFN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SFN->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "LN") === 0) {
-                        $numLN = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numLN > 0) {
-                            $LN = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $LN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $LN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $LN->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SLN") === 0) {
-                        $numSLN = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numSLN > 0) {
-                            $SLN = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SLN->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SLN->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SLN->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "MT") === 0) {
-                        $numMT = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numMT > 0) {
-                            $MT = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $MT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $MT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $MT->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SMT") === 0) {
-                        $numSMT = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numSMT > 0) {
-                            $SMT = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SMT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SMT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SMT->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "NT") === 0) {
-                        $numNT = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numNT > 0) {
-                            $NT = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $NT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $NT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $NT->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "SNT") === 0) {
-                        $numSNT = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numSNT > 0) {
-                            $SNT = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $SNT->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $SNT->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $SNT->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "TW") === 0) {
-                        $numTW = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numTW > 0) {
-                            $TW = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $TW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $TW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $TW->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                    if (strpos($row[1], "STW") === 0) {
-                        $numSTW = DB::table('dex_s')->where('Item No', $row[1])->count();
-                        if ($numSTW > 0) {
-                            $STW = DB::table('dex_s')->select('Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-                            $quantity = $quantity + $STW->Quantity;
-                            $cost_Amount_Actual = $cost_Amount_Actual + $STW->CostAmount;
-                            $sales_Amount_Actual = $sales_Amount_Actual + $STW->SalesAmount;
-    
-                            DB::table('dex_s')->where('Item No', $row[1])->update([
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        } else {
-                            DB::table('dex_s')->insert([
-                                'Item&Branch' => $row[0],
-                                'Item No' => $row[1],
-                                'Global Dimension 2 Code' => $row[15],
-                                'Full Description' => $row[2],
-                                'Unit of Measure Code' => $row[13],
-                                'Quantity' => $quantity,
-                                'Cost Amount (Actual)' => $cost_Amount_Actual,
-                                'Sales Amount (Actual)' => $sales_Amount_Actual,
-                            ]);
-                        }
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+        if ($row->Po_Quantity == "") {
+          $PoQuantity = 0;
+          $PoPrice = 0;
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          $PoQuantity = floatval($row->Po_Quantity);
+          $PoPrice = floatval($row->Po_Quantity) * floatval($row->PriceAvg);
         }
-    }
-    public function uploadfile9(Request $request)
-    {
-        if ($request->hasFile('file9')) {
-            $file9 = $request->file('file9');
-            $filePath = $file9->getRealPath();
 
-            $spreadsheet = IOFactory::load($filePath);
-            $worksheet = $spreadsheet->getSheetByName("Inventory Balance");
-
-            if (!$worksheet instanceof Worksheet) {
-                return redirect()->back()->with('error', 'Sheet "Inventory Balance" ไม่พบในไฟล์ Excel');
-            }
-
-            $data = $worksheet->toArray();
-
-            DB::table('item_stock')->delete();
-
-            // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
-            foreach (array_slice($data, 6) as $row) {
-                $quantity = str_replace(',', '', trim($row[7]));
-                $quantity = str_replace(['(', ')'], '', $quantity);
-                $Cost_Unit = str_replace(',', '', trim($row[8]));
-                $Cost_Unit = str_replace(['(', ')'], '', $Cost_Unit);
-                $Amount = str_replace(',', '', trim($row[9]));
-                $Amount = str_replace(['(', ')'], '', $Amount);
-                $Estimate_Amount = str_replace(',', '', trim($row[10]));
-                $Estimate_Amount = str_replace(['(', ')'], '', $Estimate_Amount);
-                $Inventory = str_replace(',', '', trim($row[11]));
-                $Inventory = str_replace(['(', ')'], '', $Inventory);
-
-                if (strpos($row[0], "AS") === 0) {
-                    $numAS = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numAS > 0) {
-                        $AS = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $AS->Quantity;
-                        $Cost_Unit = $Cost_Unit + $AS->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $AS->estimate;
-                        $Inventory = $Inventory + $AS->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "FN") === 0) {
-                    $numFN = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numFN > 0) {
-                        $FN = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $FN->Quantity;
-                        $Cost_Unit = $Cost_Unit + $FN->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $FN->estimate;
-                        $Inventory = $Inventory + $FN->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SFN") === 0) {
-                    $numSFN = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numSFN > 0) {
-                        $SFN = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SFN->Quantity;
-                        $Cost_Unit = $Cost_Unit + $SFN->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $SFN->estimate;
-                        $Inventory = $Inventory + $SFN->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "LN") === 0) {
-                    $numLN = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numLN > 0) {
-                        $LN = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $LN->Quantity;
-                        $Cost_Unit = $Cost_Unit + $LN->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $LN->estimate;
-                        $Inventory = $Inventory + $LN->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SLN") === 0) {
-                    $numSLN = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numSLN > 0) {
-                        $SLN = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SLN->Quantity;
-                        $Cost_Unit = $Cost_Unit + $SLN->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $SLN->estimate;
-                        $Inventory = $Inventory + $SLN->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "MT") === 0) {
-                    $numMT = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numMT > 0) {
-                        $MT = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $MT->Quantity;
-                        $Cost_Unit = $Cost_Unit + $MT->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $MT->estimate;
-                        $Inventory = $Inventory + $MT->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SMT") === 0) {
-                    $numSMT = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numSMT > 0) {
-                        $SMT = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SMT->Quantity;
-                        $Cost_Unit = $Cost_Unit + $SMT->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $SMT->estimate;
-                        $Inventory = $Inventory + $SMT->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "NT") === 0) {
-                    $numNT = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numNT > 0) {
-                        $NT = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $NT->Quantity;
-                        $Cost_Unit = $Cost_Unit + $NT->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $NT->estimate;
-                        $Inventory = $Inventory + $NT->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "SNT") === 0) {
-                    $numSNT = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numSNT > 0) {
-                        $SNT = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $SNT->Quantity;
-                        $Cost_Unit = $Cost_Unit + $SNT->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $SNT->estimate;
-                        $Inventory = $Inventory + $SNT->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "TW") === 0) {
-                    $numTW = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numTW > 0) {
-                        $TW = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $TW->Quantity;
-                        $Cost_Unit = $Cost_Unit + $TW->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $TW->estimate;
-                        $Inventory = $Inventory + $TW->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-                if (strpos($row[0], "STW") === 0) {
-                    $numSTW = DB::table('item_stock')->where('Item No', $row[0])->count();
-                    if ($numSTW > 0) {
-                        $STW = DB::table('item_stock')->select('Quantity', 'Cost per Unit as CostUnit', 'Estimate Amount as estimate', 'Inventory', 'Amount')->where('Item No', $row[0])->first();
-                        $quantity = $quantity + $STW->Quantity;
-                        $Cost_Unit = $Cost_Unit + $STW->CostUnit;
-                        $Amount = $Amount + $AS->Amount;
-                        $Estimate_Amount = $Estimate_Amount + $STW->estimate;
-                        $Inventory = $Inventory + $STW->Inventory;
-
-                        DB::table('item_stock')->where('Item No', $row[0])->update([
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                        ]);
-                    } else {
-                        DB::table('item_stock')->insert([
-                            'Item No' => $row[0],
-                            'goodname1' => $row[2],
-                            'branchcode' => $row[5],
-                            'groupname' => $row[6],
-                            'Quantity' => $quantity,
-                            'Cost per Unit' => $Cost_Unit,
-                            'Amount' => $Amount,
-                            'Estimate Amount' => $Estimate_Amount,
-                            'Inventory' => $Inventory,
-                            'Last Stock-In' => $row[12],
-                            'Entry Type' => $row[13],
-                        ]);
-                    }
-                }
-            }
-            return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
+        if ($row->Neg_Quantity == "") {
+          $NegQuantity = 0;
+          $NegPrice = 0;
         } else {
-            return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
+          $NegQuantity = floatval($row->Neg_Quantity);
+          $NegPrice = floatval($row->Neg_Quantity) * floatval($Avg);
         }
+
+        if ($row->purchase_Quantity == "") {
+          $purchaseQuantity = 0;
+          $purchasePrice = 0;
+        } else {
+          $purchaseQuantity = floatval($row->purchase_Quantity);
+          $purchasePrice = floatval($row->purchase_Quantity) * floatval($row->PriceAvg);
+        }
+
+        if ($row->returnitem_Quantity == "") {
+          $ReturnItemQuantity = 0;
+        } else {
+          $ReturnItemQuantity = floatval($row->returnitem_Quantity);
+        }
+
+        if ($row->item_stock_Quantity == "") {
+          $item_stockQuantity = 0;
+          $item_stockPrice = 0;
+        } else {
+          $item_stockQuantity = floatval($row->item_stock_Quantity);
+          $item_stockPrice = floatval($row->item_stock_Amount);
+        }
+
+        if ($row->a7f1fgbu02s_Quantity == "") {
+          $a7f1fgbu02sQuantity = 0;
+        } else {
+          $a7f1fgbu02sQuantity = floatval($row->a7f1fgbu02s_Quantity);
+        }
+
+        if ($row->a7f2fgbu10s_Quantity == "") {
+          $a7f2fgbu10sQuantity = 0;
+        } else {
+          $a7f2fgbu10sQuantity = floatval($row->a7f2fgbu10s_Quantity);
+        }
+
+        if ($row->a7f2thbu05s_Quantity == "") {
+          $a7f2thbu05sQuantity = 0;
+        } else {
+          $a7f2thbu05sQuantity = floatval($row->a7f2thbu05s_Quantity);
+        }
+
+        if ($row->a7f2debu10s_Quantity == "") {
+          $a7f2debu10sQuantity = 0;
+        } else {
+          $a7f2debu10sQuantity = floatval($row->a7f2debu10s_Quantity);
+        }
+
+        if ($row->a7f2exbu11s_Quantity == "") {
+          $a7f2exbu11sQuantity = 0;
+        } else {
+          $a7f2exbu11sQuantity = floatval($row->a7f2exbu11s_Quantity);
+        }
+
+        if ($row->a7f2twbu04s_Quantity == "") {
+          $a7f2twbu04sQuantity = 0;
+        } else {
+          $a7f2twbu04sQuantity = floatval($row->a7f2twbu04s_Quantity);
+        }
+
+        if ($row->a7f2twbu07s_Quantity == "") {
+          $a7f2twbu07sQuantity = 0;
+        } else {
+          $a7f2twbu07sQuantity = floatval($row->a7f2twbu07s_Quantity);
+        }
+
+        if ($row->a7f2cebu10s_Quantity == "") {
+          $a7f2cebu10sQuantity = 0;
+        } else {
+          $a7f2cebu10sQuantity = floatval($row->a7f2cebu10s_Quantity);
+        }
+
+        if ($row->returncuses_Quantity == "") {
+          $ReturnQuantity = 0;
+        } else {
+          $ReturnQuantity = floatval($row->returncuses_Quantity);
+        }
+
+        if ($row->a8f1fgbu02s_Quantity == "") {
+          $a8f1fgbu02sQuantity = 0;
+        } else {
+          $a8f1fgbu02sQuantity = floatval($row->a8f1fgbu02s_Quantity);
+        }
+
+        if ($row->a8f2fgbu10s_Quantity == "") {
+          $a8f2fgbu10sQuantity = 0;
+        } else {
+          $a8f2fgbu10sQuantity = floatval($row->a8f2fgbu10s_Quantity);
+        }
+
+        if ($row->a8f2thbu05s_Quantity == "") {
+          $a8f2thbu05sQuantity = 0;
+        } else {
+          $a8f2thbu05sQuantity = floatval($row->a8f2thbu05s_Quantity);
+        }
+
+        if ($row->a8f2debu10s_Quantity == "") {
+          $a8f2debu10sQuantity = 0;
+        } else {
+          $a8f2debu10sQuantity = floatval($row->a8f2debu10s_Quantity);
+        }
+
+        if ($row->a8f2exbu11s_Quantity == "") {
+          $a8f2exbu11sQuantity = 0;
+        } else {
+          $a8f2exbu11sQuantity = floatval($row->a8f2exbu11s_Quantity);
+        }
+
+        if ($row->a8f2twbu04s_Quantity == "") {
+          $a8f2twbu04sQuantity = 0;
+        } else {
+          $a8f2twbu04sQuantity = floatval($row->a8f2twbu04s_Quantity);
+        }
+
+        if ($row->a8f2twbu07s_Quantity == "") {
+          $a8f2twbu07sQuantity = 0;
+        } else {
+          $a8f2twbu07sQuantity = floatval($row->a8f2twbu07s_Quantity);
+        }
+
+        if ($row->a8f2cebu10s_Quantity == "") {
+          $a8f2cebu10sQuantity = 0;
+        } else {
+          $a8f2cebu10sQuantity = floatval($row->a8f2cebu10s_Quantity);
+        }
+
+        if ($row->dc1_s_Quantity == "") {
+          $DC1Quantity = 0;
+        } else {
+          $DC1Quantity = floatval($row->dc1_s_Quantity);
+        }
+
+        if ($row->dcp_s_Quantity == "") {
+          $DCPQuantity = 0;
+        } else {
+          $DCPQuantity = floatval($row->dcp_s_Quantity);
+        }
+
+        if ($row->dcy_s_Quantity == "") {
+          $DCYQuantity = 0;
+        } else {
+          $DCYQuantity = floatval($row->dcy_s_Quantity);
+        }
+
+        if ($row->dex_s_Quantity == "") {
+          $DEXQuantity = 0;
+        } else {
+          $DEXQuantity = floatval($row->dex_s_Quantity);
+        }
+
+        $BackChagePcs = floatval($row->PcsAfter) + floatval($row->Po_Quantity) + floatval($row->Neg_Quantity);
+        $BackChagePrice = floatval($row->PriceAfter) + $PoPrice + $NegPrice;
+        $ReciveTranferPcs = $a7f1fgbu02sQuantity + $a7f2fgbu10sQuantity + $a7f2thbu05sQuantity + $a7f2debu10sQuantity + $a7f2exbu11sQuantity + $a7f2twbu04sQuantity + $a7f2twbu07sQuantity + $a7f2cebu10sQuantity;
+        $ReciveTranferPrice = $ReciveTranferPcs * floatval($row->PriceAvg);
+        $ReturnPrice = $ReturnQuantity * floatval($Avg);
+        $TotalInPcs = $purchaseQuantity + $ReciveTranferPcs + $ReturnQuantity;
+        $TotalInPrice = $purchasePrice + $ReciveTranferPrice + $ReturnPrice;
+        $SendSalePcs = $DC1Quantity + $DCPQuantity + $DCYQuantity + $DEXQuantity;
+        $denominator = $BackChagePcs + $TotalInPcs;
+        $ReciveTranOutPcs = $a8f1fgbu02sQuantity + $a8f2fgbu10sQuantity + $a8f2thbu05sQuantity + $a8f2debu10sQuantity + $a8f2exbu11sQuantity + $a8f2twbu04sQuantity + $a8f2twbu07sQuantity + $a8f2cebu10sQuantity;
+
+        if ($denominator > 0) {
+          $SendSalePrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $SendSalePcs;
+        } else {
+          $SendSalePrice = 0;
+        }
+
+        if ($denominator > 0) {
+          $ReciveTranOutPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReciveTranOutPcs;
+        } else {
+          $ReciveTranOutPrice = 0;
+        }
+
+        if ($denominator > 0) {
+          $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
+        } else {
+          $ReturnItemPrice = 0;
+        }
+
+        $totalOutPcs = $SendSalePcs + $ReciveTranOutPcs + $ReturnItemQuantity;
+        $totalOutPrice = $SendSalePrice + $ReciveTranOutPrice + $ReturnItemPrice;
+
+        if ($denominator > 0) {
+          $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
+        } else {
+          $ReturnItemPrice = 0;
+        }
+
+        $TotalCalPcs = $BackChagePcs + $TotalInPcs + $totalOutPcs;
+        $TotalCalPrice = $BackChagePrice + $TotalInPrice + $totalOutPrice;
+
+        $TotalCalPcs = floatval($TotalCalPcs);
+        $TotalCalPrice = floatval($TotalCalPrice);
+
+        // $TotalCalPcs = number_format($TotalCalPcs, 2);
+        // $TotalCalPrice = number_format($TotalCalPrice, 2);
+
+        DB::table('dataother')->where('Item No', $row->ItemCode)
+          ->update([
+            'PcsAfter' => $TotalCalPcs,
+            'PriceAfter' => $TotalCalPrice,
+          ]);
+      }
+      return response()->json('Upload Data Success');
+    }else{
+      return response()->json('ข้อมูลไม่ต้องการอัพเดท');
     }
+  }
 }

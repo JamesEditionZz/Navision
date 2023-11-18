@@ -1131,6 +1131,237 @@
                             <div id="DEXPriceDEX"></div>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">รวมทั้งหมด</td>
+                        <td>
+                            <div id="PcsAfterAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsAll_Cus"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceAll_Cus"></div>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -1246,6 +1477,30 @@ $.ajax({
             'a8f2twbu07sPcsDEX', 'a8f2twbu07sPriceDEX', 'a8f2cebu10sPcsDEX', 'a8f2cebu10sPriceDEX',
             'DC1PcsDEX', 'DC1PriceDEX', 'DCPPcsDEX', 'DCPPriceDEX',
             'DCYPcsDEX', 'DCYPriceDEX', 'DEXPcsDEX', 'DEXPriceDEX',
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////
+
+            'PcsAfterAll_Cus', 'PriceAfterAll_Cus', 'Pcs_AfterAll_Cus', 'Price_AfterAll_Cus',
+            'PoPcsAll_Cus', 'PoPriceAll_Cus', 'NegPcsAll_Cus', 'NegPriceAll_Cus', 'BackPcsAll_Cus',
+            'BackPriceAll_Cus', 'PurchasePcsAll_Cus', 'PurchasePriceAll_Cus', 'ReciveTranferPcsAll_Cus',
+            'ReciveTranferPriceAll_Cus', 'ReturnItemPcsAll_Cus', 'ReturnItemPriceAll_Cus',
+            'AllInPcsAll_Cus', 'AllInPriceAll_Cus', 'SendSalePcsAll_Cus', 'SendSalePriceAll_Cus',
+            'ReciveTranOutPcsAll_Cus', 'ReciveTranOutPriceAll_Cus', 'ReturnStorePcsAll_Cus',
+            'ReturnStorePriceAll_Cus', 'AllOutPcsAll_Cus', 'AllOutPriceAll_Cus', 'CalculatePcsAll_Cus',
+            'CalculatePriceAll_Cus', 'NewCalculatePcsAll_Cus', 'NewCalculatePriceAll_Cus',
+            'DiffPcsAll_Cus', 'DiffPriceAll_Cus', 'NewTotalPcsAll_Cus', 'NewTotalPriceAll_Cus',
+            'NewTotalDiffNavAll_Cus', 'NewTotalDiffCalAll_Cus',
+            'a7f1fgbu02sPcsAll_Cus', 'a7f1fgbu02sPriceAll_Cus', 'a7f2fgbu10sPcsAll_Cus', 'a7f2fgbu10sPriceAll_Cus',
+            'a7f2thbu05sPcsAll_Cus', 'a7f2thbu05sPriceAll_Cus', 'a7f2debu10sPcsAll_Cus', 'a7f2debu10sPriceAll_Cus',
+            'a7f2exbu11sPcsAll_Cus', 'a7f2exbu11sPriceAll_Cus', 'a7f2twbu04sPcsAll_Cus', 'a7f2twbu04sPriceAll_Cus',
+            'a7f2twbu07sPcsAll_Cus', 'a7f2twbu07sPriceAll_Cus', 'a7f2cebu10sPcsAll_Cus', 'a7f2cebu10sPriceAll_Cus',
+            'a8f1fgbu02sPcsAll_Cus', 'a8f1fgbu02sPriceAll_Cus', 'a8f2fgbu10sPcsAll_Cus', 'a8f2fgbu10sPriceAll_Cus',
+            'a8f2thbu05sPcsAll_Cus', 'a8f2thbu05sPriceAll_Cus', 'a8f2debu10sPcsAll_Cus', 'a8f2debu10sPriceAll_Cus',
+            'a8f2exbu11sPcsAll_Cus', 'a8f2exbu11sPriceAll_Cus', 'a8f2twbu04sPcsAll_Cus', 'a8f2twbu04sPriceAll_Cus',
+            'a8f2twbu07sPcsAll_Cus', 'a8f2twbu07sPriceAll_Cus', 'a8f2cebu10sPcsAll_Cus', 'a8f2cebu10sPriceAll_Cus',
+            'DC1PcsAll_Cus', 'DC1PriceAll_Cus', 'DCPPcsAll_Cus', 'DCPPriceAll_Cus',
+            'DCYPcsAll_Cus', 'DCYPriceAll_Cus', 'DEXPcsAll_Cus', 'DEXPriceAll_Cus',
         ];
         response.forEach((elementData, index) => {
             var element = Data[index];

@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
-    public function DataCustomer(){
+    public function DataCustomer()
+    {
 
         $ItemNoDC1 = DB::table('item_all')
             ->select(
@@ -72,20 +73,20 @@ class CustomerController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '=', 'DC1')
-            ->where(function ($query){
+            ->where(function ($query) {
                 $query->where('dataother.Item No', 'LIKE', 'AS%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RM%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'FN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'LN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'MT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'NT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'TW%')
-                ->orWhere('dataother.Item No', 'LIKE', 'STW%');
+                    ->orWhere('dataother.Item No', 'LIKE', 'RM%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'FN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'LN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'MT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'NT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'TW%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'STW%');
             })
             ->get();
 
@@ -156,20 +157,20 @@ class CustomerController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '=', 'DCY')
-            ->where(function ($query){
+            ->where(function ($query) {
                 $query->where('dataother.Item No', 'LIKE', 'AS%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RM%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'FN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'LN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'MT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'NT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'TW%')
-                ->orWhere('dataother.Item No', 'LIKE', 'STW%');
+                    ->orWhere('dataother.Item No', 'LIKE', 'RM%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'FN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'LN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'MT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'NT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'TW%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'STW%');
             })
             ->get();
 
@@ -240,20 +241,20 @@ class CustomerController extends Controller
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
             ->where('dataother.Customer', '=', 'DCP')
-            ->where(function ($query){
+            ->where(function ($query) {
                 $query->where('dataother.Item No', 'LIKE', 'AS%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RM%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'FN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'LN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'MT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'NT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'TW%')
-                ->orWhere('dataother.Item No', 'LIKE', 'STW%');
+                    ->orWhere('dataother.Item No', 'LIKE', 'RM%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'FN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'LN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'MT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'NT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'TW%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'STW%');
             })
             ->get();
 
@@ -326,20 +327,20 @@ class CustomerController extends Controller
             ->where('dataother.Customer', '<>', 'DC1')
             ->where('dataother.Customer', '<>', 'DCY')
             ->where('dataother.Customer', '<>', 'DCP')
-            ->where(function ($query){
+            ->where(function ($query) {
                 $query->where('dataother.Item No', 'LIKE', 'AS%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RM%')
-                ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'FN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'LN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
-                ->orWhere('dataother.Item No', 'LIKE', 'MT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'NT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
-                ->orWhere('dataother.Item No', 'LIKE', 'TW%')
-                ->orWhere('dataother.Item No', 'LIKE', 'STW%');
+                    ->orWhere('dataother.Item No', 'LIKE', 'RM%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'RMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'FN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SFN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'LN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SLN%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'MT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SMT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'NT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'SNT%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'TW%')
+                    ->orWhere('dataother.Item No', 'LIKE', 'STW%');
             })
             ->get();
 
@@ -501,7 +502,7 @@ class CustomerController extends Controller
         $DEX_PcsDCY = 0;
         $DEX_PriceDCY = 0;
 
-         /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
 
@@ -580,7 +581,7 @@ class CustomerController extends Controller
         $DEX_PcsDCP = 0;
         $DEX_PriceDCP = 0;
 
-         /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
 
@@ -666,7 +667,7 @@ class CustomerController extends Controller
         foreach ($ItemNoDC1 as $DC1) {
             if ($DC1->PcsAfter > 0 && $DC1->PriceAfter > 0) {
                 $NumberDC1 = ($DC1->PriceAfter / $DC1->PcsAfter);
-            }else{
+            } else {
                 $NumberDC1 = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -940,7 +941,7 @@ class CustomerController extends Controller
         foreach ($ItemNoDCY as $DCY) {
             if ($DCY->PcsAfter > 0 && $DCY->PriceAfter > 0) {
                 $NumberDCY = ($DCY->PriceAfter / $DCY->PcsAfter);
-            }else{
+            } else {
                 $NumberDCY = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -1206,7 +1207,7 @@ class CustomerController extends Controller
             $DEXPriceDCY = $DEXPcsDCY * $NumberDCY;
             $DEX_PriceDCY = $DEX_PriceDCY + $DEXPriceDCY;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -1214,7 +1215,7 @@ class CustomerController extends Controller
         foreach ($ItemNoDCP as $DCP) {
             if ($DCP->PcsAfter > 0 && $DCP->PriceAfter > 0) {
                 $NumberDCP = ($DCP->PriceAfter / $DCP->PcsAfter);
-            }else{
+            } else {
                 $NumberDCP = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -1480,7 +1481,7 @@ class CustomerController extends Controller
             $DEXPriceDCP = $DEXPcsDCP * $NumberDCP;
             $DEX_PriceDCP = $DEX_PriceDCP + $DEXPriceDCP;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -1489,7 +1490,7 @@ class CustomerController extends Controller
         foreach ($ItemNoDEX as $DEX) {
             if ($DEX->PcsAfter > 0 && $DEX->PriceAfter > 0) {
                 $NumberDEX = ($DEX->PriceAfter / $DEX->PcsAfter);
-            }else{
+            } else {
                 $NumberDEX = 0;
             }
             /////////////////////////////////////////////////// ยกมา ///////////////////////////////////////////
@@ -1755,9 +1756,89 @@ class CustomerController extends Controller
             $DEXPriceDEX = $DEXPcsDEX * $NumberDEX;
             $DEX_PriceDEX = $DEX_PriceDEX + $DEXPriceDEX;
         }
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterAll_Cus = $Pcs_AfterDC1 + $Pcs_AfterDCY + $Pcs_AfterDCP + $Pcs_AfterDEX;
+        $Price_AfterAll_Cus = $Price_AfterDC1 + $Price_AfterDCY + $Price_AfterDCP + $Price_AfterDEX;
+        $Pcs_AfterAll_Cus =  $Pcs_AfterDC1 + $Pcs_AfterDCY + $Pcs_AfterDCP + $Pcs_AfterDEX;
+        $Price_AfterAll_Cus =  $Price_AfterDC1 + $Price_AfterDCY + $Price_AfterDCP + $Price_AfterDEX;
+        $Po_PcsAll_Cus = $Po_PcsDC1 + $Po_PcsDCY + $Po_PcsDCP + $Po_PcsDEX;
+        $Po_PriceAll_Cus =  $Po_PriceDC1 + $Po_PriceDCY + $Po_PriceDCP + $Po_PriceDEX;
+        $Neg_PcsAll_Cus =  $Neg_PcsDC1 + $Neg_PcsDCY + $Neg_PcsDCP + $Neg_PcsDEX;
+        $Neg_PriceAll_Cus =  $Neg_PriceDC1 + $Neg_PriceDCY + $Neg_PriceDCP + $Neg_PriceDEX;
+        $BackChange_PcsAll_Cus =  $BackChange_PcsDC1 + $BackChange_PcsDCY + $BackChange_PcsDCP + $BackChange_PcsDEX;
+        $BackChange_PriceAll_Cus =  $BackChange_PriceDC1 + $BackChange_PriceDCY + $BackChange_PriceDCP + $BackChange_PriceDEX;
+        $Purchase_PcsAll_Cus =  $Purchase_PcsDC1 + $Purchase_PcsDCY + $Purchase_PcsDCP + $Purchase_PcsDEX;
+        $Purchase_PriceAll_Cus =  $Purchase_PriceDC1 + $Purchase_PriceDCY + $Purchase_PriceDCP + $Purchase_PriceDEX;
+        $ReciveTranfer_PcsAll_Cus =  $ReciveTranfer_PcsDC1 + $ReciveTranfer_PcsDCY + $ReciveTranfer_PcsDCP + $ReciveTranfer_PcsDEX;
+        $ReciveTranfer_PriceAll_Cus =  $ReciveTranfer_PriceDC1 + $ReciveTranfer_PriceDCY + $ReciveTranfer_PriceDCP + $ReciveTranfer_PriceDEX;
+        $ReturnItem_PCSAll_Cus =  $ReturnItem_PCSDC1 + $ReturnItem_PCSDCY + $ReturnItem_PCSDCP + $ReturnItem_PCSDEX;
+        $ReturnItem_PriceAll_Cus =  $ReturnItem_PriceDC1 + $ReturnItem_PriceDCY + $ReturnItem_PriceDCP + $ReturnItem_PriceDEX;
+        $AllIn_PcsAll_Cus =  $AllIn_PcsDC1 + $AllIn_PcsDCY + $AllIn_PcsDCP + $AllIn_PcsDEX;
+        $AllIn_PriceAll_Cus =  $AllIn_PriceDC1 + $AllIn_PriceDCY + $AllIn_PriceDCP + $AllIn_PriceDEX;
+        $SendSale_PcsAll_Cus =  $SendSale_PcsDC1 + $SendSale_PcsDCY + $SendSale_PcsDCP + $SendSale_PcsDEX;
+        $SendSale_PriceAll_Cus =  $SendSale_PriceDC1 + $SendSale_PriceDCY + $SendSale_PriceDCP + $SendSale_PriceDEX;
+        $ReciveTranOut_PcsAll_Cus =  $ReciveTranOut_PcsDC1 + $ReciveTranOut_PcsDCY + $ReciveTranOut_PcsDCP + $ReciveTranOut_PcsDEX;
+        $ReciveTranOut_PriceAll_Cus =  $ReciveTranOut_PriceDC1 + $ReciveTranOut_PriceDCY + $ReciveTranOut_PriceDCP + $ReciveTranOut_PriceDEX;
+        $ReturnStore_PcsAll_Cus =  $ReturnStore_PcsDC1 + $ReturnStore_PcsDCY + $ReturnStore_PcsDCP + $ReturnStore_PcsDEX;
+        $ReturnStore_PriceAll_Cus =  $ReturnStore_PriceDC1 + $ReturnStore_PriceDCY + $ReturnStore_PriceDCP + $ReturnStore_PriceDEX;
+        $AllOut_PcsAll_Cus =  $AllOut_PcsDC1 + $AllOut_PcsDCY + $AllOut_PcsDCP + $AllOut_PcsDEX;
+        $AllOut_PriceAll_Cus =  $AllOut_PriceDC1 + $AllOut_PriceDCY + $AllOut_PriceDCP + $AllOut_PriceDEX;
+        $Calculate_PcsAll_Cus =  $Calculate_PcsDC1 + $Calculate_PcsDCY + $Calculate_PcsDCP + $Calculate_PcsDEX;
+        $Calculate_PriceAll_Cus =  $Calculate_PriceDC1 + $Calculate_PriceDCY + $Calculate_PriceDCP + $Calculate_PriceDEX;
+        $NewCalculate_PcsAll_Cus = $NewCalculate_PcsDC1 + $NewCalculate_PcsDCY + $NewCalculate_PcsDCP + $NewCalculate_PcsDEX;
+        $NewCalculate_PriceAll_Cus = $NewCalculate_PriceDC1 + $NewCalculate_PriceDCY + $NewCalculate_PriceDCP + $NewCalculate_PriceDEX;
+        $Diff_PcsAll_Cus = $Diff_PcsDC1 + $Diff_PcsDCY + $Diff_PcsDCP + $Diff_PcsDEX;
+        $Diff_PriceAll_Cus = $Diff_PriceDC1 + $Diff_PriceDCY + $Diff_PriceDCP + $Diff_PriceDEX;
+        $NewTotal_PcsAll_Cus = $NewTotal_PcsDC1 + $NewTotal_PcsDCY + $NewTotal_PcsDCP + $NewTotal_PcsDEX;
+        $NewTotal_PriceAll_Cus = $NewTotal_PriceDC1 + $NewTotal_PriceDCY + $NewTotal_PriceDCP + $NewTotal_PriceDEX;
+        $NewTotalDiff_NavAll_Cus = $NewTotalDiff_NavDC1 + $NewTotalDiff_NavDCY + $NewTotalDiff_NavDCP + $NewTotalDiff_NavDEX;
+        $NewTotalDiff_CalAll_Cus = $NewTotalDiff_CalDC1 + $NewTotalDiff_CalDCY + $NewTotalDiff_CalDCP + $NewTotalDiff_CalDEX;
+        $a7f1fgbu02s_PcsAll_Cus = $a7f1fgbu02s_PcsDC1 + $a7f1fgbu02s_PcsDCY + $a7f1fgbu02s_PcsDCP + $a7f1fgbu02s_PcsDEX;
+        $a7f1fgbu02s_PriceAll_Cus = $a7f1fgbu02s_PriceDC1 + $a7f1fgbu02s_PriceDCY + $a7f1fgbu02s_PriceDCP + $a7f1fgbu02s_PriceDEX;
+        $a7f2fgbu10s_PcsAll_Cus = $a7f2fgbu10s_PcsDC1 + $a7f2fgbu10s_PcsDCY + $a7f2fgbu10s_PcsDCP + $a7f2fgbu10s_PcsDEX;
+        $a7f2fgbu10s_PriceAll_Cus = $a7f2fgbu10s_PriceDC1 + $a7f2fgbu10s_PriceDCY + $a7f2fgbu10s_PriceDCP + $a7f2fgbu10s_PriceDEX;
+        $a7f2thbu05s_PcsAll_Cus = $a7f2thbu05s_PcsDC1 + $a7f2thbu05s_PcsDCY + $a7f2thbu05s_PcsDCP + $a7f2thbu05s_PcsDEX;
+        $a7f2thbu05s_PriceAll_Cus = $a7f2thbu05s_PriceDC1 + $a7f2thbu05s_PriceDCY + $a7f2thbu05s_PriceDCP + $a7f2thbu05s_PriceDEX;
+        $a7f2debu10s_PcsAll_Cus = $a7f2debu10s_PcsDC1 + $a7f2debu10s_PcsDCY + $a7f2debu10s_PcsDCP + $a7f2debu10s_PcsDEX;
+        $a7f2debu10s_PriceAll_Cus = $a7f2debu10s_PriceDC1 + $a7f2debu10s_PriceDCY + $a7f2debu10s_PriceDCP + $a7f2debu10s_PriceDEX;
+        $a7f2exbu11s_PcsAll_Cus = $a7f2exbu11s_PcsDC1 + $a7f2exbu11s_PcsDCY + $a7f2exbu11s_PcsDCP + $a7f2exbu11s_PcsDEX;
+        $a7f2exbu11s_PriceAll_Cus = $a7f2exbu11s_PriceDC1 + $a7f2exbu11s_PriceDCY + $a7f2exbu11s_PriceDCP + $a7f2exbu11s_PriceDEX;
+        $a7f2twbu04s_PcsAll_Cus = $a7f2twbu04s_PcsDC1 + $a7f2twbu04s_PcsDCY + $a7f2twbu04s_PcsDCP + $a7f2twbu04s_PcsDEX;
+        $a7f2twbu04s_PriceAll_Cus = $a7f2twbu04s_PriceDC1 + $a7f2twbu04s_PriceDCY + $a7f2twbu04s_PriceDCP + $a7f2twbu04s_PriceDEX;
+        $a7f2twbu07s_PcsAll_Cus = $a7f2twbu07s_PcsDC1 + $a7f2twbu07s_PcsDCY + $a7f2twbu07s_PcsDCP + $a7f2twbu07s_PcsDEX;
+        $a7f2twbu07s_PriceAll_Cus = $a7f2twbu07s_PriceDC1 + $a7f2twbu07s_PriceDCY + $a7f2twbu07s_PriceDCP + $a7f2twbu07s_PriceDEX;
+        $a7f2cebu10s_PcsAll_Cus = $a7f2cebu10s_PcsDC1 + $a7f2cebu10s_PcsDCY + $a7f2cebu10s_PcsDCP + $a7f2cebu10s_PcsDEX;
+        $a7f2cebu10s_PriceAll_Cus = $a7f2cebu10s_PriceDC1 + $a7f2cebu10s_PriceDCY + $a7f2cebu10s_PriceDCP + $a7f2cebu10s_PriceDEX;
+        $a8f1fgbu02s_PcsAll_Cus = $a8f1fgbu02s_PcsDC1 + $a8f1fgbu02s_PcsDCY + $a8f1fgbu02s_PcsDCP + $a8f1fgbu02s_PcsDEX;
+        $a8f1fgbu02s_PriceAll_Cus = $a8f1fgbu02s_PriceDC1 + $a8f1fgbu02s_PriceDCY + $a8f1fgbu02s_PriceDCP + $a8f1fgbu02s_PriceDEX;
+        $a8f2fgbu10s_PcsAll_Cus = $a8f2fgbu10s_PcsDC1 + $a8f2fgbu10s_PcsDCY + $a8f2fgbu10s_PcsDCP + $a8f2fgbu10s_PcsDEX;
+        $a8f2fgbu10s_PriceAll_Cus = $a8f2fgbu10s_PriceDC1 + $a8f2fgbu10s_PriceDCY + $a8f2fgbu10s_PriceDCP + $a8f2fgbu10s_PriceDEX;
+        $a8f2thbu05s_PcsAll_Cus = $a8f2thbu05s_PcsDC1 + $a8f2thbu05s_PcsDCY + $a8f2thbu05s_PcsDCP + $a8f2thbu05s_PcsDEX;
+        $a8f2thbu05s_PriceAll_Cus = $a8f2thbu05s_PriceDC1 + $a8f2thbu05s_PriceDCY + $a8f2thbu05s_PriceDCP + $a8f2thbu05s_PriceDEX;
+        $a8f2debu10s_PcsAll_Cus = $a8f2debu10s_PcsDC1 + $a8f2debu10s_PcsDCY + $a8f2debu10s_PcsDCP + $a8f2debu10s_PcsDEX;
+        $a8f2debu10s_PriceAll_Cus = $a8f2debu10s_PriceDC1 + $a8f2debu10s_PriceDCY + $a8f2debu10s_PriceDCP + $a8f2debu10s_PriceDEX;
+        $a8f2exbu11s_PcsAll_Cus = $a8f2exbu11s_PcsDC1 + $a8f2exbu11s_PcsDCY + $a8f2exbu11s_PcsDCP + $a8f2exbu11s_PcsDEX;
+        $a8f2exbu11s_PriceAll_Cus = $a8f2exbu11s_PriceDC1 + $a8f2exbu11s_PriceDCY + $a8f2exbu11s_PriceDCP + $a8f2exbu11s_PriceDEX;
+        $a8f2twbu04s_PcsAll_Cus = $a8f2twbu04s_PcsDC1 + $a8f2twbu04s_PcsDCY + $a8f2twbu04s_PcsDCP + $a8f2twbu04s_PcsDEX;
+        $a8f2twbu04s_PriceAll_Cus = $a8f2twbu04s_PriceDC1 + $a8f2twbu04s_PriceDCY + $a8f2twbu04s_PriceDCP + $a8f2twbu04s_PriceDEX;
+        $a8f2twbu07s_PcsAll_Cus = $a8f2twbu07s_PcsDC1 + $a8f2twbu07s_PcsDCY + $a8f2twbu07s_PcsDCP + $a8f2twbu07s_PcsDEX;
+        $a8f2twbu07s_PriceAll_Cus = $a8f2twbu07s_PriceDC1 + $a8f2twbu07s_PriceDCY + $a8f2twbu07s_PriceDCP + $a8f2twbu07s_PriceDEX;
+        $a8f2cebu10s_PcsAll_Cus = $a8f2cebu10s_PcsDC1 + $a8f2cebu10s_PcsDCY + $a8f2cebu10s_PcsDCP + $a8f2cebu10s_PcsDEX;
+        $a8f2cebu10s_PriceAll_Cus = $a8f2cebu10s_PriceDC1 + $a8f2cebu10s_PriceDCY + $a8f2cebu10s_PriceDCP + $a8f2cebu10s_PriceDEX;
+        $DC1_PcsAll_Cus = $DC1_PcsDC1 + $DC1_PcsDCY + $DC1_PcsDCP + $DC1_PcsDEX;
+        $DC1_PriceAll_Cus = $DC1_PriceDC1 + $DC1_PriceDCY + $DC1_PriceDCP + $DC1_PriceDEX;
+        $DCP_PcsAll_Cus = $DCP_PcsDC1 + $DCP_PcsDCY + $DCP_PcsDCP + $DCP_PcsDEX;
+        $DCP_PriceAll_Cus = $DCP_PriceDC1 + $DCP_PriceDCY + $DCP_PriceDCP + $DCP_PriceDEX;
+        $DCY_PcsAll_Cus = $DCY_PcsDC1 + $DCY_PcsDCY + $DCY_PcsDCP + $DCY_PcsDEX;
+        $DCY_PriceAll_Cus = $DCY_PriceDC1 + $DCY_PriceDCY + $DCY_PriceDCP + $DCY_PriceDEX;
+        $DEX_PcsAll_Cus = $DEX_PcsDC1 + $DEX_PcsDCY + $DEX_PcsDCP + $DEX_PcsDEX;
+        $DEX_PriceAll_Cus = $DEX_PriceDC1 + $DEX_PriceDCY + $DEX_PriceDCP + $DEX_PriceDEX;
+
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2069,6 +2150,84 @@ class CustomerController extends Controller
         $DCY_PriceDEX = number_format($DCY_PriceDEX, 0);
         $DEX_PcsDEX = number_format($DEX_PcsDEX, 0);
         $DEX_PriceDEX = number_format($DEX_PriceDEX, 0);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        $Pcs_AfterAll_Cus = number_format($Pcs_AfterAll_Cus, 0);
+        $Price_AfterAll_Cus = number_format($Price_AfterAll_Cus, 0);
+        $Po_PcsAll_Cus = number_format($Po_PcsAll_Cus, 0);
+        $Po_PriceAll_Cus = number_format($Po_PriceAll_Cus, 0);
+        $Neg_PcsAll_Cus = number_format($Neg_PcsAll_Cus, 0);
+        $Neg_PriceAll_Cus = number_format($Neg_PriceAll_Cus, 0);
+        $BackChange_PcsAll_Cus = number_format($BackChange_PcsAll_Cus, 0);
+        $BackChange_PriceAll_Cus = number_format($BackChange_PriceAll_Cus, 0);
+        $Purchase_PcsAll_Cus = number_format($Purchase_PcsAll_Cus, 0);
+        $Purchase_PriceAll_Cus = number_format($Purchase_PriceAll_Cus, 0);
+        $ReciveTranfer_PcsAll_Cus = number_format($ReciveTranfer_PcsAll_Cus, 0);
+        $ReciveTranfer_PriceAll_Cus = number_format($ReciveTranfer_PriceAll_Cus, 0);
+        $ReturnItem_PCSAll_Cus = number_format($ReturnItem_PCSAll_Cus, 0);
+        $ReturnItem_PriceAll_Cus = number_format($ReturnItem_PriceAll_Cus, 0);
+        $AllIn_PcsAll_Cus = number_format($AllIn_PcsAll_Cus, 0);
+        $AllIn_PriceAll_Cus = number_format($AllIn_PriceAll_Cus, 0);
+        $SendSale_PcsAll_Cus = number_format($SendSale_PcsAll_Cus, 0);
+        $SendSale_PriceAll_Cus = number_format($SendSale_PriceAll_Cus, 0);
+        $ReciveTranOut_PcsAll_Cus = number_format($ReciveTranOut_PcsAll_Cus, 0);
+        $ReciveTranOut_PriceAll_Cus = number_format($ReciveTranOut_PriceAll_Cus, 0);
+        $ReturnStore_PcsAll_Cus = number_format($ReturnStore_PcsAll_Cus, 0);
+        $ReturnStore_PriceAll_Cus = number_format($ReturnStore_PriceAll_Cus, 0);
+        $AllOut_PcsAll_Cus = number_format($AllOut_PcsAll_Cus, 0);
+        $AllOut_PriceAll_Cus = number_format($AllOut_PriceAll_Cus, 0);
+        $Calculate_PcsAll_Cus = number_format($Calculate_PcsAll_Cus, 0);
+        $Calculate_PriceAll_Cus = number_format($Calculate_PriceAll_Cus, 0);
+        $NewCalculate_PcsAll_Cus = number_format($NewCalculate_PcsAll_Cus, 0);
+        $NewCalculate_PriceAll_Cus = number_format($NewCalculate_PriceAll_Cus, 0);
+        $Diff_PcsAll_Cus = number_format($Diff_PcsAll_Cus, 0);
+        $Diff_PriceAll_Cus = number_format($Diff_PriceAll_Cus, 0);
+        $NewTotal_PcsAll_Cus = number_format($NewTotal_PcsAll_Cus, 0);
+        $NewTotal_PriceAll_Cus = number_format($NewTotal_PriceAll_Cus, 0);
+        $NewTotalDiff_NavAll_Cus = number_format($NewTotalDiff_NavAll_Cus, 0);
+        $NewTotalDiff_CalAll_Cus = number_format($NewTotalDiff_CalAll_Cus, 0);
+        $a7f1fgbu02s_PcsAll_Cus = number_format($a7f1fgbu02s_PcsAll_Cus, 0);
+        $a7f1fgbu02s_PriceAll_Cus = number_format($a7f1fgbu02s_PriceAll_Cus, 0);
+        $a7f2fgbu10s_PcsAll_Cus = number_format($a7f2fgbu10s_PcsAll_Cus, 0);
+        $a7f2fgbu10s_PriceAll_Cus = number_format($a7f2fgbu10s_PriceAll_Cus, 0);
+        $a7f2thbu05s_PcsAll_Cus = number_format($a7f2thbu05s_PcsAll_Cus, 0);
+        $a7f2thbu05s_PriceAll_Cus = number_format($a7f2thbu05s_PriceAll_Cus, 0);
+        $a7f2debu10s_PcsAll_Cus = number_format($a7f2debu10s_PcsAll_Cus, 0);
+        $a7f2debu10s_PriceAll_Cus = number_format($a7f2debu10s_PriceAll_Cus, 0);
+        $a7f2exbu11s_PcsAll_Cus = number_format($a7f2exbu11s_PcsAll_Cus, 0);
+        $a7f2exbu11s_PriceAll_Cus = number_format($a7f2exbu11s_PriceAll_Cus, 0);
+        $a7f2twbu04s_PcsAll_Cus = number_format($a7f2twbu04s_PcsAll_Cus, 0);
+        $a7f2twbu04s_PriceAll_Cus = number_format($a7f2twbu04s_PriceAll_Cus, 0);
+        $a7f2twbu07s_PcsAll_Cus = number_format($a7f2twbu07s_PcsAll_Cus, 0);
+        $a7f2twbu07s_PriceAll_Cus = number_format($a7f2twbu07s_PriceAll_Cus, 0);
+        $a7f2cebu10s_PcsAll_Cus = number_format($a7f2cebu10s_PcsAll_Cus, 0);
+        $a7f2cebu10s_PriceAll_Cus = number_format($a7f2cebu10s_PriceAll_Cus, 0);
+        $a8f1fgbu02s_PcsAll_Cus = number_format($a8f1fgbu02s_PcsAll_Cus, 0);
+        $a8f1fgbu02s_PriceAll_Cus = number_format($a8f1fgbu02s_PriceAll_Cus, 0);
+        $a8f2fgbu10s_PcsAll_Cus = number_format($a8f2fgbu10s_PcsAll_Cus, 0);
+        $a8f2fgbu10s_PriceAll_Cus = number_format($a8f2fgbu10s_PriceAll_Cus, 0);
+        $a8f2thbu05s_PcsAll_Cus = number_format($a8f2thbu05s_PcsAll_Cus, 0);
+        $a8f2thbu05s_PriceAll_Cus = number_format($a8f2thbu05s_PriceAll_Cus, 0);
+        $a8f2debu10s_PcsAll_Cus = number_format($a8f2debu10s_PcsAll_Cus, 0);
+        $a8f2debu10s_PriceAll_Cus = number_format($a8f2debu10s_PriceAll_Cus, 0);
+        $a8f2exbu11s_PcsAll_Cus = number_format($a8f2exbu11s_PcsAll_Cus, 0);
+        $a8f2exbu11s_PriceAll_Cus = number_format($a8f2exbu11s_PriceAll_Cus, 0);
+        $a8f2twbu04s_PcsAll_Cus = number_format($a8f2twbu04s_PcsAll_Cus, 0);
+        $a8f2twbu04s_PriceAll_Cus = number_format($a8f2twbu04s_PriceAll_Cus, 0);
+        $a8f2twbu07s_PcsAll_Cus = number_format($a8f2twbu07s_PcsAll_Cus, 0);
+        $a8f2twbu07s_PriceAll_Cus = number_format($a8f2twbu07s_PriceAll_Cus, 0);
+        $a8f2cebu10s_PcsAll_Cus = number_format($a8f2cebu10s_PcsAll_Cus, 0);
+        $a8f2cebu10s_PriceAll_Cus = number_format($a8f2cebu10s_PriceAll_Cus, 0);
+        $DC1_PcsAll_Cus = number_format($DC1_PcsAll_Cus, 0);
+        $DC1_PriceAll_Cus = number_format($DC1_PriceAll_Cus, 0);
+        $DCP_PcsAll_Cus = number_format($DCP_PcsAll_Cus, 0);
+        $DCP_PriceAll_Cus = number_format($DCP_PriceAll_Cus, 0);
+        $DCY_PcsAll_Cus = number_format($DCY_PcsAll_Cus, 0);
+        $DCY_PriceAll_Cus = number_format($DCY_PriceAll_Cus, 0);
+        $DEX_PcsAll_Cus = number_format($DEX_PcsAll_Cus, 0);
+        $DEX_PriceAll_Cus = number_format($DEX_PriceAll_Cus, 0);
 
         //////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -2391,6 +2550,86 @@ class CustomerController extends Controller
             $DCY_PriceDEX,
             $DEX_PcsDEX,
             $DEX_PriceDEX,
+
+            ///////////////////////////
+            ///////////////////////////
+
+            $Pcs_AfterAll_Cus,
+            $Price_AfterAll_Cus,
+            $Pcs_AfterAll_Cus,
+            $Price_AfterAll_Cus,
+            $Po_PcsAll_Cus,
+            $Po_PriceAll_Cus,
+            $Neg_PcsAll_Cus,
+            $Neg_PriceAll_Cus,
+            $BackChange_PcsAll_Cus,
+            $BackChange_PriceAll_Cus,
+            $Purchase_PcsAll_Cus,
+            $Purchase_PriceAll_Cus,
+            $ReciveTranfer_PcsAll_Cus,
+            $ReciveTranfer_PriceAll_Cus,
+            $ReturnItem_PCSAll_Cus,
+            $ReturnItem_PriceAll_Cus,
+            $AllIn_PcsAll_Cus,
+            $AllIn_PriceAll_Cus,
+            $SendSale_PcsAll_Cus,
+            $SendSale_PriceAll_Cus,
+            $ReciveTranOut_PcsAll_Cus,
+            $ReciveTranOut_PriceAll_Cus,
+            $ReturnStore_PcsAll_Cus,
+            $ReturnStore_PriceAll_Cus,
+            $AllOut_PcsAll_Cus,
+            $AllOut_PriceAll_Cus,
+            $Calculate_PcsAll_Cus,
+            $Calculate_PriceAll_Cus,
+            $NewCalculate_PcsAll_Cus,
+            $NewCalculate_PriceAll_Cus,
+            $Diff_PcsAll_Cus,
+            $Diff_PriceAll_Cus,
+            $NewTotal_PcsAll_Cus,
+            $NewTotal_PriceAll_Cus,
+            $NewTotalDiff_NavAll_Cus,
+            $NewTotalDiff_CalAll_Cus,
+            $a7f1fgbu02s_PcsAll_Cus,
+            $a7f1fgbu02s_PriceAll_Cus,
+            $a7f2fgbu10s_PcsAll_Cus,
+            $a7f2fgbu10s_PriceAll_Cus,
+            $a7f2thbu05s_PcsAll_Cus,
+            $a7f2thbu05s_PriceAll_Cus,
+            $a7f2debu10s_PcsAll_Cus,
+            $a7f2debu10s_PriceAll_Cus,
+            $a7f2exbu11s_PcsAll_Cus,
+            $a7f2exbu11s_PriceAll_Cus,
+            $a7f2twbu04s_PcsAll_Cus,
+            $a7f2twbu04s_PriceAll_Cus,
+            $a7f2twbu07s_PcsAll_Cus,
+            $a7f2twbu07s_PriceAll_Cus,
+            $a7f2cebu10s_PcsAll_Cus,
+            $a7f2cebu10s_PriceAll_Cus,
+            $a8f1fgbu02s_PcsAll_Cus,
+            $a8f1fgbu02s_PriceAll_Cus,
+            $a8f2fgbu10s_PcsAll_Cus,
+            $a8f2fgbu10s_PriceAll_Cus,
+            $a8f2thbu05s_PcsAll_Cus,
+            $a8f2thbu05s_PriceAll_Cus,
+            $a8f2debu10s_PcsAll_Cus,
+            $a8f2debu10s_PriceAll_Cus,
+            $a8f2exbu11s_PcsAll_Cus,
+            $a8f2exbu11s_PriceAll_Cus,
+            $a8f2twbu04s_PcsAll_Cus,
+            $a8f2twbu04s_PriceAll_Cus,
+            $a8f2twbu07s_PcsAll_Cus,
+            $a8f2twbu07s_PriceAll_Cus,
+            $a8f2cebu10s_PcsAll_Cus,
+            $a8f2cebu10s_PriceAll_Cus,
+            $DC1_PcsAll_Cus,
+            $DC1_PriceAll_Cus,
+            $DCP_PcsAll_Cus,
+            $DCP_PriceAll_Cus,
+            $DCY_PcsAll_Cus,
+            $DCY_PriceAll_Cus,
+            $DEX_PcsAll_Cus,
+            $DEX_PriceAll_Cus,
 
             ///////////////////////////
             ///////////////////////////

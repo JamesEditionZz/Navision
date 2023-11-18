@@ -35,7 +35,9 @@ Route::get('/Data/Customer', [CustomerController::class,'DataCustomer'])->name('
 Route::get('/Data/DC1', [DC1Controller::class,'DataDC1'])->name('DataDC1');
 
 //Search
-Route::post('/searchItemNo', [DatalistController::class,'searchItemNo'])->name('searchItemNo');
+Route::post('/SearchItemNo', [DatalistController::class,'SearchItemNo'])->name('SearchItemNo');
+Route::post('/searchDatalist', [DatalistController::class,'searchDatalist'])->name('searchDatalist');
+
 
 //อัพโหลดไฟล์
 Route::post('/uploadfile0', [PostController::class,'uploadfile0'])->name('uploadfile0');
@@ -48,6 +50,7 @@ Route::post('/uploadfile6', [PostController::class,'uploadfile6'])->name('upload
 Route::post('/uploadfile7', [PostController::class,'uploadfile7'])->name('uploadfile7');
 Route::post('/uploadfile8', [PostController::class,'uploadfile8'])->name('uploadfile8');
 Route::post('/uploadfile9', [PostController::class,'uploadfile9'])->name('uploadfile9');
+Route::post('/uploadfile10', [PostController::class,'uploadfile10'])->name('uploadfile10');
 
 //update
-Route::post('/update/Category', [UpdateController::class,'updateCategory'])->name('updateCategory');
+Route::post('/update/Category', [UpdateController::class,'UpdateItemNo'])->name('UpdateItemNo');

@@ -69,8 +69,38 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
+.p-1 {
+    padding: 1rem;
+}
+.p-2 {
+    padding: 2rem;
+}
+.p-3 {
+    padding: 3rem;
+}
+.p-4 {
+    padding: 4rem;
+}
+.p-5 {
+    padding: 5rem;
+}
+.p-6 {
+    padding: 6rem;
+}
+.p-7 {
+    padding: 7rem;
+}
+.p-8 {
+    padding: 8rem;
+}
+.p-9 {
+    padding: 9rem;
+}
+.p-10 {
+    padding: 10rem;
+}
 .mg-1 {
-    margin: 1rem;
+    padding: 1rem;
 }
 .mg-2 {
     margin: 2rem;
@@ -292,6 +322,14 @@ a:hover {
     width: 10%;
     animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
 }
+.img9 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img10 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
 .btn-success {
     padding: 7px;
     border-radius: 7px;
@@ -305,6 +343,34 @@ a:hover {
 .btn-success:hover {
     color: white;
     background-color: rgb(255, 200, 60);
+}
+.btn-submit {
+    padding: 7px;
+    border-radius: 7px;
+    width: 25%;
+    background-color: white;
+    border: 2px solid rgb(0, 158, 34);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-submit:hover {
+    color: white;
+    background-color: rgb(0, 158, 34);
+}
+.btn-close {
+    padding: 7px;
+    border-radius: 7px;
+    width: 25%;
+    background-color: white;
+    border: 2px solid rgb(248, 99, 40);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-close:hover {
+    color: white;
+    background-color: rgb(248, 99, 40);
 }
 .btn-menu {
     border: none;
@@ -403,13 +469,6 @@ a:hover {
     animation: arrowright 0.8s linear infinite;
 }
 
-.inputsearch{
-    border: 2px solid skyblue;
-    width: 50%;
-    padding: 7px;
-    border-radius: 7px;
-}
-
 .btn-Print{
     position: fixed;
     justify-content: right;
@@ -428,7 +487,42 @@ a:hover {
     background-color: #3498db;
     color: white;
 }
-
+.table-edit{
+    width: 90%;
+    border-collapse: collapse;
+}
+.table-edit tr td{
+    text-align: center;
+    border: 1px solid black;
+}
+.edit-input{
+    border: 2px solid skyblue;
+    width: 50%;
+    border-radius: 7px;
+    
+}
+.edit-input:focus{
+    animation: editinput 0.5s linear;
+    outline: none;
+}
+.modal-confirm{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100vh;
+    animation: modal 0.4s alternate;
+}
+.modal-con{
+    margin: 15% auto auto auto;
+    background-color: #aedfff;
+    width: 30%;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 7px;
+}
 @keyframes textcolor {
     0% {
         color: red;
@@ -502,5 +596,13 @@ a:hover {
     }
     100% {
         margin-left: 50%;
+    }
+}
+@keyframes editinput {
+    form {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
