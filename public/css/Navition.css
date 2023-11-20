@@ -1,20 +1,121 @@
 @media print {
-    .col-1{
-        margin-top: 5px !important;
+    .col-1 {
         display: grid !important;
-        grid-template-columns: 1fr !important;  /* ปรับตามที่คุณต้องการ */
+        grid-template-columns: 1fr !important; /* ปรับตามที่คุณต้องการ */
     }
-    .print-review{
+    .print-review {
         display: none;
     }
-    .btn-Print{
+    .btn-Print {
         display: none;
     }
-    td{
-        font-size: 12px;
+    td {
+        font-size: 9px;
     }
-    h2{
+    td div {
+        font-size: 9px;
+    }
+    h2 {
         display: none;
+    }
+    .table-block {
+        display: none;
+    }
+    .table-print1  {
+        display: table !important;
+        border-collapse: collapse;
+        width: 100%;
+        height: 97vh;
+        page-break-inside: avoid;
+    }
+
+    .table-print2{
+        display: table !important;
+        border-collapse: collapse;
+        width: 100%;
+        height: 97vh;
+        page-break-before: always;
+    }
+
+    .table-print3{
+        display: table !important;
+        border-collapse: collapse;
+        width: 100%;
+        height: 97vh;
+    }
+
+    .table-print1 tr td{
+        border: 2px solid black;
+        text-align: center;
+    }
+
+    .table-print2 tr td{
+        border: 2px solid black;
+        text-align: center;
+        padding: 0px 7px 0px 7px;
+    }
+
+    .table-print3 tr td{
+        border: 2px solid black;
+        text-align: center;
+        padding: 0px 7px 0px 7px;
+    }
+
+    .table-print1Cus{
+        display: table !important;
+        position: relative;
+        border-collapse: collapse;
+        top: 10%;
+        width: 100%;
+        page-break-inside: avoid;
+    }
+
+    .table-print2Cus{
+        display: table !important;
+        position: relative;
+        border-collapse: collapse;
+        top: 10%;
+        width: 100%;
+        page-break-before: always;
+    }
+
+    .table-print3Cus {
+        display: table !important;
+        position: relative;
+        border-collapse: collapse;
+        top: 10%;
+        width: 100%;
+        page-break-before: always;
+    }
+
+    .table-print1Cus tr td{
+        border: 2px solid black;
+        text-align: center;
+        padding: 7px;
+    }
+
+    .table-print2Cus tr td{
+        border: 2px solid black;
+        text-align: center;
+        padding: 7px;
+    }
+
+    .table-print3Cus tr td {
+        border: 2px solid black;
+        text-align: center;
+        padding: 7px;
+    }
+
+    .table-print1, .table-print2, .table-print3  {
+        page-break-before: always !important;
+    }
+
+    .table-print1Cus, .table-print2Cus, .table-print3Cus  {
+        page-break-before: always !important;
+    }
+    @page {
+        size: A4 landscape;
+        transform: scale(1.28) !important;
     }
 }
 body {
@@ -192,7 +293,7 @@ body {
 .table-block {
     margin-left: 10px;
     width: 99%;
-    height: 75vh;
+    height: 89vh;
     overflow-y: auto;
     overflow-x: auto;
     position: relative;
@@ -208,6 +309,17 @@ body {
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
+}
+.table-print {
+    display: none;
+    border-collapse: collapse;
+    width: 98%;
+    margin: 1%;
+}
+.table-print tr td {
+    border: 1px solid black;
+    text-align: center;
+    max-width: 100%;
 }
 a {
     text-decoration: none;
@@ -469,7 +581,7 @@ a:hover {
     animation: arrowright 0.8s linear infinite;
 }
 
-.btn-Print{
+.btn-Print {
     position: fixed;
     justify-content: right;
     top: 2%;
@@ -483,39 +595,38 @@ a:hover {
     border: 2px solid #3498db;
     cursor: pointer;
 }
-.btn-Print:hover{
+.btn-Print:hover {
     background-color: #3498db;
     color: white;
 }
-.table-edit{
+.table-edit {
     width: 90%;
     border-collapse: collapse;
 }
-.table-edit tr td{
+.table-edit tr td {
     text-align: center;
     border: 1px solid black;
 }
-.edit-input{
+.edit-input {
     border: 2px solid skyblue;
     width: 50%;
     border-radius: 7px;
-    
 }
-.edit-input:focus{
+.edit-input:focus {
     animation: editinput 0.5s linear;
     outline: none;
 }
-.modal-confirm{
+.modal-confirm {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100vh;
     animation: modal 0.4s alternate;
 }
-.modal-con{
+.modal-con {
     margin: 15% auto auto auto;
     background-color: #aedfff;
     width: 30%;
