@@ -13,7 +13,7 @@
     <div class="container col-1">
         <div class="header print-review">
             <div class="mx-1 mt-1">
-                <label for="">Navition</label>
+                <label for=""><a href="{{ Route('index') }}">Navition</a></label>
             </div>
             <hr>
             <div class="mt-1 mx-1">
@@ -5784,7 +5784,7 @@
                     </tr>
                     <tr>
                         <td>AS</td>
-                        <td>ดะกั่ว-ทุ่นลอย</td>
+                        <td>ตะกั่ว-ทุ่นลอย</td>
                         <td>
                             <div id="PcsAfterAS_3"></div>
                         </td>
@@ -7979,7 +7979,7 @@
                 </tr>
                 <tr>
                     <td>NT</td>
-                    <td>อวนกำไนลอน</td>
+                    <td>อวนกำไนล่อน</td>
                     <td>
                         <div id="PcsAfterNT_2Print"></div>
                     </td>

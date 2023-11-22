@@ -15,7 +15,7 @@
   <div class="container col-1">
     <div class="header">
       <div class="mx-1 mt-1">
-        <label for="">Navition</label>
+        <label for=""><a href="{{ Route('index') }}">Navition</a></label>
       </div>
       <hr>
       <div class="mt-1 mx-1">
@@ -240,6 +240,8 @@
               const imgload10 = document.getElementById('img10');
               imgload10.src = '{{ asset("/icon/success.png") }}'
               imgloadcss10.style.animation = "success";
+
+              console.log(response);
 
               var Inputfile0 = file0.files[0];
               var Inputfile1 = file1.files[0];

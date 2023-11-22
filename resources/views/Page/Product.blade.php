@@ -13,7 +13,7 @@
     <div class="container col-1">
         <div class="header print-review">
             <div class="mx-1 mt-1">
-                <label for="">Navition</label>
+                <label for=""><a href="{{ Route('index') }}">Navition</a></label>
             </div>
             <hr>
             <div class="mt-1 mx-1">
@@ -13316,6 +13316,8 @@
         type: "GET",
         url: "{{ Route('DataProduct') }}",
         success: function(response) {
+
+            console.log(response)
 
             var modeloading = document.querySelector(".loading-data");
             modeloading.style.display = "none";

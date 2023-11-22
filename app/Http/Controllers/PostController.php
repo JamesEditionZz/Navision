@@ -11,8 +11,8 @@ class PostController extends Controller
 {
   public function uploadfile0(Request $request)
   {
-    if ($request->hasFile('file0')) {
-      $file0 = $request->file('file0');
+    if ($request->hasFile('Inputfile0')) {
+      $file0 = $request->file('Inputfile0');
       $filePath = $file0->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
@@ -50,10 +50,10 @@ class PostController extends Controller
       $filePath = $file1->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
-      $worksheet = $spreadsheet->getSheetByName("Positive");
+      $worksheet = $spreadsheet->getSheetByName("1.ปรับเข้า");
 
       if (!$worksheet instanceof Worksheet) {
-        return redirect()->back()->with('error', 'Sheet "PO" ไม่พบในไฟล์ Excel');
+        return redirect()->back()->with('error', 'Sheet "1.ปรับเข้า" ไม่พบในไฟล์ Excel');
       }
       $data = $worksheet->toArray();
 
@@ -96,10 +96,10 @@ class PostController extends Controller
       $filePath = $file2->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
-      $worksheet = $spreadsheet->getSheetByName("Negative");
+      $worksheet = $spreadsheet->getSheetByName("2.ปรับออก");
 
       if (!$worksheet instanceof Worksheet) {
-        return redirect()->back()->with('error', 'Sheet "Negative" ไม่พบในไฟล์ Excel');
+        return redirect()->back()->with('error', 'Sheet "2.ปรับออก" ไม่พบในไฟล์ Excel');
       }
 
       $data = $worksheet->toArray();
@@ -143,10 +143,10 @@ class PostController extends Controller
       $filePath = $file3->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
-      $worksheet = $spreadsheet->getSheetByName("PC");
+      $worksheet = $spreadsheet->getSheetByName("3.ซื้อเข้า");
 
       if (!$worksheet instanceof Worksheet) {
-        return redirect()->back()->with('error', 'Sheet "PC" ไม่พบในไฟล์ Excel');
+        return redirect()->back()->with('error', 'Sheet "3.ซื้อเข้า" ไม่พบในไฟล์ Excel');
       }
 
       $data = $worksheet->toArray();
@@ -190,10 +190,10 @@ class PostController extends Controller
       $filePath = $file4->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
-      $worksheet = $spreadsheet->getSheetByName("SRR");
+      $worksheet = $spreadsheet->getSheetByName("4.รับคืน");
 
       if (!$worksheet instanceof Worksheet) {
-        return redirect()->back()->with('error', 'Sheet "SRR" ไม่พบในไฟล์ Excel');
+        return redirect()->back()->with('error', 'Sheet "4.รับคืน" ไม่พบในไฟล์ Excel');
       }
 
       $data = $worksheet->toArray();
@@ -242,10 +242,10 @@ class PostController extends Controller
       $filePath = $file5->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
-      $worksheet = $spreadsheet->getSheetByName("TFRC");
+      $worksheet = $spreadsheet->getSheetByName("5.รับโอน");
 
       if (!$worksheet instanceof Worksheet) {
-        return redirect()->back()->with('error', 'Sheet "TFRC" ไม่พบในไฟล์ Excel');
+        return redirect()->back()->with('error', 'Sheet "5.รับโอน" ไม่พบในไฟล์ Excel');
       }
 
       $data = $worksheet->toArray();
@@ -348,7 +348,7 @@ class PostController extends Controller
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
           }
-        } elseif ($row[9] == 'F2-DE-BU10') {
+        } elseif ($row[9] == 'F2-EX-BU11') {
           if (!empty($checkData5->ItemNo) && $checkData5->ItemNo == $row[1]) {
             DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData5->Quantity,
@@ -487,10 +487,10 @@ class PostController extends Controller
       $filePath = $file7->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
-      $worksheet = $spreadsheet->getSheetByName("TFSM");
+      $worksheet = $spreadsheet->getSheetByName("7.โอนออก");
 
       if (!$worksheet instanceof Worksheet) {
-        return redirect()->back()->with('error', 'Sheet "TFSM" ไม่พบในไฟล์ Excel');
+        return redirect()->back()->with('error', 'Sheet "7.โอนออก" ไม่พบในไฟล์ Excel');
       }
 
       $data = $worksheet->toArray();
@@ -593,7 +593,7 @@ class PostController extends Controller
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
           }
-        } elseif ($row[9] == 'F2-DE-BU10') {
+        } elseif ($row[9] == 'F2-EX-BU11') {
           if (!empty($checkData5->ItemNo) && $checkData5->ItemNo == $row[1]) {
             DB::table('a85__f2_ex_bu11s')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData5->Quantity,
@@ -680,10 +680,10 @@ class PostController extends Controller
       $filePath = $file8->getRealPath();
 
       $spreadsheet = IOFactory::load($filePath);
-      $worksheet = $spreadsheet->getSheetByName("SHH");
+      $worksheet = $spreadsheet->getSheetByName("8.ขายออก");
 
       if (!$worksheet instanceof Worksheet) {
-        return redirect()->back()->with('error', 'Sheet "SHH" ไม่พบในไฟล์ Excel');
+        return redirect()->back()->with('error', 'Sheet "8.ขายออก" ไม่พบในไฟล์ Excel');
       }
 
       $data = $worksheet->toArray();
@@ -863,7 +863,7 @@ class PostController extends Controller
           'dataother.Customer',
           'dataother.Category',
           'item_all.No',
-          'dataother.PriceAvg',
+          'item_all.Unit Cost Decha as PriceAvg',
           'dataother.PcsAfter',
           'dataother.PriceAfter',
           'po.Quantity as Po_Quantity',
@@ -934,7 +934,7 @@ class PostController extends Controller
           $Avg = $row->PriceAvg;
         }
 
-        if ($row->Po_Quantity == "") {
+        if ($row->Po_Quantity === "") {
           $PoQuantity = 0;
           $PoPrice = 0;
         } else {
@@ -942,7 +942,7 @@ class PostController extends Controller
           $PoPrice = floatval($row->Po_Quantity) * floatval($row->PriceAvg);
         }
 
-        if ($row->Neg_Quantity == "") {
+        if ($row->Neg_Quantity === "") {
           $NegQuantity = 0;
           $NegPrice = 0;
         } else {
@@ -950,7 +950,7 @@ class PostController extends Controller
           $NegPrice = floatval($row->Neg_Quantity) * floatval($Avg);
         }
 
-        if ($row->purchase_Quantity == "") {
+        if ($row->purchase_Quantity === "") {
           $purchaseQuantity = 0;
           $purchasePrice = 0;
         } else {
@@ -958,147 +958,139 @@ class PostController extends Controller
           $purchasePrice = floatval($row->purchase_Quantity) * floatval($row->PriceAvg);
         }
 
-        if ($row->returnitem_Quantity == "") {
+        if ($row->returnitem_Quantity === "") {
           $ReturnItemQuantity = 0;
         } else {
           $ReturnItemQuantity = floatval($row->returnitem_Quantity);
         }
 
-        if ($row->item_stock_Quantity == "") {
-          $item_stockQuantity = 0;
-          $item_stockPrice = 0;
-        } else {
-          $item_stockQuantity = floatval($row->item_stock_Quantity);
-          $item_stockPrice = floatval($row->item_stock_Amount);
-        }
-
-        if ($row->a7f1fgbu02s_Quantity == "") {
+        if ($row->a7f1fgbu02s_Quantity === "") {
           $a7f1fgbu02sQuantity = 0;
         } else {
           $a7f1fgbu02sQuantity = floatval($row->a7f1fgbu02s_Quantity);
         }
 
-        if ($row->a7f2fgbu10s_Quantity == "") {
+        if ($row->a7f2fgbu10s_Quantity === "") {
           $a7f2fgbu10sQuantity = 0;
         } else {
           $a7f2fgbu10sQuantity = floatval($row->a7f2fgbu10s_Quantity);
         }
 
-        if ($row->a7f2thbu05s_Quantity == "") {
+        if ($row->a7f2thbu05s_Quantity === "") {
           $a7f2thbu05sQuantity = 0;
         } else {
           $a7f2thbu05sQuantity = floatval($row->a7f2thbu05s_Quantity);
         }
 
-        if ($row->a7f2debu10s_Quantity == "") {
+        if ($row->a7f2debu10s_Quantity === "") {
           $a7f2debu10sQuantity = 0;
         } else {
           $a7f2debu10sQuantity = floatval($row->a7f2debu10s_Quantity);
         }
 
-        if ($row->a7f2exbu11s_Quantity == "") {
+        if ($row->a7f2exbu11s_Quantity === "") {
           $a7f2exbu11sQuantity = 0;
         } else {
           $a7f2exbu11sQuantity = floatval($row->a7f2exbu11s_Quantity);
         }
 
-        if ($row->a7f2twbu04s_Quantity == "") {
+        if ($row->a7f2twbu04s_Quantity === "") {
           $a7f2twbu04sQuantity = 0;
         } else {
           $a7f2twbu04sQuantity = floatval($row->a7f2twbu04s_Quantity);
         }
 
-        if ($row->a7f2twbu07s_Quantity == "") {
+        if ($row->a7f2twbu07s_Quantity === "") {
           $a7f2twbu07sQuantity = 0;
         } else {
           $a7f2twbu07sQuantity = floatval($row->a7f2twbu07s_Quantity);
         }
 
-        if ($row->a7f2cebu10s_Quantity == "") {
+        if ($row->a7f2cebu10s_Quantity === "") {
           $a7f2cebu10sQuantity = 0;
         } else {
           $a7f2cebu10sQuantity = floatval($row->a7f2cebu10s_Quantity);
         }
 
-        if ($row->returncuses_Quantity == "") {
+        if ($row->returncuses_Quantity === "") {
           $ReturnQuantity = 0;
         } else {
           $ReturnQuantity = floatval($row->returncuses_Quantity);
         }
 
-        if ($row->a8f1fgbu02s_Quantity == "") {
+        if ($row->a8f1fgbu02s_Quantity === "") {
           $a8f1fgbu02sQuantity = 0;
         } else {
           $a8f1fgbu02sQuantity = floatval($row->a8f1fgbu02s_Quantity);
         }
 
-        if ($row->a8f2fgbu10s_Quantity == "") {
+        if ($row->a8f2fgbu10s_Quantity === "") {
           $a8f2fgbu10sQuantity = 0;
         } else {
           $a8f2fgbu10sQuantity = floatval($row->a8f2fgbu10s_Quantity);
         }
 
-        if ($row->a8f2thbu05s_Quantity == "") {
+        if ($row->a8f2thbu05s_Quantity === "") {
           $a8f2thbu05sQuantity = 0;
         } else {
           $a8f2thbu05sQuantity = floatval($row->a8f2thbu05s_Quantity);
         }
 
-        if ($row->a8f2debu10s_Quantity == "") {
+        if ($row->a8f2debu10s_Quantity === "") {
           $a8f2debu10sQuantity = 0;
         } else {
           $a8f2debu10sQuantity = floatval($row->a8f2debu10s_Quantity);
         }
 
-        if ($row->a8f2exbu11s_Quantity == "") {
+        if ($row->a8f2exbu11s_Quantity === "") {
           $a8f2exbu11sQuantity = 0;
         } else {
           $a8f2exbu11sQuantity = floatval($row->a8f2exbu11s_Quantity);
         }
 
-        if ($row->a8f2twbu04s_Quantity == "") {
+        if ($row->a8f2twbu04s_Quantity === "") {
           $a8f2twbu04sQuantity = 0;
         } else {
           $a8f2twbu04sQuantity = floatval($row->a8f2twbu04s_Quantity);
         }
 
-        if ($row->a8f2twbu07s_Quantity == "") {
+        if ($row->a8f2twbu07s_Quantity === "") {
           $a8f2twbu07sQuantity = 0;
         } else {
           $a8f2twbu07sQuantity = floatval($row->a8f2twbu07s_Quantity);
         }
 
-        if ($row->a8f2cebu10s_Quantity == "") {
+        if ($row->a8f2cebu10s_Quantity === "") {
           $a8f2cebu10sQuantity = 0;
         } else {
           $a8f2cebu10sQuantity = floatval($row->a8f2cebu10s_Quantity);
         }
 
-        if ($row->dc1_s_Quantity == "") {
+        if ($row->dc1_s_Quantity === "") {
           $DC1Quantity = 0;
         } else {
           $DC1Quantity = floatval($row->dc1_s_Quantity);
         }
 
-        if ($row->dcp_s_Quantity == "") {
+        if ($row->dcp_s_Quantity === "") {
           $DCPQuantity = 0;
         } else {
           $DCPQuantity = floatval($row->dcp_s_Quantity);
         }
 
-        if ($row->dcy_s_Quantity == "") {
+        if ($row->dcy_s_Quantity === "") {
           $DCYQuantity = 0;
         } else {
           $DCYQuantity = floatval($row->dcy_s_Quantity);
         }
 
-        if ($row->dex_s_Quantity == "") {
+        if ($row->dex_s_Quantity === "") {
           $DEXQuantity = 0;
         } else {
           $DEXQuantity = floatval($row->dex_s_Quantity);
         }
 
-        $BackChagePcs = floatval($row->PcsAfter) + floatval($row->Po_Quantity) + floatval($row->Neg_Quantity);
+        $BackChagePcs = floatval($row->PcsAfter) + $PoQuantity + $NegQuantity;
         $BackChagePrice = floatval($row->PriceAfter) + $PoPrice + $NegPrice;
         $ReciveTranferPcs = $a7f1fgbu02sQuantity + $a7f2fgbu10sQuantity + $a7f2thbu05sQuantity + $a7f2debu10sQuantity + $a7f2exbu11sQuantity + $a7f2twbu04sQuantity + $a7f2twbu07sQuantity + $a7f2cebu10sQuantity;
         $ReciveTranferPrice = $ReciveTranferPcs * floatval($row->PriceAvg);
@@ -1142,8 +1134,8 @@ class PostController extends Controller
         $TotalCalPcs = floatval($TotalCalPcs);
         $TotalCalPrice = floatval($TotalCalPrice);
 
-        // $TotalCalPcs = number_format($TotalCalPcs, 2);
-        // $TotalCalPrice = number_format($TotalCalPrice, 2);
+        $TotalCalPcs = number_format($TotalCalPcs, 2);
+        $TotalCalPrice = number_format($TotalCalPrice, 2);
 
         DB::table('dataother')->where('Item No', $row->ItemCode)
           ->update([
@@ -1151,7 +1143,7 @@ class PostController extends Controller
             'PriceAfter' => $TotalCalPrice,
           ]);
       }
-      return response()->json('Upload Data Success');
+      return response()->json();
     }else{
       return response()->json('ข้อมูลไม่ต้องการอัพเดท');
     }

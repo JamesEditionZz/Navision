@@ -20,7 +20,7 @@ class DatalistController extends Controller
                     'dataother.Customer',
                     'dataother.Category',
                     'item_all.No',
-                    'dataother.PriceAvg',
+                    'item_all.Unit Cost Decha as PriceAvg',
                     'dataother.PcsAfter',
                     'dataother.PriceAfter',
                     'po.Quantity as Po_Quantity',
@@ -6800,6 +6800,9 @@ class DatalistController extends Controller
                 ->get();
         }
 
+        if ($No == "") {
+            return view('Page.Change');
+        }
         return view('Page.Change', compact('ItemNo'));
     }
 
@@ -6872,7 +6875,7 @@ class DatalistController extends Controller
             ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
-            ->where('item_all.No', 'LIKE', $ItemCode.'%')
+            ->where('item_all.No', 'LIKE', $ItemCode . '%')
             ->orderBy('item_all.No')
             ->limit(1000)
             ->get();

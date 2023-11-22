@@ -10,9 +10,9 @@
 
 <body>
     <div class="container col-1">
-    <div class="header">
+        <div class="header">
             <div class="mx-1 mt-1">
-                <label for="">Navition</label>
+                <label for=""><a href="{{ Route('index') }}">Navition</a></label>
             </div>
             <hr>
             <div class="mt-1 mx-1">
@@ -42,4 +42,5 @@
         </div>
     </div>
 </body>
+
 </html>
