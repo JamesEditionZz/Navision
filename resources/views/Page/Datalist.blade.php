@@ -282,6 +282,8 @@
                     btnNextPage.style.display = "none"
                     btnPrevPage.style.display = "none"
                     updateTable(response);
+
+                    console.log(response);
                 },
                 error: function(error) {
                     var modeloading = document.querySelector(".loading-data");

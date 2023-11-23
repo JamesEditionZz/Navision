@@ -981,7 +981,7 @@ class DatalistController extends Controller
                     'dataother.Customer',
                     'dataother.Category',
                     'item_all.No',
-                    'dataother.PriceAvg',
+                    'item_all.Unit Cost Decha as PriceAvg',
                     'dataother.PcsAfter',
                     'dataother.PriceAfter',
                     'po.Quantity as Po_Quantity',
@@ -1947,7 +1947,7 @@ class DatalistController extends Controller
                     'dataother.Customer',
                     'dataother.Category',
                     'item_all.No',
-                    'dataother.PriceAvg',
+                    'item_all.Unit Cost Decha as PriceAvg',
                     'dataother.PcsAfter',
                     'dataother.PriceAfter',
                     'po.Quantity as Po_Quantity',
@@ -2913,7 +2913,7 @@ class DatalistController extends Controller
                     'dataother.Customer',
                     'dataother.Category',
                     'item_all.No',
-                    'dataother.PriceAvg',
+                    'item_all.Unit Cost Decha as PriceAvg',
                     'dataother.PcsAfter',
                     'dataother.PriceAfter',
                     'po.Quantity as Po_Quantity',
@@ -3879,7 +3879,7 @@ class DatalistController extends Controller
                     'dataother.Customer',
                     'dataother.Category',
                     'item_all.No',
-                    'dataother.PriceAvg',
+                    'item_all.Unit Cost Decha as PriceAvg',
                     'dataother.PcsAfter',
                     'dataother.PriceAfter',
                     'po.Quantity as Po_Quantity',
@@ -4842,7 +4842,7 @@ class DatalistController extends Controller
                     'dataother.Customer',
                     'dataother.Category',
                     'item_all.No',
-                    'dataother.PriceAvg',
+                    'item_all.Unit Cost Decha as PriceAvg',
                     'dataother.PcsAfter',
                     'dataother.PriceAfter',
                     'po.Quantity as Po_Quantity',
@@ -5805,7 +5805,7 @@ class DatalistController extends Controller
                     'dataother.Customer',
                     'dataother.Category',
                     'item_all.No',
-                    'dataother.PriceAvg',
+                    'item_all.Unit Cost Decha as PriceAvg',
                     'dataother.PcsAfter',
                     'dataother.PriceAfter',
                     'po.Quantity as Po_Quantity',
@@ -6779,23 +6779,26 @@ class DatalistController extends Controller
             $No = explode('*', $No);
 
             $ItemNo = DB::table('dataother')
-                ->select('Item No as ItemNo', 'Customer', 'PriceAvg', 'PriceAfter', 'PcsAfter', 'Category')
+                ->select('Item No as ItemNo', 'Customer', 'item_all.Unit Cost Decha as PriceAvg', 'PriceAfter', 'PcsAfter', 'Category')
+                ->leftjoin('item_all', 'dataother.Item No', 'item_all.No')
                 ->where('Item No', 'LIKE', $No[0] . '%')
                 ->orderBy('Item No')
                 ->limit(500)
                 ->get();
-        } elseif (strpos($No, '/') !== false) {
+        } elseif (strpos($No, '...') !== false) {
 
-            $No = explode('/', $No);
+            $No = explode('...', $No);
 
             $ItemNo = DB::table('dataother')
-                ->select('Item No as ItemNo', 'Customer', 'PriceAvg', 'PriceAfter', 'PcsAfter', 'Category')
+                ->select('Item No as ItemNo', 'Customer', 'item_all.Unit Cost Decha as PriceAvg', 'PriceAfter', 'PcsAfter', 'Category')
+                ->leftjoin('item_all', 'dataother.Item No', 'item_all.No')
                 ->whereBetween('Item No', [$No[0], $No[1]])
                 ->orderBy('Item No')
                 ->get();
         } elseif ($No) {
             $ItemNo = DB::table('dataother')
-                ->select('Item No as ItemNo', 'Customer', 'PriceAvg', 'PriceAfter', 'PcsAfter', 'Category')
+                ->select('Item No as ItemNo', 'Customer', 'item_all.Unit Cost Decha as PriceAvg', 'PriceAfter', 'PcsAfter', 'Category')
+                ->leftjoin('item_all', 'dataother.Item No', 'item_all.No')
                 ->where('Item No', '=', $No)
                 ->get();
         }
@@ -6811,74 +6814,223 @@ class DatalistController extends Controller
 
         $ItemCode = $request->input('ItemNo');
 
-        $ItemNo = DB::table('item_all')
-            ->select(
-                'dataother.Customer',
-                'dataother.Category',
-                'item_all.No',
-                'dataother.PriceAvg',
-                'dataother.PcsAfter',
-                'dataother.PriceAfter',
-                'po.Quantity as Po_Quantity',
-                'Neg.Quantity as Neg_Quantity',
-                'purchase.Quantity as purchase_Quantity',
-                'purchase.Cost Amount (Actual) as purchase_Cost',
-                'returncuses.Quantity as returncuses_Quantity',
-                'คืนของs.Quantity as returnitem_Quantity',
-                'item_stock.Quantity as item_stock_Quantity',
-                'item_stock.Amount as item_stock_Amount',
-                'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
-                'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
-                'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
-                'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
-                'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
-                'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
-                'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
-                'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
-                'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
-                'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
-                'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
-                'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
-                'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
-                'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
-                'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
-                'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
-                'dc1_s.Quantity as dc1_s_Quantity',
-                'dcp_s.Quantity as dcp_s_Quantity',
-                'dcy_s.Quantity as dcy_s_Quantity',
-                'dex_s.Quantity as dex_s_Quantity',
-            )
-            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
-            ->leftJoin('po', 'item_all.No', 'po.Item No')
-            ->leftJoin('neg', 'item_all.No', 'neg.Item No')
-            ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
-            ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
-            ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
-            ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
-            ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
-            ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
-            ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
-            ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
-            ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
-            ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
-            ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
-            ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
-            ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
-            ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
-            ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
-            ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
-            ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
-            ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
-            ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
-            ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
-            ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
-            ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
-            ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
-            ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
-            ->where('item_all.No', 'LIKE', $ItemCode . '%')
-            ->orderBy('item_all.No')
-            ->limit(1000)
-            ->get();
+        $ItemCode = preg_replace('/\s+/', '', trim($ItemCode));
+
+        if (strpos($ItemCode, '*') !== false) {
+
+            $ItemCode = explode('*', $ItemCode);
+
+                $ItemNo = DB::table('item_all')
+                ->select(
+                    'dataother.Customer',
+                    'dataother.Category',
+                    'item_all.No',
+                    'item_all.Unit Cost Decha as PriceAvg',
+                    'dataother.PcsAfter',
+                    'dataother.PriceAfter',
+                    'po.Quantity as Po_Quantity',
+                    'Neg.Quantity as Neg_Quantity',
+                    'purchase.Quantity as purchase_Quantity',
+                    'purchase.Cost Amount (Actual) as purchase_Cost',
+                    'returncuses.Quantity as returncuses_Quantity',
+                    'คืนของs.Quantity as returnitem_Quantity',
+                    'item_stock.Quantity as item_stock_Quantity',
+                    'item_stock.Amount as item_stock_Amount',
+                    'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                    'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                    'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                    'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                    'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                    'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                    'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                    'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                    'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                    'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                    'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                    'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                    'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                    'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                    'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                    'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                    'dc1_s.Quantity as dc1_s_Quantity',
+                    'dcp_s.Quantity as dcp_s_Quantity',
+                    'dcy_s.Quantity as dcy_s_Quantity',
+                    'dex_s.Quantity as dex_s_Quantity',
+                )
+                ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+                ->leftJoin('po', 'item_all.No', 'po.Item No')
+                ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+                ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+                ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+                ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+                ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+                ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+                ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+                ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+                ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+                ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+                ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+                ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+                ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+                ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+                ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+                ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+                ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+                ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+                ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+                ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+                ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+                ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+                ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+                ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+                ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+                ->where('dataother.Item No', 'LIKE', $ItemCode[0].'%')
+                ->orderBy('item_all.No')
+                ->limit(1000)
+                ->get();
+
+        } elseif (strpos($ItemCode, '...') !== false) {
+
+            $ItemCode = explode('...', $ItemCode);
+
+            $ItemNo = DB::table('item_all')
+                ->select(
+                    'dataother.Customer',
+                    'dataother.Category',
+                    'item_all.No',
+                    'item_all.Unit Cost Decha as PriceAvg',
+                    'dataother.PcsAfter',
+                    'dataother.PriceAfter',
+                    'po.Quantity as Po_Quantity',
+                    'Neg.Quantity as Neg_Quantity',
+                    'purchase.Quantity as purchase_Quantity',
+                    'purchase.Cost Amount (Actual) as purchase_Cost',
+                    'returncuses.Quantity as returncuses_Quantity',
+                    'คืนของs.Quantity as returnitem_Quantity',
+                    'item_stock.Quantity as item_stock_Quantity',
+                    'item_stock.Amount as item_stock_Amount',
+                    'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                    'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                    'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                    'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                    'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                    'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                    'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                    'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                    'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                    'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                    'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                    'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                    'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                    'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                    'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                    'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                    'dc1_s.Quantity as dc1_s_Quantity',
+                    'dcp_s.Quantity as dcp_s_Quantity',
+                    'dcy_s.Quantity as dcy_s_Quantity',
+                    'dex_s.Quantity as dex_s_Quantity',
+                )
+                ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+                ->leftJoin('po', 'item_all.No', 'po.Item No')
+                ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+                ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+                ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+                ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+                ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+                ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+                ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+                ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+                ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+                ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+                ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+                ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+                ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+                ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+                ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+                ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+                ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+                ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+                ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+                ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+                ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+                ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+                ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+                ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+                ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+                ->whereBetween('dataother.Item No', [$ItemCode[0], $ItemCode[1]])
+                ->orderBy('item_all.No')
+                ->limit(1000)
+                ->get();
+        } elseif ($ItemCode) {
+            $ItemNo = DB::table('item_all')
+                ->select(
+                    'dataother.Customer',
+                    'dataother.Category',
+                    'item_all.No',
+                    'item_all.Unit Cost Decha as PriceAvg',
+                    'dataother.PcsAfter',
+                    'dataother.PriceAfter',
+                    'po.Quantity as Po_Quantity',
+                    'Neg.Quantity as Neg_Quantity',
+                    'purchase.Quantity as purchase_Quantity',
+                    'purchase.Cost Amount (Actual) as purchase_Cost',
+                    'returncuses.Quantity as returncuses_Quantity',
+                    'คืนของs.Quantity as returnitem_Quantity',
+                    'item_stock.Quantity as item_stock_Quantity',
+                    'item_stock.Amount as item_stock_Amount',
+                    'a71__f1_fg_bu02s.Quantity as a7f1fgbu02s_Quantity',
+                    'a72__f2_fg_bu10s.Quantity as a7f2fgbu10s_Quantity',
+                    'a73__f2_th_bu05s.Quantity as a7f2thbu05s_Quantity',
+                    'a74__f2_de_bu10s.Quantity as a7f2debu10s_Quantity',
+                    'a75__f2_ex_bu11s.Quantity as a7f2exbu11s_Quantity',
+                    'a76__f2_tw_bu04s.Quantity as a7f2twbu04s_Quantity',
+                    'a77__f2_tw_bu07s.Quantity as a7f2twbu07s_Quantity',
+                    'a78__f2_ce_bu10s.Quantity as a7f2cebu10s_Quantity',
+                    'a81__f1_fg_bu02s.Quantity as a8f1fgbu02s_Quantity',
+                    'a82__f2_fg_bu10s.Quantity as a8f2fgbu10s_Quantity',
+                    'a83__f2_th_bu05s.Quantity as a8f2thbu05s_Quantity',
+                    'a84__f2_de_bu10s.Quantity as a8f2debu10s_Quantity',
+                    'a85__f2_ex_bu11s.Quantity as a8f2exbu11s_Quantity',
+                    'a86__f2_tw_bu04s.Quantity as a8f2twbu04s_Quantity',
+                    'a87__f2_tw_bu07s.Quantity as a8f2twbu07s_Quantity',
+                    'a88__f2_ce_bu10s.Quantity as a8f2cebu10s_Quantity',
+                    'dc1_s.Quantity as dc1_s_Quantity',
+                    'dcp_s.Quantity as dcp_s_Quantity',
+                    'dcy_s.Quantity as dcy_s_Quantity',
+                    'dex_s.Quantity as dex_s_Quantity',
+                )
+                ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+                ->leftJoin('po', 'item_all.No', 'po.Item No')
+                ->leftJoin('neg', 'item_all.No', 'neg.Item No')
+                ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
+                ->leftJoin('returncuses', 'item_all.No', 'returncuses.Item No')
+                ->leftJoin('คืนของs', 'item_all.No', 'คืนของs.Item No')
+                ->leftJoin('item_stock', 'item_all.No', 'item_stock.Item No')
+                ->leftJoin('a71__f1_fg_bu02s', 'item_all.No', 'a71__f1_fg_bu02s.Item No')
+                ->leftJoin('a72__f2_fg_bu10s', 'item_all.No', 'a72__f2_fg_bu10s.Item No')
+                ->leftJoin('a73__f2_th_bu05s', 'item_all.No', 'a73__f2_th_bu05s.Item No')
+                ->leftJoin('a74__f2_de_bu10s', 'item_all.No', 'a74__f2_de_bu10s.Item No')
+                ->leftJoin('a75__f2_ex_bu11s', 'item_all.No', 'a75__f2_ex_bu11s.Item No')
+                ->leftJoin('a76__f2_tw_bu04s', 'item_all.No', 'a76__f2_tw_bu04s.Item No')
+                ->leftJoin('a77__f2_tw_bu07s', 'item_all.No', 'a77__f2_tw_bu07s.Item No')
+                ->leftJoin('a78__f2_ce_bu10s', 'item_all.No', 'a78__f2_ce_bu10s.Item No')
+                ->leftJoin('a81__f1_fg_bu02s', 'item_all.No', 'a81__f1_fg_bu02s.Item No')
+                ->leftJoin('a82__f2_fg_bu10s', 'item_all.No', 'a82__f2_fg_bu10s.Item No')
+                ->leftJoin('a83__f2_th_bu05s', 'item_all.No', 'a83__f2_th_bu05s.Item No')
+                ->leftJoin('a84__f2_de_bu10s', 'item_all.No', 'a84__f2_de_bu10s.Item No')
+                ->leftJoin('a85__f2_ex_bu11s', 'item_all.No', 'a85__f2_ex_bu11s.Item No')
+                ->leftJoin('a86__f2_tw_bu04s', 'item_all.No', 'a86__f2_tw_bu04s.Item No')
+                ->leftJoin('a87__f2_tw_bu07s', 'item_all.No', 'a87__f2_tw_bu07s.Item No')
+                ->leftJoin('a88__f2_ce_bu10s', 'item_all.No', 'a88__f2_ce_bu10s.Item No')
+                ->leftJoin('dc1_s', 'item_all.No', 'dc1_s.Item No')
+                ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
+                ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
+                ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
+                ->where('dataother.Item No', $ItemCode)
+                ->orderBy('item_all.No')
+                ->limit(1000)
+                ->get();
+        }
 
         foreach ($ItemNo as $row) {
             $PcsAf = floatval($row->PcsAfter);

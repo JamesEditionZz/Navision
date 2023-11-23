@@ -241,8 +241,6 @@
               imgload10.src = '{{ asset("/icon/success.png") }}'
               imgloadcss10.style.animation = "success";
 
-              console.log(response);
-
               var Inputfile0 = file0.files[0];
               var Inputfile1 = file1.files[0];
               var Inputfile2 = file2.files[0];

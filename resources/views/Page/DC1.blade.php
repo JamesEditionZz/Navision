@@ -1601,234 +1601,234 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม</td>
                         <td>
-                            <div id="PcsAfterNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterNT_All"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterNT_All"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterNT_All"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterNT_All"></div>
                         </td>
                         <td>
-                            <div id="PoPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="PoPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="NegPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="NegPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="BackPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="BackPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavNT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceNT_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsNT_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceNT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceNT_All"></div>
                         </td>
                     </tr>
                     <tr>
@@ -3227,234 +3227,234 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม</td>
                         <td>
-                            <div id="PcsAfterMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterMT_All"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterMT_All"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterMT_All"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterMT_All"></div>
                         </td>
                         <td>
-                            <div id="PoPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="PoPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="NegPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="NegPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="BackPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="BackPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavMT_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceMT_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsMT_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceMT_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceMT_All"></div>
                         </td>
                     </tr>
                     <tr>
@@ -4853,234 +4853,234 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม</td>
                         <td>
-                            <div id="PcsAfterTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterTW_All"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterTW_All"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterTW_All"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterTW_All"></div>
                         </td>
                         <td>
-                            <div id="PoPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="PoPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="NegPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="NegPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="BackPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="BackPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavTW_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceTW_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsTW_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceTW_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceTW_All"></div>
                         </td>
                     </tr>
                     <tr>
@@ -7407,475 +7407,475 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวม</td>
+                        <td colspan="3" style="color: rgb(0,80,255);">รวม</td>
                         <td>
-                            <div id="PcsAfterAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PcsAfterAS_All"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PriceAfterAS_All"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Pcs_AfterAS_All"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="Price_AfterAS_All"></div>
                         </td>
                         <td>
-                            <div id="PoPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="PoPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PoPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="NegPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="NegPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NegPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="BackPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="BackPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="BackPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="PurchasePriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranferPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnItemPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllInPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="SendSalePriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="ReturnStorePriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="AllOutPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="CalculatePriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewCalculatePriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DiffPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffNavAS_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="NewTotalDiffCalAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DC1PriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCPPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceAS_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPcsAS_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceAS_All"></div>
+                            <div style="color: rgb(0,80,255);" id="DEXPriceAS_All"></div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">รวมทั้งหมด</td>
+                        <td colspan="3" style="color: rgb(255,25,0);">รวมทั้งหมด</td>
                         <td>
-                            <div id="PcsAfterTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="PcsAfterTotal_All"></div>
                         </td>
                         <td>
-                            <div id="PriceAfterTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="PriceAfterTotal_All"></div>
                         </td>
                         <td>
-                            <div id="Pcs_AfterTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="Pcs_AfterTotal_All"></div>
                         </td>
                         <td>
-                            <div id="Price_AfterTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="Price_AfterTotal_All"></div>
                         </td>
                         <td>
-                            <div id="PoPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="PoPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="PoPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="PoPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NegPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NegPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NegPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NegPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="BackPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="BackPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="BackPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="BackPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="PurchasePcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="PurchasePriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="PurchasePriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranferPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranferPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranferPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReturnItemPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnItemPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReturnItemPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="AllInPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="AllInPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="AllInPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="SendSalePcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="SendSalePriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="SendSalePriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranOutPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReciveTranOutPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReciveTranOutPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReturnStorePcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="ReturnStorePriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="ReturnStorePriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="AllOutPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="AllOutPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="AllOutPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="CalculatePcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="CalculatePriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="CalculatePriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NewCalculatePcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NewCalculatePriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NewCalculatePriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DiffPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DiffPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DiffPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NewTotalPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NewTotalPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffNavTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NewTotalDiffNavTotal_All"></div>
                         </td>
                         <td>
-                            <div id="NewTotalDiffCalTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="NewTotalDiffCalTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f1fgbu02sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2fgbu10sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2thbu05sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2thbu05sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2thbu05sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2debu10sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2debu10sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2debu10sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2exbu11sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2exbu11sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2exbu11sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu04sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu04sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu04sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu07sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2twbu07sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2twbu07sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2cebu10sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a7f2cebu10sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a7f2cebu10sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f1fgbu02sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f1fgbu02sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f1fgbu02sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2fgbu10sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2fgbu10sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2fgbu10sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2thbu05sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2thbu05sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2thbu05sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2debu10sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2debu10sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2debu10sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2exbu11sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2exbu11sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2exbu11sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu04sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu04sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu04sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu07sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2twbu07sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2twbu07sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2cebu10sPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="a8f2cebu10sPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="a8f2cebu10sPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DC1PcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DC1PriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DC1PriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DCPPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DCPPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DCPPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DCYPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DCYPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DCYPriceTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPcsTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DEXPcsTotal_All"></div>
                         </td>
                         <td>
-                            <div id="DEXPriceTotal_All"></div>
+                            <div style="color: rgb(255,25,0);" id="DEXPriceTotal_All"></div>
                         </td>
                     </tr>
                 </table>
             </div>
-            <table class="table-print table-print1">
+            <table class="table-print table-printDC1">
                 <tr>
-                    <td rowspan="4" width="5px">กลุ่มลูกค้า</td>
+                    <td rowspan="4" width="50px">กลุ่มลูกค้า</td>
                     <td rowspan="4">รหัส</td>
                     <td rowspan="4">ประเภท</td>
-                    <td colspan="19" style="height: 3vh;"></td>
+                    <td colspan="19"></td>
                 </tr>
                 <tr>
 
@@ -8270,58 +8270,58 @@
                 <tr>
                     <td colspan="3">รวม</td>
                     <td>
-                        <div id="PcsAfterNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PcsAfterNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PriceAfterNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PriceAfterNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Pcs_AfterNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Pcs_AfterNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Price_AfterNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Price_AfterNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPriceNT_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -8674,60 +8674,60 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3">รวม</td>
+                    <td colspan="3" style="color: rgb(0,80,255);">รวม</td>
                     <td>
-                        <div id="PcsAfterMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PcsAfterMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PriceAfterMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PriceAfterMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Pcs_AfterMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Pcs_AfterMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Price_AfterMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Price_AfterMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPriceMT_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -9082,58 +9082,58 @@
                 <tr>
                     <td colspan="3">รวม</td>
                     <td>
-                        <div id="PcsAfterTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PcsAfterTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PriceAfterTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PriceAfterTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Pcs_AfterTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Pcs_AfterTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Price_AfterTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Price_AfterTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPriceTW_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -9718,123 +9718,123 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3">รวม</td>
+                    <td colspan="3" style="color: rgb(0,80,255);">รวม</td>
                     <td>
-                        <div id="PcsAfterAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PcsAfterAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PriceAfterAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PriceAfterAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Pcs_AfterAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Pcs_AfterAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Price_AfterAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="Price_AfterAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PoPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NegPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="BackPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="PurchasePriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranferPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnItemPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllInPriceAS_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3">รวมทั้งหมด</td>
+                    <td colspan="3" style="color: rgb(255,25,0);">รวมทั้งหมด</td>
                     <td>
-                        <div id="PcsAfterTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="PcsAfterTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PriceAfterTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="PriceAfterTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Pcs_AfterTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="Pcs_AfterTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="Price_AfterTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="Price_AfterTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="PoPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PoPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="PoPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NegPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NegPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NegPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="BackPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="BackPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="BackPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="PurchasePcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="PurchasePriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="PurchasePriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReciveTranferPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranferPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReciveTranferPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReturnItemPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnItemPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReturnItemPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="AllInPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllInPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="AllInPriceTotal_AllPrint"></div>
                     </td>
                 </tr>
             </table>
-            <table class="table-print table-print2">
+            <table class="table-print table-printDC2">
                 <tr>
-                    <td colspan="10" style="height: 3vh;"></td>
+                    <td colspan="10"></td>
                     <td colspan="16">รับโอน</td>
                 </tr>
                 <tr>
@@ -10212,58 +10212,58 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="SendSalePcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="SendSalePriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffNavNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffNavNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffCalNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffCalNT_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -10604,58 +10604,58 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="SendSalePcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="SendSalePriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffNavMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffNavMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffCalMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffCalMT_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -10996,58 +10996,58 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="SendSalePcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="SendSalePriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffNavTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffNavTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffCalTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffCalTW_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -11612,118 +11612,118 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="SendSalePcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="SendSalePriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="SendSalePriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReciveTranOutPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="ReturnStorePriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="AllOutPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="CalculatePriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewCalculatePriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DiffPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPcsAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPcsAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPriceAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalPriceAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffNavAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffNavAS_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffCalAS_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="NewTotalDiffCalAS_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div id="SendSalePcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="SendSalePcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="SendSalePriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="SendSalePriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReciveTranOutPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReciveTranOutPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReciveTranOutPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReturnStorePcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="ReturnStorePriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="ReturnStorePriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="AllOutPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="AllOutPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="AllOutPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="CalculatePcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="CalculatePriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="CalculatePriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NewCalculatePcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewCalculatePriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NewCalculatePriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="DiffPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DiffPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="DiffPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPcsTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NewTotalPcsTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalPriceTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NewTotalPriceTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffNavTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NewTotalDiffNavTotal_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="NewTotalDiffCalTotal_AllPrint"></div>
+                        <div style="color: rgb(255,25,0);" id="NewTotalDiffCalTotal_AllPrint"></div>
                     </td>
                 </tr>
             </table>
-            <table class="table-print table-print3">
+            <table class="table-print table-printDC3">
                 <tr>
                     <td colspan="16">รับโอน</td>
                     <td colspan="16">โอนออก</td>
@@ -12550,124 +12550,124 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="a7f1fgbu02sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f1fgbu02sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f1fgbu02sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f1fgbu02sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2fgbu10sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2fgbu10sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2thbu05sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2thbu05sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2debu10sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2debu10sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2exbu11sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2exbu11sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu04sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu04sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu07sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu07sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2cebu10sPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2cebu10sPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DC1PcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DC1PcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DC1PriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DC1PriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCPPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCPPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCPPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCPPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCYPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCYPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DEXPcsNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DEXPcsNT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DEXPriceNT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DEXPriceNT_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -13404,124 +13404,124 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="a7f1fgbu02sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f1fgbu02sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f1fgbu02sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f1fgbu02sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2fgbu10sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2fgbu10sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2thbu05sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2thbu05sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2debu10sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2debu10sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2exbu11sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2exbu11sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu04sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu04sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu07sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu07sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2cebu10sPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2cebu10sPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DC1PcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DC1PcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DC1PriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DC1PriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCPPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCPPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCPPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCPPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCYPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCYPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DEXPcsMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DEXPcsMT_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DEXPriceMT_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DEXPriceMT_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -14258,124 +14258,124 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="a7f1fgbu02sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f1fgbu02sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f1fgbu02sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f1fgbu02sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2fgbu10sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2fgbu10sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2thbu05sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2thbu05sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2debu10sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2debu10sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2exbu11sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2exbu11sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu04sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu04sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu07sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2twbu07sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2cebu10sPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="a8f2cebu10sPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DC1PcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DC1PcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DC1PriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DC1PriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCPPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCPPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCPPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCPPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCYPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DCYPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DEXPcsTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DEXPcsTW_AllPrint"></div>
                     </td>
                     <td>
-                        <div id="DEXPriceTW_AllPrint"></div>
+                        <div style="color: rgb(0,80,255);" id="DEXPriceTW_AllPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -15596,6 +15596,250 @@
                     </td>
                     <td>
                         <div id="DEXPriceAS_9Print"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f1fgbu02sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2fgbu10sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2thbu05sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2debu10sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2exbu11sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu04sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2twbu07sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a7f2cebu10sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f1fgbu02sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2fgbu10sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2thbu05sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2debu10sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2exbu11sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu04sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2twbu07sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="a8f2cebu10sPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DC1PcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DC1PriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCPPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCPPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DEXPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DEXPriceAS_AllPrint"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2thbu05sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2thbu05sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2debu10sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2debu10sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2exbu11sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2exbu11sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu04sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu04sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu07sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu07sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2cebu10sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2cebu10sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f1fgbu02sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f1fgbu02sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2fgbu10sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2fgbu10sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2thbu05sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2thbu05sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2debu10sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2debu10sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2exbu11sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2exbu11sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2twbu04sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2twbu04sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2twbu07sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2twbu07sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2cebu10sPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a8f2cebu10sPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DC1PcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DC1PriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DCPPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DCPPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DCYPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DCYPriceTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DEXPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DEXPriceTotal_AllPrint"></div>
                     </td>
                 </tr>
             </table>
