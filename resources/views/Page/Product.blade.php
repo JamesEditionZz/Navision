@@ -9982,7 +9982,7 @@
                     <td colspan="2">เส้นใย โรงงาน 2</td>
                     <td colspan="2">ตีด้าย 2 โรงงาน 2</td>
                     <td colspan="2">ตีด้าย 3 โรงงาน 2</td>
-                    <td colspan="2">ตีด้าย 4 อ.11</td>
+                    <td colspan="2">รับคืนลูกค้า อ.10</td>
                     <td colspan="2">ทออวนโรงงาน 1</td>
                     <td colspan="2">ทออวนโรงงาน 2</td>
                     <td colspan="2">ต่อแห โรงงาน 2</td>
@@ -9990,10 +9990,10 @@
                     <td colspan="2">เส้นใย โรงงาน 2</td>
                     <td colspan="2">ตีด้าย 2 โรงงาน 2</td>
                     <td colspan="2">ตีด้าย 3 โรงงาน 2</td>
-                    <td colspan="2">ตีด้าย 4 อ.11</td>
+                    <td colspan="2">รับคืนลูกค้า อ.10</td>
                     <td colspan="2">DC1</td>
-                    <td colspan="2">DCY</td>
                     <td colspan="2">DCP</td>
+                    <td colspan="2">DCY</td>
                     <td colspan="2">ตปท</td>
                 </tr>
                 <tr>

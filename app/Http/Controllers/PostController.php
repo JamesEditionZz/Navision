@@ -11,6 +11,7 @@ class PostController extends Controller
 {
   public function uploadfile0(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile0')) {
       $file0 = $request->file('Inputfile0');
       $filePath = $file0->getRealPath();
@@ -45,6 +46,7 @@ class PostController extends Controller
 
   public function uploadfile1(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile1')) {
       $file1 = $request->file('Inputfile1');
       $filePath = $file1->getRealPath();
@@ -91,6 +93,7 @@ class PostController extends Controller
 
   public function uploadfile2(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile2')) {
       $file2 = $request->file('Inputfile2');
       $filePath = $file2->getRealPath();
@@ -138,6 +141,7 @@ class PostController extends Controller
 
   public function uploadfile3(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile3')) {
       $file3 = $request->file('Inputfile3');
       $filePath = $file3->getRealPath();
@@ -185,6 +189,7 @@ class PostController extends Controller
 
   public function uploadfile4(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile4')) {
       $file4 = $request->file('Inputfile4');
       $filePath = $file4->getRealPath();
@@ -237,6 +242,7 @@ class PostController extends Controller
 
   public function uploadfile5(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile5')) {
       $file5 = $request->file('Inputfile5');
       $filePath = $file5->getRealPath();
@@ -430,6 +436,7 @@ class PostController extends Controller
 
   public function uploadfile6(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile6')) {
       $file6 = $request->file('Inputfile6');
       $filePath = $file6->getRealPath();
@@ -482,6 +489,7 @@ class PostController extends Controller
 
   public function uploadfile7(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile7')) {
       $file7 = $request->file('Inputfile7');
       $filePath = $file7->getRealPath();
@@ -675,6 +683,7 @@ class PostController extends Controller
 
   public function uploadfile8(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile8')) {
       $file8 = $request->file('Inputfile8');
       $filePath = $file8->getRealPath();
@@ -792,6 +801,7 @@ class PostController extends Controller
   }
   public function uploadfile9(Request $request)
   {
+    set_time_limit(3600);
     if ($request->hasFile('Inputfile9')) {
       $file9 = $request->file('Inputfile9');
       $filePath = $file9->getRealPath();
@@ -854,6 +864,7 @@ class PostController extends Controller
 
   public function uploadfile10(Request $request)
   {
+    set_time_limit(3600);
     $upload10 = $request->input('confirm');
 
     if ($upload10 == 1) {
@@ -1137,12 +1148,21 @@ class PostController extends Controller
         $TotalCalPcs = number_format($TotalCalPcs, 2);
         $TotalCalPrice = number_format($TotalCalPrice, 2);
 
-        DB::table('dataother')->where('Item No', $row->ItemCode)
-          ->update([
-            'PcsAfter' => $TotalCalPcs,
-            'PriceAfter' => $TotalCalPrice,
-          ]);
+        $arrayinsert[] = [$row->ItemCode, $row->Customer, $TotalCalPcs, $TotalCalPrice, $row->Category];
+
       }
+      DB::table('dataother')->delete();
+
+      foreach ($arrayinsert as $resultInsert) {
+        DB::table('dataother')->insert([
+        'Item No' => $resultInsert[0],
+        'Customer' => $resultInsert[1],
+        'PcsAfter' => $resultInsert[2],
+        'PriceAfter' => $resultInsert[3],
+        'Category' => $resultInsert[4],
+      ]);
+      }
+      
       return response()->json();
     }else{
       return response()->json('ข้อมูลไม่ต้องการอัพเดท');

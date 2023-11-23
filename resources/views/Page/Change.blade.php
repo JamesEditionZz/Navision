@@ -58,7 +58,6 @@
                         <tr>
                             <td>Item No</td>
                             <td>ลูกค้า</td>
-                            <td>Unit Cost ราคาทุน</td>
                             <td>Pcs ยกมา</td>
                             <td>มูลค่า ยกมา</td>
                             <td>ประเภทอวน</td>
