@@ -650,6 +650,7 @@
                     const imgload1 = document.getElementById('img1');
                     imgload1.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss1.style.animation = "success";
+					
                   },
                   error: function(error) {
                     const imgload1 = document.getElementById(

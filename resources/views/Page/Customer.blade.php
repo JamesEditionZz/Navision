@@ -72,7 +72,7 @@
                             <td colspan="2" style="background-color: rgb(160,255,200);">เส้นใย โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 2 โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 3 โรงงาน 2</td>
-                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 4 อ.11</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับคืนลูกค้า อ.10</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 1</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ต่อแห โรงงาน 2</td>
@@ -80,10 +80,10 @@
                             <td colspan="2" style="background-color: rgb(160,255,200);">เส้นใย โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 2 โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 3 โรงงาน 2</td>
-                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 4 อ.11</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับคืนลูกค้า อ.10</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">DC1</td>
-                            <td colspan="2" style="background-color: rgb(160,255,200);">DCY</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">DCP</td>
+							<td colspan="2" style="background-color: rgb(160,255,200);">DCY</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตปท</td>
                         </tr>
                         <tr>
@@ -439,237 +439,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>รวม DCY</td>
-                        <td>
-                            <div id="PcsAfterDCY"></div>
-                        </td>
-                        <td>
-                            <div id="PriceAfterDCY"></div>
-                        </td>
-                        <td>
-                            <div id="Pcs_AfterDCY"></div>
-                        </td>
-                        <td>
-                            <div id="Price_AfterDCY"></div>
-                        </td>
-                        <td>
-                            <div id="PoPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="PoPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NegPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NegPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="BackPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="BackPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="PurchasePcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="PurchasePriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReciveTranferPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReciveTranferPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReturnItemPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReturnItemPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="AllInPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="AllInPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="SendSalePcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="SendSalePriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReciveTranOutPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReciveTranOutPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReturnStorePcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="ReturnStorePriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="AllOutPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="AllOutPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="CalculatePcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="CalculatePriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NewCalculatePcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NewCalculatePriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DiffPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DiffPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NewTotalPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NewTotalPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NewTotalDiffNavDCY"></div>
-                        </td>
-                        <td>
-                            <div id="NewTotalDiffCalDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f1fgbu02sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f1fgbu02sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2fgbu10sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2fgbu10sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2thbu05sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2thbu05sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2debu10sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2debu10sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2exbu11sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2exbu11sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2twbu04sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2twbu04sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2twbu07sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2twbu07sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2cebu10sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a7f2cebu10sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f1fgbu02sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f1fgbu02sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2fgbu10sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2fgbu10sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2thbu05sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2thbu05sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2debu10sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2debu10sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2exbu11sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2exbu11sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2twbu04sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2twbu04sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2twbu07sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2twbu07sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2cebu10sPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="a8f2cebu10sPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DC1PcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DC1PriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DCPPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DCPPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DEXPcsDCY"></div>
-                        </td>
-                        <td>
-                            <div id="DEXPriceDCY"></div>
-                        </td>
-                    </tr>
-                    <tr>
                         <td>รวม DCP</td>
                         <td>
                             <div id="PcsAfterDCP"></div>
@@ -898,6 +667,237 @@
                         </td>
                         <td>
                             <div id="DEXPriceDCP"></div>
+                        </td>
+                    </tr>
+					<tr>
+                        <td>รวม DCY</td>
+                        <td>
+                            <div id="PcsAfterDCY"></div>
+                        </td>
+                        <td>
+                            <div id="PriceAfterDCY"></div>
+                        </td>
+                        <td>
+                            <div id="Pcs_AfterDCY"></div>
+                        </td>
+                        <td>
+                            <div id="Price_AfterDCY"></div>
+                        </td>
+                        <td>
+                            <div id="PoPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="PoPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NegPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NegPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="BackPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="BackPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="PurchasePriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranferPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnItemPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="AllInPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="SendSalePriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReciveTranOutPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="ReturnStorePriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="AllOutPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="CalculatePriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NewCalculatePriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DiffPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffNavDCY"></div>
+                        </td>
+                        <td>
+                            <div id="NewTotalDiffCalDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f1fgbu02sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2fgbu10sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2thbu05sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2debu10sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2exbu11sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu04sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2twbu07sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a7f2cebu10sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f1fgbu02sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2fgbu10sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2thbu05sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2debu10sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2exbu11sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu04sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2twbu07sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="a8f2cebu10sPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DC1PriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DCPPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPcsDCY"></div>
+                        </td>
+                        <td>
+                            <div id="DEXPriceDCY"></div>
                         </td>
                     </tr>
                     <tr>
@@ -1473,64 +1473,6 @@
 
                 </tr>
                 <tr>
-                    <td>รวม DCY</td>
-                    <td>
-                        <div id="PcsAfterDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="PriceAfterDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="Pcs_AfterDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="Price_AfterDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="PoPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="PoPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NegPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NegPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="BackPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="BackPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="PurchasePcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="PurchasePriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReciveTranferPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReciveTranferPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReturnItemPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReturnItemPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="AllInPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="AllInPriceDCYPrint"></div>
-                    </td>
-
-                </tr>
-                <tr>
                     <td>รวม DCP</td>
                     <td>
                         <div id="PcsAfterDCPPrint"></div>
@@ -1585,6 +1527,64 @@
                     </td>
                     <td>
                         <div id="AllInPriceDCPPrint"></div>
+                    </td>
+
+                </tr>
+				<tr>
+                    <td>รวม DCY</td>
+                    <td>
+                        <div id="PcsAfterDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="PriceAfterDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="Pcs_AfterDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="Price_AfterDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="PoPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="PoPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NegPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NegPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="BackPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="BackPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="PurchasePcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="PurchasePriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReciveTranferPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReciveTranferPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReturnItemPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReturnItemPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="AllInPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="AllInPriceDCYPrint"></div>
                     </td>
 
                 </tr>
@@ -1803,62 +1803,6 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="SendSalePcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="SendSalePriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReciveTranOutPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReciveTranOutPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReturnStorePcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="ReturnStorePriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="AllOutPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="AllOutPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="CalculatePcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="CalculatePriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NewCalculatePcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NewCalculatePriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DiffPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DiffPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NewTotalPcsDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NewTotalPriceDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NewTotalDiffNavDCYPrint"></div>
-                    </td>
-                    <td>
-                        <div id="NewTotalDiffCalDCYPrint"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <div id="SendSalePcsDCPPrint"></div>
                     </td>
                     <td>
@@ -1911,6 +1855,62 @@
                     </td>
                     <td>
                         <div id="NewTotalDiffCalDCPPrint"></div>
+                    </td>
+                </tr>
+				<tr>
+                    <td>
+                        <div id="SendSalePcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="SendSalePriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReciveTranOutPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReciveTranOutPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReturnStorePcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="ReturnStorePriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="AllOutPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="AllOutPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="CalculatePcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="CalculatePriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NewCalculatePcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NewCalculatePriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DiffPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DiffPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NewTotalPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NewTotalPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NewTotalDiffNavDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="NewTotalDiffCalDCYPrint"></div>
                     </td>
                 </tr>
                 <tr>
@@ -2029,8 +2029,6 @@
             <table class="table-print table-print3Cus">
                 <tr>
                     <td colspan="16">รับโอน</td>
-                    <td colspan="16">โอนออก</td>
-                    <td colspan="8">ส่งขาย</td>
                 </tr>
                 <tr>
                     <td colspan="2">ทออวนโรงงาน 1</td>
@@ -2040,19 +2038,7 @@
                     <td colspan="2">เส้นใย โรงงาน 2</td>
                     <td colspan="2">ตีด้าย 2 โรงงาน 2</td>
                     <td colspan="2">ตีด้าย 3 โรงงาน 2</td>
-                    <td colspan="2">ตีด้าย 4 อ.11</td>
-                    <td colspan="2">ทออวนโรงงาน 1</td>
-                    <td colspan="2">ทออวนโรงงาน 2</td>
-                    <td colspan="2">ต่อแห โรงงาน 2</td>
-                    <td colspan="2">รับคืน TD อ.10</td>
-                    <td colspan="2">เส้นใย โรงงาน 2</td>
-                    <td colspan="2">ตีด้าย 2 โรงงาน 2</td>
-                    <td colspan="2">ตีด้าย 3 โรงงาน 2</td>
-                    <td colspan="2">ตีด้าย 4 อ.11</td>
-                    <td colspan="2">DC1</td>
-                    <td colspan="2">DCY</td>
-                    <td colspan="2">DCP</td>
-                    <td colspan="2">ตปท</td>
+                    <td colspan="2">รับคืนลูกค้า อ.10</td>
                 </tr>
                 <tr>
                     <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
@@ -2063,45 +2049,8 @@
                     <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
                     <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
                     <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
-
-                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
-                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
                 </tr>
                 <tr>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
-                    <td style="background-color: rgb(160,255,200);">pcs</td>
-                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
                     <td style="background-color: rgb(160,255,200);">pcs</td>
                     <td style="background-color: rgb(160,255,200);">มูลค่า</td>
                     <td style="background-color: rgb(160,255,200);">pcs</td>
@@ -2168,6 +2117,268 @@
                     <td>
                         <div id="a7f2cebu10sPriceDC1Print"></div>
                     </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="a7f1fgbu02sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f1fgbu02sPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2fgbu10sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2fgbu10sPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2thbu05sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2thbu05sPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2debu10sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2debu10sPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2exbu11sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2exbu11sPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu04sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu04sPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu07sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu07sPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2cebu10sPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2cebu10sPriceDCPPrint"></div>
+                    </td>
+                </tr>
+				<tr>
+                    <td>
+                        <div id="a7f1fgbu02sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f1fgbu02sPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2fgbu10sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2fgbu10sPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2thbu05sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2thbu05sPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2debu10sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2debu10sPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2exbu11sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2exbu11sPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu04sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu04sPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu07sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu07sPriceDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2cebu10sPcsDCYPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2cebu10sPriceDCYPrint"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="a7f1fgbu02sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f1fgbu02sPriceDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2fgbu10sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2fgbu10sPriceDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2thbu05sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2thbu05sPriceDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2debu10sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2debu10sPriceDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2exbu11sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2exbu11sPriceDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu04sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu04sPriceDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu07sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2twbu07sPriceDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2cebu10sPcsDEXPrint"></div>
+                    </td>
+                    <td>
+                        <div id="a7f2cebu10sPriceDEXPrint"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPriceAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPriceAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2thbu05sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2thbu05sPriceAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2debu10sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2debu10sPriceAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2exbu11sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2exbu11sPriceAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu04sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu04sPriceAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu07sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2twbu07sPriceAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2cebu10sPcsAll_CusPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="a7f2cebu10sPriceAll_CusPrint"></div>
+                    </td>
+                </tr>
+            </table>
+            <table class="table-print table-print4Cus">
+                <tr>
+                    <td colspan="16">โอนออก</td>
+                    <td colspan="8">ส่งขาย</td>
+                </tr>
+                <tr>
+                    <td colspan="2">ทออวนโรงงาน 1</td>
+                    <td colspan="2">ทออวนโรงงาน 2</td>
+                    <td colspan="2">ต่อแห โรงงาน 2</td>
+                    <td colspan="2">รับคืน TD อ.10</td>
+                    <td colspan="2">เส้นใย โรงงาน 2</td>
+                    <td colspan="2">ตีด้าย 2 โรงงาน 2</td>
+                    <td colspan="2">ตีด้าย 3 โรงงาน 2</td>
+                    <td colspan="2">รับคืนลูกค้า อ.10</td>
+                    <td colspan="2">DC1</td>
+					<td colspan="2">DCP</td>
+                    <td colspan="2">DCY</td>
+                    <td colspan="2">ตปท</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
+                    <td colspan="2" style="background-color: rgb(160,255,200);">ขายออก</td>
+                </tr>
+                <tr>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                    <td style="background-color: rgb(160,255,200);">pcs</td>
+                    <td style="background-color: rgb(160,255,200);">มูลค่า</td>
+                </tr>
+                <tr>
                     <td>
                         <div id="a8f1fgbu02sPcsDC1Print"></div>
                     </td>
@@ -2243,53 +2454,79 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="a7f1fgbu02sPcsDCYPrint"></div>
+                        <div id="a8f1fgbu02sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f1fgbu02sPriceDCYPrint"></div>
+                        <div id="a8f1fgbu02sPriceDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPcsDCYPrint"></div>
+                        <div id="a8f2fgbu10sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2fgbu10sPriceDCYPrint"></div>
+                        <div id="a8f2fgbu10sPriceDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPcsDCYPrint"></div>
+                        <div id="a8f2thbu05sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2thbu05sPriceDCYPrint"></div>
+                        <div id="a8f2thbu05sPriceDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPcsDCYPrint"></div>
+                        <div id="a8f2debu10sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2debu10sPriceDCYPrint"></div>
+                        <div id="a8f2debu10sPriceDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPcsDCYPrint"></div>
+                        <div id="a8f2exbu11sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2exbu11sPriceDCYPrint"></div>
+                        <div id="a8f2exbu11sPriceDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPcsDCYPrint"></div>
+                        <div id="a8f2twbu04sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu04sPriceDCYPrint"></div>
+                        <div id="a8f2twbu04sPriceDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPcsDCYPrint"></div>
+                        <div id="a8f2twbu07sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2twbu07sPriceDCYPrint"></div>
+                        <div id="a8f2twbu07sPriceDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPcsDCYPrint"></div>
+                        <div id="a8f2cebu10sPcsDCPPrint"></div>
                     </td>
                     <td>
-                        <div id="a7f2cebu10sPriceDCYPrint"></div>
+                        <div id="a8f2cebu10sPriceDCPPrint"></div>
                     </td>
+                    <td>
+                        <div id="DC1PcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DC1PriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DCPPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DCPPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DEXPcsDCPPrint"></div>
+                    </td>
+                    <td>
+                        <div id="DEXPriceDCPPrint"></div>
+                    </td>
+                </tr>
+				<tr>
                     <td>
                         <div id="a8f1fgbu02sPcsDCYPrint"></div>
                     </td>
@@ -2365,176 +2602,6 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="a7f1fgbu02sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f1fgbu02sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2fgbu10sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2fgbu10sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2thbu05sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2thbu05sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2debu10sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2debu10sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2exbu11sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2exbu11sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu04sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu04sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu07sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu07sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2cebu10sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2cebu10sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f1fgbu02sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f1fgbu02sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2fgbu10sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2fgbu10sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2thbu05sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2thbu05sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2debu10sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2debu10sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2exbu11sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2exbu11sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2twbu04sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2twbu04sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2twbu07sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2twbu07sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2cebu10sPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a8f2cebu10sPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DC1PcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DC1PriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DCPPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DCPPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DEXPcsDCPPrint"></div>
-                    </td>
-                    <td>
-                        <div id="DEXPriceDCPPrint"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div id="a7f1fgbu02sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f1fgbu02sPriceDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2fgbu10sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2fgbu10sPriceDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2thbu05sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2thbu05sPriceDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2debu10sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2debu10sPriceDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2exbu11sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2exbu11sPriceDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu04sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu04sPriceDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu07sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2twbu07sPriceDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2cebu10sPcsDEXPrint"></div>
-                    </td>
-                    <td>
-                        <div id="a7f2cebu10sPriceDEXPrint"></div>
-                    </td>
-                    <td>
                         <div id="a8f1fgbu02sPcsDEXPrint"></div>
                     </td>
                     <td>
@@ -2608,54 +2675,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f1fgbu02sPriceAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2fgbu10sPriceAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2thbu05sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2thbu05sPriceAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2debu10sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2debu10sPriceAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2exbu11sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2exbu11sPriceAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2twbu04sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2twbu04sPriceAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2twbu07sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2twbu07sPriceAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2cebu10sPcsAll_CusPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="a7f2cebu10sPriceAll_CusPrint"></div>
-                    </td>
                     <td>
                         <div style="color: rgb(255,25,0);" id="a8f1fgbu02sPcsAll_CusPrint"></div>
                     </td>

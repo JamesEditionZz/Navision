@@ -40,6 +40,9 @@
             </div>
             <hr>
         </div>
+		<div>
+			<img class="img-index" src="{{ asset('Background/BGNavision.png') }}">
+		</div>
     </div>
 </body>
 

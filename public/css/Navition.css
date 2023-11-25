@@ -25,7 +25,7 @@
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
-        height: 97vh;
+        height: 90vh;
     }
 
     .table-print2{
@@ -42,21 +42,49 @@
         height: 97vh;
     }
 
+    .table-print3{
+        display: table !important;
+        border-collapse: collapse;
+        width: 98% !important;
+        height: 97vh;
+    }
+
+    .table-print4{
+        display: table !important;
+        border-collapse: collapse;
+        width: 98% !important;
+        height: 97vh;
+    }
+
     .table-print1 tr td{
         border: 2px solid black;
         text-align: center;
-        padding: 5px;
+        padding: 4.5px;
     }
 
     .table-print2 tr td{
         border: 2px solid black;
         text-align: center;
-        padding: 5px;
+        padding: 4px;
     }
 
     .table-print3 tr td{
         border: 2px solid black;
         text-align: center;
+        padding: 4px;
+    }
+
+    .table-print4{
+        display: table !important;
+        border-collapse: collapse;
+        width: 98% !important;
+        height: 97vh;
+    }
+
+    .table-print4 tr td{
+        border: 2px solid black;
+        text-align: center;
+        padding: 4px;
     }
 
     .table-print1Cus{
@@ -83,6 +111,14 @@
         width: 98% !important;
     }
 
+    .table-print4Cus {
+        display: table !important;
+        position: relative;
+        border-collapse: collapse;
+        top: 10%;
+        width: 98% !important;
+    }
+
     .table-print1Cus tr td{
         border: 2px solid black;
         text-align: center;
@@ -98,13 +134,20 @@
     .table-print3Cus tr td {
         border: 2px solid black;
         text-align: center;
+        padding: 5px;
+    }
+
+    .table-print4Cus tr td {
+        border: 2px solid black;
+        text-align: center;
+        padding: 5px;
     }
 
     .table-printDC1{
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
-        height: 97vh;
+        height: 95vh;
     }
 
     .table-printDC2{
@@ -115,6 +158,13 @@
     }
 
     .table-printDC3 {
+        display: table !important;
+        border-collapse: collapse;
+        width: 98% !important;
+        height: 97vh;
+    }
+
+    .table-printDC4 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
@@ -136,14 +186,19 @@
         text-align: center;
     }
 
-    .table-print1, .table-print2, .table-print3  {
+    .table-printDC4 tr td {
+        border: 2px solid black;
+        text-align: center;
+    }
+
+    .table-print1, .table-print2, .table-print3, .table-print4  {
         page-break-before: always !important;
     }
 
-    .table-print1Cus, .table-print2Cus, .table-print3Cus  {
+    .table-print1Cus, .table-print2Cus, .table-print3Cus, .table-print4Cus  {
         page-break-before: always !important;
     }
-    .table-printDC1, .table-printDC2, .table-printDC3  {
+    .table-printDC1, .table-printDC2, .table-printDC3, .table-printDC4  {
         page-break-before: always !important;
     }
     @page {
@@ -186,6 +241,10 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: rgb(255, 255, 255);
+}
+.img-index{
+	width: 100%;
+	height: 99.4vh;
 }
 .col-1 {
     display: grid;

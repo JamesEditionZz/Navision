@@ -871,6 +871,7 @@ class PostController extends Controller
       $ItemNo = DB::table('item_all')
         ->select(
           'dataother.Item No as ItemCode',
+          'item_all.No as Item_No',
           'dataother.Customer',
           'dataother.Category',
           'item_all.No',
@@ -936,219 +937,95 @@ class PostController extends Controller
         ->orderBy('item_all.No')
         ->get();
 
+      foreach ($ItemNo as $rowlog) {
+        DB::table('log_price')->insert([
+          'Item No_Old' => $rowlog->Item_No,
+          'Customer_Old' => $rowlog->Customer,
+          'Pcs_After_Old' => $rowlog->PcsAfter,
+          'Price_After_Old' => $rowlog->PriceAfter,
+          'Category_Old' => $rowlog->Category,
+          'DateUpdate_Old' => date('d'.'/'.'m'.'/'.'Y')
+        ]);
+      }
+
       foreach ($ItemNo as $row) {
-        $PcsAf = floatval($row->PcsAfter);
-        $PriceAf = floatval($row->PriceAfter);
-        if ($PcsAf > 0 && $PriceAf > 0) {
-          $Avg = $PriceAf / $PcsAf;
-        } else {
-          $Avg = $row->PriceAvg;
+        if ($row->PcsAfter > 0 && $row->PriceAfter > 0) {
+          $Number = (floatval($row->PriceAfter) / floatval($row->PcsAfter));
+        }else{
+          $Number = 0;
         }
 
-        if ($row->Po_Quantity === "") {
-          $PoQuantity = 0;
-          $PoPrice = 0;
-        } else {
-          $PoQuantity = floatval($row->Po_Quantity);
-          $PoPrice = floatval($row->Po_Quantity) * floatval($row->PriceAvg);
+        /// ปรับเข้า
+        $Po_Pcs = floatval($row->Po_Quantity);
+        $Po_Price = $Po_Pcs * floatval($row->PriceAvg);
+
+        /// ปรับออก
+        $Neg_Pcs = floatval($row->Neg_Quantity);
+        $Neg_Price = $Neg_Pcs * $Number;
+
+        /// หลังปรับ
+        $BackChange_Pcs = floatval($row->PcsAfter) + $Po_Pcs + $Neg_Pcs;
+        $BackChange_Price = floatval($row->PriceAfter) + $Po_Price + $Neg_Price;
+
+        /// ซื้อเข้า
+        $Purchase_Pcs = floatval($row->purchase_Quantity);
+        $Purchase_Price = floatval($row->purchase_Cost);
+
+        /// รับโอน
+        $ReviceTranfer_Pcs = floatval($row->a7f1fgbu02s_Quantity) + floatval($row->a7f2fgbu10s_Quantity) + floatval($row->a7f2thbu05s_Quantity) + floatval($row->a7f2debu10s_Quantity) + floatval($row->a7f2exbu11s_Quantity) + floatval($row->a7f2twbu04s_Quantity) + floatval($row->a7f2twbu07s_Quantity) + floatval($row->a7f2cebu10s_Quantity);
+        $ReviceTranfer_Price = $ReviceTranfer_Pcs * $Number;
+
+        /// รับคืน
+        $Return_Pcs = floatval($row->returncuses_Quantity);
+        $Return_Price = $Return_Pcs * $Number;
+
+        /// รวม
+        $Allin_Pcs = $Purchase_Pcs + $ReviceTranfer_Pcs + $Return_Pcs;
+        $Allin_Price = $Purchase_Price + $ReviceTranfer_Price + $Return_Price;
+
+        /// ส่งขาย
+        $SendSale_Pcs = floatval($row->dc1_s_Quantity) + floatval($row->dcp_s_Quantity) + floatval($row->dcy_s_Quantity) + floatval($row->dex_s_Quantity);
+        $Sum = $BackChange_Pcs + $Allin_Pcs;
+        if ($Sum > 0) {
+          $SendSale_Price = ((($BackChange_Price + $Allin_Price) / ($BackChange_Pcs + $Allin_Pcs)) * $SendSale_Pcs);
+        }else{
+          $SendSale_Price = 0;
         }
 
-        if ($row->Neg_Quantity === "") {
-          $NegQuantity = 0;
-          $NegPrice = 0;
-        } else {
-          $NegQuantity = floatval($row->Neg_Quantity);
-          $NegPrice = floatval($row->Neg_Quantity) * floatval($Avg);
+        /// โอนออก
+        $TranferOut_Pcs = floatval($row->a7f1fgbu02s_Quantity) + floatval($row->a7f2fgbu10s_Quantity) + floatval($row->a7f2thbu05s_Quantity) + floatval($row->a7f2debu10s_Quantity) + floatval($row->a7f2exbu11s_Quantity) + floatval($row->a7f2twbu04s_Quantity) + floatval($row->a7f2twbu07s_Quantity) + floatval($row->a7f2cebu10s_Quantity);
+        $Sum = $BackChange_Pcs + $Allin_Pcs;
+        if ($Sum > 0) {
+          $TranferOut_Price = ((($BackChange_Price + $Allin_Price) / ($BackChange_Pcs + $Allin_Pcs)) * $TranferOut_Pcs);
+        }else{
+          $TranferOut_Price = 0;
         }
 
-        if ($row->purchase_Quantity === "") {
-          $purchaseQuantity = 0;
-          $purchasePrice = 0;
-        } else {
-          $purchaseQuantity = floatval($row->purchase_Quantity);
-          $purchasePrice = floatval($row->purchase_Quantity) * floatval($row->PriceAvg);
+        /// คืนของร้านค้า
+        $ReturnStore_Pcs = floatval($row->returnitem_Quantity);
+        $Sum = $BackChange_Pcs + $Allin_Pcs;
+        if ($Sum > 0) {
+          $ReturnStore_Price = ((($BackChange_Price + $Allin_Price) / ($BackChange_Pcs + $Allin_Pcs)) * $ReturnStore_Pcs);
+        }else{
+          $ReturnStore_Price = 0;
         }
 
-        if ($row->returnitem_Quantity === "") {
-          $ReturnItemQuantity = 0;
-        } else {
-          $ReturnItemQuantity = floatval($row->returnitem_Quantity);
+        /// รวม
+        $AllOut_Pcs = $SendSale_Pcs + $TranferOut_Pcs + $ReturnStore_Pcs;
+        $AllOut_Price = $SendSale_Price + $TranferOut_Price + $ReturnStore_Price;
+
+        $TotalCal_Pcs = floatval($row->PcsAfter) + $Po_Pcs + $Neg_Pcs + $Allin_Pcs + $AllOut_Pcs;
+        $TotalCal_Price = floatval($row->PriceAfter) + $Po_Price + $Neg_Price + $Allin_Price + $AllOut_Price;
+
+        if ($TotalCal_Pcs < 0) {
+          $TotalCal_Pcs = 0;
         }
 
-        if ($row->a7f1fgbu02s_Quantity === "") {
-          $a7f1fgbu02sQuantity = 0;
-        } else {
-          $a7f1fgbu02sQuantity = floatval($row->a7f1fgbu02s_Quantity);
+        if($TotalCal_Price < 0){
+          $TotalCal_Price = 0;
         }
 
-        if ($row->a7f2fgbu10s_Quantity === "") {
-          $a7f2fgbu10sQuantity = 0;
-        } else {
-          $a7f2fgbu10sQuantity = floatval($row->a7f2fgbu10s_Quantity);
-        }
-
-        if ($row->a7f2thbu05s_Quantity === "") {
-          $a7f2thbu05sQuantity = 0;
-        } else {
-          $a7f2thbu05sQuantity = floatval($row->a7f2thbu05s_Quantity);
-        }
-
-        if ($row->a7f2debu10s_Quantity === "") {
-          $a7f2debu10sQuantity = 0;
-        } else {
-          $a7f2debu10sQuantity = floatval($row->a7f2debu10s_Quantity);
-        }
-
-        if ($row->a7f2exbu11s_Quantity === "") {
-          $a7f2exbu11sQuantity = 0;
-        } else {
-          $a7f2exbu11sQuantity = floatval($row->a7f2exbu11s_Quantity);
-        }
-
-        if ($row->a7f2twbu04s_Quantity === "") {
-          $a7f2twbu04sQuantity = 0;
-        } else {
-          $a7f2twbu04sQuantity = floatval($row->a7f2twbu04s_Quantity);
-        }
-
-        if ($row->a7f2twbu07s_Quantity === "") {
-          $a7f2twbu07sQuantity = 0;
-        } else {
-          $a7f2twbu07sQuantity = floatval($row->a7f2twbu07s_Quantity);
-        }
-
-        if ($row->a7f2cebu10s_Quantity === "") {
-          $a7f2cebu10sQuantity = 0;
-        } else {
-          $a7f2cebu10sQuantity = floatval($row->a7f2cebu10s_Quantity);
-        }
-
-        if ($row->returncuses_Quantity === "") {
-          $ReturnQuantity = 0;
-        } else {
-          $ReturnQuantity = floatval($row->returncuses_Quantity);
-        }
-
-        if ($row->a8f1fgbu02s_Quantity === "") {
-          $a8f1fgbu02sQuantity = 0;
-        } else {
-          $a8f1fgbu02sQuantity = floatval($row->a8f1fgbu02s_Quantity);
-        }
-
-        if ($row->a8f2fgbu10s_Quantity === "") {
-          $a8f2fgbu10sQuantity = 0;
-        } else {
-          $a8f2fgbu10sQuantity = floatval($row->a8f2fgbu10s_Quantity);
-        }
-
-        if ($row->a8f2thbu05s_Quantity === "") {
-          $a8f2thbu05sQuantity = 0;
-        } else {
-          $a8f2thbu05sQuantity = floatval($row->a8f2thbu05s_Quantity);
-        }
-
-        if ($row->a8f2debu10s_Quantity === "") {
-          $a8f2debu10sQuantity = 0;
-        } else {
-          $a8f2debu10sQuantity = floatval($row->a8f2debu10s_Quantity);
-        }
-
-        if ($row->a8f2exbu11s_Quantity === "") {
-          $a8f2exbu11sQuantity = 0;
-        } else {
-          $a8f2exbu11sQuantity = floatval($row->a8f2exbu11s_Quantity);
-        }
-
-        if ($row->a8f2twbu04s_Quantity === "") {
-          $a8f2twbu04sQuantity = 0;
-        } else {
-          $a8f2twbu04sQuantity = floatval($row->a8f2twbu04s_Quantity);
-        }
-
-        if ($row->a8f2twbu07s_Quantity === "") {
-          $a8f2twbu07sQuantity = 0;
-        } else {
-          $a8f2twbu07sQuantity = floatval($row->a8f2twbu07s_Quantity);
-        }
-
-        if ($row->a8f2cebu10s_Quantity === "") {
-          $a8f2cebu10sQuantity = 0;
-        } else {
-          $a8f2cebu10sQuantity = floatval($row->a8f2cebu10s_Quantity);
-        }
-
-        if ($row->dc1_s_Quantity === "") {
-          $DC1Quantity = 0;
-        } else {
-          $DC1Quantity = floatval($row->dc1_s_Quantity);
-        }
-
-        if ($row->dcp_s_Quantity === "") {
-          $DCPQuantity = 0;
-        } else {
-          $DCPQuantity = floatval($row->dcp_s_Quantity);
-        }
-
-        if ($row->dcy_s_Quantity === "") {
-          $DCYQuantity = 0;
-        } else {
-          $DCYQuantity = floatval($row->dcy_s_Quantity);
-        }
-
-        if ($row->dex_s_Quantity === "") {
-          $DEXQuantity = 0;
-        } else {
-          $DEXQuantity = floatval($row->dex_s_Quantity);
-        }
-
-        $BackChagePcs = floatval($row->PcsAfter) + $PoQuantity + $NegQuantity;
-        $BackChagePrice = floatval($row->PriceAfter) + $PoPrice + $NegPrice;
-        $ReciveTranferPcs = $a7f1fgbu02sQuantity + $a7f2fgbu10sQuantity + $a7f2thbu05sQuantity + $a7f2debu10sQuantity + $a7f2exbu11sQuantity + $a7f2twbu04sQuantity + $a7f2twbu07sQuantity + $a7f2cebu10sQuantity;
-        $ReciveTranferPrice = $ReciveTranferPcs * floatval($row->PriceAvg);
-        $ReturnPrice = $ReturnQuantity * floatval($Avg);
-        $TotalInPcs = $purchaseQuantity + $ReciveTranferPcs + $ReturnQuantity;
-        $TotalInPrice = $purchasePrice + $ReciveTranferPrice + $ReturnPrice;
-        $SendSalePcs = $DC1Quantity + $DCPQuantity + $DCYQuantity + $DEXQuantity;
-        $denominator = $BackChagePcs + $TotalInPcs;
-        $ReciveTranOutPcs = $a8f1fgbu02sQuantity + $a8f2fgbu10sQuantity + $a8f2thbu05sQuantity + $a8f2debu10sQuantity + $a8f2exbu11sQuantity + $a8f2twbu04sQuantity + $a8f2twbu07sQuantity + $a8f2cebu10sQuantity;
-
-        if ($denominator > 0) {
-          $SendSalePrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $SendSalePcs;
-        } else {
-          $SendSalePrice = 0;
-        }
-
-        if ($denominator > 0) {
-          $ReciveTranOutPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReciveTranOutPcs;
-        } else {
-          $ReciveTranOutPrice = 0;
-        }
-
-        if ($denominator > 0) {
-          $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
-        } else {
-          $ReturnItemPrice = 0;
-        }
-
-        $totalOutPcs = $SendSalePcs + $ReciveTranOutPcs + $ReturnItemQuantity;
-        $totalOutPrice = $SendSalePrice + $ReciveTranOutPrice + $ReturnItemPrice;
-
-        if ($denominator > 0) {
-          $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
-        } else {
-          $ReturnItemPrice = 0;
-        }
-
-        $TotalCalPcs = $BackChagePcs + $TotalInPcs + $totalOutPcs;
-        $TotalCalPrice = $BackChagePrice + $TotalInPrice + $totalOutPrice;
-
-        $TotalCalPcs = floatval($TotalCalPcs);
-        $TotalCalPrice = floatval($TotalCalPrice);
-
-        $TotalCalPcs = number_format($TotalCalPcs, 2);
-        $TotalCalPrice = number_format($TotalCalPrice, 2);
-
-        $arrayinsert[] = [$row->ItemCode, $row->Customer, $TotalCalPcs, $TotalCalPrice, $row->Category];
+        $arrayinsert[] = [$row->Item_No, $row->Customer, $TotalCal_Pcs, $TotalCal_Price, $row->Category];
 
       }
       DB::table('dataother')->delete();
@@ -1163,7 +1040,7 @@ class PostController extends Controller
       ]);
       }
       
-      return response()->json();
+      return response()->json($arrayinsert);
     }else{
       return response()->json('ข้อมูลไม่ต้องการอัพเดท');
     }
