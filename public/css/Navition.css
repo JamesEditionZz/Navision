@@ -59,7 +59,7 @@
     .table-print1 tr td{
         border: 2px solid black;
         text-align: center;
-        padding: 4.5px;
+        padding: 4px;
     }
 
     .table-print2 tr td{
@@ -721,7 +721,7 @@ a:hover {
     animation: modal 0.4s alternate;
 }
 .modal-con {
-    margin: 15% auto auto auto;
+    margin: 10% auto auto auto;
     background-color: #aedfff;
     width: 30%;
     font-size: 18px;

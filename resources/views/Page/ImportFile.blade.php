@@ -163,10 +163,10 @@
   </div>
   <div class="modal-confirm">
     <div class="modal-con p-1">
-      ต้องการยกยอดเดือนที่แล้วด้วยไหม ?
+		ต้องการยกยอดเดือนที่แล้วด้วยไหม ?
       <div align="right" class="mt-1">
-        <button class="btn-submit" id="Priceafter">ตกลง</button>
-        <button class="btn-close" id="close">ยกเลิก</button>
+        <button class="btn-submit" id="Priceafter">ใช่</button>
+        <button class="btn-close" id="close">ไม่</button>
       </div>
     </div>
   </div>
