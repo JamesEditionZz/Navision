@@ -936,18 +936,6 @@ class PostController extends Controller
         ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
         ->orderBy('item_all.No')
         ->get();
-		
-		$d = date('d');
-		$m = date('m')-1;
-		$y = date('Y')+543;
-		
-		if($m <= 0){
-			$m = 12;
-			$y = $y - 1;
-		}else{
-			$m = $m;
-			$y = $y;
-		}
 
       foreach ($ItemNo as $rowlog) {
         DB::table('log_price')->insert([
