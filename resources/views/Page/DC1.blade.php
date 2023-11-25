@@ -73,7 +73,7 @@
                             <td colspan="2" style="background-color: rgb(160,255,200);">เส้นใย โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 2 โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 3 โรงงาน 2</td>
-                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 4 อ.11</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับคืนลูกค้า อ.10</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 1</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ทออวนโรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ต่อแห โรงงาน 2</td>
@@ -81,7 +81,7 @@
                             <td colspan="2" style="background-color: rgb(160,255,200);">เส้นใย โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 2 โรงงาน 2</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 3 โรงงาน 2</td>
-                            <td colspan="2" style="background-color: rgb(160,255,200);">ตีด้าย 4 อ.11</td>
+                            <td colspan="2" style="background-color: rgb(160,255,200);">รับคืนลูกค้า อ.10</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">DC1</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">DCY</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">DCP</td>
