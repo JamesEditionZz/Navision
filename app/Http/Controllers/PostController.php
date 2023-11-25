@@ -937,6 +937,15 @@ class PostController extends Controller
         ->orderBy('item_all.No')
         ->get();
 
+      $d = date('d');
+      $m = date('m') - 1;
+      $y = date('Y') + 543;
+
+      if ($m <= 0) {
+        $m = 12;
+        $y = $y - 1;
+      }
+
       foreach ($ItemNo as $rowlog) {
         DB::table('log_price')->insert([
           'Item No_Old' => $rowlog->Item_No,
@@ -944,241 +953,240 @@ class PostController extends Controller
           'Pcs_After_Old' => $rowlog->PcsAfter,
           'Price_After_Old' => $rowlog->PriceAfter,
           'Category_Old' => $rowlog->Category,
-          'DateUpdate_Old' => $d."/".$m."/".$y
+          'DateUpdate_Old' => $d . "/" . $m . "/" . $y
         ]);
       }
 
       foreach ($ItemNo as $row) {
-                $PcsAf = floatval($row->PcsAfter);
-                $PriceAf = floatval($row->PriceAfter);
-                if ($PcsAf > 0 && $PriceAf > 0) {
-                    $Avg = $PriceAf / $PcsAf;
-                } else {
-                    $Avg = $row->PriceAvg;
-                }
+        $PcsAf = floatval($row->PcsAfter);
+        $PriceAf = floatval($row->PriceAfter);
+        if ($PcsAf > 0 && $PriceAf > 0) {
+          $Avg = $PriceAf / $PcsAf;
+        } else {
+          $Avg = $row->PriceAvg;
+        }
 
-                if ($row->Po_Quantity == "") {
-                    $PoQuantity = 0;
-                    $PoPrice = 0;
-                } else {
-                    $PoQuantity = floatval($row->Po_Quantity);
-                    $PoPrice = floatval($row->Po_Quantity) * floatval($row->PriceAvg);
-                }
+        if ($row->Po_Quantity == "") {
+          $PoQuantity = 0;
+          $PoPrice = 0;
+        } else {
+          $PoQuantity = floatval($row->Po_Quantity);
+          $PoPrice = floatval($row->Po_Quantity) * floatval($row->PriceAvg);
+        }
 
-                if ($row->Neg_Quantity == "") {
-                    $NegQuantity = 0;
-                    $NegPrice = 0;
-                } else {
-                    $NegQuantity = floatval($row->Neg_Quantity);
-                    $NegPrice = floatval($row->Neg_Quantity) * floatval($Avg);
-                }
+        if ($row->Neg_Quantity == "") {
+          $NegQuantity = 0;
+          $NegPrice = 0;
+        } else {
+          $NegQuantity = floatval($row->Neg_Quantity);
+          $NegPrice = floatval($row->Neg_Quantity) * floatval($Avg);
+        }
 
-                if ($row->purchase_Quantity == "") {
-                    $purchaseQuantity = 0;
-                    $purchasePrice = 0;
-                } else {
-                    $purchaseQuantity = floatval($row->purchase_Quantity);
-                    $purchasePrice = floatval($row->purchase_Quantity) * floatval($row->PriceAvg);
-                }
+        if ($row->purchase_Quantity == "") {
+          $purchaseQuantity = 0;
+          $purchasePrice = 0;
+        } else {
+          $purchaseQuantity = floatval($row->purchase_Quantity);
+          $purchasePrice = floatval($row->purchase_Quantity) * floatval($row->PriceAvg);
+        }
 
-                if ($row->returnitem_Quantity == "") {
-                    $ReturnItemQuantity = 0;
-                } else {
-                    $ReturnItemQuantity = floatval($row->returnitem_Quantity);
-                }
+        if ($row->returnitem_Quantity == "") {
+          $ReturnItemQuantity = 0;
+        } else {
+          $ReturnItemQuantity = floatval($row->returnitem_Quantity);
+        }
 
-                if ($row->item_stock_Quantity == "") {
-                    $item_stockQuantity = 0;
-                    $item_stockPrice = 0;
-                } else {
-                    $item_stockQuantity = floatval($row->item_stock_Quantity);
-                    $item_stockPrice = floatval($row->item_stock_Amount);
-                }
+        if ($row->item_stock_Quantity == "") {
+          $item_stockQuantity = 0;
+          $item_stockPrice = 0;
+        } else {
+          $item_stockQuantity = floatval($row->item_stock_Quantity);
+          $item_stockPrice = floatval($row->item_stock_Amount);
+        }
 
-                if ($row->a7f1fgbu02s_Quantity == "") {
-                    $a7f1fgbu02sQuantity = 0;
-                } else {
-                    $a7f1fgbu02sQuantity = floatval($row->a7f1fgbu02s_Quantity);
-                }
+        if ($row->a7f1fgbu02s_Quantity == "") {
+          $a7f1fgbu02sQuantity = 0;
+        } else {
+          $a7f1fgbu02sQuantity = floatval($row->a7f1fgbu02s_Quantity);
+        }
 
-                if ($row->a7f2fgbu10s_Quantity == "") {
-                    $a7f2fgbu10sQuantity = 0;
-                } else {
-                    $a7f2fgbu10sQuantity = floatval($row->a7f2fgbu10s_Quantity);
-                }
+        if ($row->a7f2fgbu10s_Quantity == "") {
+          $a7f2fgbu10sQuantity = 0;
+        } else {
+          $a7f2fgbu10sQuantity = floatval($row->a7f2fgbu10s_Quantity);
+        }
 
-                if ($row->a7f2thbu05s_Quantity == "") {
-                    $a7f2thbu05sQuantity = 0;
-                } else {
-                    $a7f2thbu05sQuantity = floatval($row->a7f2thbu05s_Quantity);
-                }
+        if ($row->a7f2thbu05s_Quantity == "") {
+          $a7f2thbu05sQuantity = 0;
+        } else {
+          $a7f2thbu05sQuantity = floatval($row->a7f2thbu05s_Quantity);
+        }
 
-                if ($row->a7f2debu10s_Quantity == "") {
-                    $a7f2debu10sQuantity = 0;
-                } else {
-                    $a7f2debu10sQuantity = floatval($row->a7f2debu10s_Quantity);
-                }
+        if ($row->a7f2debu10s_Quantity == "") {
+          $a7f2debu10sQuantity = 0;
+        } else {
+          $a7f2debu10sQuantity = floatval($row->a7f2debu10s_Quantity);
+        }
 
-                if ($row->a7f2exbu11s_Quantity == "") {
-                    $a7f2exbu11sQuantity = 0;
-                } else {
-                    $a7f2exbu11sQuantity = floatval($row->a7f2exbu11s_Quantity);
-                }
+        if ($row->a7f2exbu11s_Quantity == "") {
+          $a7f2exbu11sQuantity = 0;
+        } else {
+          $a7f2exbu11sQuantity = floatval($row->a7f2exbu11s_Quantity);
+        }
 
-                if ($row->a7f2twbu04s_Quantity == "") {
-                    $a7f2twbu04sQuantity = 0;
-                } else {
-                    $a7f2twbu04sQuantity = floatval($row->a7f2twbu04s_Quantity);
-                }
+        if ($row->a7f2twbu04s_Quantity == "") {
+          $a7f2twbu04sQuantity = 0;
+        } else {
+          $a7f2twbu04sQuantity = floatval($row->a7f2twbu04s_Quantity);
+        }
 
-                if ($row->a7f2twbu07s_Quantity == "") {
-                    $a7f2twbu07sQuantity = 0;
-                } else {
-                    $a7f2twbu07sQuantity = floatval($row->a7f2twbu07s_Quantity);
-                }
+        if ($row->a7f2twbu07s_Quantity == "") {
+          $a7f2twbu07sQuantity = 0;
+        } else {
+          $a7f2twbu07sQuantity = floatval($row->a7f2twbu07s_Quantity);
+        }
 
-                if ($row->a7f2cebu10s_Quantity == "") {
-                    $a7f2cebu10sQuantity = 0;
-                } else {
-                    $a7f2cebu10sQuantity = floatval($row->a7f2cebu10s_Quantity);
-                }
+        if ($row->a7f2cebu10s_Quantity == "") {
+          $a7f2cebu10sQuantity = 0;
+        } else {
+          $a7f2cebu10sQuantity = floatval($row->a7f2cebu10s_Quantity);
+        }
 
-                if ($row->returncuses_Quantity == "") {
-                    $ReturnQuantity = 0;
-                } else {
-                    $ReturnQuantity = floatval($row->returncuses_Quantity);
-                }
+        if ($row->returncuses_Quantity == "") {
+          $ReturnQuantity = 0;
+        } else {
+          $ReturnQuantity = floatval($row->returncuses_Quantity);
+        }
 
-                if ($row->a8f1fgbu02s_Quantity == "") {
-                    $a8f1fgbu02sQuantity = 0;
-                } else {
-                    $a8f1fgbu02sQuantity = floatval($row->a8f1fgbu02s_Quantity);
-                }
+        if ($row->a8f1fgbu02s_Quantity == "") {
+          $a8f1fgbu02sQuantity = 0;
+        } else {
+          $a8f1fgbu02sQuantity = floatval($row->a8f1fgbu02s_Quantity);
+        }
 
-                if ($row->a8f2fgbu10s_Quantity == "") {
-                    $a8f2fgbu10sQuantity = 0;
-                } else {
-                    $a8f2fgbu10sQuantity = floatval($row->a8f2fgbu10s_Quantity);
-                }
+        if ($row->a8f2fgbu10s_Quantity == "") {
+          $a8f2fgbu10sQuantity = 0;
+        } else {
+          $a8f2fgbu10sQuantity = floatval($row->a8f2fgbu10s_Quantity);
+        }
 
-                if ($row->a8f2thbu05s_Quantity == "") {
-                    $a8f2thbu05sQuantity = 0;
-                } else {
-                    $a8f2thbu05sQuantity = floatval($row->a8f2thbu05s_Quantity);
-                }
+        if ($row->a8f2thbu05s_Quantity == "") {
+          $a8f2thbu05sQuantity = 0;
+        } else {
+          $a8f2thbu05sQuantity = floatval($row->a8f2thbu05s_Quantity);
+        }
 
-                if ($row->a8f2debu10s_Quantity == "") {
-                    $a8f2debu10sQuantity = 0;
-                } else {
-                    $a8f2debu10sQuantity = floatval($row->a8f2debu10s_Quantity);
-                }
+        if ($row->a8f2debu10s_Quantity == "") {
+          $a8f2debu10sQuantity = 0;
+        } else {
+          $a8f2debu10sQuantity = floatval($row->a8f2debu10s_Quantity);
+        }
 
-                if ($row->a8f2exbu11s_Quantity == "") {
-                    $a8f2exbu11sQuantity = 0;
-                } else {
-                    $a8f2exbu11sQuantity = floatval($row->a8f2exbu11s_Quantity);
-                }
+        if ($row->a8f2exbu11s_Quantity == "") {
+          $a8f2exbu11sQuantity = 0;
+        } else {
+          $a8f2exbu11sQuantity = floatval($row->a8f2exbu11s_Quantity);
+        }
 
-                if ($row->a8f2twbu04s_Quantity == "") {
-                    $a8f2twbu04sQuantity = 0;
-                } else {
-                    $a8f2twbu04sQuantity = floatval($row->a8f2twbu04s_Quantity);
-                }
+        if ($row->a8f2twbu04s_Quantity == "") {
+          $a8f2twbu04sQuantity = 0;
+        } else {
+          $a8f2twbu04sQuantity = floatval($row->a8f2twbu04s_Quantity);
+        }
 
-                if ($row->a8f2twbu07s_Quantity == "") {
-                    $a8f2twbu07sQuantity = 0;
-                } else {
-                    $a8f2twbu07sQuantity = floatval($row->a8f2twbu07s_Quantity);
-                }
+        if ($row->a8f2twbu07s_Quantity == "") {
+          $a8f2twbu07sQuantity = 0;
+        } else {
+          $a8f2twbu07sQuantity = floatval($row->a8f2twbu07s_Quantity);
+        }
 
-                if ($row->a8f2cebu10s_Quantity == "") {
-                    $a8f2cebu10sQuantity = 0;
-                } else {
-                    $a8f2cebu10sQuantity = floatval($row->a8f2cebu10s_Quantity);
-                }
+        if ($row->a8f2cebu10s_Quantity == "") {
+          $a8f2cebu10sQuantity = 0;
+        } else {
+          $a8f2cebu10sQuantity = floatval($row->a8f2cebu10s_Quantity);
+        }
 
-                if ($row->dc1_s_Quantity == "") {
-                    $DC1Quantity = 0;
-                } else {
-                    $DC1Quantity = floatval($row->dc1_s_Quantity);
-                }
+        if ($row->dc1_s_Quantity == "") {
+          $DC1Quantity = 0;
+        } else {
+          $DC1Quantity = floatval($row->dc1_s_Quantity);
+        }
 
-                if ($row->dcp_s_Quantity == "") {
-                    $DCPQuantity = 0;
-                } else {
-                    $DCPQuantity = floatval($row->dcp_s_Quantity);
-                }
+        if ($row->dcp_s_Quantity == "") {
+          $DCPQuantity = 0;
+        } else {
+          $DCPQuantity = floatval($row->dcp_s_Quantity);
+        }
 
-                if ($row->dcy_s_Quantity == "") {
-                    $DCYQuantity = 0;
-                } else {
-                    $DCYQuantity = floatval($row->dcy_s_Quantity);
-                }
+        if ($row->dcy_s_Quantity == "") {
+          $DCYQuantity = 0;
+        } else {
+          $DCYQuantity = floatval($row->dcy_s_Quantity);
+        }
 
-                if ($row->dex_s_Quantity == "") {
-                    $DEXQuantity = 0;
-                } else {
-                    $DEXQuantity = floatval($row->dex_s_Quantity);
-                }
+        if ($row->dex_s_Quantity == "") {
+          $DEXQuantity = 0;
+        } else {
+          $DEXQuantity = floatval($row->dex_s_Quantity);
+        }
 
-                $BackChagePcs = floatval($row->PcsAfter) + floatval($row->Po_Quantity) + floatval($row->Neg_Quantity);
-                $BackChagePrice = floatval($row->PriceAfter) + $PoPrice + $NegPrice;
-                $ReciveTranferPcs = $a7f1fgbu02sQuantity + $a7f2fgbu10sQuantity + $a7f2thbu05sQuantity + $a7f2debu10sQuantity + $a7f2exbu11sQuantity + $a7f2twbu04sQuantity + $a7f2twbu07sQuantity + $a7f2cebu10sQuantity;
-                $ReciveTranferPrice = $ReciveTranferPcs * floatval($row->PriceAvg);
-                $ReturnPrice = $ReturnQuantity * floatval($Avg);
-                $TotalInPcs = $purchaseQuantity + $ReciveTranferPcs + $ReturnQuantity;
-                $TotalInPrice = $purchasePrice + $ReciveTranferPrice + $ReturnPrice;
-                $SendSalePcs = $DC1Quantity + $DCPQuantity + $DCYQuantity + $DEXQuantity;
-                $denominator = $BackChagePcs + $TotalInPcs;
-                $ReciveTranOutPcs = $a8f1fgbu02sQuantity + $a8f2fgbu10sQuantity + $a8f2thbu05sQuantity + $a8f2debu10sQuantity + $a8f2exbu11sQuantity + $a8f2twbu04sQuantity + $a8f2twbu07sQuantity + $a8f2cebu10sQuantity;
+        $BackChagePcs = floatval($row->PcsAfter) + floatval($row->Po_Quantity) + floatval($row->Neg_Quantity);
+        $BackChagePrice = floatval($row->PriceAfter) + $PoPrice + $NegPrice;
+        $ReciveTranferPcs = $a7f1fgbu02sQuantity + $a7f2fgbu10sQuantity + $a7f2thbu05sQuantity + $a7f2debu10sQuantity + $a7f2exbu11sQuantity + $a7f2twbu04sQuantity + $a7f2twbu07sQuantity + $a7f2cebu10sQuantity;
+        $ReciveTranferPrice = $ReciveTranferPcs * floatval($row->PriceAvg);
+        $ReturnPrice = $ReturnQuantity * floatval($Avg);
+        $TotalInPcs = $purchaseQuantity + $ReciveTranferPcs + $ReturnQuantity;
+        $TotalInPrice = $purchasePrice + $ReciveTranferPrice + $ReturnPrice;
+        $SendSalePcs = $DC1Quantity + $DCPQuantity + $DCYQuantity + $DEXQuantity;
+        $denominator = $BackChagePcs + $TotalInPcs;
+        $ReciveTranOutPcs = $a8f1fgbu02sQuantity + $a8f2fgbu10sQuantity + $a8f2thbu05sQuantity + $a8f2debu10sQuantity + $a8f2exbu11sQuantity + $a8f2twbu04sQuantity + $a8f2twbu07sQuantity + $a8f2cebu10sQuantity;
 
-                if ($denominator > 0) {
-                    $SendSalePrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $SendSalePcs;
-                } else {
-                    $SendSalePrice = 0;
-                }
+        if ($denominator > 0) {
+          $SendSalePrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $SendSalePcs;
+        } else {
+          $SendSalePrice = 0;
+        }
 
-                if ($denominator > 0) {
-                    $ReciveTranOutPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReciveTranOutPcs;
-                } else {
-                    $ReciveTranOutPrice = 0;
-                }
+        if ($denominator > 0) {
+          $ReciveTranOutPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReciveTranOutPcs;
+        } else {
+          $ReciveTranOutPrice = 0;
+        }
 
-                if ($denominator > 0) {
-                    $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
-                } else {
-                    $ReturnItemPrice = 0;
-                }
+        if ($denominator > 0) {
+          $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
+        } else {
+          $ReturnItemPrice = 0;
+        }
 
-                $totalOutPcs = $SendSalePcs + $ReciveTranOutPcs + $ReturnItemQuantity;
-                $totalOutPrice = $SendSalePrice + $ReciveTranOutPrice + $ReturnItemPrice;
+        $totalOutPcs = $SendSalePcs + $ReciveTranOutPcs + $ReturnItemQuantity;
+        $totalOutPrice = $SendSalePrice + $ReciveTranOutPrice + $ReturnItemPrice;
 
-                if ($denominator > 0) {
-                    $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
-                } else {
-                    $ReturnItemPrice = 0;
-                }
+        if ($denominator > 0) {
+          $ReturnItemPrice = (($BackChagePrice + $TotalInPrice) / $denominator) * $ReturnItemQuantity;
+        } else {
+          $ReturnItemPrice = 0;
+        }
 
-                $TotalCalPcs = $BackChagePcs + $TotalInPcs + $totalOutPcs;
-                $TotalCalPrice = $BackChagePrice + $TotalInPrice + $totalOutPrice;
+        $TotalCalPcs = $BackChagePcs + $TotalInPcs + $totalOutPcs;
+        $TotalCalPrice = $BackChagePrice + $TotalInPrice + $totalOutPrice;
 
         $arrayinsert[] = [$row->Item_No, $row->Customer, $TotalCalPcs, $TotalCalPrice, $row->Category];
-
       }
       DB::table('dataother')->delete();
 
       foreach ($arrayinsert as $resultInsert) {
         DB::table('dataother')->insert([
-        'Item No' => $resultInsert[0],
-        'Customer' => $resultInsert[1],
-        'PcsAfter' => $resultInsert[2],
-        'PriceAfter' => $resultInsert[3],
-        'Category' => $resultInsert[4],
-      ]);
+          'Item No' => $resultInsert[0],
+          'Customer' => $resultInsert[1],
+          'PcsAfter' => $resultInsert[2],
+          'PriceAfter' => $resultInsert[3],
+          'Category' => $resultInsert[4],
+        ]);
       }
-      
+
       return response()->json($arrayinsert);
-    }else{
+    } else {
       return response()->json('ข้อมูลไม่ต้องการอัพเดท');
     }
   }
