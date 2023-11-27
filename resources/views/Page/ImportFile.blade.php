@@ -182,12 +182,26 @@
       </div>
       <div class="upload-file">
         <br>
-        <label>ย้อนหลังวันที่ : </label><label id="selectdate"></label>
-        <p align="center">ต้องการอัพโหลดไฟล์ข้อมูลด้วยไหม</p>
+        <label>ยอดยกมาของเดือน : </label><label id="selectdate"></label><label>?</label>
         <div align="center">
           <button class="btn-submit" id="backdatasubmit">ใช่</button>
           <button class="btn-close" id="backdataclose">ไม่</button>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-loading">
+    <div class="modal-load">
+      <img class="img-backdata" src="{{ asset('/icon/rotate.png') }}" id="imgbackdata">
+      <h2 align="center">กำลังโหลดข้อมูล</h2>
+    </div>
+  </div>
+  <div class="modal-success">
+    <div class="load-success">
+      <img class="img-success" align="center" src="{{ asset('/icon/success.png') }}">
+      <h3 align="center">โหลดเสร็จแล้ว จาร...</h3>
+      <div align="center">
+        <button class="btn-success" id="close-success">OK</button>
       </div>
     </div>
   </div>
@@ -211,6 +225,11 @@
     var backdataclose = document.getElementById('backdataclose');
 
     backdatasubmit.addEventListener('click', function() {
+      var modalreturn = document.querySelector('.modal-return');
+      var modalBackData = document.querySelector('.modal-loading');
+
+      modalreturn.style.display = "none";
+      modalBackData.style.display = "block";
 
       $.ajax({
         type: "post",
@@ -221,10 +240,11 @@
         headers: {
           "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr('content')
         },
-        success: function(response){
-          console.log(response);
+        success: function(response) {
+          var modalsuccessData = document.querySelector('.modal-success');
+          modalsuccessData.style.display = "block";
         },
-        error: function(error){
+        error: function(error) {
           console.error(error);
         }
       })
@@ -236,6 +256,12 @@
       modalreturn.style.display = "none";
     })
   }
+
+  var closesuccess = document.getElementById('close-success');
+  closesuccess.addEventListener('click', function() {
+    var modalsuccessData = document.querySelector('.modal-success');
+    modalsuccessData.style.display = "none";
+  });
 
 
   $('form').submit(function(e) {

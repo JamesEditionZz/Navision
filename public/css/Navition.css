@@ -510,8 +510,50 @@ a:hover {
     background-color: rgb(236, 236, 236);
     border: 1px solid #ccc;
     width: 20%;
-    margin: 8% auto;
+    margin: 5% auto;
     padding: 20px;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.modal-loading{
+	display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: modal 0.8s alternate;
+}
+.modal-load {
+    background-color: rgb(236, 236, 236);
+    border: 1px solid #ccc;
+    width: 15%;
+    height: 45vh;
+    margin: 8% auto;
+    padding: 30px;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.modal-success{
+	display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: success 0.2s alternate;
+}
+.load-success {
+    background-color: rgb(236, 236, 236);
+    border: 1px solid #ccc;
+    width: 15%;
+    height: 45vh;
+    margin: 8% auto;
+    padding: 30px;
     border-radius: 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -562,6 +604,13 @@ a:hover {
 .img10 {
     width: 10%;
     animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img-backdata {
+    width: 90%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
+.img-success {
+    width: 100%;
 }
 .btn-success {
     padding: 7px;

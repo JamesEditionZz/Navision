@@ -932,58 +932,58 @@ class PostController extends Controller
       $SearchDate_af = $m_af . '/' . $y_af;
       $SearchDate_Old = $m_af . '/' . $y_Old;
 
-      $Numrow71 = DB::table('a81__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
-      $Numrow72 = DB::table('a82__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
-      $Numrow73 = DB::table('a83__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
-      $Numrow74 = DB::table('a84__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
-      $Numrow75 = DB::table('a85__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
-      $Numrow76 = DB::table('a86__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
-      $Numrow77 = DB::table('a87__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
-      $Numrow78 = DB::table('a88__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow81 = DB::table('a81__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow82 = DB::table('a82__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow83 = DB::table('a83__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow84 = DB::table('a84__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow85 = DB::table('a85__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow86 = DB::table('a86__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow87 = DB::table('a87__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow88 = DB::table('a88__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
 
-      if ($Numrow71 > 0) {
+      if ($Numrow81 > 0) {
         DB::table('a81__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a81__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
-      if ($Numrow72 > 0) {
+      if ($Numrow82 > 0) {
         DB::table('a82__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a82__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
-      if ($Numrow73 > 0) {
+      if ($Numrow83 > 0) {
         DB::table('a83__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a83__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
-      if ($Numrow74 > 0) {
+      if ($Numrow84 > 0) {
         DB::table('a84__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a84__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
-      if ($Numrow75 > 0) {
+      if ($Numrow85 > 0) {
         DB::table('a85__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a85__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
-      if ($Numrow76 > 0) {
+      if ($Numrow86 > 0) {
         DB::table('a86__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a86__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
-      if ($Numrow77 > 0) {
+      if ($Numrow87 > 0) {
         DB::table('a87__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a87__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
-      if ($Numrow78 > 0) {
+      if ($Numrow88 > 0) {
         DB::table('a88__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
       } else {
         DB::table('a88__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
@@ -1726,8 +1726,8 @@ class PostController extends Controller
         DB::table('log_price')->insert([
           'Item No_Old' => $rowlog->Item_No,
           'Customer_Old' => $rowlog->Customer,
-          'Pcs_After_Old' => $rowlog->PcsAfter,
-          'Price_After_Old' => $rowlog->PriceAfter,
+          'PcsAfter_Old' => $rowlog->PcsAfter,
+          'PriceAfter_Old' => $rowlog->PriceAfter,
           'Category_Old' => $rowlog->Category,
           'DateUpdate_Old' => $SearchDate_af
         ]);
