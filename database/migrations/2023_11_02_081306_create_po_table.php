@@ -15,20 +15,9 @@ return new class extends Migration {
             $table->string('Global Dimension 2 Code')->nullable(true);
             $table->string('Full Description')->nullable(true);
             $table->string('Unit of Measure Code')->nullable(true);
-            $table->double('Quantity' , 10, 2)->nullable(true);
-            $table->double('Cost Amount (Actual)', 10, 2)->nullable(true);
+            $table->double('Quantity' , 20, 2)->nullable(true);
+            $table->double('Cost Amount (Actual)', 20, 2)->nullable(true);
         });
-
-        DB::table('po')->insert([
-            [
-            'Item No' => 'AS-000008',
-            'Global Dimension 2 Code' => 'AS-03',
-            'Full Description' => 'เชือกมิลเบอร์ 4 (10X10)',
-            'Unit of Measure Code' => 'PCS',
-            'Quantity' => 198,
-            'Cost Amount (Actual)' => 34848,
-            ]
-        ]);
     }
 
     /**

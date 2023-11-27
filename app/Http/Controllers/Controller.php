@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -117,7 +118,9 @@ class Controller extends BaseController
 
     public function importfile()
     {
-        return view('Page.importfile');
+        $Date = DB::table('log_price')->distinct()->orderBy('DateUpdate_Old', 'ASC')->pluck('DateUpdate_Old');
+
+        return view('Page.importfile', compact('Date'));
     }
 
     public function Change()

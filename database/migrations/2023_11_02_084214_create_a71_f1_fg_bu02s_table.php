@@ -10,29 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('a71_f1_fg_bu02s', function (Blueprint $table) {
+        Schema::create('a71__f1_fg_bu02s', function (Blueprint $table) {
             $table->string('A')->nullable(true);
             $table->string('Location')->nullable(true);
             $table->string('Item No')->nullable(true);
             $table->string('Global Dimension 2 Code')->nullable(true);
             $table->string('Full Description')->nullable(true);
             $table->string('Unit of Measure Code')->nullable(true);
-            $table->double('Quantity', 10, 2)->nullable(true);
-            $table->double('Cost Amount (Actual)', 10, 2)->nullable(true);
+            $table->double('Quantity', 20, 2)->nullable(true);
+            $table->double('Cost Amount (Actual)', 20, 2)->nullable(true);
         });
-
-        DB::table('a71_f1_fg_bu02s')->insert([
-            [
-            'A' => 'NT-007450F1-FG-BU02',
-            'Location' => 'F1-FG-BU02',
-            'Item No' => 'NT-007450',
-            'Global Dimension 2 Code' => 'NT-01',
-            'Full Description' => '0.20mm ครามม่วง DK   22.0cm x 50 md x 180Mtr  ถ้วยทอง (Y)',
-            'Unit of Measure Code' => 'PCS',
-            'Quantity' => 595,
-            'Cost Amount (Actual)' => 146965,
-            ]
-        ]);
     }
 
     /**

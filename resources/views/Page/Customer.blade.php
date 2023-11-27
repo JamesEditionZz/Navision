@@ -37,7 +37,7 @@
             </div>
             <hr>
             <div class="mt-1 mx-1">
-                <label for=""><a href="{{ Route('importfile') }}">Import File</a></label>
+                <label for=""><a href="{{ Route('importfile') }}">อัพโหลดไฟล์/ดูย้อนหลัง</a></label>
             </div>
             <hr>
         </div>

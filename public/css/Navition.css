@@ -21,73 +21,73 @@
     .table-block {
         display: none;
     }
-    .table-print1  {
+    .table-print1 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
         height: 90vh;
     }
 
-    .table-print2{
+    .table-print2 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
         height: 97vh;
     }
 
-    .table-print3{
+    .table-print3 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
         height: 97vh;
     }
 
-    .table-print3{
+    .table-print3 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
         height: 97vh;
     }
 
-    .table-print4{
+    .table-print4 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
         height: 97vh;
     }
 
-    .table-print1 tr td{
+    .table-print1 tr td {
         border: 2px solid black;
         text-align: center;
         padding: 4px;
     }
 
-    .table-print2 tr td{
+    .table-print2 tr td {
         border: 2px solid black;
         text-align: center;
         padding: 4px;
     }
 
-    .table-print3 tr td{
+    .table-print3 tr td {
         border: 2px solid black;
         text-align: center;
         padding: 4px;
     }
 
-    .table-print4{
+    .table-print4 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
         height: 97vh;
     }
 
-    .table-print4 tr td{
+    .table-print4 tr td {
         border: 2px solid black;
         text-align: center;
         padding: 4px;
     }
 
-    .table-print1Cus{
+    .table-print1Cus {
         display: table !important;
         position: relative;
         border-collapse: collapse;
@@ -95,7 +95,7 @@
         width: 98% !important;
     }
 
-    .table-print2Cus{
+    .table-print2Cus {
         display: table !important;
         position: relative;
         border-collapse: collapse;
@@ -119,13 +119,13 @@
         width: 98% !important;
     }
 
-    .table-print1Cus tr td{
+    .table-print1Cus tr td {
         border: 2px solid black;
         text-align: center;
         padding: 5px;
     }
 
-    .table-print2Cus tr td{
+    .table-print2Cus tr td {
         border: 2px solid black;
         text-align: center;
         padding: 5px;
@@ -143,14 +143,14 @@
         padding: 5px;
     }
 
-    .table-printDC1{
+    .table-printDC1 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
         height: 95vh;
     }
 
-    .table-printDC2{
+    .table-printDC2 {
         display: table !important;
         border-collapse: collapse;
         width: 98% !important;
@@ -171,12 +171,12 @@
         height: 97vh;
     }
 
-    .table-printDC1 tr td{
+    .table-printDC1 tr td {
         border: 2px solid black;
         text-align: center;
     }
 
-    .table-printDC2 tr td{
+    .table-printDC2 tr td {
         border: 2px solid black;
         text-align: center;
     }
@@ -191,14 +191,23 @@
         text-align: center;
     }
 
-    .table-print1, .table-print2, .table-print3, .table-print4  {
+    .table-print1,
+    .table-print2,
+    .table-print3,
+    .table-print4 {
         page-break-before: always !important;
     }
 
-    .table-print1Cus, .table-print2Cus, .table-print3Cus, .table-print4Cus  {
+    .table-print1Cus,
+    .table-print2Cus,
+    .table-print3Cus,
+    .table-print4Cus {
         page-break-before: always !important;
     }
-    .table-printDC1, .table-printDC2, .table-printDC3, .table-printDC4  {
+    .table-printDC1,
+    .table-printDC2,
+    .table-printDC3,
+    .table-printDC4 {
         page-break-before: always !important;
     }
     @page {
@@ -242,9 +251,9 @@ body {
     font-weight: bold;
     color: rgb(255, 255, 255);
 }
-.img-index{
-	width: 100%;
-	height: 99.4vh;
+.img-index {
+    width: 100%;
+    height: 99.4vh;
 }
 .col-1 {
     display: grid;
@@ -457,6 +466,24 @@ a:hover {
     background-color: skyblue;
     box-shadow: 0px 0px 7px rgb(0, 217, 255);
     color: green;
+}
+
+.form-return {
+    margin-top: 10px;
+    padding: 10px;
+}
+.form-return label {
+    border-radius: 7px;
+    padding: 10px;
+    border: 2px solid darkorange;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+.form-return label:hover {
+    background-color: orange;
+    box-shadow: 0px 0px 7px orange;
+    color: aliceblue;
 }
 .text-success {
     background-color: green;
@@ -728,7 +755,45 @@ a:hover {
     font-weight: bold;
     border-radius: 7px;
 }
-.run-animation{
+.modal-return {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    animation: modal 0.4s alternate;
+}
+.modal-re {
+    margin: 5% auto auto auto;
+    background-color: #aedfff;
+    width: 25%;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 7px;
+}
+.block-modal {
+    overflow-y: auto;
+    height: 50vh;
+}
+.data_date:hover {
+    cursor: pointer;
+}
+.data_date:hover {
+    color: #e05151;
+    text-decoration: underline;
+}
+.data_date:focus {
+    color: #e05151;
+    text-decoration: underline;
+}
+.upload-file {
+    display: none;
+    width: 100%;
+    animation: showconfirm 0.4s;
+}
+.run-animation {
     animation: run 0.6s linear;
 }
 @keyframes textcolor {
@@ -820,5 +885,13 @@ a:hover {
     }
     to {
         left: 100%;
+    }
+}
+@keyframes showconfirm {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

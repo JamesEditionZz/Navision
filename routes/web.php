@@ -6,6 +6,7 @@ use App\Http\Controllers\DC1Controller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BackDataController;
 use App\Http\Controllers\DatalistController;
 use App\Http\Controllers\CustomerController;
 
@@ -51,6 +52,9 @@ Route::post('/uploadfile7', [PostController::class,'uploadfile7'])->name('upload
 Route::post('/uploadfile8', [PostController::class,'uploadfile8'])->name('uploadfile8');
 Route::post('/uploadfile9', [PostController::class,'uploadfile9'])->name('uploadfile9');
 Route::post('/uploadfile10', [PostController::class,'uploadfile10'])->name('uploadfile10');
+
+//UnData
+Route::post('/backdata', [BackDataController::class,'backdata'])->name('backdata');
 
 //update
 Route::post('/update/Category', [UpdateController::class,'UpdateItemNo'])->name('UpdateItemNo');

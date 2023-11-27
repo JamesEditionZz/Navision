@@ -39,7 +39,7 @@
       </div>
       <hr>
       <div class="mt-1 mx-1 active">
-        <label for=""><a href="{{ Route('importfile') }}">Import File</a></label>
+        <label for=""><a href="{{ Route('importfile') }}">อัพโหลดไฟล์/ดูย้อนหลัง</a></label>
       </div>
       <hr>
     </div>
@@ -111,8 +111,10 @@
               <input type="file" name="file9" id="file9">
             </div>
           </div>
-          <div></div>
-          <div class="form-btn" align="right">
+          <div class="form-return" align="right">
+            <label for="" id="btn-return">เรียกดูข้อมูลย้อนหลัง</label>
+          </div>
+          <div class="form-btn" align="left">
             <button type="submit" id="btnupload">อัพโหลด</button>
           </div>
         </div>
@@ -163,10 +165,29 @@
   </div>
   <div class="modal-confirm">
     <div class="modal-con p-1">
-		ต้องการยกยอดเดือนที่แล้วด้วยไหม ?
+      ต้องการยกยอดเดือนที่แล้วด้วยไหม ?
       <div align="right" class="mt-1">
         <button class="btn-submit" id="Priceafter">ใช่</button>
         <button class="btn-close" id="close">ไม่</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-return">
+    <div class="modal-re p-1">
+      <div class="block-modal">
+        <p align="center">ต้องการย้อนข้อมูลเดือน</p>
+        @foreach($Date as $rowDate)
+        <div class="mt-1 data_date" onclick="checkclick('{{ $rowDate }}')" align="center">{{ $rowDate }}</div>
+        @endforeach
+      </div>
+      <div class="upload-file">
+        <br>
+        <label>ย้อนหลังวันที่ : </label><label id="selectdate"></label>
+        <p align="center">ต้องการอัพโหลดไฟล์ข้อมูลด้วยไหม</p>
+        <div align="center">
+          <button class="btn-submit" id="backdatasubmit">ใช่</button>
+          <button class="btn-close" id="backdataclose">ไม่</button>
+        </div>
       </div>
     </div>
   </div>
@@ -174,6 +195,49 @@
 
 </html>
 <script>
+  var btnreturn = document.getElementById('btn-return');
+  var modalreturn = document.querySelector('.modal-return');
+
+  btnreturn.addEventListener('click', function() {
+    modalreturn.style.display = "block";
+  });
+
+  function checkclick(date) {
+    var alertuploadfile = document.querySelector('.upload-file');
+    $('#selectdate').text(date);
+    alertuploadfile.style.display = "block"
+
+    var backdatasubmit = document.getElementById('backdatasubmit');
+    var backdataclose = document.getElementById('backdataclose');
+
+    backdatasubmit.addEventListener('click', function() {
+
+      $.ajax({
+        type: "post",
+        url: "{{ Route('backdata') }}",
+        data: {
+          date: date
+        },
+        headers: {
+          "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr('content')
+        },
+        success: function(response){
+          console.log(response);
+        },
+        error: function(error){
+          console.error(error);
+        }
+      })
+
+    });
+
+    backdataclose.addEventListener('click', function() {
+      var modalreturn = document.querySelector('.modal-return');
+      modalreturn.style.display = "none";
+    })
+  }
+
+
   $('form').submit(function(e) {
     e.preventDefault();
 
@@ -199,6 +263,7 @@
     var text8 = document.getElementById('text8');
     var text9 = document.getElementById('text9');
     var text10 = document.getElementById('text10');
+
     var imgloadcss0 = document.querySelector('.img0');
     var imgloadcss1 = document.querySelector('.img1');
     var imgloadcss2 = document.querySelector('.img2');
@@ -210,7 +275,8 @@
     var imgloadcss8 = document.querySelector('.img8');
     var imgloadcss9 = document.querySelector('.img9');
     var imgloadcss10 = document.querySelector('.img10');
-    var btnupload = document.getElementById('btnupload')
+
+    var btnupload = document.getElementById('btnupload');
     var modalconfirm = document.querySelector('.modal-confirm');
     var Priceafter = document.getElementById('Priceafter');
     var closeafter = document.getElementById('close');
@@ -650,7 +716,7 @@
                     const imgload1 = document.getElementById('img1');
                     imgload1.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss1.style.animation = "success";
-					
+
                   },
                   error: function(error) {
                     const imgload1 = document.getElementById(

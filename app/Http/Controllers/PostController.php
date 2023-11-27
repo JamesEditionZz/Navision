@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Calculation\TextData\Search;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
@@ -25,13 +26,33 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      DB::table('item_All')->delete();
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow = DB::table('item_all_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('item_all_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('item_all_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      DB::table('item_all')->delete();
 
       foreach (array_slice($data, 1) as $row) {
         $UnitCost = str_replace(',', '', trim($row[1]));
         $UnitCost = str_replace(['(', ')'], '', $UnitCost);
 
-        DB::table('item_All')->insert([
+        DB::table('item_all')->insert([
           'No' => $row[0],
           'Unit Cost Decha' => $UnitCost,
           'Inventory Posting Group' => $row[2],
@@ -39,6 +60,17 @@ class PostController extends Controller
           'Item Search Description 1' => $row[4],
           'Item Search Description 2' => $row[5],
           'Item Search Description 3' => $row[6],
+        ]);
+
+        DB::table('item_all_old')->insert([
+          'No' => $row[0],
+          'Unit Cost Decha' => $UnitCost,
+          'Inventory Posting Group' => $row[2],
+          'Full Description' => $row[3],
+          'Item Search Description 1' => $row[4],
+          'Item Search Description 2' => $row[5],
+          'Item Search Description 3' => $row[6],
+          'DateUpdate_Old' => $SearchDate_af,
         ]);
       }
     }
@@ -59,6 +91,26 @@ class PostController extends Controller
       }
       $data = $worksheet->toArray();
 
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow = DB::table('po_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('po_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('po_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
       DB::table('po')->delete();
 
       // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
@@ -75,6 +127,11 @@ class PostController extends Controller
             'Quantity' => $quantity + $checkData->Quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
           ]);
+
+          DB::table('po_old')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
+          ]);
         } else {
           DB::table('po')->insert([
             'Item No' => $row[0],
@@ -83,6 +140,16 @@ class PostController extends Controller
             'Unit of Measure Code' => $row[12],
             'Quantity' => $quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual,
+          ]);
+
+          DB::table('po_old')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+            'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -107,6 +174,26 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow = DB::table('neg_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('neg_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('neg_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
       DB::table('neg')->delete();
 
       // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
@@ -123,6 +210,11 @@ class PostController extends Controller
             'Quantity' => $quantity + $checkData->Quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
           ]);
+
+          DB::table('neg_old')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
+          ]);
         } else {
           DB::table('neg')->insert([
             'Item No' => $row[0],
@@ -131,6 +223,16 @@ class PostController extends Controller
             'Unit of Measure Code' => $row[12],
             'Quantity' => $quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual,
+          ]);
+
+          DB::table('neg_old')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+            'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -155,6 +257,26 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow = DB::table('purchase_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('purchase_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('purchase_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
       DB::table('purchase')->delete();
 
       // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
@@ -171,6 +293,11 @@ class PostController extends Controller
             'Quantity' => $quantity + $checkData->Quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
           ]);
+
+          DB::table('purchase_old')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount
+          ]);
         } else {
           DB::table('purchase')->insert([
             'Item No' => $row[0],
@@ -179,6 +306,16 @@ class PostController extends Controller
             'Unit of Measure Code' => $row[12],
             'Quantity' => $quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual,
+          ]);
+
+          DB::table('purchase_old')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+            'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -203,6 +340,26 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow = DB::table('returncuses_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('returncuses_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('returncuses_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
       DB::table('returncuses')->delete();
 
       // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
@@ -222,6 +379,12 @@ class PostController extends Controller
             'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount,
             'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData->SalesAmount
           ]);
+
+          DB::table('returncuses_old')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount,
+            'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData->SalesAmount
+          ]);
         } else {
           DB::table('returncuses')->insert([
             'Item No' => $row[0],
@@ -231,6 +394,17 @@ class PostController extends Controller
             'Quantity' => $quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual,
             'Sales Amount (Actual)' => $sales_Amount_Actual,
+          ]);
+
+          DB::table('returncuses_old')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+            'Sales Amount (Actual)' => $sales_Amount_Actual,
+            'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -255,6 +429,75 @@ class PostController extends Controller
       }
 
       $data = $worksheet->toArray();
+
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow71 = DB::table('a71__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow72 = DB::table('a72__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow73 = DB::table('a73__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow74 = DB::table('a74__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow75 = DB::table('a75__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow76 = DB::table('a76__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow77 = DB::table('a77__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow78 = DB::table('a78__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow71 > 0) {
+        DB::table('a71__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a71__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow72 > 0) {
+        DB::table('a72__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a72__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow73 > 0) {
+        DB::table('a73__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a73__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow74 > 0) {
+        DB::table('a74__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a74__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow75 > 0) {
+        DB::table('a75__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a75__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow76 > 0) {
+        DB::table('a76__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a76__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow77 > 0) {
+        DB::table('a77__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a77__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow78 > 0) {
+        DB::table('a78__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a78__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
 
       DB::table('a71__f1_fg_bu02s')->delete();
       DB::table('a72__f2_fg_bu10s')->delete();
@@ -287,6 +530,11 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData1->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
             ]);
+
+            DB::table('a71__f1_fg_bu02s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData1->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
+            ]);
           } else {
             DB::table('a71__f1_fg_bu02s')->insert([
               'A' => $row[0],
@@ -298,10 +546,27 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
+
+            DB::table('a71__f1_fg_bu02s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
           }
         } elseif ($row[9] == 'F2-FG-BU10') {
           if (!empty($checkData2->ItemNo) && $checkData2->ItemNo == $row[1]) {
             DB::table('a72__f2_fg_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+            ]);
+
+            DB::table('a72__f2_fg_bu10s_old')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData2->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
             ]);
@@ -316,10 +581,27 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
+
+            DB::table('a72__f2_fg_bu10s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
           }
         } elseif ($row[9] == 'F2-TH-BU05') {
           if (!empty($checkData3->ItemNo) && $checkData3->ItemNo == $row[1]) {
             DB::table('a73__f2_th_bu05s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+            ]);
+
+            DB::table('a73__f2_th_bu05s_old')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData3->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
             ]);
@@ -334,10 +616,27 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
+
+            DB::table('a73__f2_th_bu05s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
           }
         } elseif ($row[9] == 'F2-DE-BU10') {
           if (!empty($checkData4->ItemNo) && $checkData4->ItemNo == $row[1]) {
             DB::table('a74__f2_de_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData4->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
+            ]);
+
+            DB::table('a74__f2_de_bu10s_old')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData4->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
             ]);
@@ -353,10 +652,27 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
+
+            DB::table('a74__f2_de_bu10s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
           }
         } elseif ($row[9] == 'F2-EX-BU11') {
           if (!empty($checkData5->ItemNo) && $checkData5->ItemNo == $row[1]) {
             DB::table('a75__f2_ex_bu11s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData5->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData5->CostAmount,
+            ]);
+
+            DB::table('a75__f2_ex_bu11s_old')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData5->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData5->CostAmount,
             ]);
@@ -371,10 +687,27 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
+
+            DB::table('a75__f2_ex_bu11s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
           }
         } elseif ($row[9] == 'F2-TW-BU04') {
           if (!empty($checkData6->ItemNo) && $checkData6->ItemNo == $row[1]) {
             DB::table('a76__f2_tw_bu04s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData6->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData6->CostAmount,
+            ]);
+
+            DB::table('a76__f2_tw_bu04s_old')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData6->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData6->CostAmount,
             ]);
@@ -389,10 +722,27 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
+
+            DB::table('a76__f2_tw_bu04s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
           }
         } elseif ($row[9] === 'F2-TW-BU07') {
           if (!empty($checkData7->ItemNo) && $checkData7->ItemNo == $row[1]) {
             DB::table('a77__f2_tw_bu07s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData7->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData7->CostAmount,
+            ]);
+
+            DB::table('a77__f2_tw_bu07s_old')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData7->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData7->CostAmount,
             ]);
@@ -407,10 +757,27 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
             ]);
+
+            DB::table('a77__f2_tw_bu07s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
           }
         } elseif ($row[9] === 'F2-CE-BU10') {
           if (!empty($checkData8->ItemNo) && $checkData8->ItemNo == $row[1]) {
             DB::table('a78__f2_ce_bu10s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData8->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData8->CostAmount,
+            ]);
+
+            DB::table('a78__f2_ce_bu10s_old')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData8->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData8->CostAmount,
             ]);
@@ -424,6 +791,18 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a78__f2_ce_bu10s_old')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         }
@@ -450,6 +829,27 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow = DB::table('คืนของs_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('คืนของs_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('คืนของs_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+
       DB::table('คืนของs')->delete();
 
       // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
@@ -469,6 +869,12 @@ class PostController extends Controller
             'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount,
             'Purchase Amount (Actual)' => $purchase_Amount_Actual + +$checkData->PurchaseAmount,
           ]);
+
+          DB::table('คืนของs_old')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + +$checkData->Quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData->CostAmount,
+            'Purchase Amount (Actual)' => $purchase_Amount_Actual + +$checkData->PurchaseAmount,
+          ]);
         } else {
           DB::table('คืนของs')->insert([
             'Item No' => $row[0],
@@ -478,6 +884,17 @@ class PostController extends Controller
             'Quantity' => $quantity,
             'Cost Amount (Actual)' => $cost_Amount_Actual,
             'Purchase Amount (Actual)' => $purchase_Amount_Actual,
+          ]);
+
+          DB::table('คืนของs_old')->insert([
+            'Item No' => $row[0],
+            'Global Dimension 2 Code' => $row[14],
+            'Full Description' => $row[1],
+            'Unit of Measure Code' => $row[12],
+            'Quantity' => $quantity,
+            'Cost Amount (Actual)' => $cost_Amount_Actual,
+            'Purchase Amount (Actual)' => $purchase_Amount_Actual,
+            'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -502,6 +919,75 @@ class PostController extends Controller
       }
 
       $data = $worksheet->toArray();
+
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow71 = DB::table('a81__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow72 = DB::table('a82__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow73 = DB::table('a83__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow74 = DB::table('a84__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow75 = DB::table('a85__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow76 = DB::table('a86__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow77 = DB::table('a87__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $Numrow78 = DB::table('a88__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow71 > 0) {
+        DB::table('a81__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a81__f1_fg_bu02s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow72 > 0) {
+        DB::table('a82__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a82__f2_fg_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow73 > 0) {
+        DB::table('a83__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a83__f2_th_bu05s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow74 > 0) {
+        DB::table('a84__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a84__f2_de_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow75 > 0) {
+        DB::table('a85__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a85__f2_ex_bu11s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow76 > 0) {
+        DB::table('a86__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a86__f2_tw_bu04s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow77 > 0) {
+        DB::table('a87__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a87__f2_tw_bu07s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($Numrow78 > 0) {
+        DB::table('a88__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('a88__f2_ce_bu10s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
 
       DB::table('a81__f1_fg_bu02s')->delete();
       DB::table('a82__f2_fg_bu10s')->delete();
@@ -534,8 +1020,24 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData1->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
             ]);
+
+            DB::table('a81__f1_fg_bu02s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData1->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
+            ]);
           } else {
             DB::table('a81__f1_fg_bu02s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a81__f1_fg_bu02s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -552,8 +1054,24 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData2->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
             ]);
+
+            DB::table('a82__f2_fg_bu10s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+            ]);
           } else {
             DB::table('a82__f2_fg_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a82__f2_fg_bu10s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -570,8 +1088,24 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData3->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
             ]);
+
+            DB::table('a83__f2_th_bu05s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+            ]);
           } else {
             DB::table('a83__f2_th_bu05s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a83__f2_th_bu05s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -588,9 +1122,25 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData4->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
             ]);
+
+            DB::table('a84__f2_de_bu10s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData4->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
+            ]);
           } else {
 
             DB::table('a84__f2_de_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a84__f2_de_bu10s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -607,8 +1157,24 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData5->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData5->CostAmount,
             ]);
+
+            DB::table('a85__f2_ex_bu11s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData5->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData5->CostAmount,
+            ]);
           } else {
             DB::table('a85__f2_ex_bu11s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a85__f2_ex_bu11s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -625,8 +1191,24 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData6->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData6->CostAmount,
             ]);
+
+            DB::table('a86__f2_tw_bu04s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData6->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData6->CostAmount,
+            ]);
           } else {
             DB::table('a86__f2_tw_bu04s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a86__f2_tw_bu04s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -643,8 +1225,24 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData7->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData7->CostAmount,
             ]);
+
+            DB::table('a87__f2_tw_bu07s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData7->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData7->CostAmount,
+            ]);
           } else {
             DB::table('a87__f2_tw_bu07s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a87__f2_tw_bu07s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -661,8 +1259,24 @@ class PostController extends Controller
               'Quantity' => $quantity + $checkData8->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData8->CostAmount,
             ]);
+
+            DB::table('a88__f2_ce_bu10s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData8->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData8->CostAmount,
+            ]);
           } else {
             DB::table('a88__f2_ce_bu10s')->insert([
+              'A' => $row[0],
+              'Location' => $row[9],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[16],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[14],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+            ]);
+
+            DB::table('a88__f2_ce_bu10s_old')->insert([
               'A' => $row[0],
               'Location' => $row[9],
               'Item No' => $row[1],
@@ -697,6 +1311,47 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
+      $m_af = date('m')-1;
+      $y_af = date('Y')+543;
+
+      $y_Old = date('Y')+542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af.'/'.$y_af;
+      $SearchDate_Old = $m_af.'/'.$y_Old;
+
+      $NumrowDC1 = DB::table('dc1_s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $NumrowDCP = DB::table('dcp_s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $NumrowDCY = DB::table('dcy_s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+      $NumrowDEX = DB::table('dex_s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($NumrowDC1 > 0) {
+        DB::table('dc1_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      }else{
+        DB::table('dc1_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($NumrowDCP > 0) {
+        DB::table('dcp_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      }else{
+        DB::table('dcp_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($NumrowDCY > 0) {
+        DB::table('dcy_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      }else{
+        DB::table('dcy_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
+      if ($NumrowDEX > 0) {
+        DB::table('dex_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      }else{
+        DB::table('dex_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
       DB::table('dc1_s')->delete();
       DB::table('dcp_s')->delete();
       DB::table('dcy_s')->delete();
@@ -723,8 +1378,25 @@ class PostController extends Controller
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData1->SalesAmount,
             ]);
+
+            DB::table('dc1_s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData1->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData1->SalesAmount,
+            ]);
           } else {
             DB::table('dc1_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+
+            DB::table('dc1_s_old')->insert([
               'Item&Branch' => $row[0],
               'Item No' => $row[1],
               'Global Dimension 2 Code' => $row[15],
@@ -742,8 +1414,25 @@ class PostController extends Controller
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData2->SalesAmount,
             ]);
+
+            DB::table('dcy_s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData2->SalesAmount,
+            ]);
           } else {
             DB::table('dcy_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+
+            DB::table('dcy_s_old')->insert([
               'Item&Branch' => $row[0],
               'Item No' => $row[1],
               'Global Dimension 2 Code' => $row[15],
@@ -761,8 +1450,25 @@ class PostController extends Controller
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData3->SalesAmount,
             ]);
+
+            DB::table('dcp_s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData3->SalesAmount,
+            ]);
           } else {
             DB::table('dcp_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+
+            DB::table('dcp_s_old')->insert([
               'Item&Branch' => $row[0],
               'Item No' => $row[1],
               'Global Dimension 2 Code' => $row[15],
@@ -780,8 +1486,25 @@ class PostController extends Controller
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData4->SalesAmount,
             ]);
+
+            DB::table('dex_s_old')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData4->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData4->SalesAmount,
+            ]);
           } else {
             DB::table('dex_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+
+            DB::table('dex_s_old')->insert([
               'Item&Branch' => $row[0],
               'Item No' => $row[1],
               'Global Dimension 2 Code' => $row[15],
@@ -815,6 +1538,26 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
+      $m_af = date('m')-1;
+      $y_af = date('Y')+543;
+
+      $y_Old = date('Y')+542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af.'/'.$y_af;
+      $SearchDate_Old = $m_af.'/'.$y_Old;
+
+      $Numrow = DB::table('item_stock_old')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('item_stock_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      }else{
+        DB::table('item_stock_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
+
       DB::table('item_stock')->delete();
 
       // วนลูปผ่านข้อมูลและบันทึกในฐานข้อมูล
@@ -840,8 +1583,30 @@ class PostController extends Controller
             'Estimate Amount' => $Estimate_Amount + $checkData->EstimateAmount,
             'Inventory' => $Inventory + $checkData->Inventory,
           ]);
+
+          DB::table('item_stock_old')->where('Item No', $row[0])->update([
+            'Quantity' => $quantity + $checkData->Quantity,
+            'Cost per Unit' => $Cost_Unit + $checkData->CostUnit,
+            'Amount' => $Amount + $checkData->Amount,
+            'Estimate Amount' => $Estimate_Amount + $checkData->EstimateAmount,
+            'Inventory' => $Inventory + $checkData->Inventory,
+          ]);
         } else {
           DB::table('item_stock')->insert([
+            'Item No' => $row[0],
+            'goodname1' => $row[2],
+            'branchcode' => $row[5],
+            'groupname' => $row[6],
+            'Quantity' => $quantity,
+            'Cost per Unit' => $Cost_Unit,
+            'Amount' => $Amount,
+            'Estimate Amount' => $Estimate_Amount,
+            'Inventory' => $Inventory,
+            'Last Stock-In' => $row[12],
+            'Entry Type' => $row[13],
+          ]);
+
+          DB::table('item_stock_old')->insert([
             'Item No' => $row[0],
             'goodname1' => $row[2],
             'branchcode' => $row[5],
@@ -937,14 +1702,25 @@ class PostController extends Controller
         ->orderBy('item_all.No')
         ->get();
 
-      $d = date('d');
-      $m = date('m') - 1;
-      $y = date('Y') + 543;
-
-      if ($m <= 0) {
-        $m = 12;
-        $y = $y - 1;
-      }
+        $m_af = date('m')-1;
+        $y_af = date('Y')+543;
+  
+        $y_Old = date('Y')+542;
+  
+        if ($m_af === 0) {
+          $m_af = 12;
+        }
+  
+        $SearchDate_af = $m_af.'/'.$y_af;
+        $SearchDate_Old = $m_af.'/'.$y_Old;
+  
+        $Numrow = DB::table('log_price')->where('DateUpdate_Old', $SearchDate_af)->count();
+  
+        if ($Numrow > 0) {
+          DB::table('log_price')->where('DateUpdate_Old', $SearchDate_af)->delete();
+        }else{
+          DB::table('log_price')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+        }
 
       foreach ($ItemNo as $rowlog) {
         DB::table('log_price')->insert([
@@ -953,7 +1729,7 @@ class PostController extends Controller
           'Pcs_After_Old' => $rowlog->PcsAfter,
           'Price_After_Old' => $rowlog->PriceAfter,
           'Category_Old' => $rowlog->Category,
-          'DateUpdate_Old' => $d . "/" . $m . "/" . $y
+          'DateUpdate_Old' => $SearchDate_af
         ]);
       }
 

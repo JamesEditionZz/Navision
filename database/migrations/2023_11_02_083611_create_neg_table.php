@@ -16,20 +16,9 @@ return new class extends Migration
             $table->string('Global Dimension 2 Code')->nullable(true);
             $table->string('Full Description')->nullable(true);
             $table->string('Unit of Measure Code')->nullable(true);
-            $table->double('Quantity', 10, 2)->nullable(true);
-            $table->double('Cost Amount (Actual)', 10, 2)->nullable(true);
+            $table->double('Quantity', 20, 2)->nullable(true);
+            $table->double('Cost Amount (Actual)', 20, 2)->nullable(true);
         });
-
-        DB::table('neg')->insert([
-            [
-            'Item No' => 'MT-000070',
-            'Global Dimension 2 Code' => 'MT-01',
-            'Full Description' => 'รุมสีทอง 1แบ่ง2  0.10mm  4.0 x 30 x 200 ป้ายถ้วยทอง',
-            'Unit of Measure Code' => 'PCS',
-            'Quantity' => -198,
-            'Cost Amount (Actual)' => -34848,
-            ]
-        ]);
     }
 
     /**
