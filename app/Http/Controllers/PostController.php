@@ -26,7 +26,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -91,7 +91,7 @@ class PostController extends Controller
       }
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -174,7 +174,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -257,7 +257,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -340,7 +340,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -430,7 +430,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -829,7 +829,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -920,7 +920,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m');
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -1311,7 +1311,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m');
       $y_af = date('Y')+543;
 
       $y_Old = date('Y')+542;
@@ -1538,7 +1538,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m');
       $y_af = date('Y')+543;
 
       $y_Old = date('Y')+542;
@@ -1702,7 +1702,7 @@ class PostController extends Controller
         ->orderBy('item_all.No')
         ->get();
 
-        $m_af = date('m')-1;
+        $m_af = date('m');
         $y_af = date('Y')+543;
   
         $y_Old = date('Y')+542;

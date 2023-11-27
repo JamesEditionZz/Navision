@@ -260,7 +260,9 @@
   var closesuccess = document.getElementById('close-success');
   closesuccess.addEventListener('click', function() {
     var modalsuccessData = document.querySelector('.modal-success');
+	var modalBackData = document.querySelector('.modal-loading');
     modalsuccessData.style.display = "none";
+	modalBackData.style.display = "none";
   });
 
 

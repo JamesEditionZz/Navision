@@ -41,8 +41,38 @@ class BackDataController extends Controller
         $dcy_s = DB::table('dcy_s_old')->where('DateUpdate_Old', $date)->count();
         $dex_s = DB::table('dex_s_old')->where('DateUpdate_Old', $date)->count();
         $item_stock = DB::table('item_stock_old')->where('DateUpdate_Old', $date)->count();
+		
+		DB::table('dataother')->delete();
+		DB::table('item_all')->delete();
+		DB::table('po')->delete();
+		DB::table('neg')->delete();
+		DB::table('purchase')->delete();
+		DB::table('returncuses')->delete();
+		DB::table('a71__f1_fg_bu02s')->delete();
+		DB::table('a72__f2_fg_bu10s')->delete();
+		DB::table('a73__f2_th_bu05s')->delete();
+		DB::table('a74__f2_de_bu10s')->delete();
+		DB::table('a75__f2_ex_bu11s')->delete();
+		DB::table('a76__f2_tw_bu04s')->delete();
+		DB::table('a77__f2_tw_bu07s')->delete();
+		DB::table('a78__f2_ce_bu10s')->delete();
+		DB::table('คืนของs')->delete();
+		DB::table('a81__f1_fg_bu02s')->delete();
+		DB::table('a82__f2_fg_bu10s')->delete();
+		DB::table('a83__f2_th_bu05s')->delete();
+		DB::table('a84__f2_de_bu10s')->delete();
+		DB::table('a85__f2_ex_bu11s')->delete();
+		DB::table('a86__f2_tw_bu04s')->delete();
+		DB::table('a87__f2_tw_bu07s')->delete();
+		DB::table('a88__f2_ce_bu10s')->delete();
+		DB::table('dc1_s')->delete();
+		DB::table('dcp_s')->delete();
+		DB::table('dcy_s')->delete();
+		DB::table('dex_s')->delete();
+		DB::table('item_stock')->delete();
 
         if ($log_price > 0) {
+			
             $log_price_Data = DB::table('log_price')
             ->select(
                 'Item No_Old as ItemNo', 'Customer_Old as Customer', 'PcsAfter_Old as PcsAfter',
@@ -63,6 +93,7 @@ class BackDataController extends Controller
         }
 
         if ($item_all > 0) {
+			
             $Item_all_data = DB::table('item_all_old')
             ->select(
                 'No', 'Unit Cost Decha as Unit', 'Inventory Posting Group as Group', 'Full Description as Full',
@@ -84,7 +115,8 @@ class BackDataController extends Controller
             }
         }
 
-        if ($po  > 0) {
+        if ($po > 0) {
+			
             $po_data = DB::table('po_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -106,6 +138,7 @@ class BackDataController extends Controller
         }
 
         if ($neg  > 0) {
+			
             $neg_data = DB::table('neg_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -127,6 +160,7 @@ class BackDataController extends Controller
         }
 
         if ($purchase  > 0) {
+			
             $purchase_data = DB::table('purchase_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -148,6 +182,7 @@ class BackDataController extends Controller
         }
 
         if ($returncuses  > 0) {
+			
             $returncuses_data = DB::table('returncuses_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -170,6 +205,7 @@ class BackDataController extends Controller
         }
 
         if ($a71__f1_fg_bu02s  > 0) {
+			
             $a71__f1_fg_bu02s_data = DB::table('a71__f1_fg_bu02s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -194,6 +230,7 @@ class BackDataController extends Controller
         }
 
         if ($a72__f2_fg_bu10s  > 0) {
+			
             $a72__f2_fg_bu10s_data = DB::table('a72__f2_fg_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -218,6 +255,7 @@ class BackDataController extends Controller
         }
 
         if ($a73__f2_th_bu05s  > 0) {
+			
             $a73__f2_th_bu05s_data = DB::table('a73__f2_th_bu05s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -242,6 +280,7 @@ class BackDataController extends Controller
         }
 
         if ($a74__f2_de_bu10s  > 0) {
+			
             $a74__f2_de_bu10s_data = DB::table('a74__f2_de_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -266,6 +305,7 @@ class BackDataController extends Controller
         }
 
         if ($a75__f2_ex_bu11s  > 0) {
+			
             $a75__f2_ex_bu11s_data = DB::table('a75__f2_ex_bu11s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -290,6 +330,7 @@ class BackDataController extends Controller
         }
 
         if ($a76__f2_tw_bu04s  > 0) {
+			
             $a76__f2_tw_bu04s_data = DB::table('a76__f2_tw_bu04s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -314,6 +355,7 @@ class BackDataController extends Controller
         }
 
         if ($a77__f2_tw_bu07s  > 0) {
+			
             $a77__f2_tw_bu07s_data = DB::table('a77__f2_tw_bu07s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -338,6 +380,7 @@ class BackDataController extends Controller
         }
 
         if ($a78__f2_ce_bu10s  > 0) {
+			
             $a78__f2_ce_bu10s_data = DB::table('a78__f2_ce_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -362,6 +405,7 @@ class BackDataController extends Controller
         }
 
         if ($returnitem  > 0) {
+			
             $returnitem_data = DB::table('คืนของs_old')
             ->select(
                 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -385,6 +429,7 @@ class BackDataController extends Controller
         }
 
         if ($a81__f1_fg_bu02s  > 0) {
+			
             $a81__f1_fg_bu02s_data = DB::table('a81__f1_fg_bu02s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -409,6 +454,7 @@ class BackDataController extends Controller
         }
 
         if ($a82__f2_fg_bu10s  > 0) {
+			
             $a82__f2_fg_bu10s_data = DB::table('a82__f2_fg_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -433,6 +479,7 @@ class BackDataController extends Controller
         }
 
         if ($a83__f2_th_bu05s  > 0) {
+			
             $a83__f2_th_bu05s_data = DB::table('a83__f2_th_bu05s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -457,6 +504,7 @@ class BackDataController extends Controller
         }
 
         if ($a84__f2_de_bu10s  > 0) {
+			
             $a84__f2_de_bu10s_data = DB::table('a84__f2_de_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -481,6 +529,7 @@ class BackDataController extends Controller
         }
 
         if ($a85__f2_ex_bu11s  > 0) {
+			
             $a85__f2_ex_bu11s_data = DB::table('a85__f2_ex_bu11s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -505,6 +554,7 @@ class BackDataController extends Controller
         }
 
         if ($a86__f2_tw_bu04s  > 0) {
+			
             $a86__f2_tw_bu04s_data = DB::table('a86__f2_tw_bu04s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -529,6 +579,7 @@ class BackDataController extends Controller
         }
 
         if ($a87__f2_tw_bu07s  > 0) {
+			
             $a87__f2_tw_bu07s_data = DB::table('a87__f2_tw_bu07s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -553,6 +604,7 @@ class BackDataController extends Controller
         }
 
         if ($a88__f2_ce_bu10s  > 0) {
+			
             $a88__f2_ce_bu10s_data = DB::table('a88__f2_ce_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -577,6 +629,7 @@ class BackDataController extends Controller
         }
 
         if ($dc1_s  > 0) {
+			
             $dc1_s_data = DB::table('dc1_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -601,6 +654,7 @@ class BackDataController extends Controller
         }
 
         if ($dcp_s  > 0) {
+			
             $dcp_s_data = DB::table('dcp_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -625,6 +679,7 @@ class BackDataController extends Controller
         }
 
         if ($dcy_s  > 0) {
+			
             $dcy_s_data = DB::table('dcy_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -649,6 +704,7 @@ class BackDataController extends Controller
         }
 
         if ($dex_s  > 0) {
+			
             $dex_s_data = DB::table('dex_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -673,6 +729,7 @@ class BackDataController extends Controller
         }
 
         if ($item_stock > 0) {
+			
             $item_stock_data = DB::table('item_stock_old')
             ->select(
                 'item no as ItemNo', 'goodname1', 'branchcode', 'groupname', 'quantity',
