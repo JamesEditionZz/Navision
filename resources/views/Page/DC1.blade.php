@@ -442,7 +442,7 @@
                     </tr>
                     <tr>
                         <td>NT</td>
-                        <td>อวนกำไนลอน</td>
+                        <td>อวนกำไนล่อน</td>
                         <td>
                             <div id="PcsAfterNT_2"></div>
                         </td>
@@ -1138,7 +1138,7 @@
                     </tr>
                     <tr>
                         <td>SNT</td>
-                        <td>อวนโมโน,ไนลอน</td>
+                        <td>อวนโมโน,ไนล่อน</td>
                         <td>
                             <div id="PcsAfterSNT_1"></div>
                         </td>
@@ -3462,7 +3462,7 @@
                     </tr>
                     <tr>
                         <td>TW</td>
-                        <td>ด้ายไนลอน</td>
+                        <td>ด้ายไนล่อน</td>
                         <td>
                             <div id="PcsAfterTW_1"></div>
                         </td>
@@ -3926,7 +3926,7 @@
                     </tr>
                     <tr>
                         <td>STW</td>
-                        <td>ด้ายไนลอน</td>
+                        <td>ด้ายไนล่อน</td>
                         <td>
                             <div id="PcsAfterSTW_1"></div>
                         </td>
@@ -8153,7 +8153,7 @@
                 </tr>
                 <tr>
                     <td>SNT</td>
-                    <td>อวนโมโน,ไนลอน</td>
+                    <td>อวนโมโน,ไนล่อน</td>
                     <td>
                         <div id="PcsAfterSNT_1Print"></div>
                     </td>
@@ -8733,7 +8733,7 @@
                 <tr>
                     <td rowspan="6">ด้ายโพลี</td>
                     <td>TW</td>
-                    <td>ด้ายไนลอน</td>
+                    <td>ด้ายไนล่อน</td>
                     <td>
                         <div id="PcsAfterTW_1Print"></div>
                     </td>
@@ -8849,7 +8849,7 @@
                 </tr>
                 <tr>
                     <td>STW</td>
-                    <td>ด้ายไนลอน</td>
+                    <td>ด้ายไนล่อน</td>
                     <td>
                         <div id="PcsAfterSTW_1Print"></div>
                     </td>

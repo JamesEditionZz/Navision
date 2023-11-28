@@ -26,7 +26,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -91,7 +91,7 @@ class PostController extends Controller
       }
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -174,7 +174,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -257,7 +257,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -340,7 +340,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -430,7 +430,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -829,7 +829,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -920,7 +920,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -1046,6 +1046,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-FG-BU10') {
@@ -1080,6 +1081,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-TH-BU05') {
@@ -1114,6 +1116,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-DE-BU10') {
@@ -1149,6 +1152,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-EX-BU11') {
@@ -1183,6 +1187,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-TW-BU04') {
@@ -1217,6 +1222,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] === 'F2-TW-BU07') {
@@ -1251,6 +1257,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] === 'F2-CE-BU10') {
@@ -1285,6 +1292,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         }
@@ -1405,6 +1413,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif (strpos($row[0], "DCY")) {
@@ -1441,6 +1450,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif (strpos($row[0], "DCP")) {
@@ -1477,6 +1487,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif (strpos($row[0], "DEX")) {
@@ -1513,6 +1524,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         }
@@ -1618,6 +1630,7 @@ class PostController extends Controller
             'Inventory' => $Inventory,
             'Last Stock-In' => $row[12],
             'Entry Type' => $row[13],
+			'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -1721,17 +1734,6 @@ class PostController extends Controller
         }else{
           DB::table('log_price')->where('DateUpdate_Old', $SearchDate_Old)->delete();
         }
-
-      foreach ($ItemNo as $rowlog) {
-        DB::table('log_price')->insert([
-          'Item No_Old' => $rowlog->Item_No,
-          'Customer_Old' => $rowlog->Customer,
-          'PcsAfter_Old' => $rowlog->PcsAfter,
-          'PriceAfter_Old' => $rowlog->PriceAfter,
-          'Category_Old' => $rowlog->Category,
-          'DateUpdate_Old' => $SearchDate_af
-        ]);
-      }
 
       foreach ($ItemNo as $row) {
         $PcsAf = floatval($row->PcsAfter);
@@ -1958,6 +1960,15 @@ class PostController extends Controller
           'PcsAfter' => $resultInsert[2],
           'PriceAfter' => $resultInsert[3],
           'Category' => $resultInsert[4],
+		]);
+		  
+		DB::table('log_price')->insert([
+          'Item No_Old' => $resultInsert[0],
+          'Customer_Old' => $resultInsert[1],
+          'PcsAfter_Old' => $resultInsert[2],
+          'PriceAfter_Old' => $resultInsert[3],
+          'Category_Old' => $resultInsert[4],
+          'DateUpdate_Old' => $SearchDate_af
         ]);
       }
 
