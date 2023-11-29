@@ -3433,7 +3433,7 @@ class DC1Controller extends Controller
             /////////////////////////////////////////////////////////////////////////////////////
 
             elseif ($Code_1[0] === "SNT") {
-                if ($rowitem->Category === "อวนโมโน" || $rowitem->Category === "ไนลอน") {
+                if ($rowitem->Category === "อวนโมโน" || $rowitem->Category === "ไนล่อน") {
                     if ($rowitem->PcsAfter > 0 && $rowitem->PriceAfter > 0) {
                         $NumberSNT_1 = ($rowitem->PriceAfter / $rowitem->PcsAfter);
                     } else {

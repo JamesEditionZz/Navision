@@ -199,7 +199,7 @@
   <div class="modal-success">
     <div class="load-success">
       <img class="img-success" align="center" src="{{ asset('/icon/success.png') }}">
-      <h3 align="center">โหลดเสร็จแล้ว จาร...</h3>
+      <h3 align="center">โหลดเสร็จแล้ว</h3>
       <div align="center">
         <button class="btn-success" id="close-success">OK</button>
       </div>
@@ -260,7 +260,9 @@
   var closesuccess = document.getElementById('close-success');
   closesuccess.addEventListener('click', function() {
     var modalsuccessData = document.querySelector('.modal-success');
+	var modalBackData = document.querySelector('.modal-loading');
     modalsuccessData.style.display = "none";
+	modalBackData.style.display = "none";
   });
 
 

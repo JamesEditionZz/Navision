@@ -88,8 +88,8 @@
                             <td colspan="2" style="background-color: rgb(160,255,200);">ตปท</td>
                         </tr>
                         <tr>
-                            <td colspan="2">{{ $d_before }}/{{ $m_before }}/{{ $y_before }}</td>
-                            <td colspan="2">{{ $d_before }}/{{ $m_before }}/{{ $y_before }}</td>
+                            <td colspan="2">{{ Session::get('d_after') }}/{{ Session::get('m_after') }}/{{ Session::get('y_after') }}</td>
+                            <td colspan="2">{{ Session::get('d_after') }}/{{ Session::get('m_after') }}/{{ Session::get('y_after') }}</td>
                             <td colspan="2" style="background-color: rgb(200,155,255);">ปรับเข้า</td>
                             <td colspan="2" style="background-color: rgb(200,155,255);">ปรับออก</td>
                             <td colspan="2" style="background-color: rgb(200,155,255);">หลังปรับ</td>
@@ -101,10 +101,10 @@
                             <td colspan="2" style="background-color: rgb(255,155,155);">โอนออก</td>
                             <td colspan="2" style="background-color: rgb(245,255,89);">คืนของร้านค้า</td>
                             <td colspan="2" style="background-color: rgb(255,155,155);">รวม</td>
-                            <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
-                            <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
+                            <td colspan="2">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
+                            <td colspan="2">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
                             <td colspan="2" style="background-color: rgb(255,155,155);">ผลต่างคำนวน/NAV</td>
-                            <td colspan="4">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
+                            <td colspan="4">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
                             <td colspan="2" style="background-color: rgb(160,255,200);">รับโอน</td>
@@ -442,7 +442,7 @@
                     </tr>
                     <tr>
                         <td>NT</td>
-                        <td>อวนกำไนลอน</td>
+                        <td>อวนกำไนล่อน</td>
                         <td>
                             <div id="PcsAfterNT_2"></div>
                         </td>
@@ -1138,7 +1138,7 @@
                     </tr>
                     <tr>
                         <td>SNT</td>
-                        <td>อวนโมโน,ไนลอน</td>
+                        <td>อวนโมโน,ไนล่อน</td>
                         <td>
                             <div id="PcsAfterSNT_1"></div>
                         </td>
@@ -3462,7 +3462,7 @@
                     </tr>
                     <tr>
                         <td>TW</td>
-                        <td>ด้ายไนลอน</td>
+                        <td>ด้ายไนล่อน</td>
                         <td>
                             <div id="PcsAfterTW_1"></div>
                         </td>
@@ -3926,7 +3926,7 @@
                     </tr>
                     <tr>
                         <td>STW</td>
-                        <td>ด้ายไนลอน</td>
+                        <td>ด้ายไนล่อน</td>
                         <td>
                             <div id="PcsAfterSTW_1"></div>
                         </td>
@@ -7886,8 +7886,8 @@
                     <td colspan="8" style="background-color: rgb(160,255,200)">รับเข้า</td>
                 </tr>
                 <tr>
-                    <td colspan="2">{{ $d_before }}/{{$m_before}}/{{ $y_before }}</td>
-                    <td colspan="2">{{ $d_before }}/{{$m_before}}/{{ $y_before }}</td>
+                    <td colspan="2">{{ Session::get('d_after') }}/{{ Session::get('m_after') }}/{{ Session::get('y_after') }}</td>
+                    <td colspan="2">{{ Session::get('d_after') }}/{{ Session::get('m_after') }}/{{ Session::get('y_after') }}</td>
                     <td colspan="2" style="background-color: rgb(200,155,255)">ปรับเข้า</td>
                     <td colspan="2" style="background-color: rgb(200,155,255)">ปรับออก</td>
                     <td colspan="2" style="background-color: rgb(200,155,255)">หลังปรับ</td>
@@ -8153,7 +8153,7 @@
                 </tr>
                 <tr>
                     <td>SNT</td>
-                    <td>อวนโมโน,ไนลอน</td>
+                    <td>อวนโมโน,ไนล่อน</td>
                     <td>
                         <div id="PcsAfterSNT_1Print"></div>
                     </td>
@@ -8733,7 +8733,7 @@
                 <tr>
                     <td rowspan="6">ด้ายโพลี</td>
                     <td>TW</td>
-                    <td>ด้ายไนลอน</td>
+                    <td>ด้ายไนล่อน</td>
                     <td>
                         <div id="PcsAfterTW_1Print"></div>
                     </td>
@@ -8849,7 +8849,7 @@
                 </tr>
                 <tr>
                     <td>STW</td>
-                    <td>ด้ายไนลอน</td>
+                    <td>ด้ายไนล่อน</td>
                     <td>
                         <div id="PcsAfterSTW_1Print"></div>
                     </td>
@@ -9849,10 +9849,10 @@
                     <td colspan="2" style="background-color: rgb(255,155,155)">โอนออก</td>
                     <td colspan="2" style="background-color: rgb(245,255,89)">คืนของร้านค้า</td>
                     <td colspan="2" style="background-color: rgb(255,155,155)">รวม</td>
-                    <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
-                    <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
+                    <td colspan="2">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
+                    <td colspan="2">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
                     <td colspan="2" style="background-color: rgb(255,155,155);">ผลต่างคำนวณ NAV</td>
-                    <td colspan="4">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
+                    <td colspan="4">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
                 </tr>
                 <tr>
                     <td style="background-color: rgb(255,155,155)">PCS</td>

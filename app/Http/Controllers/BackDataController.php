@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use Illuminate\Support\Facades\Redirect;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class BackDataController extends Controller
@@ -41,8 +42,38 @@ class BackDataController extends Controller
         $dcy_s = DB::table('dcy_s_old')->where('DateUpdate_Old', $date)->count();
         $dex_s = DB::table('dex_s_old')->where('DateUpdate_Old', $date)->count();
         $item_stock = DB::table('item_stock_old')->where('DateUpdate_Old', $date)->count();
+		
+		DB::table('dataother')->delete();
+		DB::table('item_all')->delete();
+		DB::table('po')->delete();
+		DB::table('neg')->delete();
+		DB::table('purchase')->delete();
+		DB::table('returncuses')->delete();
+		DB::table('a71__f1_fg_bu02s')->delete();
+		DB::table('a72__f2_fg_bu10s')->delete();
+		DB::table('a73__f2_th_bu05s')->delete();
+		DB::table('a74__f2_de_bu10s')->delete();
+		DB::table('a75__f2_ex_bu11s')->delete();
+		DB::table('a76__f2_tw_bu04s')->delete();
+		DB::table('a77__f2_tw_bu07s')->delete();
+		DB::table('a78__f2_ce_bu10s')->delete();
+		DB::table('คืนของs')->delete();
+		DB::table('a81__f1_fg_bu02s')->delete();
+		DB::table('a82__f2_fg_bu10s')->delete();
+		DB::table('a83__f2_th_bu05s')->delete();
+		DB::table('a84__f2_de_bu10s')->delete();
+		DB::table('a85__f2_ex_bu11s')->delete();
+		DB::table('a86__f2_tw_bu04s')->delete();
+		DB::table('a87__f2_tw_bu07s')->delete();
+		DB::table('a88__f2_ce_bu10s')->delete();
+		DB::table('dc1_s')->delete();
+		DB::table('dcp_s')->delete();
+		DB::table('dcy_s')->delete();
+		DB::table('dex_s')->delete();
+		DB::table('item_stock')->delete();
 
         if ($log_price > 0) {
+			
             $log_price_Data = DB::table('log_price')
             ->select(
                 'Item No_Old as ItemNo', 'Customer_Old as Customer', 'PcsAfter_Old as PcsAfter',
@@ -63,6 +94,7 @@ class BackDataController extends Controller
         }
 
         if ($item_all > 0) {
+			
             $Item_all_data = DB::table('item_all_old')
             ->select(
                 'No', 'Unit Cost Decha as Unit', 'Inventory Posting Group as Group', 'Full Description as Full',
@@ -84,7 +116,8 @@ class BackDataController extends Controller
             }
         }
 
-        if ($po  > 0) {
+        if ($po > 0) {
+			
             $po_data = DB::table('po_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -106,6 +139,7 @@ class BackDataController extends Controller
         }
 
         if ($neg  > 0) {
+			
             $neg_data = DB::table('neg_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -127,6 +161,7 @@ class BackDataController extends Controller
         }
 
         if ($purchase  > 0) {
+			
             $purchase_data = DB::table('purchase_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -148,6 +183,7 @@ class BackDataController extends Controller
         }
 
         if ($returncuses  > 0) {
+			
             $returncuses_data = DB::table('returncuses_old')
             ->select(
                 'Item No as ItemNo','Global Dimension 2 Code as Global', 'Full Description as Full',
@@ -170,6 +206,7 @@ class BackDataController extends Controller
         }
 
         if ($a71__f1_fg_bu02s  > 0) {
+			
             $a71__f1_fg_bu02s_data = DB::table('a71__f1_fg_bu02s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -194,6 +231,7 @@ class BackDataController extends Controller
         }
 
         if ($a72__f2_fg_bu10s  > 0) {
+			
             $a72__f2_fg_bu10s_data = DB::table('a72__f2_fg_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -218,6 +256,7 @@ class BackDataController extends Controller
         }
 
         if ($a73__f2_th_bu05s  > 0) {
+			
             $a73__f2_th_bu05s_data = DB::table('a73__f2_th_bu05s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -242,6 +281,7 @@ class BackDataController extends Controller
         }
 
         if ($a74__f2_de_bu10s  > 0) {
+			
             $a74__f2_de_bu10s_data = DB::table('a74__f2_de_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -266,6 +306,7 @@ class BackDataController extends Controller
         }
 
         if ($a75__f2_ex_bu11s  > 0) {
+			
             $a75__f2_ex_bu11s_data = DB::table('a75__f2_ex_bu11s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -290,6 +331,7 @@ class BackDataController extends Controller
         }
 
         if ($a76__f2_tw_bu04s  > 0) {
+			
             $a76__f2_tw_bu04s_data = DB::table('a76__f2_tw_bu04s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -314,6 +356,7 @@ class BackDataController extends Controller
         }
 
         if ($a77__f2_tw_bu07s  > 0) {
+			
             $a77__f2_tw_bu07s_data = DB::table('a77__f2_tw_bu07s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -338,6 +381,7 @@ class BackDataController extends Controller
         }
 
         if ($a78__f2_ce_bu10s  > 0) {
+			
             $a78__f2_ce_bu10s_data = DB::table('a78__f2_ce_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -362,6 +406,7 @@ class BackDataController extends Controller
         }
 
         if ($returnitem  > 0) {
+			
             $returnitem_data = DB::table('คืนของs_old')
             ->select(
                 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -385,6 +430,7 @@ class BackDataController extends Controller
         }
 
         if ($a81__f1_fg_bu02s  > 0) {
+			
             $a81__f1_fg_bu02s_data = DB::table('a81__f1_fg_bu02s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -409,6 +455,7 @@ class BackDataController extends Controller
         }
 
         if ($a82__f2_fg_bu10s  > 0) {
+			
             $a82__f2_fg_bu10s_data = DB::table('a82__f2_fg_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -433,6 +480,7 @@ class BackDataController extends Controller
         }
 
         if ($a83__f2_th_bu05s  > 0) {
+			
             $a83__f2_th_bu05s_data = DB::table('a83__f2_th_bu05s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -457,6 +505,7 @@ class BackDataController extends Controller
         }
 
         if ($a84__f2_de_bu10s  > 0) {
+			
             $a84__f2_de_bu10s_data = DB::table('a84__f2_de_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -481,6 +530,7 @@ class BackDataController extends Controller
         }
 
         if ($a85__f2_ex_bu11s  > 0) {
+			
             $a85__f2_ex_bu11s_data = DB::table('a85__f2_ex_bu11s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -505,6 +555,7 @@ class BackDataController extends Controller
         }
 
         if ($a86__f2_tw_bu04s  > 0) {
+			
             $a86__f2_tw_bu04s_data = DB::table('a86__f2_tw_bu04s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -529,6 +580,7 @@ class BackDataController extends Controller
         }
 
         if ($a87__f2_tw_bu07s  > 0) {
+			
             $a87__f2_tw_bu07s_data = DB::table('a87__f2_tw_bu07s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -553,6 +605,7 @@ class BackDataController extends Controller
         }
 
         if ($a88__f2_ce_bu10s  > 0) {
+			
             $a88__f2_ce_bu10s_data = DB::table('a88__f2_ce_bu10s_old')
             ->select(
                 'A', 'Location', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -577,6 +630,7 @@ class BackDataController extends Controller
         }
 
         if ($dc1_s  > 0) {
+			
             $dc1_s_data = DB::table('dc1_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -601,6 +655,7 @@ class BackDataController extends Controller
         }
 
         if ($dcp_s  > 0) {
+			
             $dcp_s_data = DB::table('dcp_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -625,6 +680,7 @@ class BackDataController extends Controller
         }
 
         if ($dcy_s  > 0) {
+			
             $dcy_s_data = DB::table('dcy_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -649,6 +705,7 @@ class BackDataController extends Controller
         }
 
         if ($dex_s  > 0) {
+			
             $dex_s_data = DB::table('dex_s_old')
             ->select(
                 'Item&Branch as Branch', 'Item No as ItemNo', 'Global Dimension 2 Code as Global',
@@ -673,32 +730,141 @@ class BackDataController extends Controller
         }
 
         if ($item_stock > 0) {
+			
             $item_stock_data = DB::table('item_stock_old')
             ->select(
-                'item no as ItemNo', 'goodname1', 'branchcode', 'groupname', 'quantity',
-                'Cost per Unit as Cost', 'amount', 'estimate_amount', 'inventory',
-                'last_stock_in', 'entry_type',
+                'item no as ItemNo', 'goodname1', 'branchcode', 'groupname', 'Quantity',
+                'Cost per Unit as Cost', 'Amount', 'Estimate Amount as estimate_amount', 'Inventory',
+                'Last Stock-In as last_stock_in', 'Entry Type as entry_type',
             )
             ->where('DateUpdate_Old', $date)
             ->get();
 
             foreach ($item_stock_data as $row) {
                 DB::table('item_stock')->insert([
-                    'item no' => $row->ItemNo,
+                    'Item No' => $row->ItemNo,
                     'goodname1' => $row->goodname1,
                     'branchcode' => $row->branchcode,
                     'groupname' => $row->groupname,
-                    'quantity' => $row->quantity,
+                    'Quantity' => $row->Quantity,
                     'Cost per Unit' => $row->Cost,
-                    'amount' => $row->amount,
-                    'estimate_amount' => $row->estimate_amount,
-                    'inventory' => $row->inventory,
-                    'last_stock_in' => $row->last_stock_in,
-                    'entry_type' => $row->entry_type,
+                    'Amount' => $row->Amount,
+                    'Estimate Amount' => $row->estimate_amount,
+                    'Inventory' => $row->Inventory,
+                    'Last Stock-In' => $row->last_stock_in,
+                    'Entry Type' => $row->entry_type,
                 ]);
             }
         }
+		
+		if($date){
+			
+			$dateComponents = explode('/', $date);
+			
+			$m_after = $dateComponents[0];
+			$y_after = $dateComponents[1];
+			
+			$d_after = cal_days_in_month(CAL_GREGORIAN, $m_after, $y_after);
+			
+			switch ($m_after) {
+            case 1:
+                $m_after = 'ม.ค.';
+                break;
+            case 2:
+                $m_after = 'ก.พ.';
+                break;
+            case 3:
+                $m_after = 'มี.ค.';
+                break;
+            case 4:
+                $m_after = 'เม.ย.';
+                break;
+            case 5:
+                $m_after = 'พ.ค.';
+                break;
+            case 6:
+                $m_after = 'มิ.ย';
+                break;
+            case 7:
+                $m_after = 'ก.ค.';
+                break;
+            case 8:
+                $m_after = 'ส.ค.';
+                break;
+            case 9:
+                $m_after = 'ก.ย.';
+                break;
+            case 10:
+                $m_after = 'ต.ค.';
+                break;
+            case 11:
+                $m_after = 'พ.ย.';
+                break;
+            case 12:
+                $m_after = 'ธ.ค.';
+                break;
+        }
+		
+		$m_before = intval($dateComponents[0]) + 1;
+		$y_before = intval($dateComponents[1]);
+		
+		if($y_before == 12){
+			$y_before = $y_before + 1;
+		}
+		$d_before = cal_days_in_month(CAL_GREGORIAN, $m_before, $y_before);
+		$y_after = substr($y_after, 2, 2);
+		$y_before = substr($y_before, 2, 2);
+		
+		switch ($m_before) {
+            case 1:
+                $m_before = 'ม.ค.';
+                break;
+            case 2:
+                $m_before = 'ก.พ.';
+                break;
+            case 3:
+                $m_before = 'มี.ค.';
+                break;
+            case 4:
+                $m_before = 'เม.ย.';
+                break;
+            case 5:
+                $m_before = 'พ.ค.';
+                break;
+            case 6:
+                $m_before = 'มิ.ย';
+                break;
+            case 7:
+                $m_before = 'ก.ค.';
+                break;
+            case 8:
+                $m_before = 'ส.ค.';
+                break;
+            case 9:
+                $m_before = 'ก.ย.';
+                break;
+            case 10:
+                $m_before = 'ต.ค.';
+                break;
+            case 11:
+                $m_before = 'พ.ย.';
+                break;
+            case 12:
+                $m_before = 'ธ.ค.';
+                break;
+        }
+		
+		session(['d_after' => $d_after]);
+		session(['m_after' => $m_after]);
+		session(['y_after' => $y_after]);
+		
+		session(['d_before' => $d_before]);
+		session(['m_before' => $m_before]);
+		session(['y_before' => $y_before]);
+		}
+		
+		return response()->json();
 
-        return response()->json($date);
+
     }
 }

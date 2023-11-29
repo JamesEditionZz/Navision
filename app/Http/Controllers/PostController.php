@@ -26,7 +26,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -91,7 +91,7 @@ class PostController extends Controller
       }
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -174,7 +174,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -257,7 +257,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -340,7 +340,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -430,7 +430,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -829,7 +829,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -920,7 +920,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m') - 1;
+      $m_af = date('m')-1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -1046,6 +1046,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-FG-BU10') {
@@ -1080,6 +1081,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-TH-BU05') {
@@ -1114,6 +1116,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-DE-BU10') {
@@ -1149,6 +1152,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-EX-BU11') {
@@ -1183,6 +1187,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-TW-BU04') {
@@ -1217,6 +1222,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] === 'F2-TW-BU07') {
@@ -1251,6 +1257,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] === 'F2-CE-BU10') {
@@ -1285,6 +1292,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         }
@@ -1405,6 +1413,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif (strpos($row[0], "DCY")) {
@@ -1441,6 +1450,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif (strpos($row[0], "DCP")) {
@@ -1477,6 +1487,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif (strpos($row[0], "DEX")) {
@@ -1513,6 +1524,7 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
+			  'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         }
@@ -1618,6 +1630,7 @@ class PostController extends Controller
             'Inventory' => $Inventory,
             'Last Stock-In' => $row[12],
             'Entry Type' => $row[13],
+			'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -1633,6 +1646,31 @@ class PostController extends Controller
     $upload10 = $request->input('confirm');
 
     if ($upload10 == 1) {
+		
+		// $log_price = DB::table('log_price')->select('DateUpdate_Old')->orderBy('DateUpdate_Old', 'Asc')->first();
+		// DB::table('dataother')->delete();
+	
+		// if ($log_price) {
+			
+            // $log_price_Data = DB::table('log_price')
+            // ->select(
+                // 'Item No_Old as ItemNo', 'Customer_Old as Customer', 'PcsAfter_Old as PcsAfter',
+                // 'PriceAfter_Old as PriceAfter', 'Category_Old as  Category',
+            // )
+            // ->where('DateUpdate_Old', $log_price->DateUpdate_Old)
+            // ->get();
+
+            // foreach ($log_price_Data as $row) {
+                // DB::table('dataother')->insert([
+                    // 'Item No' => $row->ItemNo,
+                    // 'Customer' => $row->Customer,
+                    // 'PcsAfter' => $row->PcsAfter,
+                    // 'PriceAfter' => $row->PriceAfter,
+                    // 'Category' => $row->Category,
+                // ]);
+            // }
+        // }
+		
       $ItemNo = DB::table('item_all')
         ->select(
           'dataother.Item No as ItemCode',
@@ -1721,17 +1759,6 @@ class PostController extends Controller
         }else{
           DB::table('log_price')->where('DateUpdate_Old', $SearchDate_Old)->delete();
         }
-
-      foreach ($ItemNo as $rowlog) {
-        DB::table('log_price')->insert([
-          'Item No_Old' => $rowlog->Item_No,
-          'Customer_Old' => $rowlog->Customer,
-          'PcsAfter_Old' => $rowlog->PcsAfter,
-          'PriceAfter_Old' => $rowlog->PriceAfter,
-          'Category_Old' => $rowlog->Category,
-          'DateUpdate_Old' => $SearchDate_af
-        ]);
-      }
 
       foreach ($ItemNo as $row) {
         $PcsAf = floatval($row->PcsAfter);
@@ -1958,10 +1985,120 @@ class PostController extends Controller
           'PcsAfter' => $resultInsert[2],
           'PriceAfter' => $resultInsert[3],
           'Category' => $resultInsert[4],
+		]);
+		  
+		DB::table('log_price')->insert([
+          'Item No_Old' => $resultInsert[0],
+          'Customer_Old' => $resultInsert[1],
+          'PcsAfter_Old' => $resultInsert[2],
+          'PriceAfter_Old' => $resultInsert[3],
+          'Category_Old' => $resultInsert[4],
+          'DateUpdate_Old' => $SearchDate_af
         ]);
       }
+	  
+	  $d_after = date('t', strtotime('today'));
+      $m_after = date('m', strtotime('today')-1);
+      $y_after = date('Y', strtotime('today')) + 543;
+	  
+	  if($m_after == 0){
+		$m_after = 12;
+	  }
+			switch ($m_after) {
+            case 1:
+                $m_after = 'ม.ค.';
+                break;
+            case 2:
+                $m_after = 'ก.พ.';
+                break;
+            case 3:
+                $m_after = 'มี.ค.';
+                break;
+            case 4:
+                $m_after = 'เม.ย.';
+                break;
+            case 5:
+                $m_after = 'พ.ค.';
+                break;
+            case 6:
+                $m_after = 'มิ.ย';
+                break;
+            case 7:
+                $m_after = 'ก.ค.';
+                break;
+            case 8:
+                $m_after = 'ส.ค.';
+                break;
+            case 9:
+                $m_after = 'ก.ย.';
+                break;
+            case 10:
+                $m_after = 'ต.ค.';
+                break;
+            case 11:
+                $m_after = 'พ.ย.';
+                break;
+            case 12:
+                $m_after = 'ธ.ค.';
+                break;
+        }
+		
+		session(['d_after' => $d_after]);
+		session(['m_after' => $m_after]);
+		session(['y_after' => $y_after]);
+		
+		$d_before = date('t', strtotime('today'));
+		$m_before = date('m', strtotime('today'));
+		$y_before = date('Y', strtotime('today')) + 543;
+		
+		if($m_before == 1){
+			$y_before = $y_before + 1;
+		}
+		
+		switch ($m_before) {
+            case 1:
+                $m_before = 'ม.ค.';
+                break;
+            case 2:
+                $m_before = 'ก.พ.';
+                break;
+            case 3:
+                $m_before = 'มี.ค.';
+                break;
+            case 4:
+                $m_before = 'เม.ย.';
+                break;
+            case 5:
+                $m_before = 'พ.ค.';
+                break;
+            case 6:
+                $m_before = 'มิ.ย';
+                break;
+            case 7:
+                $m_before = 'ก.ค.';
+                break;
+            case 8:
+                $m_before = 'ส.ค.';
+                break;
+            case 9:
+                $m_before = 'ก.ย.';
+                break;
+            case 10:
+                $m_before = 'ต.ค.';
+                break;
+            case 11:
+                $m_before = 'พ.ย.';
+                break;
+            case 12:
+                $m_before = 'ธ.ค.';
+                break;
+        }
+		
+		session(['d_before' => $d_before]);
+		session(['m_before' => $m_before]);
+		session(['y_before' => $y_before]);
 
-      return response()->json($arrayinsert);
+      return response()->json();
     } else {
       return response()->json('ข้อมูลไม่ต้องการอัพเดท');
     }

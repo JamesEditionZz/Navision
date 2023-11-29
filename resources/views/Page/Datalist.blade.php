@@ -57,7 +57,7 @@
                     <input type="text" class="input-search" placeholder="Item No เช่น NT-000001" id="searchItemNo">
                     <button class="btn-search" onclick="SearchItemNo()">ค้นหา</button>
                 </div>
-                <div class="table-block">
+                <div class="table-block-datalist">
                     <table class="table-tabledata" id="table-data">
                         <thead>
                             <tr>
@@ -107,9 +107,9 @@
                                 <td>Item</td>
                                 <td>ประเภท</td>
                                 <td>No.</td>
-                                <td>{{ $d_before }}/{{ $m_before }}/{{ $y_before }}</td>
-                                <td colspan="2">{{ $d_before }}/{{ $m_before }}/{{ $y_before }}</td>
-                                <td colspan="2">{{ $d_before }}/{{ $m_before }}/{{ $y_before }}</td>
+                                <td>{{ Session::get('d_after') }}/{{ Session::get('m_after') }}/{{ Session::get('y_after') }}</td>
+                                <td colspan="2">{{ Session::get('d_after') }}/{{ Session::get('m_after') }}/{{ Session::get('y_after') }}</td>
+                                <td colspan="2">{{ Session::get('d_after') }}/{{ Session::get('m_after') }}/{{ Session::get('y_after') }}</td>
                                 <td colspan="2">ปรับเข้า</td>
                                 <td colspan="2">ปรับออก</td>
                                 <td colspan="2">หลังปรับ</td>
@@ -121,13 +121,13 @@
                                 <td colspan="2">โอนออก</td>
                                 <td colspan="2">คืนของร้านค้า</td>
                                 <td colspan="2">รวม</td>
-                                <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
-                                <td>{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
-                                <td colspan="2">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
+                                <td colspan="2">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
+                                <td>{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
+                                <td colspan="2">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
                                 <td>Cost per Unit</td>
                                 <td>Unit Cost(Decha)</td>
                                 <td colspan="2">ผลต่างคำนวน/NAV</td>
-                                <td colspan="4">{{ $d_after }}/{{ $m_after }}/{{ $y_after }}</td>
+                                <td colspan="4">{{ Session::get('d_before') }}/{{ Session::get('m_before') }}/{{ Session::get('y_before') }}</td>
                                 <td colspan="2">รับโอน</td>
                                 <td colspan="2">รับโอน</td>
                                 <td colspan="2">รับโอน</td>
