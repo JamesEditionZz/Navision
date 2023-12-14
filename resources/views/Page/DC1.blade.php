@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navition</title>
+	<link rel="shortcut icon" href="{{ asset('icon/icon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/navition.css') }}">
     <script src="{{ asset('/js/ajax.js') }}"></script>
 </head>

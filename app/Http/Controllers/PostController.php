@@ -1319,7 +1319,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m');
+      $m_af = date('m')-1;
       $y_af = date('Y')+543;
 
       $y_Old = date('Y')+542;
@@ -1529,6 +1529,68 @@ class PostController extends Controller
           }
         }
       }
+	  
+	  $listDC1 = DB::table('dc1_s')->select('Item No as ItemNo')->get();
+	  $listDCP = DB::table('dcp_s')->select('Item No as ItemNo')->get();
+	  $listDCY = DB::table('dcy_s')->select('Item No as ItemNo')->get();
+	  $listDEX = DB::table('dex_s')->select('Item No as ItemNo')->get();
+	  
+	  foreach($listDC1 as $rowDC1){
+		DB::table('dataother')
+		->where('Item No', $rowDC1->ItemNo)
+		->update([
+			'Customer' => 'DC1',
+		]);
+		DB::table('log_price')
+		->where('Item No_Old', $rowDC1->ItemNo)
+		->where('DateUpdate_Old', $SearchDate_af)
+		->update([
+			'Customer_Old' => 'DC1',
+		]);
+	  }
+	  
+	  foreach($listDCP as $rowDCP){
+		DB::table('dataother')
+		->where('Item No',$rowDCP->ItemNo)
+		->update([
+			'Customer' => 'DCP',
+		]);
+		DB::table('log_price')
+		->where('Item No_Old',$rowDCP->ItemNo)
+		->where('DateUpdate_Old', $SearchDate_af)
+		->update([
+			'Customer_Old' => 'DCP',
+		]);
+	  }
+	  
+	  foreach($listDCY as $rowDCY){
+		DB::table('dataother')
+		->where('Item No',$rowDCY->ItemNo)
+		->update([
+			'Customer' => 'DCY',
+		]);
+		DB::table('log_price')
+		->where('Item No_Old',$rowDCY->ItemNo)
+		->where('DateUpdate_Old', $SearchDate_af)
+		->update([
+			'Customer_Old' => 'DCY',
+		]);
+	  }
+	  
+	  foreach($listDEX as $rowDEX){
+		DB::table('dataother')
+		->where('Item No',$rowDEX->ItemNo
+		)->update([
+			'Customer' => 'DEX',
+		]);
+		DB::table('log_price')
+		->where('Item No_Old',$rowDEX->ItemNo)
+		->where('DateUpdate_Old', $SearchDate_af)
+		->update([
+			'Customer_Old' => 'DEX',
+		]);
+	  }
+	  
       return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
     } else {
       return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
@@ -1550,7 +1612,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m');
+      $m_af = date('m')-1;
       $y_af = date('Y')+543;
 
       $y_Old = date('Y')+542;
@@ -1645,7 +1707,7 @@ class PostController extends Controller
     set_time_limit(3600);
     $upload10 = $request->input('confirm');
 
-    if ($upload10 == 1) {
+    if ($upload10 === 1) {
 		
 		// $log_price = DB::table('log_price')->select('DateUpdate_Old')->orderBy('DateUpdate_Old', 'Asc')->first();
 		// DB::table('dataother')->delete();
@@ -1740,7 +1802,7 @@ class PostController extends Controller
         ->orderBy('item_all.No')
         ->get();
 
-        $m_af = date('m');
+        $m_af = date('m')-1;
         $y_af = date('Y')+543;
   
         $y_Old = date('Y')+542;
@@ -1998,7 +2060,7 @@ class PostController extends Controller
       }
 	  
 	  $d_after = date('t', strtotime('today'));
-      $m_after = date('m', strtotime('today')-1);
+      $m_after = date('m', strtotime('today')) - 2;
       $y_after = date('Y', strtotime('today')) + 543;
 	  
 	  if($m_after == 0){
@@ -2048,7 +2110,7 @@ class PostController extends Controller
 		session(['y_after' => $y_after]);
 		
 		$d_before = date('t', strtotime('today'));
-		$m_before = date('m', strtotime('today'));
+		$m_before = date('m', strtotime('today') - 1);
 		$y_before = date('Y', strtotime('today')) + 543;
 		
 		if($m_before == 1){

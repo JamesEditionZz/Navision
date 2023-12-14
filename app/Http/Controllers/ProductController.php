@@ -2013,7 +2013,7 @@ class ProductController extends Controller
             //////////////////////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            elseif (($Code_1[0] == "MT") && ($row->Customer == "DC1")) {
+            elseif (($Code_1[0] == "MT") && ($row->Customer == "DC1" || $row->Customer == " ")) {
                 if ($row->PcsAfter > 0 && $row->PriceAfter > 0) {
                     $NumberMT = ($row->PriceAfter / $row->PcsAfter);
                 } else {
