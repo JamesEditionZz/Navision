@@ -422,18 +422,19 @@
                         <td>
                             <div id="DC1PriceNT_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceNT_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsNT_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceNT_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsNT_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceNT_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsNT_1"></div>
                         </td>
@@ -654,18 +655,19 @@
                         <td>
                             <div id="DC1PriceNT_2"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsNT_2"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceNT_2"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsNT_2"></div>
                         </td>
                         <td>
                             <div id="DCPPriceNT_2"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsNT_2"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceNT_2"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsNT_2"></div>
                         </td>
@@ -886,18 +888,19 @@
                         <td>
                             <div id="DC1PriceNT_3"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsNT_3"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceNT_3"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsNT_3"></div>
                         </td>
                         <td>
                             <div id="DCPPriceNT_3"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsNT_3"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceNT_3"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsNT_3"></div>
                         </td>
@@ -1118,18 +1121,19 @@
                         <td>
                             <div id="DC1PriceNT_4"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsNT_4"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceNT_4"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsNT_4"></div>
                         </td>
                         <td>
                             <div id="DCPPriceNT_4"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsNT_4"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceNT_4"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsNT_4"></div>
                         </td>
@@ -1350,18 +1354,19 @@
                         <td>
                             <div id="DC1PriceSNT_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsSNT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceSNT_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsSNT_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceSNT_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsSNT_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceSNT_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsSNT_1"></div>
                         </td>
@@ -1582,18 +1587,19 @@
                         <td>
                             <div id="DC1PriceSNT_2"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsSNT_2"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceSNT_2"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsSNT_2"></div>
                         </td>
                         <td>
                             <div id="DCPPriceSNT_2"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsSNT_2"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceSNT_2"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsSNT_2"></div>
                         </td>
@@ -1813,18 +1819,19 @@
                         <td>
                             <div style="color: rgb(0,80,255);" id="DC1PriceNT_All"></div>
                         </td>
+						<td>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsNT_All"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceNT_All"></div>
+                        </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPcsNT_All"></div>
                         </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPriceNT_All"></div>
                         </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPcsNT_All"></div>
-                        </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPriceNT_All"></div>
-                        </td>
+                        
                         <td>
                             <div style="color: rgb(0,80,255);" id="DEXPcsNT_All"></div>
                         </td>
@@ -2048,18 +2055,19 @@
                         <td>
                             <div id="DC1PriceMT_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsMT_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMT_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsMT_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceMT_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsMT_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceMT_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsMT_1"></div>
                         </td>
@@ -2280,18 +2288,19 @@
                         <td>
                             <div id="DC1PriceMT_2"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsMT_2"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMT_2"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsMT_2"></div>
                         </td>
                         <td>
                             <div id="DCPPriceMT_2"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsMT_2"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceMT_2"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsMT_2"></div>
                         </td>
@@ -2512,18 +2521,19 @@
                         <td>
                             <div id="DC1PriceMT_3"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsMT_3"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMT_3"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsMT_3"></div>
                         </td>
                         <td>
                             <div id="DCPPriceMT_3"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsMT_3"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceMT_3"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsMT_3"></div>
                         </td>
@@ -2744,18 +2754,19 @@
                         <td>
                             <div id="DC1PriceMT_4"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsMT_4"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMT_4"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsMT_4"></div>
                         </td>
                         <td>
                             <div id="DCPPriceMT_4"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsMT_4"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceMT_4"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsMT_4"></div>
                         </td>
@@ -2976,18 +2987,19 @@
                         <td>
                             <div id="DC1PriceMT_5"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsMT_5"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMT_5"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsMT_5"></div>
                         </td>
                         <td>
                             <div id="DCPPriceMT_5"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsMT_5"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceMT_5"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsMT_5"></div>
                         </td>
@@ -3208,18 +3220,19 @@
                         <td>
                             <div id="DC1PriceMT_6"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsMT_6"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceMT_6"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsMT_6"></div>
                         </td>
                         <td>
                             <div id="DCPPriceMT_6"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsMT_6"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceMT_6"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsMT_6"></div>
                         </td>
@@ -3439,18 +3452,19 @@
                         <td>
                             <div style="color: rgb(0,80,255);" id="DC1PriceMT_All"></div>
                         </td>
+						<td>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsMT_All"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceMT_All"></div>
+                        </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPcsMT_All"></div>
                         </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPriceMT_All"></div>
                         </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPcsMT_All"></div>
-                        </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPriceMT_All"></div>
-                        </td>
+                        
                         <td>
                             <div style="color: rgb(0,80,255);" id="DEXPcsMT_All"></div>
                         </td>
@@ -3674,18 +3688,19 @@
                         <td>
                             <div id="DC1PriceTW_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsTW_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceTW_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsTW_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceTW_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsTW_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceTW_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsTW_1"></div>
                         </td>
@@ -3906,18 +3921,19 @@
                         <td>
                             <div id="DC1PriceTW_2"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsTW_2"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceTW_2"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsTW_2"></div>
                         </td>
                         <td>
                             <div id="DCPPriceTW_2"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsTW_2"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceTW_2"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsTW_2"></div>
                         </td>
@@ -4138,18 +4154,19 @@
                         <td>
                             <div id="DC1PriceSTW_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsSTW_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceSTW_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsSTW_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceSTW_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsSTW_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceSTW_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsSTW_1"></div>
                         </td>
@@ -4370,18 +4387,19 @@
                         <td>
                             <div id="DC1PriceSTW_2"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsSTW_2"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceSTW_2"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsSTW_2"></div>
                         </td>
                         <td>
                             <div id="DCPPriceSTW_2"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsSTW_2"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceSTW_2"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsSTW_2"></div>
                         </td>
@@ -4602,18 +4620,19 @@
                         <td>
                             <div id="DC1PriceLN_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsLN_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceLN_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsLN_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceLN_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsLN_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceLN_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsLN_1"></div>
                         </td>
@@ -4834,18 +4853,19 @@
                         <td>
                             <div id="DC1PriceSLN_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsSLN_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceSLN_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsSLN_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceSLN_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsSLN_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceSLN_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsSLN_1"></div>
                         </td>
@@ -5065,18 +5085,19 @@
                         <td>
                             <div style="color: rgb(0,80,255);" id="DC1PriceTW_All"></div>
                         </td>
+						<td>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsTW_All"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceTW_All"></div>
+                        </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPcsTW_All"></div>
                         </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPriceTW_All"></div>
                         </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPcsTW_All"></div>
-                        </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPriceTW_All"></div>
-                        </td>
+                        
                         <td>
                             <div style="color: rgb(0,80,255);" id="DEXPcsTW_All"></div>
                         </td>
@@ -5300,18 +5321,19 @@
                         <td>
                             <div id="DC1PriceFN_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsFN_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceFN_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsFN_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceFN_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsFN_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceFN_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsFN_1"></div>
                         </td>
@@ -5532,18 +5554,19 @@
                         <td>
                             <div id="DC1PriceAS_1"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_1"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_1"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_1"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_1"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsAS_1"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_1"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsAS_1"></div>
                         </td>
@@ -5764,18 +5787,19 @@
                         <td>
                             <div id="DC1PriceAS_2"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_2"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_2"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_2"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_2"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsAS_2"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_2"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsAS_2"></div>
                         </td>
@@ -5996,18 +6020,19 @@
                         <td>
                             <div id="DC1PriceAS_3"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_3"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_3"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_3"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_3"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsAS_3"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_3"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsAS_3"></div>
                         </td>
@@ -6228,18 +6253,19 @@
                         <td>
                             <div id="DC1PriceAS_4"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_4"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_4"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_4"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_4"></div>
                         </td>
-                        <td>
-                            <div id="DCYPcsAS_4"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_4"></div>
-                        </td>
+                        
                         <td>
                             <div id="DEXPcsAS_4"></div>
                         </td>
@@ -6460,17 +6486,17 @@
                         <td>
                             <div id="DC1PriceAS_5"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_5"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_5"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_5"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_5"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPcsAS_5"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_5"></div>
                         </td>
                         <td>
                             <div id="DEXPcsAS_5"></div>
@@ -6692,17 +6718,17 @@
                         <td>
                             <div id="DC1PriceAS_6"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_6"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_6"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_6"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_6"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPcsAS_6"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_6"></div>
                         </td>
                         <td>
                             <div id="DEXPcsAS_6"></div>
@@ -6924,17 +6950,17 @@
                         <td>
                             <div id="DC1PriceAS_7"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_7"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_7"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_7"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_7"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPcsAS_7"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_7"></div>
                         </td>
                         <td>
                             <div id="DEXPcsAS_7"></div>
@@ -7156,17 +7182,17 @@
                         <td>
                             <div id="DC1PriceAS_8"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_8"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_8"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_8"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_8"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPcsAS_8"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_8"></div>
                         </td>
                         <td>
                             <div id="DEXPcsAS_8"></div>
@@ -7388,17 +7414,17 @@
                         <td>
                             <div id="DC1PriceAS_9"></div>
                         </td>
+						<td>
+                            <div id="DCYPcsAS_9"></div>
+                        </td>
+                        <td>
+                            <div id="DCYPriceAS_9"></div>
+                        </td>
                         <td>
                             <div id="DCPPcsAS_9"></div>
                         </td>
                         <td>
                             <div id="DCPPriceAS_9"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPcsAS_9"></div>
-                        </td>
-                        <td>
-                            <div id="DCYPriceAS_9"></div>
                         </td>
                         <td>
                             <div id="DEXPcsAS_9"></div>
@@ -7619,17 +7645,17 @@
                         <td>
                             <div style="color: rgb(0,80,255);" id="DC1PriceAS_All"></div>
                         </td>
+						<td>
+                            <div style="color: rgb(0,80,255);" id="DCYPcsAS_All"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(0,80,255);" id="DCYPriceAS_All"></div>
+                        </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPcsAS_All"></div>
                         </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DCPPriceAS_All"></div>
-                        </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPcsAS_All"></div>
-                        </td>
-                        <td>
-                            <div style="color: rgb(0,80,255);" id="DCYPriceAS_All"></div>
                         </td>
                         <td>
                             <div style="color: rgb(0,80,255);" id="DEXPcsAS_All"></div>
@@ -7850,17 +7876,17 @@
                         <td>
                             <div style="color: rgb(255,25,0);" id="DC1PriceTotal_All"></div>
                         </td>
+						<td>
+                            <div style="color: rgb(255,25,0);" id="DCYPcsTotal_All"></div>
+                        </td>
+                        <td>
+                            <div style="color: rgb(255,25,0);" id="DCYPriceTotal_All"></div>
+                        </td>
                         <td>
                             <div style="color: rgb(255,25,0);" id="DCPPcsTotal_All"></div>
                         </td>
                         <td>
                             <div style="color: rgb(255,25,0);" id="DCPPriceTotal_All"></div>
-                        </td>
-                        <td>
-                            <div style="color: rgb(255,25,0);" id="DCYPcsTotal_All"></div>
-                        </td>
-                        <td>
-                            <div style="color: rgb(255,25,0);" id="DCYPriceTotal_All"></div>
                         </td>
                         <td>
                             <div style="color: rgb(255,25,0);" id="DEXPcsTotal_All"></div>
@@ -13531,17 +13557,17 @@
                     <td>
                         <div id="DC1PriceNT_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsNT_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceNT_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsNT_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceNT_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsNT_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceNT_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsNT_1Print"></div>
@@ -13605,17 +13631,17 @@
                     <td>
                         <div id="DC1PriceNT_2Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsNT_2Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceNT_2Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsNT_2Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceNT_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsNT_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceNT_2Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsNT_2Print"></div>
@@ -13679,17 +13705,17 @@
                     <td>
                         <div id="DC1PriceNT_3Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsNT_3Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceNT_3Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsNT_3Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceNT_3Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsNT_3Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceNT_3Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsNT_3Print"></div>
@@ -13753,17 +13779,17 @@
                     <td>
                         <div id="DC1PriceNT_4Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsNT_4Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceNT_4Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsNT_4Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceNT_4Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsNT_4Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceNT_4Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsNT_4Print"></div>
@@ -13827,17 +13853,17 @@
                     <td>
                         <div id="DC1PriceSNT_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsSNT_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceSNT_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsSNT_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceSNT_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsSNT_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceSNT_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsSNT_1Print"></div>
@@ -13901,17 +13927,17 @@
                     <td>
                         <div id="DC1PriceSNT_2Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsSNT_2Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceSNT_2Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsSNT_2Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceSNT_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsSNT_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceSNT_2Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsSNT_2Print"></div>
@@ -13975,17 +14001,17 @@
                     <td>
                         <div style="color: rgb(0,80,255);" id="DC1PriceNT_AllPrint"></div>
                     </td>
+					<td>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsNT_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceNT_AllPrint"></div>
+                    </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPcsNT_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPriceNT_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPcsNT_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPriceNT_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DEXPcsNT_AllPrint"></div>
@@ -14049,17 +14075,17 @@
                     <td>
                         <div id="DC1PriceMT_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsMT_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceMT_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsMT_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceMT_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsMT_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceMT_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsMT_1Print"></div>
@@ -14123,17 +14149,17 @@
                     <td>
                         <div id="DC1PriceMT_2Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsMT_2Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceMT_2Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsMT_2Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceMT_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsMT_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceMT_2Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsMT_2Print"></div>
@@ -14197,17 +14223,17 @@
                     <td>
                         <div id="DC1PriceMT_3Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsMT_3Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceMT_3Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsMT_3Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceMT_3Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsMT_3Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceMT_3Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsMT_3Print"></div>
@@ -14271,17 +14297,17 @@
                     <td>
                         <div id="DC1PriceMT_4Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsMT_4Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceMT_4Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsMT_4Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceMT_4Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsMT_4Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceMT_4Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsMT_4Print"></div>
@@ -14345,17 +14371,17 @@
                     <td>
                         <div id="DC1PriceMT_5Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsMT_5Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceMT_5Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsMT_5Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceMT_5Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsMT_5Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceMT_5Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsMT_5Print"></div>
@@ -14419,17 +14445,17 @@
                     <td>
                         <div id="DC1PriceMT_6Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsMT_6Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceMT_6Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsMT_6Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceMT_6Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsMT_6Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceMT_6Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsMT_6Print"></div>
@@ -14493,17 +14519,17 @@
                     <td>
                         <div style="color: rgb(0,80,255);" id="DC1PriceMT_AllPrint"></div>
                     </td>
+					<td>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsMT_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceMT_AllPrint"></div>
+                    </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPcsMT_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPriceMT_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPcsMT_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPriceMT_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DEXPcsMT_AllPrint"></div>
@@ -14567,17 +14593,17 @@
                     <td>
                         <div id="DC1PriceTW_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsTW_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceTW_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsTW_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceTW_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsTW_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceTW_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsTW_1Print"></div>
@@ -14641,17 +14667,17 @@
                     <td>
                         <div id="DC1PriceTW_2Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsTW_2Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceTW_2Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsTW_2Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceTW_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsTW_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceTW_2Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsTW_2Print"></div>
@@ -14715,17 +14741,17 @@
                     <td>
                         <div id="DC1PriceSTW_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsSTW_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceSTW_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsSTW_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceSTW_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsSTW_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceSTW_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsSTW_1Print"></div>
@@ -14789,17 +14815,17 @@
                     <td>
                         <div id="DC1PriceSTW_2Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsSTW_2Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceSTW_2Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsSTW_2Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceSTW_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsSTW_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceSTW_2Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsSTW_2Print"></div>
@@ -14863,17 +14889,17 @@
                     <td>
                         <div id="DC1PriceLN_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsLN_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceLN_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsLN_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceLN_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsLN_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceLN_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsLN_1Print"></div>
@@ -14937,17 +14963,17 @@
                     <td>
                         <div id="DC1PriceSLN_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsSLN_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceSLN_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsSLN_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceSLN_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsSLN_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceSLN_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsSLN_1Print"></div>
@@ -15011,17 +15037,17 @@
                     <td>
                         <div style="color: rgb(0,80,255);" id="DC1PriceTW_AllPrint"></div>
                     </td>
+					<td>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsTW_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceTW_AllPrint"></div>
+                    </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPcsTW_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPriceTW_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPcsTW_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPriceTW_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DEXPcsTW_AllPrint"></div>
@@ -15085,17 +15111,17 @@
                     <td>
                         <div id="DC1PriceFN_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsFN_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceFN_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsFN_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceFN_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsFN_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceFN_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsFN_1Print"></div>
@@ -15159,17 +15185,17 @@
                     <td>
                         <div id="DC1PriceAS_1Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_1Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_1Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_1Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_1Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_1Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_1Print"></div>
@@ -15233,17 +15259,17 @@
                     <td>
                         <div id="DC1PriceAS_2Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_2Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_2Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_2Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_2Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_2Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_2Print"></div>
@@ -15307,17 +15333,17 @@
                     <td>
                         <div id="DC1PriceAS_3Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_3Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_3Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_3Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_3Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_3Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_3Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_3Print"></div>
@@ -15381,17 +15407,17 @@
                     <td>
                         <div id="DC1PriceAS_4Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_4Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_4Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_4Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_4Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_4Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_4Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_4Print"></div>
@@ -15455,17 +15481,17 @@
                     <td>
                         <div id="DC1PriceAS_5Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_5Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_5Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_5Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_5Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_5Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_5Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_5Print"></div>
@@ -15529,17 +15555,17 @@
                     <td>
                         <div id="DC1PriceAS_6Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_6Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_6Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_6Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_6Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_6Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_6Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_6Print"></div>
@@ -15603,17 +15629,17 @@
                     <td>
                         <div id="DC1PriceAS_7Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_7Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_7Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_7Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_7Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_7Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_7Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_7Print"></div>
@@ -15677,17 +15703,17 @@
                     <td>
                         <div id="DC1PriceAS_8Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_8Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_8Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_8Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_8Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_8Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_8Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_8Print"></div>
@@ -15751,17 +15777,17 @@
                     <td>
                         <div id="DC1PriceAS_9Print"></div>
                     </td>
+					<td>
+                        <div id="DCYPcsAS_9Print"></div>
+                    </td>
+                    <td>
+                        <div id="DCYPriceAS_9Print"></div>
+                    </td>
                     <td>
                         <div id="DCPPcsAS_9Print"></div>
                     </td>
                     <td>
                         <div id="DCPPriceAS_9Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPcsAS_9Print"></div>
-                    </td>
-                    <td>
-                        <div id="DCYPriceAS_9Print"></div>
                     </td>
                     <td>
                         <div id="DEXPcsAS_9Print"></div>
@@ -15825,17 +15851,17 @@
                     <td>
                         <div style="color: rgb(0,80,255);" id="DC1PriceAS_AllPrint"></div>
                     </td>
+					<td>
+                        <div style="color: rgb(0,80,255);" id="DCYPcsAS_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(0,80,255);" id="DCYPriceAS_AllPrint"></div>
+                    </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPcsAS_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DCPPriceAS_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPcsAS_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(0,80,255);" id="DCYPriceAS_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(0,80,255);" id="DEXPcsAS_AllPrint"></div>
@@ -15899,17 +15925,17 @@
                     <td>
                         <div style="color: rgb(255,25,0);" id="DC1PriceTotal_AllPrint"></div>
                     </td>
+					<td>
+                        <div style="color: rgb(255,25,0);" id="DCYPcsTotal_AllPrint"></div>
+                    </td>
+                    <td>
+                        <div style="color: rgb(255,25,0);" id="DCYPriceTotal_AllPrint"></div>
+                    </td>
                     <td>
                         <div style="color: rgb(255,25,0);" id="DCPPcsTotal_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(255,25,0);" id="DCPPriceTotal_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="DCYPcsTotal_AllPrint"></div>
-                    </td>
-                    <td>
-                        <div style="color: rgb(255,25,0);" id="DCYPriceTotal_AllPrint"></div>
                     </td>
                     <td>
                         <div style="color: rgb(255,25,0);" id="DEXPcsTotal_AllPrint"></div>

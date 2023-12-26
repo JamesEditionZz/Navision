@@ -26,13 +26,14 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
 
       if ($m_af === 0) {
         $m_af = 12;
+		$y_Old = date('Y') + 542;
       }
 
       $SearchDate_af = $m_af . '/' . $y_af;
@@ -73,7 +74,7 @@ class PostController extends Controller
           'DateUpdate_Old' => $SearchDate_af,
         ]);
       }
-    }
+	}
   }
 
   public function uploadfile1(Request $request)
@@ -91,7 +92,7 @@ class PostController extends Controller
       }
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -152,7 +153,7 @@ class PostController extends Controller
             'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
-      }
+	}
       return response()->json(['success' => 'อัพโหลดข้อมูลเรียบร้อยแล้ว']);
     }
     return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
@@ -174,7 +175,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -236,6 +237,7 @@ class PostController extends Controller
           ]);
         }
       }
+	  
       return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
     }
     return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
@@ -257,7 +259,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -340,7 +342,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -430,7 +432,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -829,7 +831,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -920,7 +922,7 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
+      $m_af = date('m') - 1;
       $y_af = date('Y') + 543;
 
       $y_Old = date('Y') + 542;
@@ -1046,7 +1048,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-FG-BU10') {
@@ -1081,7 +1083,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-TH-BU05') {
@@ -1116,7 +1118,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-DE-BU10') {
@@ -1152,7 +1154,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-EX-BU11') {
@@ -1187,7 +1189,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] == 'F2-TW-BU04') {
@@ -1222,7 +1224,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] === 'F2-TW-BU07') {
@@ -1257,7 +1259,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         } elseif ($row[9] === 'F2-CE-BU10') {
@@ -1292,7 +1294,7 @@ class PostController extends Controller
               'Unit of Measure Code' => $row[14],
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         }
@@ -1319,17 +1321,18 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
-      $y_af = date('Y')+543;
-
-      $y_Old = date('Y')+542;
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+	  
+	  $y_Old = date('Y') + 542;
 
       if ($m_af === 0) {
         $m_af = 12;
+		$y_af = date('Y') + 542;
       }
 
-      $SearchDate_af = $m_af.'/'.$y_af;
-      $SearchDate_Old = $m_af.'/'.$y_Old;
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
 
       $NumrowDC1 = DB::table('dc1_s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
       $NumrowDCP = DB::table('dcp_s_old')->where('DateUpdate_Old', $SearchDate_af)->count();
@@ -1338,25 +1341,25 @@ class PostController extends Controller
 
       if ($NumrowDC1 > 0) {
         DB::table('dc1_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
-      }else{
+      } else {
         DB::table('dc1_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
       if ($NumrowDCP > 0) {
         DB::table('dcp_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
-      }else{
+      } else {
         DB::table('dcp_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
       if ($NumrowDCY > 0) {
         DB::table('dcy_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
-      }else{
+      } else {
         DB::table('dcy_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
       if ($NumrowDEX > 0) {
         DB::table('dex_s_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
-      }else{
+      } else {
         DB::table('dex_s_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
@@ -1375,11 +1378,11 @@ class PostController extends Controller
         $sales_Amount_Actual = str_replace(['(', ')'], '', $sales_Amount_Actual);
 
         $checkData1 = DB::table('dc1_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-        $checkData2 = DB::table('dcy_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
-        $checkData3 = DB::table('dcp_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
+        $checkData2 = DB::table('dcp_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
+        $checkData3 = DB::table('dcy_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
         $checkData4 = DB::table('dex_s')->select('Item No as ItemNo', 'Quantity', 'Cost Amount (Actual) as CostAmount', 'Sales Amount (Actual) as SalesAmount')->where('Item No', $row[1])->first();
 
-        if (strpos($row[0], "DC1")) {
+        if ($row[35] == "DC1") {
           if (!empty($checkData1->ItemNo) && $checkData1->ItemNo == $row[1]) {
             DB::table('dc1_s')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData1->Quantity,
@@ -1387,7 +1390,9 @@ class PostController extends Controller
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData1->SalesAmount,
             ]);
 
-            DB::table('dc1_s_old')->where('Item No', $row[1])->update([
+            DB::table('dc1_s_old')
+			->where('Item No', $row[1])
+			->update([
               'Quantity' => $quantity + $checkData1->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData1->CostAmount,
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData1->SalesAmount,
@@ -1413,58 +1418,23 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
-        } elseif (strpos($row[0], "DCY")) {
+        } elseif ($row[35] == "DCP") {
           if (!empty($checkData2->ItemNo) && $checkData2->ItemNo == $row[1]) {
-            DB::table('dcy_s')->where('Item No', $row[1])->update([
-              'Quantity' => $quantity + $checkData2->Quantity,
-              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
-              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData2->SalesAmount,
-            ]);
-
-            DB::table('dcy_s_old')->where('Item No', $row[1])->update([
-              'Quantity' => $quantity + $checkData2->Quantity,
-              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
-              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData2->SalesAmount,
-            ]);
-          } else {
-            DB::table('dcy_s')->insert([
-              'Item&Branch' => $row[0],
-              'Item No' => $row[1],
-              'Global Dimension 2 Code' => $row[15],
-              'Full Description' => $row[2],
-              'Unit of Measure Code' => $row[13],
-              'Quantity' => $quantity,
-              'Cost Amount (Actual)' => $cost_Amount_Actual,
-              'Sales Amount (Actual)' => $sales_Amount_Actual,
-            ]);
-
-            DB::table('dcy_s_old')->insert([
-              'Item&Branch' => $row[0],
-              'Item No' => $row[1],
-              'Global Dimension 2 Code' => $row[15],
-              'Full Description' => $row[2],
-              'Unit of Measure Code' => $row[13],
-              'Quantity' => $quantity,
-              'Cost Amount (Actual)' => $cost_Amount_Actual,
-              'Sales Amount (Actual)' => $sales_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
-            ]);
-          }
-        } elseif (strpos($row[0], "DCP")) {
-          if (!empty($checkData3->ItemNo) && $checkData3->ItemNo == $row[1]) {
             DB::table('dcp_s')->where('Item No', $row[1])->update([
-              'Quantity' => $quantity + $checkData3->Quantity,
-              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
-              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData3->SalesAmount,
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData2->SalesAmount,
             ]);
 
-            DB::table('dcp_s_old')->where('Item No', $row[1])->update([
-              'Quantity' => $quantity + $checkData3->Quantity,
-              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
-              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData3->SalesAmount,
+            DB::table('dcp_s_old')
+			->where('Item No', $row[1])
+			->update([
+              'Quantity' => $quantity + $checkData2->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData2->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData2->SalesAmount,
             ]);
           } else {
             DB::table('dcp_s')->insert([
@@ -1487,10 +1457,49 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
-        } elseif (strpos($row[0], "DEX")) {
+        } elseif ($row[35] == "DCY") {
+          if (!empty($checkData3->ItemNo) && $checkData3->ItemNo == $row[1]) {
+            DB::table('dcy_s')->where('Item No', $row[1])->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData3->SalesAmount,
+            ]);
+
+            DB::table('dcy_s_old')
+			->where('Item No', $row[1])
+			->update([
+              'Quantity' => $quantity + $checkData3->Quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData3->CostAmount,
+              'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData3->SalesAmount,
+            ]);
+          } else {
+            DB::table('dcy_s')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+            ]);
+
+            DB::table('dcy_s_old')->insert([
+              'Item&Branch' => $row[0],
+              'Item No' => $row[1],
+              'Global Dimension 2 Code' => $row[15],
+              'Full Description' => $row[2],
+              'Unit of Measure Code' => $row[13],
+              'Quantity' => $quantity,
+              'Cost Amount (Actual)' => $cost_Amount_Actual,
+              'Sales Amount (Actual)' => $sales_Amount_Actual,
+              'DateUpdate_Old' => $SearchDate_af,
+            ]);
+          }
+        } elseif ($row[35] == "DEX") {
           if (!empty($checkData4->ItemNo) && $checkData4->ItemNo == $row[1]) {
             DB::table('dex_s')->where('Item No', $row[1])->update([
               'Quantity' => $quantity + $checkData4->Quantity,
@@ -1498,7 +1507,9 @@ class PostController extends Controller
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData4->SalesAmount,
             ]);
 
-            DB::table('dex_s_old')->where('Item No', $row[1])->update([
+            DB::table('dex_s_old')
+			->where('Item No', $row[1])
+			->update([
               'Quantity' => $quantity + $checkData4->Quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual + $checkData4->CostAmount,
               'Sales Amount (Actual)' => $sales_Amount_Actual + $checkData4->SalesAmount,
@@ -1524,73 +1535,12 @@ class PostController extends Controller
               'Quantity' => $quantity,
               'Cost Amount (Actual)' => $cost_Amount_Actual,
               'Sales Amount (Actual)' => $sales_Amount_Actual,
-			  'DateUpdate_Old' => $SearchDate_af,
+              'DateUpdate_Old' => $SearchDate_af,
             ]);
           }
         }
       }
-	  
-	  $listDC1 = DB::table('dc1_s')->select('Item No as ItemNo')->get();
-	  $listDCP = DB::table('dcp_s')->select('Item No as ItemNo')->get();
-	  $listDCY = DB::table('dcy_s')->select('Item No as ItemNo')->get();
-	  $listDEX = DB::table('dex_s')->select('Item No as ItemNo')->get();
-	  
-	  foreach($listDC1 as $rowDC1){
-		DB::table('dataother')
-		->where('Item No', $rowDC1->ItemNo)
-		->update([
-			'Customer' => 'DC1',
-		]);
-		DB::table('log_price')
-		->where('Item No_Old', $rowDC1->ItemNo)
-		->where('DateUpdate_Old', $SearchDate_af)
-		->update([
-			'Customer_Old' => 'DC1',
-		]);
-	  }
-	  
-	  foreach($listDCP as $rowDCP){
-		DB::table('dataother')
-		->where('Item No',$rowDCP->ItemNo)
-		->update([
-			'Customer' => 'DCP',
-		]);
-		DB::table('log_price')
-		->where('Item No_Old',$rowDCP->ItemNo)
-		->where('DateUpdate_Old', $SearchDate_af)
-		->update([
-			'Customer_Old' => 'DCP',
-		]);
-	  }
-	  
-	  foreach($listDCY as $rowDCY){
-		DB::table('dataother')
-		->where('Item No',$rowDCY->ItemNo)
-		->update([
-			'Customer' => 'DCY',
-		]);
-		DB::table('log_price')
-		->where('Item No_Old',$rowDCY->ItemNo)
-		->where('DateUpdate_Old', $SearchDate_af)
-		->update([
-			'Customer_Old' => 'DCY',
-		]);
-	  }
-	  
-	  foreach($listDEX as $rowDEX){
-		DB::table('dataother')
-		->where('Item No',$rowDEX->ItemNo
-		)->update([
-			'Customer' => 'DEX',
-		]);
-		DB::table('log_price')
-		->where('Item No_Old',$rowDEX->ItemNo)
-		->where('DateUpdate_Old', $SearchDate_af)
-		->update([
-			'Customer_Old' => 'DEX',
-		]);
-	  }
-	  
+
       return response()->json(['message' => 'อัปโหลดและประมวลผลข้อมูลเสร็จสิ้น']);
     } else {
       return response()->json(['error' => 'ไม่มีไฟล์ถูกอัปโหลด'], 400);
@@ -1612,23 +1562,23 @@ class PostController extends Controller
 
       $data = $worksheet->toArray();
 
-      $m_af = date('m')-1;
-      $y_af = date('Y')+543;
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
 
-      $y_Old = date('Y')+542;
+      $y_Old = date('Y') + 542;
 
       if ($m_af === 0) {
         $m_af = 12;
       }
 
-      $SearchDate_af = $m_af.'/'.$y_af;
-      $SearchDate_Old = $m_af.'/'.$y_Old;
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
 
       $Numrow = DB::table('item_stock_old')->where('DateUpdate_Old', $SearchDate_af)->count();
 
       if ($Numrow > 0) {
         DB::table('item_stock_old')->where('DateUpdate_Old', $SearchDate_af)->delete();
-      }else{
+      } else {
         DB::table('item_stock_old')->where('DateUpdate_Old', $SearchDate_Old)->delete();
       }
 
@@ -1692,7 +1642,7 @@ class PostController extends Controller
             'Inventory' => $Inventory,
             'Last Stock-In' => $row[12],
             'Entry Type' => $row[13],
-			'DateUpdate_Old' => $SearchDate_af,
+            'DateUpdate_Old' => $SearchDate_af,
           ]);
         }
       }
@@ -1708,31 +1658,31 @@ class PostController extends Controller
     $upload10 = $request->input('confirm');
 
     if ($upload10 === 1) {
-		
-		// $log_price = DB::table('log_price')->select('DateUpdate_Old')->orderBy('DateUpdate_Old', 'Asc')->first();
-		// DB::table('dataother')->delete();
-	
-		// if ($log_price) {
-			
-            // $log_price_Data = DB::table('log_price')
-            // ->select(
-                // 'Item No_Old as ItemNo', 'Customer_Old as Customer', 'PcsAfter_Old as PcsAfter',
-                // 'PriceAfter_Old as PriceAfter', 'Category_Old as  Category',
-            // )
-            // ->where('DateUpdate_Old', $log_price->DateUpdate_Old)
-            // ->get();
 
-            // foreach ($log_price_Data as $row) {
-                // DB::table('dataother')->insert([
-                    // 'Item No' => $row->ItemNo,
-                    // 'Customer' => $row->Customer,
-                    // 'PcsAfter' => $row->PcsAfter,
-                    // 'PriceAfter' => $row->PriceAfter,
-                    // 'Category' => $row->Category,
-                // ]);
-            // }
-        // }
-		
+      // $log_price = DB::table('log_price')->select('DateUpdate_Old')->orderBy('DateUpdate_Old', 'Asc')->first();
+      // DB::table('dataother')->delete();
+
+      // if ($log_price) {
+
+      // $log_price_Data = DB::table('log_price')
+      // ->select(
+      // 'Item No_Old as ItemNo', 'Customer_Old as Customer', 'PcsAfter_Old as PcsAfter',
+      // 'PriceAfter_Old as PriceAfter', 'Category_Old as  Category',
+      // )
+      // ->where('DateUpdate_Old', $log_price->DateUpdate_Old)
+      // ->get();
+
+      // foreach ($log_price_Data as $row) {
+      // DB::table('dataother')->insert([
+      // 'Item No' => $row->ItemNo,
+      // 'Customer' => $row->Customer,
+      // 'PcsAfter' => $row->PcsAfter,
+      // 'PriceAfter' => $row->PriceAfter,
+      // 'Category' => $row->Category,
+      // ]);
+      // }
+      // }
+
       $ItemNo = DB::table('item_all')
         ->select(
           'dataother.Item No as ItemCode',
@@ -1802,25 +1752,25 @@ class PostController extends Controller
         ->orderBy('item_all.No')
         ->get();
 
-        $m_af = date('m')-1;
-        $y_af = date('Y')+543;
-  
-        $y_Old = date('Y')+542;
-  
-        if ($m_af === 0) {
-          $m_af = 12;
-        }
-  
-        $SearchDate_af = $m_af.'/'.$y_af;
-        $SearchDate_Old = $m_af.'/'.$y_Old;
-  
-        $Numrow = DB::table('log_price')->where('DateUpdate_Old', $SearchDate_af)->count();
-  
-        if ($Numrow > 0) {
-          DB::table('log_price')->where('DateUpdate_Old', $SearchDate_af)->delete();
-        }else{
-          DB::table('log_price')->where('DateUpdate_Old', $SearchDate_Old)->delete();
-        }
+      $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+
+      $Numrow = DB::table('log_price')->where('DateUpdate_Old', $SearchDate_af)->count();
+
+      if ($Numrow > 0) {
+        DB::table('log_price')->where('DateUpdate_Old', $SearchDate_af)->delete();
+      } else {
+        DB::table('log_price')->where('DateUpdate_Old', $SearchDate_Old)->delete();
+      }
 
       foreach ($ItemNo as $row) {
         $PcsAf = floatval($row->PcsAfter);
@@ -2036,133 +1986,316 @@ class PostController extends Controller
         $TotalCalPcs = $BackChagePcs + $TotalInPcs + $totalOutPcs;
         $TotalCalPrice = $BackChagePrice + $TotalInPrice + $totalOutPrice;
 
-        $arrayinsert[] = [$row->Item_No, $row->Customer, $TotalCalPcs, $TotalCalPrice, $row->Category];
+        $arrayinsert[] = [$row->Item_No, $row->Customer_DC1, $row->Customer_DCP, $row->Customer_DCY, $row->Customer_DEX , $TotalCalPcs, $TotalCalPrice, $row->Category];
       }
       DB::table('dataother')->delete();
 
       foreach ($arrayinsert as $resultInsert) {
         DB::table('dataother')->insert([
           'Item No' => $resultInsert[0],
-          'Customer' => $resultInsert[1],
-          'PcsAfter' => $resultInsert[2],
-          'PriceAfter' => $resultInsert[3],
-          'Category' => $resultInsert[4],
-		]);
-		  
-		DB::table('log_price')->insert([
+          'Customer_DC1' => $resultInsert[1],
+		  'Customer_DCP' => $resultInsert[2],
+		  'Customer_DCY' => $resultInsert[3],
+		  'Customer_DEX' => $resultInsert[4],
+          'PcsAfter' => $resultInsert[5],
+          'PriceAfter' => $resultInsert[6],
+          'Category' => $resultInsert[7],
+        ]);
+
+        DB::table('log_price')->insert([
           'Item No_Old' => $resultInsert[0],
-          'Customer_Old' => $resultInsert[1],
-          'PcsAfter_Old' => $resultInsert[2],
-          'PriceAfter_Old' => $resultInsert[3],
-          'Category_Old' => $resultInsert[4],
+          'Customer_Old_DC1' => $resultInsert[1],
+		  'Customer_Old_DCP' => $resultInsert[2],
+		  'Customer_Old_DCY' => $resultInsert[3],
+		  'Customer_Old_DEX' => $resultInsert[4],
+          'PcsAfter_Old' => $resultInsert[5],
+          'PriceAfter_Old' => $resultInsert[6],
+          'Category_Old' => $resultInsert[7],
           'DateUpdate_Old' => $SearchDate_af
         ]);
       }
-	  
-	  $d_after = date('t', strtotime('today'));
+
+      $d_after = date('t', strtotime('today'));
       $m_after = date('m', strtotime('today')) - 2;
       $y_after = date('Y', strtotime('today')) + 543;
-	  
-	  if($m_after == 0){
-		$m_after = 12;
-	  }
-			switch ($m_after) {
-            case 1:
-                $m_after = 'ม.ค.';
-                break;
-            case 2:
-                $m_after = 'ก.พ.';
-                break;
-            case 3:
-                $m_after = 'มี.ค.';
-                break;
-            case 4:
-                $m_after = 'เม.ย.';
-                break;
-            case 5:
-                $m_after = 'พ.ค.';
-                break;
-            case 6:
-                $m_after = 'มิ.ย';
-                break;
-            case 7:
-                $m_after = 'ก.ค.';
-                break;
-            case 8:
-                $m_after = 'ส.ค.';
-                break;
-            case 9:
-                $m_after = 'ก.ย.';
-                break;
-            case 10:
-                $m_after = 'ต.ค.';
-                break;
-            case 11:
-                $m_after = 'พ.ย.';
-                break;
-            case 12:
-                $m_after = 'ธ.ค.';
-                break;
-        }
-		
-		session(['d_after' => $d_after]);
-		session(['m_after' => $m_after]);
-		session(['y_after' => $y_after]);
-		
-		$d_before = date('t', strtotime('today'));
-		$m_before = date('m', strtotime('today') - 1);
-		$y_before = date('Y', strtotime('today')) + 543;
-		
-		if($m_before == 1){
-			$y_before = $y_before + 1;
-		}
-		
-		switch ($m_before) {
-            case 1:
-                $m_before = 'ม.ค.';
-                break;
-            case 2:
-                $m_before = 'ก.พ.';
-                break;
-            case 3:
-                $m_before = 'มี.ค.';
-                break;
-            case 4:
-                $m_before = 'เม.ย.';
-                break;
-            case 5:
-                $m_before = 'พ.ค.';
-                break;
-            case 6:
-                $m_before = 'มิ.ย';
-                break;
-            case 7:
-                $m_before = 'ก.ค.';
-                break;
-            case 8:
-                $m_before = 'ส.ค.';
-                break;
-            case 9:
-                $m_before = 'ก.ย.';
-                break;
-            case 10:
-                $m_before = 'ต.ค.';
-                break;
-            case 11:
-                $m_before = 'พ.ย.';
-                break;
-            case 12:
-                $m_before = 'ธ.ค.';
-                break;
-        }
-		
-		session(['d_before' => $d_before]);
-		session(['m_before' => $m_before]);
-		session(['y_before' => $y_before]);
+
+      if ($m_after == 0) {
+        $m_after = 12;
+      }
+      switch ($m_after) {
+        case 1:
+          $m_after = 'ม.ค.';
+          break;
+        case 2:
+          $m_after = 'ก.พ.';
+          break;
+        case 3:
+          $m_after = 'มี.ค.';
+          break;
+        case 4:
+          $m_after = 'เม.ย.';
+          break;
+        case 5:
+          $m_after = 'พ.ค.';
+          break;
+        case 6:
+          $m_after = 'มิ.ย';
+          break;
+        case 7:
+          $m_after = 'ก.ค.';
+          break;
+        case 8:
+          $m_after = 'ส.ค.';
+          break;
+        case 9:
+          $m_after = 'ก.ย.';
+          break;
+        case 10:
+          $m_after = 'ต.ค.';
+          break;
+        case 11:
+          $m_after = 'พ.ย.';
+          break;
+        case 12:
+          $m_after = 'ธ.ค.';
+          break;
+      }
+
+      session(['d_after' => $d_after]);
+      session(['m_after' => $m_after]);
+      session(['y_after' => $y_after]);
+
+      $d_before = date('t', strtotime('today'));
+      $m_before = date('m', strtotime('today') - 1);
+      $y_before = date('Y', strtotime('today')) + 543;
+
+      if ($m_before == 1) {
+        $y_before = $y_before + 1;
+      }
+
+      switch ($m_before) {
+        case 1:
+          $m_before = 'ม.ค.';
+          break;
+        case 2:
+          $m_before = 'ก.พ.';
+          break;
+        case 3:
+          $m_before = 'มี.ค.';
+          break;
+        case 4:
+          $m_before = 'เม.ย.';
+          break;
+        case 5:
+          $m_before = 'พ.ค.';
+          break;
+        case 6:
+          $m_before = 'มิ.ย';
+          break;
+        case 7:
+          $m_before = 'ก.ค.';
+          break;
+        case 8:
+          $m_before = 'ส.ค.';
+          break;
+        case 9:
+          $m_before = 'ก.ย.';
+          break;
+        case 10:
+          $m_before = 'ต.ค.';
+          break;
+        case 11:
+          $m_before = 'พ.ย.';
+          break;
+        case 12:
+          $m_before = 'ธ.ค.';
+          break;
+      }
+
+      session(['d_before' => $d_before]);
+      session(['m_before' => $m_before]);
+      session(['y_before' => $y_before]);
 
       return response()->json();
     } else {
       return response()->json('ข้อมูลไม่ต้องการอัพเดท');
     }
+  }
+  
+  public function UploadCustomer()
+  {
+	  $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+	  
+	  $Customer_DC1 = DB::table('dc1_s')->get();
+	  $Customer_DCY = DB::table('dcy_s')->get();
+	  $Customer_DCP = DB::table('dcp_s')->get();
+	  $Customer_DEX = DB::table('dex_s')->get();
+	  
+	  $U_DCY = DB::table('dcy_s');
+	  $U_DCP = DB::table('dcp_s');
+	  $U_DEX = DB::table('dex_s');
+	  
+	  $Customer = DB::table('dc1_s')
+	  ->union($U_DCY)
+	  ->union($U_DCP)
+	  ->union($U_DEX)
+	  ->get();
+	 
+	  
+	  foreach($Customer as $row){
+			DB::table('dataother')
+			->where('Item No', $row->{'Item No'})
+			->update([
+				'Customer_DC1' => "",
+				'Customer_DCP' => "",
+				'Customer_DCY' => "",
+				'Customer_DEX' => "",
+			]);
+			
+			DB::table('log_price')
+			->where('Item No_Old', $row->{'Item No'})
+			->where('DateUpdate_Old', $SearchDate_af)
+			->update([
+				'Customer_Old_DC1' => "",
+				'Customer_Old_DCP' => "",
+				'Customer_Old_DCY' => "",
+				'Customer_Old_DEX' => "",
+			]);
+	  }
+	  
+	  foreach($Customer_DC1 as $rowDC1){
+		DB::table('dataother')
+			->where('Item No', $rowDC1->{'Item No'})
+			->update([
+				'Customer_DC1' => "DC1",
+		]);
+		
+		DB::table('log_price')
+			->where('Item No_Old', $rowDC1->{'Item No'})
+			->where('DateUpdate_Old', $SearchDate_af)
+			->update([
+				'Customer_Old_DC1' => "DC1",
+			]);
+	  }
+	  
+	  foreach($Customer_DCY as $rowDCY){
+		DB::table('dataother')
+			->where('Item No', $rowDCY->{'Item No'})
+			->update([
+				'Customer_DCY' => "DCY",
+		]);
+		
+		DB::table('log_price')
+			->where('Item No_Old', $rowDCY->{'Item No'})
+			->where('DateUpdate_Old', $SearchDate_af)
+			->update([
+				'Customer_Old_DCY' => "DCY",
+			]);
+	  }
+	  
+	  foreach($Customer_DCP as $rowDCP){
+		DB::table('dataother')
+			->where('Item No', $rowDCP->{'Item No'})
+			->update([
+				'Customer_DCP' => "DCP",
+		]);
+		
+		DB::table('log_price')
+			->where('Item No_Old', $rowDCP->{'Item No'})
+			->where('DateUpdate_Old', $SearchDate_af)
+			->update([
+				'Customer_Old_DCP' => "DCP",
+			]);
+	  }
+	  
+	  foreach($Customer_DEX as $rowDEX){
+		DB::table('dataother')
+			->where('Item No', $rowDEX->{'Item No'})
+			->update([
+				'Customer_DEX' => "DEX",
+		]);
+		
+		DB::table('log_price')
+			->where('Item No_Old', $rowDEX->{'Item No'})
+			->where('DateUpdate_Old', $SearchDate_af)
+			->update([
+				'Customer_Old_DEX' => "DEX",
+			]);
+	  }
+	  
+	    return response()->json();
+  }
+  public function UpdateCus()
+  {
+	  $m_af = date('m') - 1;
+      $y_af = date('Y') + 543;
+
+      $y_Old = date('Y') + 542;
+
+      if ($m_af === 0) {
+        $m_af = 12;
+      }
+
+      $SearchDate_af = $m_af . '/' . $y_af;
+      $SearchDate_Old = $m_af . '/' . $y_Old;
+	  
+	  
+	  $data1 = DB::table('dataother')->leftJoin('item_all', 'dataother.Item No', 'item_all.No')->get();
+	  $datalog = DB::table('log_price')->leftJoin('item_all', 'log_price.Item No_Old', 'item_all.No')->where('DateUpdate_Old', $SearchDate_af)->get();
+	  
+	  foreach($data1 as $row){
+		$dataarray[] = [
+			$row->{'Item No'},
+			$row->{'Full Description'},
+			$row->Customer_DC1,
+			$row->Customer_DCP,
+			$row->Customer_DCY,
+			$row->Customer_DEX,
+			$row->PcsAfter,
+			$row->PriceAfter,
+			$row->Category
+		];
+	  }
+	  
+	  $datadel = DB::table('dataother')->delete();
+	  $logdel = DB::table('log_price')->where('DateUpdate_Old', $SearchDate_af)->delete();
+	  
+	  foreach($dataarray as $row){
+		DB::table('dataother')->insert([
+			'Item No' => $row[0],
+			'Customer' => (preg_match('/[ก-ฯ]/u', $row[1]) || $row[1] === '') ? "DC1" : $row[1],
+			'Customer_DC1' => $row[2],
+			'Customer_DCP' => $row[3],
+			'Customer_DCY' => $row[4],
+			'Customer_DEX' => $row[5],
+			'PcsAfter' => $row[6],
+			'PriceAfter' => $row[7],
+			'Category' => $row[8],
+		]);
+		
+		DB::table('log_price')->insert([
+			'Item No_Old' => $row[0],
+			'Customer_Old' => (preg_match('/[ก-ฯ]/u', $row[1]) || $row[1] === '') ? "DC1" : $row[1],
+			'Customer_Old_DC1' => $row[2],
+			'Customer_Old_DCP' => $row[3],
+			'Customer_Old_DCY' => $row[4],
+			'Customer_Old_DEX' => $row[5],
+			'PcsAfter_Old' => $row[6],
+			'PriceAfter_Old' => $row[7],
+			'Category_Old' => $row[8],
+			'DateUpdate_Old' => $SearchDate_af,
+		]);
+	  }
+	  return response()->json();
   }
 }

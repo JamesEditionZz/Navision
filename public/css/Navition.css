@@ -613,6 +613,10 @@ a:hover {
     width: 10%;
     animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
 }
+.img11 {
+    width: 10%;
+    animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;
+}
 .img-backdata {
     width: 100%;
     animation: loading 4s linear infinite, success 1s linear, cancel 1s linear;

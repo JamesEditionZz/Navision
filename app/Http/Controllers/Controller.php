@@ -35,16 +35,16 @@ class Controller extends BaseController
 
     public function Product()
     {
-			return view('Page.Product');
+        return view('Page.Product');
     }
 
     public function Customer()
     {
-			return view('Page.Customer');
+        return view('Page.Customer');
     }
 
     public function DC1()
     {
-			return view('Page.DC1');
+        return view('Page.DC1');
     }
 }

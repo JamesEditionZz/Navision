@@ -12,7 +12,11 @@ class ProductController extends Controller
         $ItemNoNT = DB::table('item_all')
             ->select(
                 'dataother.Item No as Item_No',
-                'dataother.Customer',
+				'dataother.Customer',
+                'dataother.Customer_DC1',
+                'dataother.Customer_DCP',
+                'dataother.Customer_DCY',
+                'dataother.Customer_DEX',
                 'item_all.Unit Cost Decha as PriceAvg',
                 'dataother.PcsAfter',
                 'dataother.PriceAfter',
@@ -2013,7 +2017,7 @@ class ProductController extends Controller
             //////////////////////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            elseif (($Code_1[0] == "MT") && ($row->Customer == "DC1" || $row->Customer == " ")) {
+            elseif (($Code_1[0] == "MT") && ($row->Customer == "DC1")) {
                 if ($row->PcsAfter > 0 && $row->PriceAfter > 0) {
                     $NumberMT = ($row->PriceAfter / $row->PcsAfter);
                 } else {
@@ -3153,7 +3157,7 @@ class ProductController extends Controller
             //////////////////////////////////////////////////////////////////////////////////////////////////
             ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-            elseif (($Code_1[0] == "STW") && ($row->Customer == "DC1" || $row->Customer == "DCI" || $row->Customer == "EXM1")) {
+            elseif (($Code_1[0] == "STW") && ($row->Customer == "DC1" || $row->Customer == "DCI" || $row->Customer == "EXM1" || $row->Customer == "")) {
 
                 if ($row->PcsAfter > 0 && $row->PriceAfter > 0) {
                     $NumberSTW = ($row->PriceAfter / $row->PcsAfter);
@@ -4295,7 +4299,7 @@ class ProductController extends Controller
             //////////////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////////////
 
-            elseif (($Code_1[0] == "SNT") && ($row->Customer == "DC1" || $row->Customer == "DCI" || $row->Customer == "EXM1")) {
+            elseif (($Code_1[0] == "SNT") && ($row->Customer == "DC1" || $row->Customer == "DCI" || $row->Customer == "EXM1" || $row->Customer == "")) {
 
                 if ($row->PcsAfter > 0 && $row->PriceAfter > 0) {
                     $NumberSNT = ($row->PriceAfter / $row->PcsAfter);

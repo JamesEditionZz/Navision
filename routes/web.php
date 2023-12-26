@@ -52,6 +52,8 @@ Route::post('/uploadfile7', [PostController::class,'uploadfile7'])->name('upload
 Route::post('/uploadfile8', [PostController::class,'uploadfile8'])->name('uploadfile8');
 Route::post('/uploadfile9', [PostController::class,'uploadfile9'])->name('uploadfile9');
 Route::post('/uploadfile10', [PostController::class,'uploadfile10'])->name('uploadfile10');
+Route::post('/UploadCustomer', [PostController::class,'UploadCustomer'])->name('UploadCustomer');
+Route::post('/UpdateCus', [PostController::class,'UpdateCus'])->name('UpdateCus');
 
 //UnData
 Route::post('/backdata', [BackDataController::class,'backdata'])->name('backdata');

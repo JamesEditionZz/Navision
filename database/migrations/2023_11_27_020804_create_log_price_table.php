@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('log_price', function (Blueprint $table) {
             $table->string('Item No_Old')->nullable(true);
-            $table->string('Customer_Old')->nullable(true);
+            $table->string('Customer_Old_DC1')->nullable(true);
+            $table->string('Customer_Old_DCP')->nullable(true);
+            $table->string('Customer_Old_DCY')->nullable(true);
+            $table->string('Customer_Old_DEX')->nullable(true);
             $table->double('PcsAfter_Old', 20, 2)->nullable(true);
             $table->double('PriceAfter_Old', 20, 2)->nullable(true);
             $table->string('Category_Old')->nullable(true);

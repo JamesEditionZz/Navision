@@ -13,7 +13,11 @@ class CustomerController extends Controller
         $ItemNo = DB::table('item_all')
             ->select(
                 'dataother.Item No as Item_No',
-                'dataother.Customer',
+				'dataother.Customer',
+                'dataother.Customer_DC1',
+                'dataother.Customer_DCP',
+                'dataother.Customer_DCY',
+                'dataother.Customer_DEX',
                 'item_all.Unit Cost Decha as PriceAvg',
                 'dataother.PcsAfter',
                 'dataother.PriceAfter',

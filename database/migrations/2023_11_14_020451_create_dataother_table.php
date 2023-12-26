@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('dataother', function (Blueprint $table) {
             $table->string('Item No')->nullable(true);
-            $table->string('Customer')->nullable(true);
+            $table->string('Custome_DC1')->nullable(true);
+            $table->string('Customer_DCP')->nullable(true);
+            $table->string('Customer_DCY')->nullable(true);
+            $table->string('Customer_DEX')->nullable(true);
             $table->double('PcsAfter', 20, 2)->nullable(true);
             $table->double('PriceAfter', 20, 2)->nullable(true);
             $table->string('Category')->nullable(true);

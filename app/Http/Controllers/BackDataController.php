@@ -76,7 +76,7 @@ class BackDataController extends Controller
 			
             $log_price_Data = DB::table('log_price')
             ->select(
-                'Item No_Old as ItemNo', 'Customer_Old as Customer', 'PcsAfter_Old as PcsAfter',
+                'Item No_Old as ItemNo', 'Customer_Old as Customer', 'Customer_Old_DC1 as Customer_DC1', 'Customer_Old_DCP as Customer_DCP', 'Customer_Old_DCY as Customer_DCY', 'Customer_Old_DEX as Customer_DEX', 'PcsAfter_Old as PcsAfter',
                 'PriceAfter_Old as PriceAfter', 'Category_Old as  Category',
             )
             ->where('DateUpdate_Old', $date)
@@ -85,7 +85,11 @@ class BackDataController extends Controller
             foreach ($log_price_Data as $row) {
                 DB::table('dataother')->insert([
                     'Item No' => $row->ItemNo,
-                    'Customer' => $row->Customer,
+					'Customer' => $row->Customer,
+                    'Customer_DC1' => $row->Customer_DC1,
+                    'Customer_DCP' => $row->Customer_DCP,
+                    'Customer_DCY' => $row->Customer_DCY,
+                    'Customer_DEX' => $row->Customer_DEX,
                     'PcsAfter' => $row->PcsAfter,
                     'PriceAfter' => $row->PriceAfter,
                     'Category' => $row->Category,
@@ -761,7 +765,7 @@ class BackDataController extends Controller
 			
 			$dateComponents = explode('/', $date);
 			
-			$m_after = $dateComponents[0];
+			$m_after = $dateComponents[0] - 1;
 			$y_after = $dateComponents[1];
 			
 			$d_after = cal_days_in_month(CAL_GREGORIAN, $m_after, $y_after);
@@ -805,7 +809,7 @@ class BackDataController extends Controller
                 break;
         }
 		
-		$m_before = intval($dateComponents[0]) + 1;
+		$m_before = intval($dateComponents[0]);
 		$y_before = intval($dateComponents[1]);
 		
 		if($y_before == 12){

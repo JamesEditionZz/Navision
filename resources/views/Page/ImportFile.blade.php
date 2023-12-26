@@ -157,6 +157,9 @@
           <div id="text9" class="img-load9">สรุปมูลค่า<img class="img9" align="right" src="{{ asset('/icon/rotate.png') }}" id="img9">
             <hr>
           </div>
+		  <div id="text11" class="img-load11">อัพเดทลูกค้า<img class="img11" align="right" src="{{ asset('/icon/rotate.png') }}" id="img11">
+            <hr>
+          </div>
           <div align="center">
             <button class="btn-success" id="btn-success">OK</button>
           </div>
@@ -367,7 +370,7 @@
                     imgload0.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss0.style.animation = "success";
 
-                    console.log(response);
+					UpdateCustomer()
                   },
                   error: function(error) {
                     const imgload0 = document.getElementById(
@@ -398,6 +401,7 @@
                     const imgload1 = document.getElementById('img1');
                     imgload1.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss1.style.animation = "success";
+					
                   },
                   error: function(error) {
                     const imgload1 = document.getElementById(
@@ -609,6 +613,7 @@
                     const imgload8 = document.getElementById('img8');
                     imgload8.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss8.style.animation = "success";
+					
                   },
                   error: function(error) {
                     const imgload8 = document.getElementById(
@@ -640,7 +645,6 @@
                     imgload9.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss9.style.animation = "success";
 
-                    console.log(response);
                   },
                   error: function(error) {
                     const imgload9 = document.getElementById(
@@ -714,7 +718,7 @@
                     imgload0.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss0.style.animation = "success";
 
-                    console.log(response);
+                    UpdateCustomer();
                   },
                   error: function(error) {
                     const imgload0 = document.getElementById(
@@ -957,6 +961,7 @@
                     const imgload8 = document.getElementById('img8');
                     imgload8.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss8.style.animation = "success";
+					
                   },
                   error: function(error) {
                     const imgload8 = document.getElementById(
@@ -988,7 +993,6 @@
                     imgload9.src = '{{ asset("/icon/success.png") }}'
                     imgloadcss9.style.animation = "success";
 
-                    console.log(response);
                   },
                   error: function(error) {
                     const imgload9 = document.getElementById(
@@ -1015,4 +1019,33 @@
       modalcontent.style.display = "none";
     })
   });
+  
+  function UpdateCustomer(){
+	var text11 = document.getElementById('text11');
+	var imgloadcss11 = document.querySelector('.img11');
+	
+	text11.style.display = "block";
+	$.ajax({
+		type: 'POST',
+		url: "{{Route('UploadCustomer')}}",
+		headers: {
+            "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr('content')
+        },
+		success: function(response) {
+			$.ajax({
+				type: 'POST',
+				url: "{{Route('UpdateCus')}}",
+				headers: {
+                    "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr('content')
+                  },
+				success: function(response) {
+					const imgload11 = document.getElementById('img11');
+                    imgload11.src = '{{ asset("/icon/success.png") }}'
+                    imgloadcss11.style.animation = "success";
+				}
+			});
+		}
+	});
+  }
+  
 </script>

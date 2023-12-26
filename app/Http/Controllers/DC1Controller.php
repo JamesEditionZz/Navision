@@ -46,7 +46,7 @@ class DC1Controller extends Controller
                 'dcy_s.Quantity as dcy_s_Quantity',
                 'dex_s.Quantity as dex_s_Quantity',
             )
-            ->leftjoin('dataother', 'item_all.No', 'dataother.Item No')
+            ->Join('dataother', 'item_all.No', 'dataother.Item No')
             ->leftJoin('po', 'item_all.No', 'po.Item No')
             ->leftJoin('neg', 'item_all.No', 'neg.Item No')
             ->leftJoin('purchase', 'item_all.No', 'purchase.Item No')
@@ -73,7 +73,7 @@ class DC1Controller extends Controller
             ->leftJoin('dcp_s', 'item_all.No', 'dcp_s.Item No')
             ->leftJoin('dcy_s', 'item_all.No', 'dcy_s.Item No')
             ->leftJoin('dex_s', 'item_all.No', 'dex_s.Item No')
-            ->whereIn('dataother.Customer', ['DC1', 'DCI', 'EXM1', 'FAC', 'TLS', ""])
+            ->whereIn('dataother.Customer', ['DC1', 'DCI', 'EXM1', 'FAC', 'TLS'])
             ->get();
 
 
